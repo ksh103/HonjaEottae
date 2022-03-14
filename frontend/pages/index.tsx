@@ -5,8 +5,7 @@ import Nav from '../components/Nav/Nav';
 const Main: NextPage = () => {
   return (
     <>
-      <Nav />
-      <h1>Main</h1>
+      <Nav currentName="Main" />
       <Link href="/travelTest">여행성향테스트 하러 가기</Link>
     </>
   );
