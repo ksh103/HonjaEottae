@@ -9,20 +9,18 @@ const size = {
 };
 
 const flex = {
-  mobile: `(max-width): ${size.mobile}`,
+  mobile: `(max-width: ${size.mobile})`,
   tablet: `(max-width: ${size.tablet})`,
   laptopS: `(max-width: ${size.laptopS})`,
   laptopM: `(max-width: ${size.laptopM})`,
   desktop: `(min-width: ${size.desktop})`,
 };
 
-const colors = {
-  pointColor: '#F7323F',
-};
-
 const theme: DefaultTheme = {
-  flex,
-  colors,
+  ...flex,
+  colors: {
+    pointColor: '#F7323F',
+  },
 };
 
 export default theme;
