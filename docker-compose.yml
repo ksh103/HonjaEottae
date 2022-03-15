@@ -18,7 +18,7 @@ services:
   backend:
     image: backend-spring
     build:
-      context: backend/
+      context: Backend/
       dockerfile: Dockerfile
     ports:
       - "8443:8443"  
