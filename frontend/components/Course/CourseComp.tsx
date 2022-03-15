@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import SearchForm from './SearchForm';
 import Nav from '../Nav/Nav';
-import { Wrapper, CourseBlock } from './CourseComp.style';
+import { CourseWrapper, CourseBlock } from './CourseComp.style';
 import CourseList from './CourseList';
 import Footer from '../Footer/Footer';
 import Menu from '../Nav/Menu';
@@ -11,7 +11,7 @@ const CourseComp: NextPage = () => {
     <>
       <Nav />
       <Menu currentName="코스추천" />
-      <Wrapper>
+      <CourseWrapper>
         <SearchForm />
         <CourseBlock>
           <div className="title">OOO님 맞춤 추천 서비스</div>
@@ -23,7 +23,7 @@ const CourseComp: NextPage = () => {
           <div className="title">시원한 바다의 향기가 느껴지는 코스</div>
           <CourseList />
         </CourseBlock>
-      </Wrapper>
+      </CourseWrapper>
       <Footer />
     </>
   );
