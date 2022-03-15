@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
-  background-color: ${props => props.theme.colors.pointColor};
-`;
+const Wrapper = styled.div``;
 const NavBlock = styled.div`
+  background-color: ${props => props.theme.colors.pointColor};
+  position: fixed;
+  width: 100%;
   padding-top: 10px;
+  padding-left: 100px;
   padding-bottom: 10px;
+  margin-bottom: 100px;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 100;
   #title {
-    padding-left: 100px;
     font-size: 25px;
     cursor: pointer;
   }
@@ -25,6 +28,8 @@ const NavBlock = styled.div`
   }
 `;
 const MenuBlock = styled.div`
+  background-color: ${props => props.theme.colors.pointColor};
+  padding-top: 55px;
   padding-left: 100px;
   padding-right: 20px;
   padding-bottom: 20px;

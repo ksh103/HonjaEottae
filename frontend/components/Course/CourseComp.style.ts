@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  margin-left: 300px;
-  margin-right: 300px;
+  margin: 0 300px;
   input {
     width: 600px;
     font-size: 15px;
@@ -13,6 +12,14 @@ const Wrapper = styled.div`
     ::placeholder {
       font-size: 15px;
     }
+  }
+  .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .react-horizontal-scrolling-menu--scroll-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 `;
 
@@ -59,9 +66,9 @@ const CourseFormWrapper = styled.div`
   #card {
     cursor: pointer;
   }
-  /* ::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     display: none;
-  } */
+  }
 `;
 
 export { Wrapper, CourseBlock, SearchFormWrapper, Button, CourseFormWrapper };
