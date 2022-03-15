@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
-
+import CourseComp from '../components/Course/CourseComp';
 const Course: NextPage = () => {
-  return <div>Course</div>;
+  return <CourseComp />;
 };
 
 export default Course;

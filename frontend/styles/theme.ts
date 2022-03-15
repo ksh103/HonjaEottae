@@ -16,13 +16,11 @@ const flex = {
   desktop: `(min-width: ${size.desktop})`,
 };
 
-const colors = {
-  pointColor: '#F7323F',
-};
-
 const theme: DefaultTheme = {
-  flex,
-  colors,
+  ...flex,
+  colors: {
+    pointColor: '#F7323F',
+  },
 };
 
 export default theme;
