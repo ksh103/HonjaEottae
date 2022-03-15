@@ -615,3 +615,27 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2022-03-15 18:26:07.160 DEBUG 19948 --- [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, */*] and supported [application/json, application/hal+json]
 2022-03-15 18:26:07.161 DEBUG 19948 --- [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [springfox.documentation.spring.web.json.Json@7c70143e]
 2022-03-15 18:26:07.162 DEBUG 19948 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2022-03-16 00:30:55.621  INFO 11620 --- [Test worker] c.ssafy.tourist.TouristApplicationTests  : Starting TouristApplicationTests using Java 1.8.0_192 on DESKTOP-KVCQHCD with PID 11620 (started by SSAFY in C:\SSAFY\ƯȭPJT\S06P22E103\Backend)
+2022-03-16 00:30:55.622  INFO 11620 --- [Test worker] c.ssafy.tourist.TouristApplicationTests  : No active profile set, falling back to default profiles: default
+2022-03-16 00:30:55.651 DEBUG 11620 --- [Test worker] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@77602954
+2022-03-16 00:30:56.298  INFO 11620 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-16 00:30:56.314  INFO 11620 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
+2022-03-16 00:30:56.841  INFO 11620 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-16 00:30:57.395  INFO 11620 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-16 00:30:57.448  INFO 11620 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-16 00:30:57.496  INFO 11620 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.33
+2022-03-16 00:30:57.626  INFO 11620 --- [Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-03-16 00:30:57.726  INFO 11620 --- [Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-03-16 00:30:57.930  INFO 11620 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-16 00:30:57.939  INFO 11620 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-16 00:30:58.255  WARN 11620 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-16 00:30:58.420 DEBUG 11620 --- [Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2022-03-16 00:30:58.883 DEBUG 11620 --- [Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-03-16 00:30:58.952 DEBUG 11620 --- [Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui/] in 'viewControllerHandlerMapping'
+2022-03-16 00:30:58.990 DEBUG 11620 --- [Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui/**] in 'resourceHandlerMapping'
+2022-03-16 00:30:59.001 DEBUG 11620 --- [Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-03-16 00:30:59.229  INFO 11620 --- [Test worker] c.ssafy.tourist.TouristApplicationTests  : Started TouristApplicationTests in 3.861 seconds (JVM running for 5.049)
+2022-03-16 00:30:59.319 DEBUG 11620 --- [SpringApplicationShutdownHook] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@77602954, started on Wed Mar 16 00:30:55 KST 2022
+2022-03-16 00:30:59.325  INFO 11620 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-16 00:30:59.326  INFO 11620 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-16 00:30:59.332  INFO 11620 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
