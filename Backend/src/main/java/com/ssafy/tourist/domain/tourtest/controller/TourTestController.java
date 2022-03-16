@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Api("관광지 코스 API")
+@Api("여행 취향 테스트 API")
 @Slf4j
 @Controller
 @RequestMapping("/api/tour-test")
