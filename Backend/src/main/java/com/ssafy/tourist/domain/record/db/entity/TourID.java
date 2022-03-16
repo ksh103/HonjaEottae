@@ -1,4 +1,4 @@
-package com.ssafy.tourist.domain.course.db.entity;
+package com.ssafy.tourist.domain.record.db.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookmarkID implements Serializable {
-    private int userId;
-    private int courseId;
+public class TourID implements Serializable {
+    int userId;
+    int courseId;
 }

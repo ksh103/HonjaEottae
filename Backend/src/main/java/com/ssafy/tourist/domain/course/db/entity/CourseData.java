@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@IdClass(CourseDataID.class)
 @Table(name = "course_data")
 @ApiModel(value = "CourseData", description = "코스에 등록된 관광지 정보")
 public class CourseData {

@@ -18,6 +18,13 @@ repositories {
 	mavenCentral()
 }
 
+// set build time and inject value to application.properties
+def buildTime() {
+	def date = new Date()
+	def formattedDate = date.format('yyyyMMdd_HHmm')
+	return formattedDate
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
