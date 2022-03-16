@@ -34,7 +34,6 @@ dependencies {
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 
-
 	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
 
 	// Swagger
