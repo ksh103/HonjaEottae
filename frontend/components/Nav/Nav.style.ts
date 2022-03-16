@@ -1,41 +1,43 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div``;
 const NavBlock = styled.div`
   background-color: ${props => props.theme.colors.pointColor};
   position: fixed;
+  top: 0;
   width: 100%;
-  padding-top: 10px;
-  padding-left: 100px;
-  padding-bottom: 10px;
-  margin-bottom: 100px;
-  color: white;
+  font-family: 'Jalnan';
+  height: 50px;
+  padding: 0 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 100;
+  color: white;
+
   #title {
     font-size: 25px;
     cursor: pointer;
   }
-  #menus {
-    padding-right: 100px;
+  ul li {
+    float: left;
+    margin-left: 20px;
+    color: white;
     font-size: 18px;
-    .menu {
-      margin-right: 20px;
+    label {
       cursor: pointer;
     }
   }
 `;
 const MenuBlock = styled.div`
   background-color: ${props => props.theme.colors.pointColor};
+  font-family: 'Jalnan';
+  color: white;
   padding-top: 55px;
   padding-left: 100px;
   padding-right: 20px;
   padding-bottom: 20px;
   margin-bottom: 50px;
   font-size: 50px;
-  color: white;
 `;
 
-export { Wrapper, NavBlock, MenuBlock };
+export { NavBlock, MenuBlock };
