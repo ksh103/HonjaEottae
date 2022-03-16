@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import CourseForm from './CourseForm';
-import { CourseFormWrapper } from './CourseComp.style';
+import { CourseFormWrapper } from './Course.style';
 import useDrag from './useDrag';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 

@@ -20,6 +20,7 @@ const theme: DefaultTheme = {
   ...flex,
   colors: {
     pointColor: '#F7323F',
+    backgroundColor: '#f5f5f5',
   },
 };
 

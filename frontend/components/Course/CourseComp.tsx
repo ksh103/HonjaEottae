@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import SearchForm from './SearchForm';
 import Nav from '../Nav/Nav';
-import { CourseWrapper, CourseBlock } from './CourseComp.style';
+import { CourseWrapper, CourseBlock } from './Course.style';
 import CourseList from './CourseList';
 import Footer from '../Footer/Footer';
 import Menu from '../Nav/Menu';

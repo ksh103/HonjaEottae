@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Button, SearchFormWrapper } from './CourseComp.style';
+import { Button, SearchFormWrapper } from './Course.style';
 const SearchForm: NextPage = () => {
   const router = useRouter();
   const Register = () => {

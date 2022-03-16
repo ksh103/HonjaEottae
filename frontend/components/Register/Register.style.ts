@@ -5,7 +5,7 @@ const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .title {
+  .subTitle {
     margin-top: 30px;
     font-size: 20px;
     font-weight: bold;
@@ -19,7 +19,7 @@ const InputBlock = styled.div`
     height: 50px;
     font-size: 15px;
     border: none;
-    background-color: #f5f5f5;
+    background-color: ${props => props.theme.colors.backgroundColor};
     border-radius: 1vw;
     ::placeholder {
       font-size: 15px;
@@ -38,14 +38,13 @@ const InputBlock = styled.div`
   }
   textarea {
     margin-top: 20px;
-    padding-top: 15px;
-    padding-left: 15px;
     width: 860px;
     height: 200px;
     border: none;
+    background-color: ${props => props.theme.colors.backgroundColor};
     border-radius: 1vw;
-    background-color: #f5f5f5;
     resize: none;
+    padding: 15px;
     ::placeholder {
       font-size: 15px;
     }
@@ -57,7 +56,7 @@ const TourListWrapper = styled.div`
   margin-top: 20px;
   width: 860px;
   height: 500px;
-  background-color: #f5f5f5;
+  background-color: ${props => props.theme.colors.backgroundColor};
   border-radius: 1vw;
 `;
 
