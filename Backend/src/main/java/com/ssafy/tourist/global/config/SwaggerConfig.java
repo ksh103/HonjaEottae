@@ -20,11 +20,11 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.OAS_30)
                 .useDefaultResponseMessages(false)
+                .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.springswagger.controller"))
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(apiInfo());
+                .apis(RequestHandlerSelectors.basePackage("com.ssafy.tourist"))
+                .paths(PathSelectors.ant("/api/**"))
+                .build();
     }
 
     private ApiInfo apiInfo() {
