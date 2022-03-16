@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const CourseWrapper = styled.div`
   margin: 0 300px;
   input {
     width: 600px;
     font-size: 15px;
     border: none;
-    background-color: #f5f5f5;
+    background-color: ${props => props.theme.colors.backgroundColor};
     border-radius: 1vw;
     padding-left: 15px;
     ::placeholder {
@@ -44,7 +44,7 @@ const SearchFormWrapper = styled.div`
 const Button = styled.button`
   font-size: 1vw;
   border: 0;
-  height: 40px;
+  height: 50px;
   width: 150px;
   border-radius: 1vw;
   background-color: ${props => props.theme.colors.pointColor};
@@ -71,4 +71,10 @@ const CourseFormWrapper = styled.div`
   }
 `;
 
-export { Wrapper, CourseBlock, SearchFormWrapper, Button, CourseFormWrapper };
+export {
+  CourseWrapper,
+  CourseBlock,
+  SearchFormWrapper,
+  Button,
+  CourseFormWrapper,
+};
