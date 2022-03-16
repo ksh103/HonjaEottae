@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @IdClass(TourID.class)
 @Table(name = "tour")
-@ApiModel(value = "Tour", description = "관광지 방문 정보")
+@ApiModel(value = "Tour", description = "코스 시작-종료 정보")
 public class Tour {
 
     @ApiModelProperty(value = "코스 구분 번호", example = "1")
