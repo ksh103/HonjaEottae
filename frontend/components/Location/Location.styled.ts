@@ -1,19 +1,15 @@
 import styled from 'styled-components';
 
 const LocationWrapper = styled.div`
-  margin: 0 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   .subTitle {
     margin-top: 30px;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
+    font-family: 'Jalnan';
   }
   .subTitle:first-child {
     margin-top: 0;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
   }
 `;
@@ -21,7 +17,7 @@ const LocationWrapper = styled.div`
 // MapList.tsx
 const MapListWrapper = styled.div`
   margin-top: 20px;
-  width: 860px;
+  width: 100%;
   height: 400px;
   background-color: ${props => props.theme.colors.backgroundColor};
   border-radius: 1vw;
@@ -31,14 +27,14 @@ const MapListWrapper = styled.div`
 `;
 
 const MapBlock = styled.div`
-  width: 500px;
+  width: 60%;
   height: 380px;
   background-color: white;
   border-radius: 1vw;
 `;
 
 const ListWrapper = styled.div`
-  width: 300px;
+  width: 30%;
   height: 380px;
   background-color: ${props => props.theme.colors.backgroundColor};
   border-radius: 1vw;
@@ -49,13 +45,14 @@ const ListWrapper = styled.div`
 `;
 
 const ListBlock = styled.div`
-  width: 250px;
+  width: 100%;
   height: 50px;
   background-color: white;
   border-radius: 1vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 15px;
   cursor: pointer;
   :hover {
     background-color: ${props => props.theme.colors.pointColor};
@@ -66,7 +63,7 @@ const ListBlock = styled.div`
 // ImageList.tsx
 const ImgaeListWrapper = styled.div<{ height: string }>`
   margin-top: 20px;
-  width: 860px;
+  width: 100%;
   height: ${props => props.height};
   background-color: ${props => props.theme.colors.backgroundColor};
   border-radius: 1vw;
@@ -76,7 +73,7 @@ const ImgaeListWrapper = styled.div<{ height: string }>`
 `;
 
 const ImageBlock = styled.div`
-  width: 250px;
+  width: 30%;
   height: 200px;
   background-color: white;
 `;

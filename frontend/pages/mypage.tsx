@@ -1,7 +1,8 @@
 import type { NextPage } from 'next';
+import MypageComp from '../components/Mypage/MypageComp';
 
 const Mypage: NextPage = () => {
-  return <div>Mypage</div>;
+  return <MypageComp />;
 };
 
 export default Mypage;

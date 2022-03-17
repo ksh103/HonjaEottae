@@ -20,7 +20,6 @@ const CourseList: NextPage = () => {
 
   return (
     <>
-      {' '}
       <div onMouseLeave={dragStop}>
         <ScrollMenu
           onMouseDown={() => dragStart}
