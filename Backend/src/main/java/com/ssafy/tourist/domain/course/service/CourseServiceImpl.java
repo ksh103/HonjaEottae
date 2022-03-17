@@ -5,6 +5,7 @@ import com.ssafy.tourist.domain.course.db.entity.BookmarkID;
 import com.ssafy.tourist.domain.course.db.repository.BookmarkRepository;
 import com.ssafy.tourist.domain.course.db.repository.CourseDataRepository;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
+import com.ssafy.tourist.domain.course.request.BookmarkRegisterPostReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +25,11 @@ public class CourseServiceImpl implements CourseService {
     private static final int FAIL = -1;
 
     @Override
-    public Bookmark bookmarkRegisterByUser(int userId, int courseId) {
+    public Bookmark bookmarkRegisterByUser(BookmarkRegisterPostReq bookmarkRegisterPostReq) {
         Bookmark bookmark = new Bookmark();
 
-        bookmark.setUserId(userId);
-        bookmark.setCourseId(courseId);
+        bookmark.setUserId(bookmarkRegisterPostReq.getUserId());
+        bookmark.setCourseId(bookmarkRegisterPostReq.getCourseId());
 
         return bookmarkRepository.save(bookmark);
     }
