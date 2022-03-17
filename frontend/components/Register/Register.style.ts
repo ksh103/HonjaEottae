@@ -1,19 +1,14 @@
 import styled from 'styled-components';
 
 const RegisterWrapper = styled.div`
-  margin: 0 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   .subTitle {
     margin-top: 30px;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
+    font-family: 'Jalnan';
   }
-`;
-
-const InputBlock = styled.div`
   input {
+    margin: 0;
     margin-top: 20px;
     padding-left: 15px;
     height: 50px;
@@ -26,19 +21,18 @@ const InputBlock = styled.div`
     }
   }
   #name {
-    width: 700px;
-    margin-right: 10px;
+    width: 100%;
   }
   #title {
-    width: 860px;
+    width: 100%;
   }
   #hashTag {
-    width: 860px;
-    margin-bottom: 50px;
+    width: 100%;
+    margin-bottom: 30px;
   }
   textarea {
     margin-top: 20px;
-    width: 860px;
+    width: 100%;
     height: 200px;
     border: none;
     background-color: ${props => props.theme.colors.backgroundColor};
@@ -49,12 +43,26 @@ const InputBlock = styled.div`
       font-size: 15px;
     }
   }
+  #registerBtn {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+const InputBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  * {
+    margin-left: 10px;
+  }
 `;
 
 //TourList.tsx
 const TourListWrapper = styled.div`
   margin-top: 20px;
-  width: 860px;
+  width: 100%;
   height: 500px;
   background-color: ${props => props.theme.colors.backgroundColor};
   border-radius: 1vw;

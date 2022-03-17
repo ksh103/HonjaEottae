@@ -6,22 +6,25 @@ import Footer from '../Footer/Footer';
 import MapList from './MapList';
 import ImageList from './ImageList';
 import TourDetail from './TourDetail';
+import { Wrapper } from '../../styles/variables';
 
 const LocationComp: NextPage = () => {
   return (
     <>
       <Nav />
       <Menu currentName="내 위치 주변 관광지" />
-      <LocationWrapper>
-        <div>
-          <div className="subTitle">관광지 목록</div>
-          <MapList />
-          <div className="subTitle">이미지</div>
-          <ImageList />
-          <div className="subTitle">광안대교(props)</div>
-          <TourDetail />
-        </div>
-      </LocationWrapper>
+      <Wrapper>
+        <LocationWrapper>
+          <div>
+            <div className="subTitle">관광지 목록</div>
+            <MapList />
+            <div className="subTitle">이미지</div>
+            <ImageList />
+            <div className="subTitle">광안대교(props)</div>
+            <TourDetail />
+          </div>
+        </LocationWrapper>
+      </Wrapper>
       <Footer />
     </>
   );

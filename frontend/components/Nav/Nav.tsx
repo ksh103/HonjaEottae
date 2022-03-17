@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import { NavBlock } from './Nav.style';
 import Link from 'next/link';
+import { BsPersonCircle } from 'react-icons/bs';
 
 const Nav: NextPage = () => {
+  const [login, isLogin] = useState<boolean>(true);
   return (
     <>
       <NavBlock>
@@ -13,7 +15,7 @@ const Nav: NextPage = () => {
           </Link>
         </div>
 
-        <div>
+        <div id="menuList">
           <ul>
             <li>
               <Link href="/course">
@@ -26,15 +28,28 @@ const Nav: NextPage = () => {
               </Link>
             </li>
             <li>
-              <Link href="/travelTest">
+              <Link href="/travel">
                 <label>여행성향테스트</label>
               </Link>
             </li>
-            <li>
-              <Link href="/login">
-                <label>로그인</label>
-              </Link>
-            </li>
+            {login ? (
+              <>
+                <li>
+                  <Link href="/mypage">
+                    <label>마이페이지</label>
+                  </Link>
+                </li>
+                <li>
+                  <label>로그아웃</label>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Link href="/login">
+                  <label>로그인</label>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </NavBlock>
