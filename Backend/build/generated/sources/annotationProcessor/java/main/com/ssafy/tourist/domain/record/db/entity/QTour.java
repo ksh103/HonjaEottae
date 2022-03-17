@@ -21,7 +21,9 @@ public class QTour extends EntityPathBase<Tour> {
 
     public final NumberPath<Integer> courseId = createNumber("courseId", Integer.class);
 
-    public final BooleanPath isGoal = createBoolean("isGoal");
+    public final BooleanPath isEnd = createBoolean("isEnd");
+
+    public final BooleanPath isStart = createBoolean("isStart");
 
     public final DateTimePath<java.time.LocalDateTime> tourEnd = createDateTime("tourEnd", java.time.LocalDateTime.class);
 

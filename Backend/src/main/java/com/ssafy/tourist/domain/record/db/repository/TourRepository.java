@@ -15,9 +15,9 @@ public interface TourRepository extends JpaRepository<Tour, TourID> {
 
     @Modifying(clearAutomatically = true)
     @Transactional
-    @Query("update Tour t set t.tourEnd = current_timestamp, t.isGoal = 1 where t.userId = :userId and t.courseId = :courseId")
+    @Query("update Tour t set t.tourEnd = current_timestamp, t.isEnd = 1 where t.userId = :userId and t.courseId = :courseId")
     int tourEndByUser(int userId, int courseId);
 
-    @Query("select t.isGoal from Tour t where t.userId = :userId and t.courseId = :courseId")
+    @Query("select t.isStart from Tour t where t.userId = :userId and t.courseId = :courseId")
     boolean existsTourByUserIdAndCourseId(int userId, int courseId);
 }

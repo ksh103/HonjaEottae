@@ -36,6 +36,7 @@ public class TourServiceImpl implements TourService {
         tour.setUserId(userId);
         tour.setCourseId(courseId);
         tour.setTourStart(LocalDateTime.now());
+        tour.setStart(true);
 
         tourRepository.save(tour); // 코스 시작 정보 넣기
 
