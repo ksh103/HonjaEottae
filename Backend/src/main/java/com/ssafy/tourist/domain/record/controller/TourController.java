@@ -38,9 +38,9 @@ public class TourController {
     }
 
     @ApiOperation(value = "여행 종료")
-    @PutMapping("/tour-end")
+    @PutMapping("/tour-end/{userId}/{courseId}")
     public ResponseEntity<? extends BaseResponseBody> courseEnd(@PathVariable @ApiParam(value = "회원 구분 번호", required = true) int userId,
-                                                                      @PathVariable @ApiParam(value = "코스 구분 번호", required = true)int courseId) {
+                                                                @PathVariable @ApiParam(value = "코스 구분 번호", required = true)int courseId) {
         log.info("tourEndByUser - Call");
 
         if(tourService.courseEndByUser(userId, courseId) != FAIL) {
