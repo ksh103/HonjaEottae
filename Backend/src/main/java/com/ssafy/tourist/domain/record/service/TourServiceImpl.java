@@ -7,6 +7,8 @@ import com.ssafy.tourist.domain.record.db.entity.TourStamp;
 import com.ssafy.tourist.domain.record.db.entity.TourStampID;
 import com.ssafy.tourist.domain.record.db.repository.TourRepository;
 import com.ssafy.tourist.domain.record.db.repository.TourStampRepository;
+import com.ssafy.tourist.domain.record.request.TourEndPostReq;
+import com.ssafy.tourist.domain.record.request.TouristVisitPostReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,25 +60,25 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public int courseEndByUser(int userId, int courseId) {
+    public int courseEndByUser(TourEndPostReq tourEndPostReq) {
         TourID tourID = new TourID();
-        tourID.setUserId(userId);
-        tourID.setCourseId(courseId);
+        tourID.setUserId(tourEndPostReq.getUserId());
+        tourID.setCourseId(tourEndPostReq.getCourseId());
 
         if(tourRepository.findById(tourID).isPresent()) {
-            return tourRepository.tourEndByUser(userId, courseId);
+            return tourRepository.tourEndByUser(tourEndPostReq.getUserId(), tourEndPostReq.getCourseId());
         } else return FAIL;
     }
 
     @Override
-    public int touristVisitByUser(int userId, int courseId, int courseDataId) {
+    public int touristVisitByUser(TouristVisitPostReq touristVisitPostReq) {
         TourStampID tourStampID = new TourStampID();
-        tourStampID.setUserId(userId);
-        tourStampID.setCourseId(courseId);
-        tourStampID.setCourseDataId(courseDataId);
+        tourStampID.setUserId(touristVisitPostReq.getUserId());
+        tourStampID.setCourseId(touristVisitPostReq.getCourseId());
+        tourStampID.setCourseDataId(touristVisitPostReq.getCourseDataId());
 
         if(tourStampRepository.findById(tourStampID).isPresent()) {
-            return tourStampRepository.touristVisitByUser(userId, courseId, courseDataId);
+            return tourStampRepository.touristVisitByUser(touristVisitPostReq.getUserId(), touristVisitPostReq.getCourseId(), touristVisitPostReq.getCourseDataId());
         }
         return FAIL;
     }

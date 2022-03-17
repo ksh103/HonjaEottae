@@ -1,10 +1,10 @@
 package com.ssafy.tourist.domain.tourtest.service;
 
 
-import com.ssafy.tourist.domain.user.db.entity.User;
+import com.ssafy.tourist.domain.tourtest.request.TourTestResultPostReq;
 
 public interface TourTestService {
 
-    int tourTestResultByUser(int userId, int tourTestId);
+    int tourTestResultByUser(TourTestResultPostReq tourTestResultPostReq);
 
 }
