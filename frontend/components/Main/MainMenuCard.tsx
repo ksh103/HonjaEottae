@@ -11,9 +11,8 @@ interface propsType {
 export default function MainMenuCard(props: propsType) {
   return (
     <Link href={props.url}>
-      <MenuCard hoverable>
+      <MenuCard>
         <img src={props.image} />
-        {/* <div>{props.title}</div> */}
       </MenuCard>
     </Link>
   );

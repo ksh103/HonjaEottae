@@ -1,11 +1,6 @@
 import { Card } from 'antd';
 import styled from 'styled-components';
 
-const SliderBlock = styled.div`
-  width: 100%;
-  margin-top: 80px;
-`;
-
 const SliderCard = styled.div`
   background-color: lightgoldenrodyellow;
   height: 200px;
@@ -34,15 +29,17 @@ const MenuBlock = styled.div`
   margin: 40px 0;
 `;
 
-const MenuCard = styled(Card)`
-  padding: 0;
-  height: 400px;
+const MenuCard = styled.div`
   border-radius: 10px;
+  overflow: hidden;
   cursor: pointer;
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    &:hover {
+      transform: scale(1.05);
+      transition: transform 0.5s;
+    }
   }
 `;
 
@@ -50,4 +47,4 @@ const TravelBlock = styled.div`
   padding: 30px 0;
 `;
 
-export { MenuBlock, MenuCard, SliderBlock, SliderCard, TravelBlock };
+export { MenuBlock, MenuCard, SliderCard, TravelBlock };
