@@ -19,17 +19,11 @@ public class QCourseData extends EntityPathBase<CourseData> {
 
     public static final QCourseData courseData = new QCourseData("courseData");
 
-    public final StringPath courseAddress = createString("courseAddress");
-
     public final NumberPath<Integer> courseDataId = createNumber("courseDataId", Integer.class);
 
     public final StringPath courseDataName = createString("courseDataName");
 
     public final NumberPath<Integer> courseId = createNumber("courseId", Integer.class);
-
-    public final NumberPath<Double> courseLat = createNumber("courseLat", Double.class);
-
-    public final NumberPath<Double> courselng = createNumber("courselng", Double.class);
 
     public QCourseData(String variable) {
         super(CourseData.class, forVariable(variable));

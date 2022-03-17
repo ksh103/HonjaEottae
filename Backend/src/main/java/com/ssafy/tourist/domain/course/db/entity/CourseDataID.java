@@ -11,4 +11,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CourseDataID implements Serializable {
     private int courseId;
+    private int courseDataId;
 }
