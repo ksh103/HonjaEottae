@@ -2,12 +2,16 @@ package com.ssafy.tourist.domain.course.service;
 
 import com.ssafy.tourist.domain.course.db.entity.Bookmark;
 import com.ssafy.tourist.domain.course.db.entity.BookmarkID;
+import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.db.repository.BookmarkRepository;
 import com.ssafy.tourist.domain.course.db.repository.CourseDataRepository;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
+import com.ssafy.tourist.domain.course.db.repository.CourseRepositorySpp;
 import com.ssafy.tourist.domain.course.request.BookmarkRegisterPostReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -20,6 +24,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     BookmarkRepository bookmarkRepository;
+
+    @Autowired
+    CourseRepositorySpp courseRepositorySpp;
 
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
@@ -47,4 +54,8 @@ public class CourseServiceImpl implements CourseService {
         }else return FAIL;
     }
 
+    @Override
+    public List<Course> bookmarkCourse(int userId) {
+        return courseRepositorySpp.findBookmarkCourse(userId);
+    }
 }
