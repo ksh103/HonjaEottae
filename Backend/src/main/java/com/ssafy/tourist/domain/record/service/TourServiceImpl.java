@@ -1,11 +1,13 @@
 package com.ssafy.tourist.domain.record.service;
 
+import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.repository.CourseDataRepository;
 import com.ssafy.tourist.domain.record.db.entity.Tour;
 import com.ssafy.tourist.domain.record.db.entity.TourID;
 import com.ssafy.tourist.domain.record.db.entity.TourStamp;
 import com.ssafy.tourist.domain.record.db.entity.TourStampID;
 import com.ssafy.tourist.domain.record.db.repository.TourRepository;
+import com.ssafy.tourist.domain.record.db.repository.TourRepositorySpp;
 import com.ssafy.tourist.domain.record.db.repository.TourStampRepository;
 import com.ssafy.tourist.domain.record.request.TourEndPostReq;
 import com.ssafy.tourist.domain.record.request.TouristVisitPostReq;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TourServiceImpl implements TourService {
@@ -26,6 +30,9 @@ public class TourServiceImpl implements TourService {
 
     @Autowired
     CourseDataRepository courseDataRepository;
+
+    @Autowired
+    TourRepositorySpp tourRepositorySpp;
 
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
@@ -46,7 +53,7 @@ public class TourServiceImpl implements TourService {
         TourStamp tourStamp = new TourStamp();
 
         // 코스 번호 받아서 코스 안에 관광지 개수 카운트 -> 관광지 개수만큼 stamp에 넣기
-        int touristCount = courseDataRepository.courDataCount(courseId);
+        int touristCount = courseDataRepository.courseDataCount(courseId);
 
         for (int i = 1; i <= touristCount; i++) {
             tourStamp.setCourseId(courseId);
@@ -81,5 +88,11 @@ public class TourServiceImpl implements TourService {
             return tourStampRepository.touristVisitByUser(touristVisitPostReq.getUserId(), touristVisitPostReq.getCourseId(), touristVisitPostReq.getCourseDataId());
         }
         return FAIL;
+    }
+
+    @Override
+    public List<CourseData> touristNameVisitByUser(int userId, int courseId) {
+
+        return tourRepositorySpp.findVisitTouristName(userId, courseId);
     }
 }
