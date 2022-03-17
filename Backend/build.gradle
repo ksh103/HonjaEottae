@@ -18,6 +18,13 @@ repositories {
 	mavenCentral()
 }
 
+// set build time and inject value to application.properties
+def buildTime() {
+	def date = new Date()
+	def formattedDate = date.format('yyyyMMdd_HHmm')
+	return formattedDate
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -27,13 +34,15 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	runtimeOnly 'mysql:mysql-connector-java'
 
-	// Querydsl 추가 시작
+	// Querydsl
 	implementation 'com.querydsl:querydsl-jpa'
 
+	// Querydsl JPAAnnotationProcessor 사용 지정
 	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
+	// java.lang.NoClassDefFoundError(javax.annotation.Entity) 발생 대응
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+	// java.lang.NoClassDefFoundError(javax.annotation.Generated) 발생 대응
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
-
 
 	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
 
@@ -42,6 +51,6 @@ dependencies {
 	implementation("io.springfox:springfox-swagger-ui:3.0.0")
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
 }
