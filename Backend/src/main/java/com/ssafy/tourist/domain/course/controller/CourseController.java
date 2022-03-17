@@ -1,6 +1,7 @@
 package com.ssafy.tourist.domain.course.controller;
 
 import com.ssafy.tourist.domain.course.db.entity.Course;
+import com.ssafy.tourist.domain.course.request.BookmarkRegisterPostReq;
 import com.ssafy.tourist.domain.course.service.CourseService;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
 import io.swagger.annotations.Api;
@@ -28,10 +29,10 @@ public class CourseController {
 
     @ApiOperation(value = "코스 북마크(좋아요) 추가")
     @PostMapping("/bookmark")
-    public ResponseEntity<? extends BaseResponseBody> bookmarkRegisterByUser(int userId, int courseId) {
+    public ResponseEntity<? extends BaseResponseBody> bookmarkRegisterByUser(@RequestBody BookmarkRegisterPostReq bookmarkRegisterPostReq) {
         log.info("bookmarkRegisterByUser - Call");
 
-        courseService.bookmarkRegisterByUser(userId, courseId);
+        courseService.bookmarkRegisterByUser(bookmarkRegisterPostReq);
         return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
     }
 
