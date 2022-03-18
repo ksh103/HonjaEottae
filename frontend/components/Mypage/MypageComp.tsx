@@ -3,10 +3,10 @@ import { Wrapper } from '../../styles/variables';
 import Footer from '../Footer/Footer';
 import Menu from '../Nav/Menu';
 import Nav from '../Nav/Nav';
-import MypageGraph from './MypageGraph';
 import MypageTravelRecord from './MypageTravelRecord';
 import MypageCourse from './MypageCourse';
-
+import dynamic from 'next/dynamic';
+const MypageGraph = dynamic(() => import('./MypageGraph'), { ssr: false });
 const MypageComp: NextPage = () => {
   return (
     <>

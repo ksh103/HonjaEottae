@@ -4,5 +4,8 @@ const Wrapper = styled.div`
   margin: 0 auto;
   max-width: 900px;
 `;
-
-export { Wrapper };
+const MapContainer = styled.div`
+  height: 100%;
+  border-radius: 1vw;
+`;
+export { Wrapper, MapContainer };
