@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@nivo/pie": "^0.79.1",
+    "@nivo/treemap": "^0.79.1",
     "antd": "^4.19.2",
     "axios": "^0.26.1",
     "next": "12.1.0",
