@@ -1,10 +1,11 @@
 package com.ssafy.tourist.domain.record.db.repository;
 
-import com.querydsl.core.QueryResults;
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.entity.QCourseData;
-import com.ssafy.tourist.domain.record.db.entity.QTourStamp;
+import com.ssafy.tourist.domain.record.db.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,10 @@ public class TourRepositorySpp {
     private JPAQueryFactory jpaQueryFactory;
     QTourStamp qTourStamp = QTourStamp.tourStamp;
     QCourseData qCourseData = QCourseData.courseData;
+
+    QTagCode qTagCode = QTagCode.tagCode;
+    QTag qTag = QTag.tag;
+
 
     public List<CourseData> findVisitTouristName (int userId, int courseId) {
         return jpaQueryFactory.select(qCourseData).from(qCourseData)

@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.record.service;
 
+import com.querydsl.core.Tuple;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.repository.CourseDataRepository;
 import com.ssafy.tourist.domain.record.db.entity.*;
@@ -7,6 +8,7 @@ import com.ssafy.tourist.domain.record.db.repository.*;
 import com.ssafy.tourist.domain.record.request.TagRegisterPostReq;
 import com.ssafy.tourist.domain.record.request.TourEndPostReq;
 import com.ssafy.tourist.domain.record.request.TouristVisitPostReq;
+import com.ssafy.tourist.domain.record.response.TagListGetRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,9 @@ public class TourServiceImpl implements TourService {
 
     @Autowired
     RecordTagRepository recordTagRepository;
+
+    @Autowired
+    TagRepository tagRepository;
 
     @Autowired
     TourRepositorySpp tourRepositorySpp;
@@ -113,5 +118,10 @@ public class TourServiceImpl implements TourService {
             recordTagRepository.save(recordTag);
         }
         return SUCCESS;
+    }
+
+    @Override
+    public List<String> tagList() {
+        return tagRepository.findTagList();
     }
 }
