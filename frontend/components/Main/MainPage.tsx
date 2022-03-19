@@ -10,9 +10,9 @@ import MainGraph from './MainGraph';
 import MainTravel from './MainTravel';
 
 const menus = [
-//  { title: '여행코스추천', url: '/course', image: '/images/1.png' },
-//  { title: '내주변관광지', url: '/location', image: '/images/2.png' },
-//  { title: '여행성향테스트', url: '/travel', image: '/images/3.png' },
+  { title: '여행코스추천', url: '/course', image: '/images/1.png' },
+  { title: '내주변관광지', url: '/location', image: '/images/2.png' },
+  { title: '여행성향테스트', url: '/travel', image: '/images/3.png' },
   { title: '여행기록', url: '/mypage', image: '/images/4.png' },
 ];
 
