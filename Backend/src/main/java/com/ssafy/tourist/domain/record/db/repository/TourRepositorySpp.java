@@ -20,7 +20,7 @@ public class TourRepositorySpp {
     public List<CourseData> findVisitTouristName (int userId, int courseId) {
         return jpaQueryFactory.select(qCourseData).from(qCourseData)
                 .leftJoin(qTourStamp).on(qTourStamp.courseId.eq(qCourseData.courseId))
-                .where(qTourStamp.isStamp.eq(1).and(qTourStamp.userId.eq(userId)
+                .where(qTourStamp.isStamp.eq(true).and(qTourStamp.userId.eq(userId)
                         .and(qTourStamp.courseId.eq(courseId)).and(qTourStamp.courseDataId.eq(qCourseData.courseDataId))))
                 .fetch();
     }

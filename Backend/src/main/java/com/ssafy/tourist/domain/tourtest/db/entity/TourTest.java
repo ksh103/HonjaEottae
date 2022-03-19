@@ -24,7 +24,7 @@ public class TourTest {
     @Column(name = "tour_test_name")
     private String tourTestName;
 
-    @ApiModelProperty(value = "여행 취향 테스트 결과 명", required = true, example = "0")
+    @ApiModelProperty(value = "여행 취향 테스트 결과", required = true, example = "0")
     @Column(name = "tour_test_result")
     private int tourTestResult;
 }

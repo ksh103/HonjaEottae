@@ -23,7 +23,7 @@ public class QTourStamp extends EntityPathBase<TourStamp> {
 
     public final NumberPath<Integer> courseId = createNumber("courseId", Integer.class);
 
-    public final NumberPath<Integer> isStamp = createNumber("isStamp", Integer.class);
+    public final BooleanPath isStamp = createBoolean("isStamp");
 
     public final NumberPath<Integer> userId = createNumber("userId", Integer.class);
 
