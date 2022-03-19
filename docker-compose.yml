@@ -13,8 +13,10 @@ services:
     # [인증서 파일 저장 경로]:/var/www/html
     volumes:
             #  - /root/var/www/html:/home/ubuntu/docker-volume/ssl
+      - /etc/letsencrypt/copy/j6e103.p.ssafy.io:/var/www/html
             #  - /home/ubuntu/docker-volume/ssl:/var/www/html
-      - /etc/letsencrypt/live/j6e103.p.ssafy.io:/var/www/html
+            #         - /etc/letsencrypt/live/j6e103.p.ssafy.io:/var/www/html
+            #      - /etc/letsencrypt/live/j6e103.p.ssafy.io:/var/www/html
     container_name: "frontend"
   
   backend:
