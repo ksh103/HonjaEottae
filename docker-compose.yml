@@ -25,5 +25,5 @@ services:
     ports:
       - "8443:8443"  
     volumes:
-      - /home/ubuntu/docker-volume/ssl:/root
+      - /etc/letsencrypt/live/j6e103.p.ssafy.io:/root
     container_name: "backend"
