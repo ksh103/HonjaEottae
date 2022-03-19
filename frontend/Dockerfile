@@ -9,5 +9,5 @@ WORKDIR /root/
 
 COPY --from=ui-build /usr/src/app/out /usr/share/nginx/html
 
-#EXPOSE 3080
+#EXPOSE 3080#
 CMD ["nginx", "-g", "daemon off;"]
