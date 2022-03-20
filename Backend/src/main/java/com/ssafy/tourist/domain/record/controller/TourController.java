@@ -1,8 +1,12 @@
 package com.ssafy.tourist.domain.record.controller;
 
+import com.querydsl.core.Tuple;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
+import com.ssafy.tourist.domain.record.db.entity.Tag;
+import com.ssafy.tourist.domain.record.request.TagRegisterPostReq;
 import com.ssafy.tourist.domain.record.request.TourEndPostReq;
 import com.ssafy.tourist.domain.record.request.TouristVisitPostReq;
+import com.ssafy.tourist.domain.record.response.TagListGetRes;
 import com.ssafy.tourist.domain.record.response.TouristNameVisitGetRes;
 import com.ssafy.tourist.domain.record.service.TourService;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
@@ -16,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Api("코스 시작,종료 기록 및 관광지 방문 API")
 @Slf4j
@@ -75,4 +80,34 @@ public class TourController {
             return ResponseEntity.status(400).body(TouristNameVisitGetRes.of(400, "stamp doesn't exist", null));
         }
     }
+
+    @ApiOperation(value = "여행 코스 태그 목록")
+    @GetMapping("/tour-tag")
+    public ResponseEntity<TagListGetRes> tagList () {
+        log.info("tagList - Call");
+
+        List<String> tagList = tourService.tagList();
+
+        if (tagList != null && !tagList.isEmpty()) {
+            return ResponseEntity.status(200).body(TagListGetRes.of(200, "Success", tagList));
+        } else {
+            log.error("tagList - tag doesn't exist");
+            return ResponseEntity.status(400).body(TagListGetRes.of(400, "stamp doesn't exist", null));
+        }
+    }
+
+
+    @ApiOperation(value = "여행 코스 태그 등록")
+    @PostMapping("/tour-tag")
+    public ResponseEntity<? extends BaseResponseBody> tagRegister(@RequestBody TagRegisterPostReq tagRegisterPostReq) {
+        log.info("tagRegister - Call");
+
+        if(tourService.tagRegisterByUser(tagRegisterPostReq) == SUCCESS) {
+            return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+        }else {
+            log.error("Tag doesn't exist");
+            return ResponseEntity.status(404).body(BaseResponseBody.of(403, "Tag doesn't exist"));
+        }
+    }
+
 }

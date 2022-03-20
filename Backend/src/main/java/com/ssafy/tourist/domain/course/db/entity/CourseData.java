@@ -23,6 +23,7 @@ public class CourseData {
     private int courseDataId;
 
     @ApiModelProperty(value = "코스 구분 코드", required = true, example = "3")
+    @Id
     @Column(name = "course_id")
     private int courseId;
 

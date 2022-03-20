@@ -21,6 +21,7 @@ public class Tour {
 
     @ApiModelProperty(value = "코스 구분 번호", example = "1")
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_id")
     private int courseId;
 
