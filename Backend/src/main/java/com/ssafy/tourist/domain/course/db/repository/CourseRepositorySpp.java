@@ -21,6 +21,7 @@ public class CourseRepositorySpp {
     QCourse qCourse = QCourse.course;
     QBookmark qBookmark = QBookmark.bookmark;
 
+
     public List<Course> findBookmarkCourse (int userId) {
         return jpaQueryFactory.select(qCourse).from(qCourse)
                 .leftJoin(qBookmark).on(qBookmark.courseId.eq(qCourse.courseId))
@@ -40,6 +41,15 @@ public class CourseRepositorySpp {
     public Page<Course> findCourseSearch (String courseName, Pageable pageable) {
         QueryResults<Course> list = jpaQueryFactory.select(qCourse).from(qCourse)
                 .where(qCourse.courseName.contains(courseName))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize()).fetchResults();
+
+        return new PageImpl<>(list.getResults(), pageable, list.getTotal());
+    }
+
+    public Page<Course> findCourseListByUser (int userId, Pageable pageable) {
+        QueryResults<Course> list = jpaQueryFactory.select(qCourse).from(qCourse)
+                .where(qCourse.userId.eq(userId).and(qCourse.isRegister.eq(true)))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize()).fetchResults();
 
