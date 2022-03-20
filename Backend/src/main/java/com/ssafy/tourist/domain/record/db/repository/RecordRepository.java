@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface RecordRepository extends JpaRepository<Record, Integer> {
 
@@ -14,4 +16,6 @@ public interface RecordRepository extends JpaRepository<Record, Integer> {
     @Transactional
     @Query("update Record r set r.recordContent = :recordContent where r.recordId = :recordId")
     int recordModifyByUser(int recordId, String recordContent);
+
+    List<Record> findRecordByUserIdAndCourseId(int userId, int courseId);
 }
