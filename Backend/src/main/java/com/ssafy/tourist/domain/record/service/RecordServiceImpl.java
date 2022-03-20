@@ -10,6 +10,8 @@ import com.ssafy.tourist.domain.record.request.RecordRegisterPostReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class RecordServiceImpl implements RecordService {
@@ -61,5 +63,10 @@ public class RecordServiceImpl implements RecordService {
             return SUCCESS;
         }
         return FAIL;
+    }
+
+    @Override
+    public List<Record> recordWriteListByUser(int userId, int courseId) {
+        return recordRepository.findRecordByUserIdAndCourseId(userId, courseId);
     }
 }
