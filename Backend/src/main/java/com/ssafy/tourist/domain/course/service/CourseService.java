@@ -8,4 +8,5 @@ import org.springframework.data.domain.Pageable;
 public interface CourseService {
     int courseHits(CourseHitsPostReq courseHitsPostReq);
     Page<Course> popularCourse(Pageable pageable);
+    Page<Course> courseSearch(String courseName, Pageable pageable);
 }

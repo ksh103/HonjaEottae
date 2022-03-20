@@ -36,4 +36,9 @@ public class CourseServiceImpl implements CourseService{
     public Page<Course> popularCourse(Pageable pageable) {
         return courseRepositorySpp.findPopularCourse(pageable);
     }
+
+    @Override
+    public Page<Course> courseSearch(String courseName, Pageable pageable) {
+        return courseRepositorySpp.findCourseSearch(courseName, pageable);
+    }
 }
