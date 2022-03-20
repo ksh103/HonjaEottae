@@ -2,6 +2,7 @@ package com.ssafy.tourist.domain.course.controller;
 
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
+import com.ssafy.tourist.domain.course.response.CourseSearchGetRes;
 import com.ssafy.tourist.domain.course.response.PopularCourseGetRes;
 import com.ssafy.tourist.domain.course.service.BookmarkService;
 import com.ssafy.tourist.domain.course.service.CourseService;
@@ -29,6 +30,7 @@ public class CourseController {
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
 
+    
     @ApiOperation(value = "코스 조회수")
     @PutMapping("/course-hits")
     public ResponseEntity<? extends BaseResponseBody> courseHits (@RequestBody CourseHitsPostReq courseHitsPostReq) {
@@ -46,11 +48,20 @@ public class CourseController {
     @ApiOperation("인기 코스")
     @GetMapping("/course-hits")
     public ResponseEntity<PopularCourseGetRes> popularCourse (int page, int size) {
-
         log.info("popularCourse - Call");
 
         Page<Course> popularCouseList = courseService.popularCourse(PageRequest.of(page - 1 , size));
 
         return ResponseEntity.status(200).body(PopularCourseGetRes.of(200, "Success", popularCouseList));
+    }
+
+    @ApiOperation("코스 검색하기")
+    @GetMapping("/{courseName}")
+    public ResponseEntity<CourseSearchGetRes> courseSearch (@ApiParam(value = "코스 명") @PathVariable("courseName") String courseName, int page, int size) {
+        log.info("courseSearch - Call");
+
+        Page<Course> courseSearchList = courseService.courseSearch(courseName, PageRequest.of(page - 1, size));
+
+        return ResponseEntity.status(200).body(CourseSearchGetRes.of(200, "Success", courseSearchList));
     }
 }
