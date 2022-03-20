@@ -1,5 +1,10 @@
-import { Card } from 'antd';
 import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 90px 0;
+`;
 
 const SliderCard = styled.div`
   background-color: lightgoldenrodyellow;
@@ -47,4 +52,4 @@ const TravelBlock = styled.div`
   padding: 30px 0;
 `;
 
-export { MenuBlock, MenuCard, SliderCard, TravelBlock };
+export { MenuBlock, MenuCard, SliderCard, TravelBlock, Wrapper };
