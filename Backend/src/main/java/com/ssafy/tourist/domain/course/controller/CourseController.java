@@ -3,6 +3,7 @@ package com.ssafy.tourist.domain.course.controller;
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
 import com.ssafy.tourist.domain.course.request.CourseRegisterPostReq;
+import com.ssafy.tourist.domain.course.response.CourseListGetRes;
 import com.ssafy.tourist.domain.course.response.CourseSearchGetRes;
 import com.ssafy.tourist.domain.course.response.PopularCourseGetRes;
 import com.ssafy.tourist.domain.course.service.BookmarkService;
@@ -55,7 +56,7 @@ public class CourseController {
             return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
         }else {
             log.error("Course doesn't exist");
-            return ResponseEntity.status(404).body(BaseResponseBody.of(403, "Course doesn't exist"));
+            return ResponseEntity.status(403).body(BaseResponseBody.of(403, "Course doesn't exist"));
         }
     }
 
@@ -77,5 +78,22 @@ public class CourseController {
         Page<Course> courseSearchList = courseService.courseSearch(courseName, PageRequest.of(page - 1, size));
 
         return ResponseEntity.status(200).body(CourseSearchGetRes.of(200, "Success", courseSearchList));
+    }
+
+    @ApiOperation(value = "사용자 생성 코스 조회")
+    @GetMapping("/custom-course/{userId}/{courseId}")
+    public ResponseEntity<CourseListGetRes> courseListByUser (@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId, int page, int size) {
+        log.info("courseListByUser - Call");
+
+        Page<Course> courseList = courseService.courseListByUser(userId, PageRequest.of(page - 1 , size));
+
+        if(courseList != null && !courseList.isEmpty()) {
+            return ResponseEntity.status(200).body(CourseListGetRes.of(200, "Success", courseList));
+        } else {
+            log.error("Course List doesn't exist");
+            return ResponseEntity.status(403).body(CourseListGetRes.of(403, "Course List doesn't exist", null));
+        }
+
+
     }
 }
