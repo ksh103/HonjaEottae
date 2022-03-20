@@ -1,19 +1,29 @@
 package com.ssafy.tourist.domain.course.service;
 
 import com.ssafy.tourist.domain.course.db.entity.Course;
+import com.ssafy.tourist.domain.course.db.entity.CourseData;
+import com.ssafy.tourist.domain.course.db.entity.CourseDataID;
+import com.ssafy.tourist.domain.course.db.repository.CourseDataRepository;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepositorySpp;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
+import com.ssafy.tourist.domain.course.request.CourseRegisterPostReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.List;
 
 @Service
 public class CourseServiceImpl implements CourseService{
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    CourseDataRepository courseDataRepository;
 
     @Autowired
     CourseRepositorySpp courseRepositorySpp;
@@ -30,6 +40,49 @@ public class CourseServiceImpl implements CourseService{
 
             return SUCCESS;
         }else return FAIL;
+    }
+
+    @Override
+    public int courseRegisterByUser(CourseRegisterPostReq courseRegisterPostReq) {
+        Course course = new Course();
+
+        // 코스 등록
+        course.setUserId(courseRegisterPostReq.getUserId());
+        course.setCourseName(courseRegisterPostReq.getCourseName());
+        course.setCourseContent(courseRegisterPostReq.getCourseContent());
+        course.setCourseDistance(courseRegisterPostReq.getCourseDistance());
+        course.setCourseDays(courseRegisterPostReq.getCourseDays());
+        course.setRegister(true);
+
+        courseRepository.save(course);
+        
+        // 코스 관광지 등록
+        CourseData courseData = new CourseData();
+
+        int courseId = course.getCourseId();
+        int size = courseRegisterPostReq.getCourseDataName().size();
+
+        // 관광지 명
+        Collection<String> courseNameList = courseRegisterPostReq.getCourseDataName().values();
+        String[] courseName = courseNameList.toArray(new String[0]);
+
+        // 관광지 주소
+        Collection<String> courseAddressList = courseRegisterPostReq.getCourseAddress().values();
+        String[] courseAddress = courseAddressList.toArray(new String[0]);
+
+        for (int i = 0; i < size; i++) {
+            courseData.setCourseId(courseId);
+            courseData.setCourseDataId(i + 1);
+
+            courseData.setCourseDataName(courseName[i]);
+            courseData.setCourseAddress(courseAddress[i]);
+            courseData.setCourseLng(courseRegisterPostReq.getCourseLng().get(i + 1));
+            courseData.setCourseLat(courseRegisterPostReq.getCourseLat().get(i + 1));
+
+            courseDataRepository.save(courseData);
+        }
+
+        return SUCCESS;
     }
 
     @Override

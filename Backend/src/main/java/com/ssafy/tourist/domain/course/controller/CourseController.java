@@ -2,6 +2,7 @@ package com.ssafy.tourist.domain.course.controller;
 
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
+import com.ssafy.tourist.domain.course.request.CourseRegisterPostReq;
 import com.ssafy.tourist.domain.course.response.CourseSearchGetRes;
 import com.ssafy.tourist.domain.course.response.PopularCourseGetRes;
 import com.ssafy.tourist.domain.course.service.BookmarkService;
@@ -44,8 +45,21 @@ public class CourseController {
             return ResponseEntity.status(404).body(BaseResponseBody.of(404, "The course doesn't exist."));
         }
     }
+    
+    @ApiOperation(value = "사용자 코스 추가")
+    @PostMapping("")
+    public ResponseEntity<? extends BaseResponseBody> courseRegister (@RequestBody CourseRegisterPostReq courseRegisterPostReq) {
+        log.info("courseRegister - Call");
 
-    @ApiOperation("인기 코스")
+        if(courseService.courseRegisterByUser(courseRegisterPostReq) == SUCCESS) {
+            return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+        }else {
+            log.error("Course doesn't exist");
+            return ResponseEntity.status(404).body(BaseResponseBody.of(403, "Course doesn't exist"));
+        }
+    }
+
+    @ApiOperation(value = "인기 코스")
     @GetMapping("/course-hits")
     public ResponseEntity<PopularCourseGetRes> popularCourse (int page, int size) {
         log.info("popularCourse - Call");
@@ -55,7 +69,7 @@ public class CourseController {
         return ResponseEntity.status(200).body(PopularCourseGetRes.of(200, "Success", popularCouseList));
     }
 
-    @ApiOperation("코스 검색하기")
+    @ApiOperation(value = "코스 검색하기")
     @GetMapping("/{courseName}")
     public ResponseEntity<CourseSearchGetRes> courseSearch (@ApiParam(value = "코스 명") @PathVariable("courseName") String courseName, int page, int size) {
         log.info("courseSearch - Call");
