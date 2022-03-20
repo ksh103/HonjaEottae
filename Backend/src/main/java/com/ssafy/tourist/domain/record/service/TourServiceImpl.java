@@ -103,7 +103,6 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public int tagRegisterByUser(TagRegisterPostReq tagRegisterPostReq) {
-
         RecordTag recordTag = new RecordTag();
 
         // map<key, value> 사용해서 tag 받아오기

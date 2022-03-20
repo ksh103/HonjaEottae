@@ -24,6 +24,7 @@ public class TagRegisterPostReq {
 //    @ApiModelProperty(value = "태그 구분 번호", example = "1")
 //    private int tagId;
 
+    @ApiModelProperty(value = "태그 정보")
     private Map<Integer, Integer> tag;
 
     @ApiModelProperty(value = "태그 선택 여부", example = "true")

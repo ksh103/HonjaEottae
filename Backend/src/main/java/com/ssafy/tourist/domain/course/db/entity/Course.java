@@ -47,5 +47,4 @@ public class Course {
     @ApiModelProperty(value = "코스 사용자 등록 여부 ", required = true, example = "3")
     @Column(name = "is_register")
     private boolean isRegister;
-
 }
