@@ -11,6 +11,7 @@ declare global {
   // 카카오 map
   interface Window {
     kakao: any;
+    Kakao: any;
   }
 }
 
@@ -21,11 +22,6 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <Head>
           <title>혼자어때</title>
-          <meta
-            name="keywords"
-            content="search, 검색, 혼자어때, SSAFY, click"
-          />
-          <meta name="description" content="혼자어때 관광 사이트"></meta>
         </Head>
         <Component {...pageProps} />
         <GlobalStyle />

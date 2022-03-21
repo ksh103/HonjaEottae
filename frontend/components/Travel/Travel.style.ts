@@ -5,20 +5,27 @@ const Wrapper = styled.div`
   margin: 0 auto;
   width: 100%;
   max-width: 600px;
-  padding: 90px 0;
+  padding: 70px 20px;
   text-align: center;
   .main {
-    font-size: 45px;
+    font-size: 42px;
     font-weight: bold;
     margin-bottom: 20px;
+    font-family: 'Jalnan';
   }
   .sub {
-    font-size: 30px;
+    font-size: 28px;
+  }
+  .title {
+    font-size: 20px;
+    font-family: 'Jalnan';
   }
 `;
 
 const TestTitle = styled.div<{ color: string }>`
+  margin-top: 50px;
   label {
+    font-size: 30px;
     font-weight: bold;
     color: ${props => props.color};
   }
@@ -43,7 +50,7 @@ const Button = styled.div<{ color?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
+  font-size: 26px;
   box-shadow: 5px 5px black;
   margin: 0 20px;
 `;
@@ -63,7 +70,7 @@ const TestButton = styled.div`
     font-size: 26px;
     &:hover {
       font-weight: bold;
-      background-color: lightgray;
+      background-color: ${props => props.theme.colors.backgroundColor};
     }
   }
 `;

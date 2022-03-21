@@ -11,10 +11,12 @@ export const TEST = {
         {
           content: '내 마음대로 가는 여행이 좋다',
           no: 1,
+          result: -1,
         },
         {
           content: '계획대로 정해진 패키지 여행이 좋다',
           no: 3,
+          result: -1,
         },
       ],
     },
@@ -25,10 +27,12 @@ export const TEST = {
         {
           content: '대중교통을 타면서 여유롭게 창밖 구경을 해볼까?',
           no: 2,
+          result: -1,
         },
         {
           content: '자동차를 타면서 여행은 자유롭게 다녀야지!',
           no: 4,
+          result: -1,
         },
       ],
     },
@@ -39,10 +43,12 @@ export const TEST = {
         {
           content: '금강산도 식후경! 맛집부터 찾자!',
           no: 5,
+          result: -1,
         },
         {
           content: '어디 관광지가 핫하더라,, 인스타를 켜본다',
           no: 4,
+          result: -1,
         },
       ],
     },
@@ -53,10 +59,12 @@ export const TEST = {
         {
           content: '평소에 잘 알려진 유명 관광명소가 많은 여행',
           no: 6,
+          result: -1,
         },
         {
           content: '평소에 잘 알려지지 않은 숨은 명소 여행',
           no: 4,
+          result: -1,
         },
       ],
     },
@@ -67,10 +75,12 @@ export const TEST = {
         {
           content: '청정 자연속에서 여유롭게 쉬고싶다~',
           no: 7,
+          result: -1,
         },
         {
           content: '여행은 쉴틈이 있으면 안돼 이곳저곳 돌아다니자구!',
           no: 6,
+          result: -1,
         },
       ],
     },
@@ -81,10 +91,12 @@ export const TEST = {
         {
           content: '주변에 역사 유적지가 있네? 한번 가볼까?',
           no: 8,
+          result: -1,
         },
         {
           content: '밥도 든든하게 먹었겠다 자연에서 산책한번 해야지!',
           no: 7,
+          result: -1,
         },
       ],
     },
@@ -143,32 +155,32 @@ export const TEST = {
     {
       type: 'A',
       desc: '<h1><label>역동적이고 에너지</label>가 넘치는 청춘 여행 스타일</h1>',
-      color: '#FF5E5E',
+      color: '#FF2323',
     },
     {
       type: 'B',
       desc: '<h1><label>유명한 관광지</label>만 골라가는 알짜배기 여행 스타일</h1>',
-      color: '#76B885',
+      color: '#FF1895',
     },
     {
       type: 'C',
       desc: '<h1><label>탁 트인 바다</label>를 보며 느긋하게 힐링하는 여행 스타일<h1>',
-      color: '#4EB0E7',
+      color: '#3C44FF',
     },
     {
       type: 'D',
       desc: '<h1>푸르른 <label>산속 맑은 공기</label>를 즐기는 여행 스타일</h1>',
-      color: '#25981B',
+      color: '#1BBE00',
     },
     {
       type: 'E',
       desc: '<h1>여행지의 <label>이색적인 맛과 역사</label>를 즐기는 여행 스타일</h1>',
-      color: '#843700',
+      color: '#BB0000',
     },
     {
       type: 'F',
       desc: '<h1>여행지의 <label>전통적인 맛과 문화</label>를 즐기는 여행 스타일</h1>',
-      color: '#EB8236',
+      color: '#FF6B00',
     },
   ],
 };
