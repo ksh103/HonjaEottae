@@ -1,10 +1,9 @@
 package com.ssafy.tourist.domain.record.controller;
 
-import com.querydsl.core.Tuple;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
-import com.ssafy.tourist.domain.record.db.entity.Tag;
 import com.ssafy.tourist.domain.record.request.TagRegisterPostReq;
 import com.ssafy.tourist.domain.record.request.TourEndPostReq;
+import com.ssafy.tourist.domain.record.request.TourStartPostReq;
 import com.ssafy.tourist.domain.record.request.TouristVisitPostReq;
 import com.ssafy.tourist.domain.record.response.TagListGetRes;
 import com.ssafy.tourist.domain.record.response.TouristNameVisitGetRes;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Api("코스 시작,종료 기록 및 관광지 방문 API")
 @Slf4j
@@ -37,10 +35,10 @@ public class TourController {
 
     @ApiOperation(value = "여행 시작")
     @PostMapping("/tour-start")
-    public ResponseEntity<? extends BaseResponseBody> courseStart(int userId, int courseId) {
+    public ResponseEntity<? extends BaseResponseBody> courseStart(@RequestBody TourStartPostReq tourStartPostReq) {
         log.info("tourStartByUser - Call");
 
-        if(tourService.courseStartByUser(userId, courseId) == SUCCESS) {
+        if(tourService.courseStartByUser(tourStartPostReq) == SUCCESS) {
             return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
         }else return ResponseEntity.status(404).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
     }
