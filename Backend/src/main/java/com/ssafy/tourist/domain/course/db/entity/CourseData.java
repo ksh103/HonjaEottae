@@ -1,13 +1,12 @@
 package com.ssafy.tourist.domain.course.db.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.ssafy.tourist.domain.record.db.entity.TourStamp;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 
 @Entity
 @Getter
@@ -26,11 +25,15 @@ public class CourseData {
     @Column(name = "course_id")
     private int courseId;
 
+    @ApiModelProperty(value = "관광지 구분 코드", required = true, example = "3")
+    @Column(name = "tourist_id")
+    private int touristId;
+
     @ApiModelProperty(value = "코스에 등록된 관광지 명", required = true, example = "관광지1")
     @Column(name = "course_data_name")
     private String courseDataName;
 
-    @ApiModelProperty(value = "코스에 등록된 관광지 주소", required = true, example = "3")
+    @ApiModelProperty(value = "코스에 등록된 관광지 주소", required = true, example = "부산광역시")
     @Column(name = "course_address")
     private String courseAddress;
 

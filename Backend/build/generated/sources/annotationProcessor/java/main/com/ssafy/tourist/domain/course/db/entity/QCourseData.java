@@ -36,6 +36,8 @@ public class QCourseData extends EntityPathBase<CourseData> {
 
     public final NumberPath<Double> courseLng = createNumber("courseLng", Double.class);
 
+    public final NumberPath<Integer> touristId = createNumber("touristId", Integer.class);
+
     public QCourseData(String variable) {
         this(CourseData.class, forVariable(variable), INITS);
     }
