@@ -16,28 +16,25 @@ public class CourseRegisterPostReq {
     @ApiModelProperty(value = "회원 코드", required = true, example = "3")
     private int userId;
 
-    @ApiModelProperty(value = "코스 명", required = true, example = "3")
+    @ApiModelProperty(value = "코스 명", required = true, example = "힐링 코스")
     private String courseName;
 
-    @ApiModelProperty(value = "코스 개요", required = true, example = "3")
+    @ApiModelProperty(value = "코스 개요", required = true, example = "힐링되는 관광지를 소개합니다.")
     private String courseContent;
 
-    @ApiModelProperty(value = "코스 총 거리", required = true, example = "3")
+    @ApiModelProperty(value = "코스 총 거리", required = true, example = "4.5km")
     private String courseDistance;
 
-    @ApiModelProperty(value = "코스 총 소요일", required = true, example = "3")
+    @ApiModelProperty(value = "코스 총 소요일", required = true, example = "2박 3일")
     private String courseDays;
 
     // 관광지
-    @ApiModelProperty(value = "관광지 명")
-    private Map<Integer, String> courseDataName;
+    @ApiModelProperty(value = "관광지 구분 번호", required = true, example = "34")
+    private Map<Integer, Integer> touristId;
 
-    @ApiModelProperty(value = "코스에 등록된 관광지 주소")
-    private Map<Integer, String> courseAddress;
+    @ApiModelProperty(value = "관광지 명", required = true, example = "관광지1")
+    private Map<Integer, String> touristName;
 
-    @ApiModelProperty(value = "코스에 등록된 관광지 위도")
-    private Map<Integer, Double> courseLat;
 
-    @ApiModelProperty(value = "코스에 등록된 관광지 경도")
-    private Map<Integer, Double> courseLng;
+
 }
