@@ -1,6 +1,5 @@
 package com.ssafy.tourist.domain.course.response;
 
-import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.db.entity.Tourist;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
 import io.swagger.annotations.ApiModel;
