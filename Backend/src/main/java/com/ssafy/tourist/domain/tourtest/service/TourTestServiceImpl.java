@@ -3,6 +3,7 @@ package com.ssafy.tourist.domain.tourtest.service;
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
 import com.ssafy.tourist.domain.tourtest.db.repository.TourTestRepository;
+import com.ssafy.tourist.domain.tourtest.db.repository.TourTestRepositorySpp;
 import com.ssafy.tourist.domain.tourtest.request.TourTestResultPostReq;
 import com.ssafy.tourist.domain.user.db.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class TourTestServiceImpl implements TourTestService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    TourTestRepositorySpp tourTestRepositorySpp;
+
+
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
 
@@ -36,4 +41,9 @@ public class TourTestServiceImpl implements TourTestService {
 
     @Override
     public List<Course> tourTestCourseByUser(int courseId1, int courseId2) { return courseRepository.tourTestCourseByUser(courseId1, courseId2); }
+
+    @Override
+    public List<Integer> tourTestResult() {
+        return tourTestRepositorySpp.findTourTestResult();
+    }
 }
