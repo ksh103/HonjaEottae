@@ -25,11 +25,11 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath userEmail = createString("userEmail");
 
-    public final StringPath userGender = createString("userGender");
-
     public final NumberPath<Integer> userId = createNumber("userId", Integer.class);
 
-    public final StringPath userNick = createString("userNick");
+    public final StringPath userName = createString("userName");
+
+    public final StringPath userPassword = createString("userPassword");
 
     public QUser(String variable) {
         super(User.class, forVariable(variable));

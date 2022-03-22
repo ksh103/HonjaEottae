@@ -1,5 +1,7 @@
 package com.ssafy.tourist.domain.user.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -23,19 +25,21 @@ public class User {
     @Column(name = "tour_test_id")
     private int tourTestId;
 
-    @ApiModelProperty(value = "회원 닉네임", required = true, example = "싸피짱")
-    @Column(name = "user_nick")
-    private String userNick;
+    @ApiModelProperty(value = "회원 이름", required = true, example = "김싸피")
+    @Column(name = "user_name")
+    private String userName;
 
     @ApiModelProperty(value = "회원 이메일", required = true, example = "ssafy@kakao.com")
     @Column(name = "user_email")
     private String userEmail;
 
-    @ApiModelProperty(value = "회원 성별", required = true, example = "여/남")
-    @Column(name = "user_gender")
-    private String userGender;
-
     @ApiModelProperty(value = "로그인 여부", required = true, example = "1")
     @Column(name = "is_login")
     private boolean isLogin;
+
+    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ApiModelProperty(value = "회원 비밀번호", required = true, example = "여/남")
+    @Column(name = "user_password")
+    private String userPassword;
 }
