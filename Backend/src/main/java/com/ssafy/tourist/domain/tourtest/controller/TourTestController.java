@@ -27,17 +27,29 @@ public class TourTestController {
     TourTestService tourTestService;
 
     private static final int SUCCESS = 1;
+    private static final int NONE = 2;
     private static final int FAIL = -1;
-    
+
+
     @ApiOperation(value = "여행 취향 테스트 결과 저장", notes = "로그인 한 회원은 여행 취향 테스트 결과를 저장한다.")
     @PutMapping("")
     public ResponseEntity<? extends BaseResponseBody> tourTestResultByUser(@RequestBody TourTestResultPostReq tourTestResultPostReq) {
 
         log.info("tourTestResultByUser - Call");
 
-        if(tourTestService.tourTestResultByUser(tourTestResultPostReq) == SUCCESS) {
-            return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
-        }else return ResponseEntity.status(404).body(BaseResponseBody.of(201, "userId doesn't exist"));
+        int userId = tourTestResultPostReq.getUserId();
+        int tourTestId = tourTestResultPostReq.getTourTestId();
+
+        if (userId != 0 && tourTestId != 0) {
+            if (tourTestService.tourTestResultByUser(userId, tourTestId) == SUCCESS) {
+                return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+            }
+        } else if (userId == 0 && tourTestId != 0) {
+            if (tourTestService.tourTestResultByUser(userId, tourTestId) == NONE) {
+                return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+            }
+        }
+        return ResponseEntity.status(404).body(BaseResponseBody.of(404, "Error"));
     }
 
     @ApiOperation(value = "여행 취향 테스트 결과 추천 코스", notes = "여행 취향 테스트 결과를 바탕으로 코스를 추천한다.")

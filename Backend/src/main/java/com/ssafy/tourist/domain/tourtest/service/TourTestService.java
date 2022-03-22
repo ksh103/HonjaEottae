@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TourTestService {
 
-    int tourTestResultByUser(TourTestResultPostReq tourTestResultPostReq);
+    int tourTestResultByUser(int userId, int tourTestId);
     List<Course> tourTestCourseByUser(int courseId1, int courseId2);
     List<Integer> tourTestResult();
 }
