@@ -32,7 +32,7 @@ public class CourseController {
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
 
-    
+
     @ApiOperation(value = "코스 조회수")
     @PutMapping("/course-hits")
     public ResponseEntity<? extends BaseResponseBody> courseHits (@RequestBody CourseHitsPostReq courseHitsPostReq) {
@@ -46,7 +46,8 @@ public class CourseController {
             return ResponseEntity.status(404).body(BaseResponseBody.of(404, "The course doesn't exist."));
         }
     }
-    
+
+
     @ApiOperation(value = "사용자 코스 추가")
     @PostMapping("")
     public ResponseEntity<? extends BaseResponseBody> courseRegister (@RequestBody CourseRegisterPostReq courseRegisterPostReq) {
@@ -60,6 +61,7 @@ public class CourseController {
         }
     }
 
+
     @ApiOperation(value = "인기 코스")
     @GetMapping("/course-hits")
     public ResponseEntity<PopularCourseGetRes> popularCourse (int page, int size) {
@@ -70,6 +72,7 @@ public class CourseController {
         return ResponseEntity.status(200).body(PopularCourseGetRes.of(200, "Success", popularCouseList));
     }
 
+
     @ApiOperation(value = "코스 검색하기")
     @GetMapping("/{courseName}")
     public ResponseEntity<CourseSearchGetRes> courseSearch (@ApiParam(value = "코스 명") @PathVariable("courseName") String courseName, int page, int size) {
@@ -79,6 +82,7 @@ public class CourseController {
 
         return ResponseEntity.status(200).body(CourseSearchGetRes.of(200, "Success", courseSearchList));
     }
+
 
     @ApiOperation(value = "사용자 생성 코스 조회")
     @GetMapping("/custom-course/{userId}/{courseId}")
@@ -93,7 +97,5 @@ public class CourseController {
             log.error("Course List doesn't exist");
             return ResponseEntity.status(403).body(CourseListGetRes.of(403, "Course List doesn't exist", null));
         }
-
-
     }
 }
