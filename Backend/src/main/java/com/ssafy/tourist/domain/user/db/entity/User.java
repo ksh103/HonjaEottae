@@ -33,13 +33,13 @@ public class User {
     @Column(name = "user_email")
     private String userEmail;
 
-    @ApiModelProperty(value = "로그인 여부", required = true, example = "1")
-    @Column(name = "is_login")
-    private boolean isLogin;
-
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ApiModelProperty(value = "회원 비밀번호", required = true, example = "여/남")
     @Column(name = "user_password")
     private String userPassword;
+
+    @ApiModelProperty(value = "로그인 여부", required = true, example = "1")
+    @Column(name = "is_login")
+    private boolean isLogin;
 }

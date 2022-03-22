@@ -53,7 +53,7 @@ public class TourController {
         }else return ResponseEntity.status(404).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
     }
 
-    @ApiOperation(value = "코스에 대한 관광지 방문")
+    @ApiOperation(value = "코스에 대한 관광지 방문", notes = "코스에 등록 된 관광지를 방문하면 방문 등록(스탬프) 된다.")
     @PutMapping("/tour-stamp")
     public ResponseEntity<? extends BaseResponseBody> touristVisit(@RequestBody TouristVisitPostReq touristVisitPostReq) {
         log.info("tourEndByUser - Call");
@@ -63,7 +63,7 @@ public class TourController {
         }else return ResponseEntity.status(404).body(BaseResponseBody.of(403, "There is no travel course in progress."));
     }
 
-    @ApiOperation(value = "방문한 관광지 명 조회")
+    @ApiOperation(value = "방문한 관광지 명 조회", notes = "사용자는 코스에 대한 방문한 관광지 조회가 가능하다.")
     @GetMapping("/tour-stamp/{userId}/{courseId}")
     public ResponseEntity<TouristNameVisitGetRes> touristNameVisit (@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId,
                                                                     @ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
@@ -79,7 +79,7 @@ public class TourController {
         }
     }
 
-    @ApiOperation(value = "여행 코스 태그 목록")
+    @ApiOperation(value = "여행 코스 태그 목록", notes = "여행 레코드(일기) 작성 시, 여행에 맞는 태그를 선택한다.")
     @GetMapping("/tour-tag")
     public ResponseEntity<TagListGetRes> tagList () {
         log.info("tagList - Call");
