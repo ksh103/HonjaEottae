@@ -1,6 +1,8 @@
 package com.ssafy.tourist.domain.tourtest.controller;
 
+import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.tourtest.request.TourTestResultPostReq;
+import com.ssafy.tourist.domain.tourtest.response.TourTestCourseGetRes;
 import com.ssafy.tourist.domain.tourtest.service.TourTestService;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
 import io.swagger.annotations.Api;
@@ -10,10 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Api("여행 취향 테스트 API")
 @Slf4j
@@ -36,5 +37,21 @@ public class TourTestController {
         if(tourTestService.tourTestResultByUser(tourTestResultPostReq) == SUCCESS) {
             return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
         }else return ResponseEntity.status(404).body(BaseResponseBody.of(201, "userId doesn't exist"));
+    }
+
+    @ApiOperation(value = "여행 취향 테스트 결과 추천 코스", notes = "여행 취향 테스트 결과를 바탕으로 코스를 추천한다.")
+    @GetMapping("/{courseId1}/{courseId2}")
+    public ResponseEntity<TourTestCourseGetRes> tourTestCourseResultByUser(@ApiParam(value = "코스 구분 번호 1") @PathVariable("courseId1") int courseId1,
+                                                                           @ApiParam(value = "코스 구분 번호 2") @PathVariable("courseId2") int courseId2) {
+        log.info("tourTestCourseResultByUser - Call");
+
+        List<Course> tourTestCourseList =  tourTestService.tourTestCourseByUser(courseId1, courseId2);
+
+        if(tourTestCourseList != null && !tourTestCourseList.isEmpty()) {
+            return ResponseEntity.status(201).body(TourTestCourseGetRes.of(200, "Success", tourTestCourseList));
+        }else {
+            log.error("Course List doesn't exist");
+            return ResponseEntity.status(403).body(TourTestCourseGetRes.of(403, "Course List doesn't exist", null));
+        }
     }
 }
