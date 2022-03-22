@@ -28,15 +28,28 @@ public class TourTestServiceImpl implements TourTestService {
 
 
     private static final int SUCCESS = 1;
+    private static final int NONE = 2;
     private static final int FAIL = -1;
 
 
     @Override
-    public int tourTestResultByUser(TourTestResultPostReq tourTestResultPostReq) {
-        // 회원이 존재하면
-        if(userRepository.findById(tourTestResultPostReq.getUserId()).isPresent()) {
-            return userRepository.tourTestResultByUserId(tourTestResultPostReq.getUserId(), tourTestResultPostReq.getTourTestId());
-        }else return FAIL;
+    public int tourTestResultByUser(int userId, int tourTestId) {
+
+        if(userRepository.findById(userId).isPresent()) {
+            int tourTest = userRepository.findById(userId).get().getTourTestId();
+
+            // ******** 기존 결과 합계 - 1 ******** //
+            tourTestRepository.tourTestBeforeCountByUser(tourTest);
+
+            // ******** 테스트 결과 등록 ******** //
+            userRepository.tourTestResultByUserId(userId, tourTestId);
+            tourTestRepository.tourTestResultCountByUser(tourTestId);
+
+            return SUCCESS;
+        }else {
+            tourTestRepository.tourTestResultCountByUser(tourTestId);
+            return NONE;
+        }
     }
 
     @Override
