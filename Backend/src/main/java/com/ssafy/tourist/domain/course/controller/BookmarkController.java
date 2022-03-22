@@ -28,7 +28,7 @@ public class BookmarkController {
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
 
-    @ApiOperation(value = "코스 북마크(좋아요) 추가")
+    @ApiOperation(value = "코스 북마크(좋아요) 추가", notes = "사용자는 코스를 북마크(좋아요) 한다.")
     @PostMapping("/bookmark")
     public ResponseEntity<? extends BaseResponseBody> bookmarkRegister (@RequestBody BookmarkRegisterPostReq bookmarkRegisterPostReq) {
         log.info("bookmarkRegisterByUser - Call");
@@ -37,7 +37,7 @@ public class BookmarkController {
         return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
     }
 
-    @ApiOperation(value = "코스 북마크(좋아요) 해제")
+    @ApiOperation(value = "코스 북마크(좋아요) 해제", notes = "사용자는 코스 북마크를 언제든지 해제가 가능하다.")
     @DeleteMapping("/bookmark/{userId}/{courseId}")
     public ResponseEntity<? extends BaseResponseBody> bookmarkRemove (@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId,
                                                                       @ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
@@ -53,7 +53,7 @@ public class BookmarkController {
 
     }
 
-    @ApiOperation(value = "북마크한 코스 조회")
+    @ApiOperation(value = "북마크한 코스 조회", notes = "사용자가 북마크한 코스를 조회한다.")
     @GetMapping("/bookmark-list/{userId}")
     public ResponseEntity<BookmarkCourseGetRes> bookmarkList (@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId) {
 

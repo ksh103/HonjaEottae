@@ -31,7 +31,7 @@ public class TourTestController {
     private static final int FAIL = -1;
 
 
-    @ApiOperation(value = "여행 취향 테스트 결과 저장", notes = "로그인 한 회원은 여행 취향 테스트 결과를 저장한다.")
+    @ApiOperation(value = "여행 취향 테스트 결과 저장", notes = "로그인 한 사용자는 여행 취향 테스트 결과를 저장한다.")
     @PutMapping("")
     public ResponseEntity<? extends BaseResponseBody> tourTestResultByUser(@RequestBody TourTestResultPostReq tourTestResultPostReq) {
 

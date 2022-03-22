@@ -33,7 +33,7 @@ public class CourseController {
     private static final int FAIL = -1;
 
 
-    @ApiOperation(value = "코스 조회수")
+    @ApiOperation(value = "코스 조회수", notes = "코스 상세보기를 하면 조회수가 증가한다.")
     @PutMapping("/course-hits")
     public ResponseEntity<? extends BaseResponseBody> courseHits (@RequestBody CourseHitsPostReq courseHitsPostReq) {
 
@@ -48,7 +48,7 @@ public class CourseController {
     }
 
 
-    @ApiOperation(value = "사용자 코스 추가")
+    @ApiOperation(value = "사용자 코스 추가", notes = "사용자는 코스를 직접 생성할 수 있다.")
     @PostMapping("")
     public ResponseEntity<? extends BaseResponseBody> courseRegister (@RequestBody CourseRegisterPostReq courseRegisterPostReq) {
         log.info("courseRegister - Call");
@@ -62,7 +62,7 @@ public class CourseController {
     }
 
 
-    @ApiOperation(value = "인기 코스")
+    @ApiOperation(value = "인기 코스", notes = "조회수를 기준으로 비회원에게 인기 코스 추천을 제공한다.")
     @GetMapping("/course-hits")
     public ResponseEntity<PopularCourseGetRes> popularCourse (int page, int size) {
         log.info("popularCourse - Call");

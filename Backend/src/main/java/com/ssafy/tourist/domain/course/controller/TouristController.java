@@ -33,7 +33,7 @@ public class TouristController {
     private static final int FAIL = -1;
 
 
-    @ApiOperation(value = "관광지 검색")
+    @ApiOperation(value = "관광지 검색", notes = "코스 생성 시, 관광지 검색을 통해 관광지를 추가한다.")
     @GetMapping("/{keywords}")
     public ResponseEntity<TouristSearchGetRes> touristSearch (@ApiParam(value = "검색 키워드") @PathVariable("keywords") String keywords, int page, int size) {
         log.info("touristSearch - Call");
@@ -48,7 +48,7 @@ public class TouristController {
         }
     }
 
-    @ApiOperation(value = "위치에 따른 인근 관광지 조회")
+    @ApiOperation(value = "위치에 따른 인근 관광지 조회", notes = "사용자 위치(위도, 경도)를 기반으로 근처 관광지를 조회한다.")
     @GetMapping("/{lat}/{lng}")
     public ResponseEntity<TouristLocationGetRes> locationTouristList (@ApiParam(value = "위도") @PathVariable("lat") double lat,
                                                                       @ApiParam(value = "경도") @PathVariable("lng") double lng) {
