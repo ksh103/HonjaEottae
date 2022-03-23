@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import type { NextPage } from 'next';
 import { TEST } from '../../assets/test';
 import Link from 'next/link';
@@ -11,15 +11,24 @@ import {
   Button,
   ButtonWrapper,
 } from '../../components/Travel/Travel.style';
-import Loading from '../../components/Travel/Loading';
+import { useDispatch } from 'react-redux';
+import { saveTestResult } from '../../store/travel';
 
 const TravelTest: NextPage = () => {
   const [step, setStep] = useState<number>(0);
   const router = useRouter();
+  const dispatch = useDispatch();
+  const saveTest = useCallback(
+    (type: number) => {
+      dispatch(saveTestResult.request({ userId: 0, type: type }));
+    },
+    [dispatch],
+  );
 
   const selectAnswer = (no: number, type: number) => {
     if (no === -1) {
       localStorage.setItem('type', type + '');
+      // saveTest(type);
       router.push('/travel/result');
     } else {
       setStep(no);

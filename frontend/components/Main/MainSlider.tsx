@@ -23,7 +23,7 @@ const showCourse = () => {
     <SliderCard key={i}>
       <img src={data.url} alt={data.title} />
       <div className="title">
-        <Link href={`/detail/${i}`}>
+        <Link href={`/course/${i}`}>
           <label>{data.title}</label>
         </Link>
       </div>

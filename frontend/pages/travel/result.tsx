@@ -22,13 +22,15 @@ import { getTestResult } from '../../store/travel';
 const TravelResult: NextPage = () => {
   const [num, setNum] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [rank, setRank] = useState([]);
+  const [percentage, setPercentage] = useState(0);
   const dispatch = useDispatch();
-  const { typeRank } = useSelector((state: RootState) => state.travel);
-  
-  const data = useCallback(() => {
-    dispatch(getTestResult.request('1'));
+  const { typeResult } = useSelector((state: RootState) => state.travel);
+
+  const getTypeRank = useCallback(() => {
+    dispatch(getTestResult.request(''));
   }, [dispatch]);
-  
+
   useEffect(() => {
     setNum(Number(localStorage.getItem('type')));
     setTimeout(() => {
@@ -39,10 +41,8 @@ const TravelResult: NextPage = () => {
     if (!Kakao.isInitialized())
       Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPTKEY);
 
-    if (typeRank.length === 0) {
-      console.log('?');
-
-      data();
+    if (typeResult.length === 0) {
+      getTypeRank();
     }
   }, []);
 
@@ -51,19 +51,6 @@ const TravelResult: NextPage = () => {
     Kakao.Link.sendCustom({
       templateId: 73466,
     });
-  };
-
-  const popularType = () => {
-    const popular = [0, 1];
-    return (
-      <Row>
-        {popular.map((pop, i) => (
-          <Col span={12} key={i}>
-            <PopularType type={pop} rank={i + 1} />
-          </Col>
-        ))}
-      </Row>
-    );
   };
 
   return (
@@ -104,10 +91,18 @@ const TravelResult: NextPage = () => {
               );
             })}
           </TestResultCard>
-          <TestResultCard>
-            <h1 className="title">✨가장 많은 유형</h1>
-            {popularType()}
-          </TestResultCard>
+          {rank.length > 0 && (
+            <TestResultCard>
+              <h1 className="title">✨가장 많은 유형</h1>
+              <Row>
+                {rank.map((type, i) => (
+                  <Col span={12} key={type}>
+                    <PopularType type={type} rank={i + 1} />
+                  </Col>
+                ))}
+              </Row>
+            </TestResultCard>
+          )}
           <ButtonWrapper>
             <Button color="yellow" onClick={() => shareToKakao()}>
               테스트 공유하기
