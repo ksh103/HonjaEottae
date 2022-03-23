@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "tourist")
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @ApiModel(value = "Tourist", description = "관광지 주요 정보")
 public class Tourist {
     @ApiModelProperty(value = "관광지 구분 번호", example = "1")
