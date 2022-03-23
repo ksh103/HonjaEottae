@@ -1,13 +1,16 @@
-import type { NextPage } from 'next';
 import CourseForm from './CourseForm';
 import { CourseFormWrapper } from './Course.style';
 import useDrag from './useDrag';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 
-type scrollVisibilityApiType = React.ContextType<typeof VisibilityContext>;
+type scrollVisibilityApiType = React.ContextType<typeof VisibilityContext>; // 가로스크롤
 
-const CourseList: NextPage = () => {
-  // NOTE: for drag by mouse
+export interface CourseListProps {
+  data: { courseId: number; courseName: string }[];
+}
+
+const CourseList = (data: CourseListProps) => {
+  const datas = data.data;
   const { dragStart, dragStop, dragMove, dragging } = useDrag();
   const handleDrag =
     ({ scrollContainer }: scrollVisibilityApiType) =>
@@ -27,14 +30,9 @@ const CourseList: NextPage = () => {
           onMouseMove={handleDrag}
         >
           <CourseFormWrapper>
-            <CourseForm />
-            <CourseForm />
-            <CourseForm />
-            <CourseForm />
-            <CourseForm />
-            <CourseForm />
-            <CourseForm />
-            <CourseForm />
+            {datas.map((data, idx) => (
+              <CourseForm courseName={data.courseName} key={idx} />
+            ))}
           </CourseFormWrapper>
         </ScrollMenu>
       </div>
