@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchCourse, SEARCH_COURSE_REQUEST } from '../../store/course';
+import { searchCourse } from '../../store/course';
 import { Button, SearchFormWrapper } from './Course.style';
 
 const SearchForm: NextPage = () => {
@@ -10,7 +10,6 @@ const SearchForm: NextPage = () => {
   const [keyword, setKeyword] = useState<string>('');
   const onKeywordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
-    console.log(keyword);
   };
 
   const searchCourseData = useCallback(() => {

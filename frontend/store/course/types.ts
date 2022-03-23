@@ -1,14 +1,13 @@
-import { Action, ActionType } from 'typesafe-actions';
-import { searchCourse } from './actions';
-const searchCourseActions = {
-  searchCourse,
-};
+import { ActionType } from 'typesafe-actions';
+import * as actions from './actions';
 
-export type SearchCourseActions = ActionType<typeof searchCourseActions>;
+export type CourseAction = ActionType<typeof actions>;
 
-export type content = {
+export type SearchCourse = {
   courseId: number;
   courseName: string;
 };
 
-export type list = content[];
+export type CourseState = {
+  searchCourses: SearchCourse[];
+};

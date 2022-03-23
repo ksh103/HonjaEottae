@@ -1,19 +1,17 @@
-import { createReducer } from 'typesafe-actions';
-import { SEARCH_COURSE_SUCCESS } from './actions';
-import { list, SearchCourseActions } from './types';
+import { ActionType, createReducer } from 'typesafe-actions';
+import { SEARCH_COURSE_SUCCESS, SET_SEARCH_KEYWORD } from './actions';
+import { CourseState, CourseAction } from './types';
+import produce from 'immer';
 
-const initialSearchCourse: list = [
-  {
-    courseId: 0,
-    courseName: '',
-  },
-];
+const initialSearchCourse: CourseState = {
+  searchCourses: [],
+};
 
-const searchCourse = createReducer<list, SearchCourseActions>(
-  initialSearchCourse,
-  {
-    [SEARCH_COURSE_SUCCESS]: (state, { payload: list }) => state,
-  },
-);
+const course = createReducer<CourseState, CourseAction>(initialSearchCourse, {
+  [SEARCH_COURSE_SUCCESS]: (state, action) =>
+    produce(state, draft => {
+      draft.searchCourses = action.payload;
+    }),
+});
 
-export default searchCourse;
+export default course;
