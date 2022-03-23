@@ -1,5 +1,7 @@
 package com.ssafy.tourist.domain.course.controller;
 
+import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
+import com.ssafy.tourist.domain.course.db.bean.CourseDetailUser;
 import com.ssafy.tourist.domain.course.db.bean.TourTestResult;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.response.CourseConnectionDetailGetRes;
@@ -33,18 +35,18 @@ public class CourseDetailController {
     CourseDetailService courseDetailService;
 
 
+
     @ApiOperation(value = "코스 상세보기", notes = "코스에 대한 정보와 코스에 등록된 관광지에 대한 정보를 제공한다.")
     @GetMapping("/{courseId}")
     public ResponseEntity<CourseDetailGetRes> courseDetail(@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
         log.info("courseDetail - Call");
 
-        List<CourseData> courseDataDetailList = courseDetailService.courseDataDetail(courseId);
-
-        if (courseDataDetailList != null && !courseDataDetailList.isEmpty()) {
-            return ResponseEntity.status(200).body(CourseDetailGetRes.of(200, "Success", courseDataDetailList));
-        } else {
-            log.error("Course List doesn't exist");
-            return ResponseEntity.status(403).body(CourseDetailGetRes.of(403, "Course List doesn't exist", null));
+        if(courseDetailService.courseIsRegister(courseId)) {
+            List<CourseDetailUser> courseDetailUserList = courseDetailService.courseDataUserDetail(courseId);
+            return ResponseEntity.status(200).body(CourseDetailGetRes.of(200, "Success", courseDetailUserList, null));
+        }else {
+            List<CourseDetail> courseDetailList = courseDetailService.courseDataDetail(courseId);
+            return ResponseEntity.status(200).body(CourseDetailGetRes.of(200, "Success", null, courseDetailList));
         }
     }
 
@@ -75,8 +77,8 @@ public class CourseDetailController {
     }
 
 
-    @ApiOperation(value = "새로운 인연 만날 확률(%)")
-    @GetMapping("/connection/{courseId}")
+    @ApiOperation(value = "코스 성향 분석")
+    @GetMapping("/analysis/{courseId}")
     public ResponseEntity<CourseConnectionDetailGetRes> courseConnectionDetail(@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
         log.info("courseConnectionDetail - Call");
 

@@ -1,11 +1,12 @@
 package com.ssafy.tourist.domain.course.service;
 
+import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
+import com.ssafy.tourist.domain.course.db.bean.CourseDetailUser;
 import com.ssafy.tourist.domain.course.db.bean.TourTestResult;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.repository.CourseDetailRepositorySpp;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
 import com.ssafy.tourist.domain.record.db.entity.Record;
-import com.ssafy.tourist.domain.tourtest.db.entity.TourTest;
 import com.ssafy.tourist.domain.tourtest.db.repository.TourTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,12 @@ public class CourseDetailServiceImpl implements CourseDetailService {
     CourseDetailRepositorySpp courseDetailRepositorySpp;
 
 
+
     @Override
-    public List<CourseData> courseDataDetail(int courseId) { return courseDetailRepositorySpp.courseDataDetailByCourseId(courseId); }
+    public List<CourseDetailUser> courseDataUserDetail(int courseId) { return courseDetailRepositorySpp.courseDataDetailUserByCourseId(courseId); }
+
+    @Override
+    public List<CourseDetail> courseDataDetail(int courseId) { return courseDetailRepositorySpp.courseDataDetailByCourseId(courseId); }
 
     @Override
     public boolean courseIsRegister(int courseId) { return courseRepository.findCourseIsRegisterByCourseId(courseId); }

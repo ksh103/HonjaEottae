@@ -2,7 +2,6 @@ package com.ssafy.tourist.domain.course.db.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
