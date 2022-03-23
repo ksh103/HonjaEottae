@@ -1,13 +1,11 @@
 package com.ssafy.tourist.domain.course.controller;
 
-import com.querydsl.core.Tuple;
-import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.response.CourseDetailGetRes;
 import com.ssafy.tourist.domain.course.response.CourseIsRegisterGetRes;
-import com.ssafy.tourist.domain.course.response.CourseListGetRes;
-import com.ssafy.tourist.domain.course.response.PopularCourseGetRes;
+import com.ssafy.tourist.domain.course.response.CourseRecordDetailGetRes;
 import com.ssafy.tourist.domain.course.service.CourseDetailService;
+import com.ssafy.tourist.domain.record.db.entity.Record;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -55,5 +53,21 @@ public class CourseDetailController {
         boolean isRegister = courseDetailService.courseIsRegister(courseId);
 
         return ResponseEntity.status(200).body(CourseIsRegisterGetRes.of(200, "Success", isRegister));
+    }
+
+    
+    @ApiOperation(value = "코스 여행 레코드(일기) 조회")
+    @GetMapping("/course-record/{courseId}")
+    public ResponseEntity<CourseRecordDetailGetRes> courseRecordDetail (@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
+        log.info("courseRecordDetail - Call");
+
+        List<Record> courseRecordDetailList = courseDetailService.courseRecordDetail(courseId);
+
+        if(courseRecordDetailList != null && !courseRecordDetailList.isEmpty()) {
+            return ResponseEntity.status(200).body(CourseRecordDetailGetRes.of(200, "Success", courseRecordDetailList));
+        }else {
+            log.error("courseId doesn't exist");
+            return ResponseEntity.status(403).body(CourseRecordDetailGetRes.of(403, "courseId doesn't exist", null));
+        }
     }
 }
