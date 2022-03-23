@@ -35,9 +35,6 @@ const CourseList: NextPage = () => {
             <CourseForm />
             <CourseForm />
             <CourseForm />
-            <CourseForm />
-            <CourseForm />
-            <CourseForm />
           </CourseFormWrapper>
         </ScrollMenu>
       </div>

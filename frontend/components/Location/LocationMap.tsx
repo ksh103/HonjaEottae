@@ -5,7 +5,7 @@ interface MapProps {
   positions: { title: string; lat: number; lng: number }[];
 }
 
-const MypageMap = ({ positions }: MapProps) => {
+const LocationMap = ({ positions }: MapProps) => {
   useEffect(() => {
     const mapScript = document.createElement('script');
 
@@ -17,8 +17,11 @@ const MypageMap = ({ positions }: MapProps) => {
       window.kakao.maps.load(() => {
         const container = document.getElementById('map');
         const options = {
-          center: new window.kakao.maps.LatLng(36.527327, 127.651767), // 중심 좌표
-          level: 14, // map 크기
+          center: new window.kakao.maps.LatLng(
+            positions[0].lat,
+            positions[0].lng,
+          ), // 중심 좌표
+          level: 5, // map 크기
         };
         const map = new window.kakao.maps.Map(container, options);
         var imageSrc = // 마커 이미지
@@ -56,4 +59,4 @@ const MypageMap = ({ positions }: MapProps) => {
   return <MapContainer id="map"></MapContainer>;
 };
 
-export default MypageMap;
+export default LocationMap;
