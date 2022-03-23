@@ -2,7 +2,9 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { getTestResult } from './actions';
 import { getTestResultAPI } from './apis';
 
-function* getTestResultSaga() {
+function* getTestResultSaga({
+  payload: string,
+}: ReturnType<typeof getTestResult.request>) {
   try {
     const result: number[] = yield call(getTestResultAPI);
     yield put(getTestResult.success(result));

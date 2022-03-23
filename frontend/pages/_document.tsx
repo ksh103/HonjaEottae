@@ -1,6 +1,5 @@
 // 스타일 늦게 호출되는 현상 방지용
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import Script from 'next/script';
 
 class MyDocument extends Document {
   render() {
