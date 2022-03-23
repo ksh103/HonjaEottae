@@ -5,5 +5,5 @@ export type TravelAction = ActionType<typeof actions>;
 
 // export type Travel
 export type TravelState = {
-  typeRank: number[];
+  typeRank: Array<number>;
 };
