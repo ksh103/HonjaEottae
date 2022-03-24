@@ -97,6 +97,7 @@ public class TouristCount {
             System.exit(2);
         }
 
+        conf.set("mapred.textoutputformat.separator", ",");
         FileSystem hdfs = FileSystem.get(conf);
         Path output = new Path(otherArgs[1]);
         if (hdfs.exists(output))
@@ -122,4 +123,5 @@ public class TouristCount {
         System.exit(job.waitForCompletion(true) ? 0 : 1 );
     }
 }
+
 
