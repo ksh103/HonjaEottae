@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService{
     @Cacheable(value = "findByEmail", key="#userEmail")
     public User findByEmail(String userEmail) {
         User user = userRepositorySpp.findByEmail(userEmail);
-        System.out.println("findByIdStudent...................................................실행"+userEmail);
         return user;
     }
 
@@ -37,7 +36,7 @@ public class UserServiceImpl implements UserService{
         user.setUserEmail(userRegisterInfo.getUserEmail());
         user.setUserName(userRegisterInfo.getUserName());
         user.setUserPassword(passwordEncoder.encode(userRegisterInfo.getUserPassword()));
-        user.setTourTestId(6);
+        user.setTourTestId(7);
         return userRepository.save(user);
     }
 

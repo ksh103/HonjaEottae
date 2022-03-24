@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @Api("여행 취향 테스트 API")
 @Slf4j
 @Controller

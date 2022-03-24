@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -16,6 +17,8 @@ import com.querydsl.core.types.Path;
 public class QRecord extends EntityPathBase<Record> {
 
     private static final long serialVersionUID = 1762641506L;
+
+    private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QRecord record = new QRecord("record");
 
@@ -27,18 +30,29 @@ public class QRecord extends EntityPathBase<Record> {
 
     public final DateTimePath<java.time.LocalDateTime> recordRegDt = createDateTime("recordRegDt", java.time.LocalDateTime.class);
 
+    public final com.ssafy.tourist.domain.user.db.entity.QUser user;
+
     public final NumberPath<Integer> userId = createNumber("userId", Integer.class);
 
     public QRecord(String variable) {
-        super(Record.class, forVariable(variable));
+        this(Record.class, forVariable(variable), INITS);
     }
 
     public QRecord(Path<? extends Record> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QRecord(PathMetadata metadata) {
-        super(Record.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QRecord(PathMetadata metadata, PathInits inits) {
+        this(Record.class, metadata, inits);
+    }
+
+    public QRecord(Class<? extends Record> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.user = inits.isInitialized("user") ? new com.ssafy.tourist.domain.user.db.entity.QUser(forProperty("user")) : null;
     }
 
 }

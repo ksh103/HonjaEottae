@@ -159,14 +159,14 @@ export const TEST = {
       color: '#FF2323',
       courses: [
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 545,
+          title: '낮이 좋아? 밤이 좋아? 서울의 주경, 야경 여행코스',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 826,
+          title: '영화 마니아를 위한 로맨틱 여행',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/43/2640743_image2_1.JPG',
         },
@@ -179,14 +179,14 @@ export const TEST = {
       color: '#FF1895',
       courses: [
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 731,
+          title: '제주도 세계자연유산 탐방 1 코스',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 559,
+          title: '경복궁 북쪽마을 북촌 즐기기',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
@@ -199,14 +199,14 @@ export const TEST = {
       color: '#3C44FF',
       courses: [
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 697,
+          title: '부산의 아름다운 낮과 밤을 느끼는 주경, 야경 여행',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 295,
+          title: '제주 사계해안도로, 바다와 산의 하모니에 홀릭하다!',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
@@ -219,14 +219,14 @@ export const TEST = {
       color: '#1BBE00',
       courses: [
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 65,
+          title: '지리산의 깊은 산자락 속에 세상 시름을 묻다',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 566,
+          title: '화산이 만든 비경을 찾아가는 탐험길',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
@@ -239,14 +239,14 @@ export const TEST = {
       color: '#BB0000',
       courses: [
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 716,
+          title: '가평에서 만나보는 유럽, 이색체험 여행',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 521,
+          title: '서울 해방촌의 이국적인 맛집을 찾아서',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
@@ -259,14 +259,14 @@ export const TEST = {
       color: '#FF6B00',
       courses: [
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 50,
+          title: '경주 최고의 문화유산을 만나다',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },
         {
-          no: 1,
-          title: '다이나믹한 부산의 매력을 만나다',
+          no: 724,
+          title: '꼼꼼하게 둘러보는 전주 한옥마을과 주변 명소들',
           image:
             'http://tong.visitkorea.or.kr/cms/resource/22/1804822_image2_1.jpg',
         },

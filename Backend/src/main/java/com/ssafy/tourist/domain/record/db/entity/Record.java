@@ -1,6 +1,8 @@
 package com.ssafy.tourist.domain.record.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ssafy.tourist.domain.course.db.entity.Tourist;
+import com.ssafy.tourist.domain.user.db.entity.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -40,4 +42,7 @@ public class Record {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime recordRegDt;
 
+    @OneToOne
+    @JoinColumn(name = "user_id", updatable = false, insertable = false)
+    private User user;
 }

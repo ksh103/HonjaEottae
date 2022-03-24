@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { getTestResult, saveTestResult } from './actions';
-import { GetTestResultAPI, SaveTestResultAPI } from './apis';
+import { GetTestResultAPI, SaveTestResultAPI } from './api';
 
 function* getTestResultSaga() {
   try {
