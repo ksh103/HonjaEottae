@@ -19,14 +19,12 @@ import java.util.List;
 @ApiModel(value = "CourseDetailGetRes", description = "코스 상세보기 응답")
 public class CourseDetailGetRes extends BaseResponseBody {
     @ApiModelProperty(value = "코스 상세보기 정보")
-    List<CourseDetailUser> courseDetailUserList = null;
     List<CourseDetail> courseDetailList = null;
 
-    public static CourseDetailGetRes of (Integer statusCode, String message,List<CourseDetailUser> courseDetailUserList, List<CourseDetail> courseDetailList) {
+    public static CourseDetailGetRes of (Integer statusCode, String message, List<CourseDetail> courseDetailList) {
         CourseDetailGetRes res = new CourseDetailGetRes();
         res.setStatusCode(statusCode);
         res.setMessage(message);
-        res.setCourseDetailUserList(courseDetailUserList);
         res.setCourseDetailList(courseDetailList);
 
         return res;
