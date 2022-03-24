@@ -20,22 +20,22 @@ import { RootState } from '../../store';
 import { getTestResult } from '../../store/travel';
 
 const TravelResult: NextPage = () => {
-  const [num, setNum] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [rank, setRank] = useState([]);
+  const [rank, setRank] = useState<number[]>([]);
   const [percentage, setPercentage] = useState(0);
   const dispatch = useDispatch();
-  const { typeResult } = useSelector((state: RootState) => state.travel);
+  const { typeResult, myType } = useSelector(
+    (state: RootState) => state.travel,
+  );
 
   const getTypeRank = useCallback(() => {
     dispatch(getTestResult.request(''));
   }, [dispatch]);
 
   useEffect(() => {
-    setNum(Number(localStorage.getItem('type')));
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 3000);
 
     const { Kakao } = window;
     if (!Kakao.isInitialized())
@@ -45,6 +45,16 @@ const TravelResult: NextPage = () => {
       getTypeRank();
     }
   }, []);
+
+  useEffect(() => {
+    if (typeResult.length > 0) {
+      const datas = typeResult
+        .map((data, idx) => [idx, data])
+        .sort((a, b) => b[1] - a[1]);
+      console.log(datas);
+      setRank([datas[0][0], datas[1][0]]);
+    }
+  }, [typeResult]);
 
   const shareToKakao = () => {
     const { Kakao } = window;
@@ -67,9 +77,9 @@ const TravelResult: NextPage = () => {
       ) : (
         <Wrapper>
           <h1 className="title">여행 성향 테스트</h1>
-          <TestTitle color={TEST.results[num].color}>
+          <TestTitle color={TEST.results[myType].color}>
             <div
-              dangerouslySetInnerHTML={{ __html: TEST.results[num].desc }}
+              dangerouslySetInnerHTML={{ __html: TEST.results[myType].desc }}
             ></div>
             <h2>
               전체 테스트 참여자 중 <label>15%</label>가 같은 유형입니다.
@@ -80,7 +90,7 @@ const TravelResult: NextPage = () => {
           </div>
           <TestResultCard>
             <h1 className="title">🚩 유형별 코스 추천</h1>
-            {TEST.results[num].courses.map((course, i) => {
+            {TEST.results[myType].courses.map((course, i) => {
               return (
                 <TypeCourse
                   key={i}

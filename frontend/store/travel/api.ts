@@ -18,12 +18,10 @@ export async function GetTestResultAPI() {
 
 // 여행성향테스트 결과 저장
 export async function SaveTestResultAPI({ type, userId }: TravelTestResult) {
-  const result = await axios
-    .put(`${BASE_URL}tour-test`, {
-      tourTestId: type + 1,
-      userId: userId,
-    })
-    .then(res => console.log(res));
+  await axios.put(`${BASE_URL}tour-test`, {
+    tourTestId: type + 1,
+    userId: userId,
+  });
   return type;
 }
 

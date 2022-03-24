@@ -27,8 +27,7 @@ const TravelTest: NextPage = () => {
 
   const selectAnswer = (no: number, type: number) => {
     if (no === -1) {
-      localStorage.setItem('type', type + '');
-      // saveTest(type);
+      saveTest(type);
       router.push('/travel/result');
     } else {
       setStep(no);
