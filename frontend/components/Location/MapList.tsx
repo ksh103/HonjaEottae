@@ -1,5 +1,5 @@
-import { NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { selectLocation } from '../../store/location';
 import {
   ListBlock,
   ListWrapper,
@@ -8,44 +8,45 @@ import {
 } from './Location.styled';
 import LocationMap from './LocationMap';
 
-const MapList: NextPage = () => {
-  const [latitude, setLatitude] = useState<number>(0);
-  const [longitude, setLongitude] = useState<number>(0);
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position: any) => {
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
-        console.log('위도 : ' + position.coords.latitude);
-        console.log('경도 : ' + position.coords.longitude);
-      });
-    }
-  }, []);
-  const lists: string[] = [
-    '광안대교',
-    '부산항대교',
-    '해운대',
-    '광안리해수욕장',
-    '우리집',
-  ];
+interface MapListProps {
+  positions: { title: string; lat: number; lng: number }[];
+  lists: string[];
+}
 
-  const positions = [
-    {
-      title: '우리집',
-      lat: latitude,
-      lng: longitude,
-    },
-  ];
+interface ClickListProps {
+  list: string;
+}
+
+const MapList = ({ positions, lists }: MapListProps) => {
+  const dispatch = useDispatch();
+  const ClickList = ({ list }: ClickListProps) => {
+    dispatch(selectLocation(list));
+  };
 
   return (
     <>
       <MapListWrapper>
         <MapBlock>
-          <LocationMap positions={positions}></LocationMap>
+          {/* 만약 positions 이 안들어온 상태에서 map을 호출하면 error가 남.
+              positions의 길이가 0 이상일 때 map 호출 */}
+          {positions.length > 0 ? (
+            <LocationMap positions={positions}></LocationMap>
+          ) : (
+            <></>
+          )}
         </MapBlock>
         <ListWrapper>
           {lists.map((list, idx) => {
-            return <ListBlock key={idx}>{list}</ListBlock>;
+            return (
+              <ListBlock
+                key={idx}
+                onClick={() => {
+                  ClickList({ list });
+                }}
+              >
+                {list}
+              </ListBlock>
+            );
           })}
         </ListWrapper>
       </MapListWrapper>

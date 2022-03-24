@@ -7,8 +7,52 @@ import MapList from './MapList';
 import ImageList from './ImageList';
 import TourDetail from './TourDetail';
 import { Wrapper } from '../../styles/variables';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchLocation } from '../../store/location';
+import { RootState } from '../../store';
 
 const LocationComp: NextPage = () => {
+  const dispatch = useDispatch();
+  const [latitude, setLatitude] = useState<number>(0);
+  const [longitude, setLongitude] = useState<number>(0);
+  const { searchLoactions, selectLocation } = useSelector(
+    (state: RootState) => state.location,
+  );
+  const lists: string[] = [];
+  const positions = searchLoactions.map(searchLocation => {
+    // 관광지 지도를 위한 lat,lng,title 뽑아낸 data
+    lists.push(searchLocation.touristName);
+    return {
+      title: searchLocation.touristName,
+      lat: searchLocation.touristLat,
+      lng: searchLocation.touristLng,
+    };
+  });
+
+  useEffect(() => {
+    // 위도 경도 파악
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: any) => {
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+        console.log('위도 : ' + position.coords.latitude);
+        console.log('경도 : ' + position.coords.longitude);
+      });
+    }
+  }, []);
+
+  const searchLocationData = useCallback(() => {
+    dispatch(searchLocation.request({ lat: latitude, lng: longitude }));
+  }, [dispatch, latitude, longitude]);
+
+  useEffect(() => {
+    // 위도 경도 파악
+    if (latitude != 0 && longitude != 0) {
+      // 위 경도가 파악 되었을 때
+      searchLocationData();
+    }
+  }, [latitude, longitude]);
   return (
     <>
       <Nav />
@@ -17,10 +61,10 @@ const LocationComp: NextPage = () => {
         <LocationWrapper>
           <div>
             <div className="subTitle">관광지 목록</div>
-            <MapList />
+            <MapList positions={positions} lists={lists} />
             <div className="subTitle">이미지</div>
             <ImageList />
-            <div className="subTitle">광안대교(props)</div>
+            <div className="subTitle">{selectLocation}</div>
             <TourDetail />
           </div>
         </LocationWrapper>

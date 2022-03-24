@@ -31,7 +31,11 @@ const CourseList = (data: CourseListProps) => {
         >
           <CourseFormWrapper>
             {datas.map((data, idx) => (
-              <CourseForm courseName={data.courseName} key={idx} />
+              <CourseForm
+                courseName={data.courseName}
+                courseId={data.courseId}
+                key={idx}
+              />
             ))}
           </CourseFormWrapper>
         </ScrollMenu>
