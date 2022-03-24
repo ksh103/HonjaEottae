@@ -32,7 +32,7 @@ public class RecordController {
 
     @ApiOperation(value = "여행 레코드(일기) 등록", notes = "코스 방문을 시작하면 여행 레코드(일기) 작성이 가능하다.")
     @PostMapping("")
-    public ResponseEntity<? extends BaseResponseBody> recordRegister (RecordRegisterPostReq recordRegisterPostReq) {
+    public ResponseEntity<? extends BaseResponseBody> recordRegister (@RequestBody RecordRegisterPostReq recordRegisterPostReq) {
         log.info("recordRegister - Call");
 
         if(recordService.recordRegisterByUser(recordRegisterPostReq) == SUCCESS) {
