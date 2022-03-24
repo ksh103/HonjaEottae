@@ -3,7 +3,6 @@ package com.ssafy.tourist.domain.course.db.repository;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseDetailUser;
 import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
 import com.ssafy.tourist.domain.course.db.entity.*;
@@ -35,22 +34,10 @@ public class CourseDetailRepositorySpp {
     QTourTest qTourTest = QTourTest.tourTest;
 
 
-    // 코스 상세보기 Query(1) - 사용자가 생성한 코스
-    public List<CourseDetailUser> courseDataDetailUserByCourseId(int courseId) {
-        return jpaQueryFactory.select(Projections.constructor(CourseDetailUser.class, qCourse.courseName.as("courseName"),
-                        qCourse.courseContent.as("courseContent"), qTourist.touristAddress.as("touristAddress"), qTourist.touristLat.as("touristLat"), qTourist.touristLng.as("touristLng")))
-                .from(qCourseData)
+    // 코스 상세보기 Query
+    public List<CourseData> courseDataDetailByCourseId(int courseId) {
+        return jpaQueryFactory.select(qCourseData).from(qCourseData)
                 .leftJoin(qTourist).on(qTourist.touristId.eq(qCourseData.touristId))
-                .leftJoin(qCourse).on(qCourse.courseId.eq(qCourseData.courseId))
-                .where(qCourse.courseId.eq(courseId))
-                .fetch();
-    }
-
-    // 코스 상세보기 Query(2) - 사용자가 생성한 코스 x
-    public List<CourseDetail> courseDataDetailByCourseId(int courseId) {
-        return jpaQueryFactory.select(Projections.constructor(CourseDetail.class, qCourse.courseName.as("courseName"),
-                        qCourse.courseContent.as("courseContent")))
-                .from(qCourseData)
                 .leftJoin(qCourse).on(qCourse.courseId.eq(qCourseData.courseId))
                 .where(qCourse.courseId.eq(courseId))
                 .fetch();

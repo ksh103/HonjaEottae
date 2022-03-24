@@ -8,7 +8,7 @@ import lombok.Data;
 public class CourseDetailUser {
     private String courseName;
     private String courseContent;
-    private String courseDataName;
+    private String touristName;
     private String touristAddress;
     private double touristLat;
     private double touristLng;
