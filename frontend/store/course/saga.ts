@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { searchCourse } from './actions';
-import { SearchCourseAPI } from './apis';
+import { SearchCourseAPI } from './api';
 import { SearchCourse } from './types';
 
 function* searchCourseSaga({

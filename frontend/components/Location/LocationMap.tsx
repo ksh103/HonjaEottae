@@ -21,7 +21,7 @@ const LocationMap = ({ positions }: MapProps) => {
             positions[0].lat,
             positions[0].lng,
           ), // 중심 좌표
-          level: 5, // map 크기
+          level: 6, // map 크기
         };
         const map = new window.kakao.maps.Map(container, options);
         var imageSrc = // 마커 이미지
