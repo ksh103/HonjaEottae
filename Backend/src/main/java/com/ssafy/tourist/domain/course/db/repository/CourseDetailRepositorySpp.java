@@ -5,7 +5,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseDetailUser;
-import com.ssafy.tourist.domain.course.db.bean.TourTestResult;
+import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
 import com.ssafy.tourist.domain.course.db.entity.*;
 import com.ssafy.tourist.domain.record.db.entity.QRecord;
 import com.ssafy.tourist.domain.record.db.entity.QTour;
@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 @Repository
 public class CourseDetailRepositorySpp {
@@ -37,8 +38,7 @@ public class CourseDetailRepositorySpp {
     // 코스 상세보기 Query(1) - 사용자가 생성한 코스
     public List<CourseDetailUser> courseDataDetailUserByCourseId(int courseId) {
         return jpaQueryFactory.select(Projections.constructor(CourseDetailUser.class, qCourse.courseName.as("courseName"),
-                        qCourse.courseContent.as("courseContent"), qCourseData.courseDataName.as("courseDataName"),
-                        qTourist.touristAddress.as("touristAddress"), qTourist.touristLat.as("touristLat"), qTourist.touristLng.as("touristLng")))
+                        qCourse.courseContent.as("courseContent"), qTourist.touristAddress.as("touristAddress"), qTourist.touristLat.as("touristLat"), qTourist.touristLng.as("touristLng")))
                 .from(qCourseData)
                 .leftJoin(qTourist).on(qTourist.touristId.eq(qCourseData.touristId))
                 .leftJoin(qCourse).on(qCourse.courseId.eq(qCourseData.courseId))
@@ -49,7 +49,7 @@ public class CourseDetailRepositorySpp {
     // 코스 상세보기 Query(2) - 사용자가 생성한 코스 x
     public List<CourseDetail> courseDataDetailByCourseId(int courseId) {
         return jpaQueryFactory.select(Projections.constructor(CourseDetail.class, qCourse.courseName.as("courseName"),
-                        qCourse.courseContent.as("courseContent"), qCourseData.courseDataName.as("courseDataName")))
+                        qCourse.courseContent.as("courseContent")))
                 .from(qCourseData)
                 .leftJoin(qCourse).on(qCourse.courseId.eq(qCourseData.courseId))
                 .where(qCourse.courseId.eq(courseId))
@@ -67,8 +67,8 @@ public class CourseDetailRepositorySpp {
 
 
     // 코스 성향 분석 Query
-    public List<TourTestResult> courseTourTestResultDetailByCourseId(int courseId) {
-        return jpaQueryFactory.select(Projections.constructor(TourTestResult.class,
+    public List<CourseTourTestResultDetail> courseTourTestResultDetailByCourseId(int courseId) {
+        return jpaQueryFactory.select(Projections.constructor(CourseTourTestResultDetail.class,
                         qTourTest.tourTestId.as("tourTestId"), qTourTest.tourTestName.as("tourTestName"),
                         qTourTest.tourTestId.count().as("tourTestCount")))
                 .from(qTourTest)

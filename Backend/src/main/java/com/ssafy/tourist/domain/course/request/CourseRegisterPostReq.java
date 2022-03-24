@@ -31,10 +31,4 @@ public class CourseRegisterPostReq {
     // 관광지
     @ApiModelProperty(value = "관광지 구분 번호", required = true)
     private Map<Integer, Integer> touristId;
-
-    @ApiModelProperty(value = "관광지 명", required = true)
-    private Map<Integer, String> touristName;
-
-
-
 }
