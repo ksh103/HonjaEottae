@@ -1,6 +1,7 @@
 package com.ssafy.tourist.domain.record.controller;
 
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
+import com.ssafy.tourist.domain.record.db.bean.VisitTouristName;
 import com.ssafy.tourist.domain.record.request.TagRegisterPostReq;
 import com.ssafy.tourist.domain.record.request.TourEndPostReq;
 import com.ssafy.tourist.domain.record.request.TourStartPostReq;
@@ -69,7 +70,7 @@ public class TourController {
                                                                     @ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
         log.info("touristVisit - Call");
 
-        List<CourseData> touristNameVisitList = tourService.touristNameVisitByUser(userId, courseId);
+        List<VisitTouristName> touristNameVisitList = tourService.touristNameVisitByUser(userId, courseId);
 
         if (touristNameVisitList != null && !touristNameVisitList.isEmpty()) {
             return ResponseEntity.status(200).body(TouristNameVisitGetRes.of(200, "Success", touristNameVisitList));

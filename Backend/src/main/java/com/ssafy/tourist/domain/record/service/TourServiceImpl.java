@@ -2,6 +2,7 @@ package com.ssafy.tourist.domain.record.service;
 
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.repository.CourseDataRepository;
+import com.ssafy.tourist.domain.record.db.bean.VisitTouristName;
 import com.ssafy.tourist.domain.record.db.entity.*;
 import com.ssafy.tourist.domain.record.db.repository.*;
 import com.ssafy.tourist.domain.record.request.TagRegisterPostReq;
@@ -92,9 +93,7 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public List<CourseData> touristNameVisitByUser(int userId, int courseId) {
-        return tourRepositorySpp.findVisitTouristName(userId, courseId);
-    }
+    public List<VisitTouristName> touristNameVisitByUser(int userId, int courseId) {return tourRepositorySpp.findVisitTouristName(userId, courseId);}
 
     @Override
     public int tagRegisterByUser(TagRegisterPostReq tagRegisterPostReq) {
