@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.controller;
 
+import com.ssafy.tourist.domain.course.db.bean.CourseTagDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.response.*;
@@ -74,6 +75,21 @@ public class CourseDetailController {
         }else {
             log.error("Test result doesn't exist");
             return ResponseEntity.status(403).body(CourseTourTestResultDetailGetRes.of(403, "Test result doesn't exist", null));
+        }
+    }
+
+    @ApiOperation(value = "코스 태그")
+    @GetMapping("/course-tag/{courseId}")
+    public ResponseEntity<CourseTagDetailGetRes> courseTagDetail(@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
+        log.info("courseTagDetail - Call");
+
+        List<CourseTagDetail> courseTagDetailList = courseDetailService.courseTagDetail(courseId);
+
+        if(courseTagDetailList != null && !courseTagDetailList.isEmpty()) {
+            return ResponseEntity.status(200).body(CourseTagDetailGetRes.of(200, "Success", courseTagDetailList));
+        }else {
+            log.error("Test result doesn't exist");
+            return ResponseEntity.status(403).body(CourseTagDetailGetRes.of(403, "Test result doesn't exist", null));
         }
     }
 }
