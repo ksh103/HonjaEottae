@@ -1,8 +1,8 @@
 package com.ssafy.tourist.domain.course.service;
 
-import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseDetailUser;
 import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
+import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.repository.CourseDetailRepositorySpp;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
 import com.ssafy.tourist.domain.record.db.entity.Record;
@@ -26,12 +26,8 @@ public class CourseDetailServiceImpl implements CourseDetailService {
     CourseDetailRepositorySpp courseDetailRepositorySpp;
 
 
-
     @Override
-    public List<CourseDetailUser> courseDataUserDetail(int courseId) { return courseDetailRepositorySpp.courseDataDetailUserByCourseId(courseId); }
-
-    @Override
-    public List<CourseDetail> courseDataDetail(int courseId) { return courseDetailRepositorySpp.courseDataDetailByCourseId(courseId); }
+    public List<CourseData> courseDataDetail(int courseId) { return courseDetailRepositorySpp.courseDataDetailByCourseId(courseId); }
 
     @Override
     public boolean courseIsRegister(int courseId) { return courseRepository.findCourseIsRegisterByCourseId(courseId); }
