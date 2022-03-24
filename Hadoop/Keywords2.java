@@ -18,9 +18,11 @@ import java.io.IOException;
 public class Keywords2 {
 
     public static class KeywordMapper
-            extends Mapper<Object,Text,Text,Text> {
-        private Text outValue = new Text();
+            extends Mapper<LongWritable,Text,Text,IntWritable> {
+        
         private Text keyTxt = new Text();
+        private final static IntWritable one = new IntWritable();
+
         private String[] keywordValue = {"자연","산","바다","강","호수",
                 "가을","여름","봄","겨울",
                 "전통","체험",
@@ -28,28 +30,29 @@ public class Keywords2 {
                 "혼자","홀로",
                 "음식","식당"};
 
-        public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+        public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             //데이터 배열로 저장
             String[] columns = value.toString().split(",");
 
             //이름과 번호 지정
             String checkValue = columns[2]+" "+columns[3];
-            outValue.set(columns[1] + " "+columns[2]);
+            one.set(Integer.parseInt(columns[1]));
 
-
+            
             //이름과 설명안에 키워드가 있는 지 확인한다.
             for (String keyw : keywordValue) {
-
+                /*
                 if (checkValue.contains(keyw)) {
                     keyTxt.set(keyw);
                     context.write(outValue, keyTxt);
+                }*/
+
+                //키워드 번호 이름
+                //System.out.println(keyw.encoding);
+                if (checkValue.contains(keyw)) {
+                    keyTxt.set(keyw);
+                    context.write(keyTxt, one);
                 }
-		/* 키워드 번호 이름
-		//System.out.println(keyw.encoding);
-		if (checkValue.contains(keyw)) {
-		     keyTxt.set(keyw);
-		     context.write(keyTxt, outValue);
-		}*/
             }
 
 
@@ -57,23 +60,23 @@ public class Keywords2 {
     }
 
     public static class KeywordReducer
-            extends Reducer<Text,Text,Text,Text> {
+            extends Reducer<Text,IntWritable,Text,IntWritable> {
 
         private Text result = new Text();
-
-        public void reduce(Text key, Iterable<Text> values, Context context)
+        
+        public void reduce(Text key, Iterable<IntWritable> values, Context context)
                 throws IOException, InterruptedException {
 
-	    /* 키워드 번호 이름
+	    //키워드 번호 이름
 	    //체험 1018 박물관에서 놀고 자연에서 배우다.
-            for(Text val : values) {
+            for(IntWritable val : values) {
                 context.write(key,val);
             }
-            */
+            
 
             //키워드 번호 이름
             // 체험 [ 1018 박물관에서 놀고 자연에서 배우다, 1019 자연에서 ...]
-            StringBuilder outT =  new StringBuilder();
+           /* StringBuilder outT =  new StringBuilder();
             outT.append("[");
             for(Text val : values) {
                 outT.append(val.toString() + ",");
@@ -84,7 +87,7 @@ public class Keywords2 {
 
             result.set(outT.toString());
             context.write(key, result);
-
+            */
         }
     }
 
@@ -97,7 +100,7 @@ public class Keywords2 {
             System.err.println("Usage: <in> <out>");
             System.exit(2);
         }
-
+        conf.set("mapred.textoutputformat.separator", ",");
         FileSystem hdfs = FileSystem.get(conf);
         Path output = new Path(otherArgs[1]);
         if (hdfs.exists(output))
@@ -111,10 +114,10 @@ public class Keywords2 {
         job.setReducerClass(KeywordReducer.class);
 
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
 
         // set number of reduces
-        //job.setNumReduceTasks(2);
+        //job.setNumReduceTasks(5);
 
         // set input and output directories
         FileInputFormat.addInputPath(job,new Path(otherArgs[0]));
@@ -123,3 +126,4 @@ public class Keywords2 {
         System.exit(job.waitForCompletion(true) ? 0 : 1 );
     }
 }
+
