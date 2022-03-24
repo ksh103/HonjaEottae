@@ -67,41 +67,14 @@ public class CourseServiceImpl implements CourseService{
         Collection<Integer> touristId = courseRegisterPostReq.getTouristId().values();
         Integer[] courseNum = touristId.toArray(new Integer[0]);
 
-        Collection<String> touristNameList = courseRegisterPostReq.getTouristName().values();
-        String[] courseName = touristNameList.toArray(new String[0]);
-
         for (int i = 0; i < size; i++) {
             courseData.setCourseId(courseId);
             courseData.setCourseDataId(i + 1);
 
             courseData.setTouristId(courseNum[i]);
-            courseData.setCourseDataName(courseName[i]);
 
             courseDataRepository.save(courseData);
         }
-
-//        int size = courseRegisterPostReq.getCourseDataName().size();
-//
-//        // 관광지 명
-//        Collection<String> courseNameList = courseRegisterPostReq.getCourseDataName().values();
-//        String[] courseName = courseNameList.toArray(new String[0]);
-//
-//        // 관광지 주소
-//        Collection<String> courseAddressList = courseRegisterPostReq.getCourseAddress().values();
-//        String[] courseAddress = courseAddressList.toArray(new String[0]);
-//
-//        for (int i = 0; i < size; i++) {
-//            courseData.setCourseId(courseId);
-//            courseData.setCourseDataId(i + 1);
-//
-//            courseData.setCourseDataName(courseName[i]);
-//            courseData.setCourseAddress(courseAddress[i]);
-//            courseData.setCourseLng(courseRegisterPostReq.getCourseLng().get(i + 1));
-//            courseData.setCourseLat(courseRegisterPostReq.getCourseLat().get(i + 1));
-//
-//            courseDataRepository.save(courseData);
-//        }
-
         return SUCCESS;
     }
 

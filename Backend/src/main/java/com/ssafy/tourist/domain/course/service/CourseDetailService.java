@@ -3,10 +3,8 @@ package com.ssafy.tourist.domain.course.service;
 
 import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseDetailUser;
-import com.ssafy.tourist.domain.course.db.bean.TourTestResult;
-import com.ssafy.tourist.domain.course.db.entity.CourseData;
+import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
 import com.ssafy.tourist.domain.record.db.entity.Record;
-import com.ssafy.tourist.domain.tourtest.db.entity.TourTest;
 
 import java.util.List;
 
@@ -18,5 +16,5 @@ public interface CourseDetailService {
 
     List<Record> courseRecordDetail(int courseId);
 
-    List<TourTestResult> courseTourTestResultDetail(int courseId);
+    List<CourseTourTestResultDetail> courseTourTestResultDetail(int courseId);
 }

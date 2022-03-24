@@ -26,8 +26,6 @@ public class QCourseData extends EntityPathBase<CourseData> {
 
     public final NumberPath<Integer> courseDataId = createNumber("courseDataId", Integer.class);
 
-    public final StringPath courseDataName = createString("courseDataName");
-
     public final NumberPath<Integer> courseId = createNumber("courseId", Integer.class);
 
     public final QTourist tourist;

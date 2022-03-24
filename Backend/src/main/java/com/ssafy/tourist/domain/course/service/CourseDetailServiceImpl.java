@@ -2,8 +2,7 @@ package com.ssafy.tourist.domain.course.service;
 
 import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseDetailUser;
-import com.ssafy.tourist.domain.course.db.bean.TourTestResult;
-import com.ssafy.tourist.domain.course.db.entity.CourseData;
+import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
 import com.ssafy.tourist.domain.course.db.repository.CourseDetailRepositorySpp;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
 import com.ssafy.tourist.domain.record.db.entity.Record;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class CourseDetailServiceImpl implements CourseDetailService {
@@ -40,5 +40,5 @@ public class CourseDetailServiceImpl implements CourseDetailService {
     public List<Record> courseRecordDetail(int courseId) { return courseDetailRepositorySpp.courseRecordDetailByCourseId(courseId); }
 
     @Override
-    public List<TourTestResult> courseTourTestResultDetail(int courseId) { return courseDetailRepositorySpp.courseTourTestResultDetailByCourseId(courseId); }
+    public List<CourseTourTestResultDetail> courseTourTestResultDetail(int courseId) { return courseDetailRepositorySpp.courseTourTestResultDetailByCourseId(courseId); }
 }
