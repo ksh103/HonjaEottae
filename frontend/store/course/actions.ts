@@ -12,3 +12,5 @@ export const searchCourse = createAsyncAction(
   SEARCH_COURSE_SUCCESS,
   SEARCH_COURSE_FAILURE,
 )<string, SearchCourse[], Error>();
+
+export const searchKeyword = createAction(SET_SEARCH_KEYWORD)<string>()

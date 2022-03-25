@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchCourse } from '../../store/course';
+import { searchCourse, searchKeyword } from '../../store/course';
 import { Button, SearchFormWrapper } from './Course.style';
 
 const SearchForm: NextPage = () => {
@@ -14,6 +14,7 @@ const SearchForm: NextPage = () => {
 
   const searchCourseData = useCallback(() => {
     dispatch(searchCourse.request(keyword));
+    dispatch(searchKeyword(keyword));
   }, [dispatch, keyword]);
 
   const router = useRouter();

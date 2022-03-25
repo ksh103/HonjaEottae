@@ -19,6 +19,7 @@ interface ClickListProps {
 
 const MapList = ({ positions, lists }: MapListProps) => {
   const dispatch = useDispatch();
+
   const ClickList = ({ list }: ClickListProps) => {
     dispatch(selectLocation(list));
   };

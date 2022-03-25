@@ -18,8 +18,20 @@ export type Like = {
   id: number;
 };
 
+export type SignUp = {
+  userEmail: string;
+  userName: string;
+  userPassword: string;
+};
+
+export type SignIn = {
+  userEmail: string;
+  userPassword: string;
+};
+
 export type UserState = {
   userInfo: UserInfo;
   myCourses: MyCourse[];
   likes: Like[];
+  isLogin: boolean;
 };

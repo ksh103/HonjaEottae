@@ -1,8 +1,47 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../store/user';
 import { LoginWrapper, Button, SignupBlock } from '../Login/Login.styled';
 
 const SignupPage: NextPage = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [id, setId] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [pw, setPw] = useState<string>('');
+  const [checkPw, setCheckPw] = useState<string>('');
+
+  const onIdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setId(e.target.value);
+  };
+
+  const onNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  const onPwHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPw(e.target.value);
+  };
+
+  const onCheckPwHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckPw(e.target.value);
+  };
+
+  const signUpButton = () => {
+    if (id == '') alert('아이디를 입력해주세요');
+    else if (name == '') alert('이름을 입력해주세요');
+    else if (pw == '') alert('비밀번호를 입력해주세요');
+    else if (pw != checkPw) alert('비밀번호를 확인해주세요');
+    else {
+      dispatch(
+        signUp.request({ userEmail: id, userPassword: pw, userName: name }),
+      );
+      router.push('/login');
+    }
+  };
   return (
     <>
       <LoginWrapper>
@@ -11,11 +50,21 @@ const SignupPage: NextPage = () => {
         </Link>
         <SignupBlock>
           <div id="loginName">Signup</div>
-          <input type="text" placeholder="이름" />
-          <input type="password" placeholder="아이디" />
-          <input type="password" placeholder="비밀번호" />
-          <input type="password" placeholder="비밀번호 재확인" />
-          <Button id="loginBtn">회원가입</Button>
+          <input type="text" onChange={onNameHandler} placeholder="이름" />
+          <input type="text" onChange={onIdHandler} placeholder="아이디" />
+          <input
+            type="password"
+            onChange={onPwHandler}
+            placeholder="비밀번호"
+          />
+          <input
+            type="password"
+            onChange={onCheckPwHandler}
+            placeholder="비밀번호 재확인"
+          />
+          <Button id="loginBtn" onClick={signUpButton}>
+            회원가입
+          </Button>
         </SignupBlock>
       </LoginWrapper>
     </>
