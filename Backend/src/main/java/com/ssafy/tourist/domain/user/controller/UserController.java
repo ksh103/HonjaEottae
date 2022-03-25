@@ -3,6 +3,7 @@ package com.ssafy.tourist.domain.user.controller;
 import com.ssafy.tourist.domain.user.db.entity.User;
 import com.ssafy.tourist.domain.user.request.UserModifyPutReq;
 import com.ssafy.tourist.domain.user.request.UserRegisterPostReq;
+import com.ssafy.tourist.domain.user.response.UserFindEmail;
 import com.ssafy.tourist.domain.user.response.UserLoginPostRes;
 import com.ssafy.tourist.domain.user.request.UserLoginPostReq;
 import com.ssafy.tourist.domain.user.service.UserService;
@@ -44,9 +45,9 @@ public class UserController {
         User user = userService.findByEmail(user_email);
         if(passwordEncoder.matches(user_password, user.getUserPassword())){
             //패스워드가 맞는 경우 , 로그인 성공
-            return ResponseEntity.ok(UserLoginPostRes.of(200, "Success", JwtTokenUtil.getToken(user_email)));
+            return ResponseEntity.ok(UserLoginPostRes.of(200, "Success", JwtTokenUtil.getToken(user_email), user_email));
         }
-        return ResponseEntity.status(401).body(UserLoginPostRes.of(401, "Invalid Password", null));
+        return ResponseEntity.status(401).body(UserLoginPostRes.of(401, "Invalid Password", null, null));
     }
 
     @PostMapping("/signup")
@@ -82,5 +83,18 @@ public class UserController {
             User user = userService.updateUser(userModifyPutReq);
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
+    }
+
+    @GetMapping("/user/{userEmail}")
+    @ApiOperation(value = "회원 본인 정보 조회", notes = "로그인한 회원의 본인 정보를 응답한다.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<UserFindEmail> findUserEmail(@RequestParam String userEmail) {
+        User user = userService.findByEmail((userEmail));
+        return ResponseEntity.status(200).body(UserFindEmail.of(user));
     }
 }
