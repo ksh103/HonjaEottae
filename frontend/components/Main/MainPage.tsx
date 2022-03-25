@@ -39,7 +39,6 @@ export default function MainPage() {
           <MainTravel />
         </TravelBlock>
         <TravelBlock>
-          <h1>지역별 분석</h1>
           <MainGraph />
         </TravelBlock>
       </Wrapper>

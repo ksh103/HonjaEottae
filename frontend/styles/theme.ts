@@ -3,7 +3,7 @@ import { DefaultTheme } from 'styled-components';
 const size = {
   mobile: '400px',
   tablet: '768px',
-  laptopS: '1023px',
+  laptopS: '900px',
   laptopM: '1239px',
   desktop: '1240px',
 };
