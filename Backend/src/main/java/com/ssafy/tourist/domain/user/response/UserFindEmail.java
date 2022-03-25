@@ -10,8 +10,6 @@ import lombok.Setter;
 @Setter
 @ApiModel("UserResponse")
 public class UserFindEmail {
-    @ApiModelProperty(name = "회원 Email", example = "ssafy@ssafy.com")
-    String userEmail;
     @ApiModelProperty(name = "회원 Name", example = "김싸피")
     String userName;
     @ApiModelProperty(name = "회원 ID", example = "1")
@@ -21,7 +19,6 @@ public class UserFindEmail {
 
     public static UserFindEmail of(User user){
         UserFindEmail res = new UserFindEmail();
-        res.setUserEmail(user.getUserEmail());
         res.setUserName(user.getUserName());
         res.setUserId(user.getUserId());
         res.setTourTestId(user.getTourTestId());
