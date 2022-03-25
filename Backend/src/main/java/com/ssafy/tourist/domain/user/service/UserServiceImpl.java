@@ -33,11 +33,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public User createUser(UserRegisterPostReq userRegisterInfo) {
         User user = new User();
-        user.setUserEmail(userRegisterInfo.getUserEmail());
-        user.setUserName(userRegisterInfo.getUserName());
-        user.setUserPassword(passwordEncoder.encode(userRegisterInfo.getUserPassword()));
-        user.setTourTestId(7);
-        return userRepository.save(user);
+        if(findByEmail(userRegisterInfo.getUserEmail())==null){
+            user.setUserEmail(userRegisterInfo.getUserEmail());
+            user.setUserName(userRegisterInfo.getUserName());
+            user.setUserPassword(passwordEncoder.encode(userRegisterInfo.getUserPassword()));
+            user.setTourTestId(7);
+            return userRepository.save(user);
+        }else {
+            return null;
+        }
     }
 
     @Override
