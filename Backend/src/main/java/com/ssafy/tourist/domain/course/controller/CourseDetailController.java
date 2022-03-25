@@ -1,7 +1,9 @@
 package com.ssafy.tourist.domain.course.controller;
 
+import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseTagDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
+import com.ssafy.tourist.domain.course.db.bean.CourseTouristDetail;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.response.*;
 import com.ssafy.tourist.domain.course.service.CourseDetailService;
@@ -36,13 +38,14 @@ public class CourseDetailController {
     public ResponseEntity<CourseDetailGetRes> courseDetailUser (@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
         log.info("courseDetail - Call");
 
-        List<CourseData> courseDataDetailList = courseDetailService.courseDataDetail(courseId);
+        List<CourseDetail> courseDetailList = courseDetailService.courseDetail(courseId);
+        List<CourseTouristDetail> courseTouristDetailList = courseDetailService.courseDataDetail(courseId);
 
-        if(courseDataDetailList != null && !courseDataDetailList.isEmpty()) {
-            return ResponseEntity.status(200).body(CourseDetailGetRes.of(200, "Success", courseDataDetailList));
+        if(courseDetailList != null && !courseDetailList.isEmpty() && courseTouristDetailList != null && !courseDetailList.isEmpty()) {
+            return ResponseEntity.status(200).body(CourseDetailGetRes.of(200, "Success", courseDetailList, courseTouristDetailList));
         }else {
             log.error("courseId doesn't exist");
-            return ResponseEntity.status(403).body(CourseDetailGetRes.of(403, "courseId doesn't exist", null));
+            return ResponseEntity.status(403).body(CourseDetailGetRes.of(403, "courseId doesn't exist", null, null));
         }
     }
 
