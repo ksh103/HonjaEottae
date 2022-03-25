@@ -64,8 +64,7 @@ public class BookmarkController {
         if(bookmarkCourseList != null && !bookmarkCourseList.isEmpty()) {
             return ResponseEntity.status(200).body(BookmarkCourseGetRes.of(200, "Success", bookmarkCourseList));
         }else {
-            log.error("bookmarkList - bookmark doesn't exist");
-            return ResponseEntity.status(400).body(BookmarkCourseGetRes.of(400, "bookmark doesn't exist", null));
+            return ResponseEntity.status(200).body(BookmarkCourseGetRes.of(200, "bookmark doesn't exist", null));
         }
     }
 }
