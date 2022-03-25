@@ -1,19 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import { Ul } from './Nav.style';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { logOut } from '../../store/user';
+import { logIn, userInfo } from '../../store/user';
 interface RightNavProps {
   open: boolean;
 }
 const RightNav: NextPage<RightNavProps> = ({ open }) => {
+  const dispatch = useDispatch();
   const { isLogin } = useSelector((state: RootState) => state.user); // 로그인 체크
   const LogoutButton = () => {
     sessionStorage.clear(); // userToken 세션스토리지 삭제
     document.location.href = '/'; // 로그아웃 처리하면 새로고침 해서 세션 사라진 걸 인식 해줘야함.
   };
+  const setLogin = useCallback(() => {
+    dispatch(logIn());
+  }, []);
+  useEffect(() => {
+    let userEmail: string | null = sessionStorage.getItem('userEmail');
+    if (!isLogin && sessionStorage.getItem('userToken')) {
+      setLogin();
+      dispatch(userInfo.request(userEmail));
+    }
+  }, []);
   return (
     <>
       <Ul open={open}>

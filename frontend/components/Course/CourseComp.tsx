@@ -20,6 +20,7 @@ const CourseComp: NextPage = () => {
     { courseId: 1, courseName: '임시 데이터' },
     { courseId: 1, courseName: '임시 데이터' },
   ];
+  const { userInfo } = useSelector((state: RootState) => state.user);
   const { searchCourses, searchKeyword } = useSelector(
     (state: RootState) => state.course,
   );
@@ -39,7 +40,7 @@ const CourseComp: NextPage = () => {
                 <CourseList data={searchCourses} />
               </div>
             )}
-            <div className="title">OOO님 맞춤 추천 서비스</div>
+            <div className="title">{userInfo.userName}님 맞춤 추천 코스</div>
             <CourseList data={dummy} />
             <div className="title">푸른 자연을 느낄 수 있는 코스</div>
             <CourseList data={dummy} />

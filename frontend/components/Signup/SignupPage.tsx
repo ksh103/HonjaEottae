@@ -1,14 +1,16 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { signUp } from '../../store/user';
 import { LoginWrapper, Button, SignupBlock } from '../Login/Login.styled';
 
 const SignupPage: NextPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { isSignUp } = useSelector((state: RootState) => state.user);
   const [id, setId] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [pw, setPw] = useState<string>('');
@@ -39,9 +41,13 @@ const SignupPage: NextPage = () => {
       dispatch(
         signUp.request({ userEmail: id, userPassword: pw, userName: name }),
       );
-      router.push('/login');
     }
   };
+  useEffect(() => {
+    if (isSignUp) {
+      router.push('/login');
+    }
+  }, [isSignUp]);
   return (
     <>
       <LoginWrapper>
