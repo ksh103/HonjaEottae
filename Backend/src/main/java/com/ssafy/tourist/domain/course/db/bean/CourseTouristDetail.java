@@ -5,9 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CourseDetailUser {
-    private String courseName;
-    private String courseContent;
+public class CourseTouristDetail {
     private String touristName;
     private String touristAddress;
     private double touristLat;

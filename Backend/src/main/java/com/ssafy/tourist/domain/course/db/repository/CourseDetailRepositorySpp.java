@@ -3,9 +3,10 @@ package com.ssafy.tourist.domain.course.db.repository;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.ssafy.tourist.domain.course.db.bean.CourseDetailUser;
+import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseTagDetail;
 import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
+import com.ssafy.tourist.domain.course.db.bean.CourseTouristDetail;
 import com.ssafy.tourist.domain.course.db.entity.*;
 import com.ssafy.tourist.domain.record.db.entity.*;
 import com.ssafy.tourist.domain.tourtest.db.entity.QTourTest;
@@ -38,11 +39,20 @@ public class CourseDetailRepositorySpp {
 
 
     // 코스 상세보기 Query
-    public List<CourseData> courseDataDetailByCourseId(int courseId) {
-        return jpaQueryFactory.select(qCourseData).from(qCourseData)
-                .leftJoin(qTourist).on(qTourist.touristId.eq(qCourseData.touristId))
-                .leftJoin(qCourse).on(qCourse.courseId.eq(qCourseData.courseId))
+    public List<CourseDetail> courseDetailByCourseId(int courseId) {
+        return jpaQueryFactory.select(Projections.constructor(CourseDetail.class, qCourse.courseName, qCourse.courseContent,
+                        qCourse.courseDistance, qCourse.courseDays, qCourse.courseHits)).from(qCourse)
                 .where(qCourse.courseId.eq(courseId))
+                .fetch();
+    }
+
+
+    // 코스-관광지상세보기 Query
+    public List<CourseTouristDetail> courseDataDetailByCourseId(int courseId) {
+        return jpaQueryFactory.select(Projections.constructor(CourseTouristDetail.class, qTourist.touristName,
+                        qTourist.touristAddress, qTourist.touristLat, qTourist.touristLng)).from(qCourseData)
+                .leftJoin(qTourist).on(qTourist.touristId.eq(qCourseData.touristId))
+                .where(qCourseData.courseId.eq(courseId))
                 .fetch();
     }
 
