@@ -14,4 +14,5 @@ export type SearchCourse = {
 
 export type CourseState = {
   searchCourses: SearchCourse[];
+  searchKeyword: string;
 };

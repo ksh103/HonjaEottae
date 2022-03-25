@@ -30,7 +30,7 @@ const CourseWrapper = styled.div`
 const CourseBlock = styled.div`
   .title {
     margin-top: 30px;
-    font-size: 1vw;
+    font-size: 20px;
     font-weight: bold;
     font-family: 'Jalnan';
   }

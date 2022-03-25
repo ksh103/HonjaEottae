@@ -5,12 +5,17 @@ import produce from 'immer';
 
 const initialState: CourseState = {
   searchCourses: [],
+  searchKeyword: '',
 };
 
 const course = createReducer<CourseState, CourseAction>(initialState, {
   [SEARCH_COURSE_SUCCESS]: (state, action) =>
     produce(state, draft => {
       draft.searchCourses = action.payload;
+    }),
+  [SET_SEARCH_KEYWORD]: (state, action) =>
+    produce(state, draft => {
+      draft.searchKeyword = action.payload;
     }),
 });
 
