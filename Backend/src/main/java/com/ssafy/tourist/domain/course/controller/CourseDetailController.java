@@ -60,8 +60,7 @@ public class CourseDetailController {
         if (courseRecordDetailList != null && !courseRecordDetailList.isEmpty()) {
             return ResponseEntity.status(200).body(CourseRecordDetailGetRes.of(200, "Success", courseRecordDetailList));
         } else {
-            log.error("courseId doesn't exist");
-            return ResponseEntity.status(403).body(CourseRecordDetailGetRes.of(403, "courseId doesn't exist", null));
+            return ResponseEntity.status(200).body(CourseRecordDetailGetRes.of(200, "Record doesn't exist", null));
         }
     }
 
@@ -76,8 +75,7 @@ public class CourseDetailController {
         if(courseTourTestResultList != null && !courseTourTestResultList.isEmpty()) {
             return ResponseEntity.status(200).body(CourseTourTestResultDetailGetRes.of(200, "Success", courseTourTestResultList));
         }else {
-            log.error("Test result doesn't exist");
-            return ResponseEntity.status(403).body(CourseTourTestResultDetailGetRes.of(403, "Test result doesn't exist", null));
+            return ResponseEntity.status(200).body(CourseTourTestResultDetailGetRes.of(200, "Test Result doesn't exist", null));
         }
     }
 
@@ -91,8 +89,7 @@ public class CourseDetailController {
         if(courseTagDetailList != null && !courseTagDetailList.isEmpty()) {
             return ResponseEntity.status(200).body(CourseTagDetailGetRes.of(200, "Success", courseTagDetailList));
         }else {
-            log.error("Test result doesn't exist");
-            return ResponseEntity.status(403).body(CourseTagDetailGetRes.of(403, "Test result doesn't exist", null));
+            return ResponseEntity.status(200).body(CourseTagDetailGetRes.of(200, "Tag doesn't exist", null));
         }
     }
 }
