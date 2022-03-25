@@ -2,20 +2,23 @@ import { UserState, UserAction } from './types';
 import { createReducer } from 'typesafe-actions';
 import {
   LIKE_COURSE_SUCCESS,
-  SET_LOG_OUT,
+  SET_LOG_IN,
   SIGN_IN_SUCCESS,
-  UNLIKE_COURSE_SUCCESS,
+  SIGN_UP_SUCCESS,
+  USER_INFO_SUCCESS,
 } from './actions';
 import produce from 'immer';
 
 const initialState: UserState = {
   userInfo: {
-    name: '',
-    email: '',
+    userId: '',
+    tourTestId: '',
+    userName: '',
   },
   myCourses: [],
   likes: [],
   isLogin: false,
+  isSignUp: false,
 };
 
 const user = createReducer<UserState, UserAction>(initialState, {
@@ -23,18 +26,21 @@ const user = createReducer<UserState, UserAction>(initialState, {
     produce(state, draft => {
       draft.likes.push(action.payload);
     }),
-  //   [UNLIKE_COURSE_SUCCESS]: (state, action) =>
-  //     produce(state, draft => {
-  //       draft.likes = draft.likes.filter(like => like !== action.payload);
-  //     }),
   [SIGN_IN_SUCCESS]: state =>
     produce(state, draft => {
       draft.isLogin = true;
     }),
-
-  [SET_LOG_OUT]: state =>
+  [SIGN_UP_SUCCESS]: state =>
     produce(state, draft => {
-      draft.isLogin = false;
+      draft.isSignUp = true;
+    }),
+  [SET_LOG_IN]: state =>
+    produce(state, draft => {
+      draft.isLogin = true;
+    }),
+  [USER_INFO_SUCCESS]: (state, action) =>
+    produce(state, draft => {
+      draft.userInfo = action.payload;
     }),
 });
 

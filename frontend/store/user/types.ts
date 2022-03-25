@@ -3,11 +3,6 @@ import * as actions from './actions';
 
 export type UserAction = ActionType<typeof actions>;
 
-export type UserInfo = {
-  name: string;
-  email: string;
-};
-
 export type MyCourse = {
   id: number;
   title: string;
@@ -29,9 +24,21 @@ export type SignIn = {
   userPassword: string;
 };
 
+export type SignInSuccess = {
+  userEmail: string;
+  token: string;
+};
+
+export type UserInfo = {
+  userId: string;
+  tourTestId: string;
+  userName: string;
+};
+
 export type UserState = {
   userInfo: UserInfo;
   myCourses: MyCourse[];
   likes: Like[];
   isLogin: boolean;
+  isSignUp: boolean;
 };

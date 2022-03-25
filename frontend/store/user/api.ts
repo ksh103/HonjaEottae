@@ -9,8 +9,9 @@ export async function SignInAPI({ userEmail, userPassword }: SignIn) {
       userEmail: userEmail,
       userPassword: userPassword,
     })
-    .then(res => res.data.accessToken);
-  return datas;
+    .then(res => res.data);
+  const result = { userEmail: datas.userEmail, token: datas.accessToken };
+  return result;
 }
 
 export async function SignUpAPI({ userEmail, userName, userPassword }: SignUp) {
@@ -19,6 +20,12 @@ export async function SignUpAPI({ userEmail, userName, userPassword }: SignUp) {
     userName: userName,
     userPassword: userPassword,
   });
-  console.log('회원가입 결과', datas);
+  return datas;
+}
+
+export async function UserInfoAPI(userEmail: string | null) {
+  const datas = await axios
+    .get(`${BASE_URL}user/user/{userEmail}?userEmail=${userEmail}`)
+    .then(res => res.data);
   return datas;
 }
