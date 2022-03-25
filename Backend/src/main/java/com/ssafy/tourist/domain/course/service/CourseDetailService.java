@@ -14,4 +14,6 @@ public interface CourseDetailService {
     List<Record> courseRecordDetail(int courseId);
     List<CourseTourTestResultDetail> courseTourTestResultDetail(int courseId);
     List<CourseTagDetail> courseTagDetail(int courseId);
+
+    double courseConnection(int courseId);
 }

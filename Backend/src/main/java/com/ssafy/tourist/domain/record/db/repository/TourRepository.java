@@ -20,4 +20,10 @@ public interface TourRepository extends JpaRepository<Tour, TourID> {
 
     @Query("select t.isStart from Tour t where t.userId = :userId and t.courseId = :courseId")
     boolean existsTourByUserIdAndCourseId(int userId, int courseId);
+
+    @Query("select count(t.isStart) from Tour t")
+    int countTour();
+
+    @Query("select count(t.isStart) from Tour t where t.courseId =:courseId")
+    int countToursByCourseId(int courseId);
 }

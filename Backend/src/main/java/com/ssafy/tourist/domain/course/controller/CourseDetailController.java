@@ -67,8 +67,8 @@ public class CourseDetailController {
 
     @ApiOperation(value = "코스 성향 분석")
     @GetMapping("/analysis/{courseId}")
-    public ResponseEntity<CourseTourTestResultDetailGetRes> courseConnectionDetail(@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
-        log.info("courseConnectionDetail - Call");
+    public ResponseEntity<CourseTourTestResultDetailGetRes> courseTourTestDetail(@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
+        log.info("courseTourTestDetail - Call");
 
         List<CourseTourTestResultDetail> courseTourTestResultList = courseDetailService.courseTourTestResultDetail(courseId);
 
@@ -90,6 +90,20 @@ public class CourseDetailController {
             return ResponseEntity.status(200).body(CourseTagDetailGetRes.of(200, "Success", courseTagDetailList));
         }else {
             return ResponseEntity.status(200).body(CourseTagDetailGetRes.of(200, "Tag doesn't exist", null));
+        }
+    }
+
+    @ApiOperation(value = "새로운 인연을 만날 확률(%)")
+    @GetMapping("/connection/{courseId}")
+    public ResponseEntity<CourseConnectionGetRes> courseConnectionDetail(@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
+       log.info("courseConnectionDetail - Call");
+
+        double percentage = courseDetailService.courseConnection(courseId);
+
+        if(percentage != 0) {
+            return ResponseEntity.status(200).body(CourseConnectionGetRes.of(200, "Success", percentage));
+        }else {
+            return ResponseEntity.status(200).body(CourseConnectionGetRes.of(200, "Result doesn't exist", 0));
         }
     }
 }
