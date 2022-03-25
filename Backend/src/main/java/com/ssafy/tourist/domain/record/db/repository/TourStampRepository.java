@@ -19,9 +19,13 @@ public interface TourStampRepository extends JpaRepository<TourStamp, TourStampI
     @Query("update TourStamp t set t.isStamp = 1 where t.userId = :userId and t.courseId = :courseId and t.courseDataId = :courseDataId")
     int touristVisitByUser(int userId, int courseId, int courseDataId);
 
-    @Query("select count(s) from TourStamp s where s.isStamp = 1 and s.userId = :userId and s.courseId = :courseId")
+    @Query("select count(s) from TourStamp s where s.isStamp = true and s.userId = :userId and s.courseId = :courseId")
     int isStampByUserIdandCourseId(int userId, int courseId);
 
-    @Query("select s.courseDataId from TourStamp s where s.isStamp = 1 and s.userId = :userId and s.courseId = :courseId")
-    List<Integer> courseDataIdByUser(int userId, int courseId);
+
+    @Query("select count(s.courseId) from TourStamp s where s.courseId = :courseId")
+    int countTourStamp(int courseId);
+
+    @Query("select count(s.isStamp) from TourStamp s where s.isStamp = true and s.courseId = :courseId")
+    int countTourStampByCourseId(int courseId);
 }

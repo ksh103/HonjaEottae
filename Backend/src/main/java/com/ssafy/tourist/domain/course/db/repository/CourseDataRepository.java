@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface CourseDataRepository extends JpaRepository<CourseData, CourseDataID> {
 
-    @Query("select count(c) from CourseData c where c.courseId = :courseId")
-    int courseDataCount(int courseId); // 코스에 포함된 관광지 개수
+    @Query("select count(c.courseId) from CourseData c where c.courseId = :courseId")
+    int countCourseDataByCourseId(int courseId); // 코스에 포함된 관광지 개수
 }
