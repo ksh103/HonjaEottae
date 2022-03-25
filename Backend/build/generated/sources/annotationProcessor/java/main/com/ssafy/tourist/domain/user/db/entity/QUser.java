@@ -19,8 +19,6 @@ public class QUser extends EntityPathBase<User> {
 
     public static final QUser user = new QUser("user");
 
-    public final BooleanPath isLogin = createBoolean("isLogin");
-
     public final NumberPath<Integer> tourTestId = createNumber("tourTestId", Integer.class);
 
     public final StringPath userEmail = createString("userEmail");

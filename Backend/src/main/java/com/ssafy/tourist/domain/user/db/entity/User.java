@@ -39,7 +39,4 @@ public class User {
     @Column(name = "user_password")
     private String userPassword;
 
-    @ApiModelProperty(value = "로그인 여부", required = true, example = "1")
-    @Column(name = "is_login")
-    private boolean isLogin;
 }
