@@ -1,10 +1,12 @@
 package com.ssafy.tourist.domain.course.request;
 
+import com.ssafy.tourist.domain.course.db.entity.Tourist;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -29,6 +31,10 @@ public class CourseRegisterPostReq {
     private String courseDays;
 
     // 관광지
+//    @ApiModelProperty(value = "관광지 구분 번호", required = true)
+//    private Map<Integer, Integer> touristId;
+
+    // 관광지
     @ApiModelProperty(value = "관광지 구분 번호", required = true)
-    private Map<Integer, Integer> touristId;
+    private int[] touristId;
 }
