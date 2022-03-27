@@ -92,24 +92,40 @@ public class TourServiceImpl implements TourService {
         return FAIL;
     }
 
+    
     @Override
     public List<VisitTouristName> touristNameVisitByUser(int userId, int courseId) {return tourRepositorySpp.findVisitTouristName(userId, courseId);}
+
 
     @Override
     public int tagRegisterByUser(TagRegisterPostReq tagRegisterPostReq) {
         RecordTag recordTag = new RecordTag();
 
-        // map<key, value> 사용해서 tag 받아오기
-        for (int item : tagRegisterPostReq.getTag().keySet()) {
+        int size = tagRegisterPostReq.getTag().length;
+        int[] tagId = tagRegisterPostReq.getTag();
+
+        for (int i = 0; i < size; i++) {
             recordTag.setRecordId(tagRegisterPostReq.getRecordId());
             recordTag.setCourseId(tagRegisterPostReq.getCourseId());
             recordTag.setSelect(true);
 
-            recordTag.setCode(item);
-            recordTag.setTagId(tagRegisterPostReq.getTag().get(item));
+            recordTag.setCode(i + 1);
+            recordTag.setTagId(tagId[i]);
 
             recordTagRepository.save(recordTag);
         }
+
+        // map<key, value> 사용해서 tag 받아오기
+//        for (int item : tagRegisterPostReq.getTag().keySet()) {
+//            recordTag.setRecordId(tagRegisterPostReq.getRecordId());
+//            recordTag.setCourseId(tagRegisterPostReq.getCourseId());
+//            recordTag.setSelect(true);
+//
+//            recordTag.setCode(item);
+//            recordTag.setTagId(tagRegisterPostReq.getTag().get(item));
+//
+//            recordTagRepository.save(recordTag);
+//        }
         return SUCCESS;
     }
 
