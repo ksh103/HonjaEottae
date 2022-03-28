@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Nav from '../../components/Nav/Nav';
@@ -21,10 +21,21 @@ import {
   DetailReview,
 } from '../../components/Course/Detail';
 import Footer from '../../components/Footer/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCourseDetail } from '../../store/course2';
+import { RootState } from '../../store';
 
 const Detail: NextPage = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { id } = router.query;
+  const { courseInfo } = useSelector((state: RootState) => state.course2);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getCourseDetail.request(+id));
+    }
+  }, [id]);
 
   return (
     <>
@@ -36,7 +47,7 @@ const Detail: NextPage = () => {
             <div className="back">
               <LeftOutlined />
             </div>
-            <div>제주 사계해안도로, 바다와 산의 하모니에 홀릭하다!</div>
+            <div>{courseInfo.courseName}</div>
           </Title>
           <div>
             <ul>

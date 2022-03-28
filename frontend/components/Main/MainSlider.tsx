@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Carousel } from 'antd';
 import { SliderCard } from './MainPage.style';
 import Link from 'next/link';
@@ -16,8 +16,8 @@ const showCourse = () => {
 
   return (
     popularCourses.length > 0 &&
-    popularCourses.map((data, i) => (
-      <Link href={`/course/${i}`} key={i}>
+    popularCourses.map(data => (
+      <Link href={`/course/${data.courseId}`} key={data.courseId}>
         <SliderCard>
           {/* <img src={data.url} alt={data.courseId + ''} /> */}
           <img src="http://tong.visitkorea.or.kr/cms/resource/47/1579047_image2_1.jpg" />
