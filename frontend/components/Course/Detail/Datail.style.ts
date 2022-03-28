@@ -96,9 +96,11 @@ const Content = styled.div`
     font-weight: bold;
   }
   .graph {
+    height: 200px;
+    min-width: 450px;
   }
   .new {
-    height: 150px;
+    height: 200px;
     text-align: center;
     font-size: 20px;
   }
@@ -106,6 +108,7 @@ const Content = styled.div`
   margin-top: 20px;
   padding: 20px;
   border-radius: 1vw;
+  border: 1px solid lightgray;
   background-color: ${props => props.theme.colors.backgroundColor};
 `;
 

@@ -23,6 +23,7 @@ const initialState: Course2State = {
   courseTourist: [],
   courseReview: [],
   courseType: [],
+  courseTag: [],
 };
 
 const course2 = createReducer<Course2State, Course2Action>(initialState, {
@@ -37,6 +38,7 @@ const course2 = createReducer<Course2State, Course2Action>(initialState, {
       draft.courseTourist = action.payload.courseTourist;
       draft.courseReview = action.payload.courseReview;
       draft.courseType = action.payload.courseType;
+      draft.courseTag = action.payload.courseTag;
     }),
 });
 

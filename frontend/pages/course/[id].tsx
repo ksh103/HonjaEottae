@@ -65,7 +65,6 @@ const Detail: NextPage = () => {
         <DetailCourse />
         <DetailGraph />
         <DetailReview />
-        <div>#여기 #태그 #하면 #된다</div>
       </Wrapper>
       <Footer />
     </>
