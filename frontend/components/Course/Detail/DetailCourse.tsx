@@ -25,13 +25,10 @@ export default function DetailCourse() {
             {courseId != 0 && <DetailMap tourist={courseTourist} />}
           </Col>
           <Col span={12}>
-            {/* 코스 정보 */}
-            {/* <img src="/images/course.JPG" alt="course" width="100%" /> */}
             <CourseImage>
-              {/* <Carousel dotPosition="top"> */}
               <Carousel>
-                {courseTourist.map(data => (
-                  <div className="course-image">
+                {courseTourist.map((data, i) => (
+                  <div className="course-image" key={i}>
                     <img src="http://tong.visitkorea.or.kr/cms/resource/47/1579047_image2_1.jpg" />
                     <div className="course-image-content">
                       <div className="name">📍 {data.touristName}</div>

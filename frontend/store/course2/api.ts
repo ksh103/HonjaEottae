@@ -53,6 +53,15 @@ export async function GetCourseReviewAPI(courseId: number) {
   });
 }
 
+// 코스 태그 가져오기
+export async function GetCourseTagAPI(courseId: number) {
+  const result = await axios
+    .get(`${BASE_URL}course-detail/course-tag/${courseId}`)
+    .then(res => res.data.list);
+  if (result === null) return [];
+  return result.map((data: any) => data.tagName);
+}
+
 // 코스 상세정보 가져오기
 export async function GetCourseInfoAPI(courseId: number) {
   const result = await axios
@@ -67,12 +76,14 @@ export async function GetCourseDetailAPI(courseId: number) {
   const info = await GetCourseInfoAPI(courseId);
   const review = await GetCourseReviewAPI(courseId);
   const type = await GetCourseTypeAPI(courseId);
+  const tag = await GetCourseTagAPI(courseId);
   const result = {
     courseId: courseId,
     courseInfo: info.courseDetailList[0],
     courseTourist: info.courseTouristDetailList,
     courseReview: review,
     courseType: type,
+    courseTag: tag,
   };
   return result;
 }
