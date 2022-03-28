@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { NextPage } from 'next';
 import { NavBlock } from './Nav.style';
 import Link from 'next/link';
-import { BsPersonCircle } from 'react-icons/bs';
 import Burger from './Burger';
 
 const Nav: NextPage = () => {
-  const [login, isLogin] = useState<boolean>(true);
   return (
     <>
       <NavBlock>
