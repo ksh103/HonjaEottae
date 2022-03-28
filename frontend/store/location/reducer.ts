@@ -12,6 +12,7 @@ const location = createReducer<LocationState, LocationAction>(initialState, {
   [SEARCH_LOCATION_SUCCESS]: (state, action) =>
     produce(state, draft => {
       draft.searchLoactions = action.payload;
+      draft.selectLocation = action.payload[0].touristName;
     }),
   [SET_SELECT_LOCATION]: (state, action) =>
     produce(state, draft => {

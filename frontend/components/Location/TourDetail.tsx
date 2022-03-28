@@ -13,7 +13,6 @@ const TourDetail: NextPage = () => {
       selectContent = data.touristSummary;
     }
   });
-  console.log(contents);
   return (
     <>
       <ImgaeListWrapper height="200px">

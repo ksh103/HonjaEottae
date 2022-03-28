@@ -26,12 +26,15 @@ const NavBlock = styled.div`
     label {
       cursor: pointer;
     }
-    /* :hover {
-      color: black;
-    } */
     svg {
       font-size: 20px;
       margin-top: 5px;
+    }
+  }
+  @media (max-width: 1023px) {
+    padding: 0 20px;
+    #title {
+      cursor: pointer;
     }
   }
 `;
@@ -45,6 +48,9 @@ const MenuBlock = styled.div`
   padding-bottom: 20px;
   margin-bottom: 50px;
   font-size: 50px;
+  @media (max-width: 1023px) {
+    padding-left: 20px;
+  }
 `;
 
 // Burger.tsx

@@ -44,7 +44,7 @@ const ListWrapper = styled.div`
   align-items: center;
 `;
 
-const ListBlock = styled.div`
+const ListBlock = styled.div<{ select: boolean }>`
   width: 100%;
   height: 50px;
   background-color: white;
@@ -58,6 +58,14 @@ const ListBlock = styled.div`
     background-color: ${props => props.theme.colors.pointColor};
     color: white;
   }
+  ${props => {
+    if (props.select) {
+      return {
+        backgroundColor: `${props.theme.colors.pointColor}`,
+        color: 'white',
+      };
+    }
+  }}
 `;
 
 // ImageList.tsx
@@ -78,6 +86,17 @@ const ImageBlock = styled.div`
   background-color: white;
 `;
 
+const SelectBlock = styled.div<{ select: boolean }>`
+  padding: 10px;
+  ${props => {
+    if (props.select) {
+      return {
+        border: `3px solid red`,
+      };
+    }
+  }}
+`;
+
 export {
   LocationWrapper,
   MapListWrapper,
@@ -86,4 +105,5 @@ export {
   MapBlock,
   ListWrapper,
   ListBlock,
+  SelectBlock,
 };

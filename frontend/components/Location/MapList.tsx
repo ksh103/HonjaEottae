@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { selectLocation } from '../../store/location';
 import {
@@ -19,6 +20,7 @@ interface ClickListProps {
 
 const MapList = ({ positions, lists }: MapListProps) => {
   const dispatch = useDispatch();
+  const [area, setArea] = useState<number>(0);
 
   const ClickList = ({ list }: ClickListProps) => {
     dispatch(selectLocation(list));
@@ -41,8 +43,10 @@ const MapList = ({ positions, lists }: MapListProps) => {
             return (
               <ListBlock
                 key={idx}
+                select={idx === area}
                 onClick={() => {
                   ClickList({ list });
+                  setArea(idx);
                 }}
               >
                 {list}
