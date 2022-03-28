@@ -5,6 +5,7 @@ import course2, { course2Saga, Course2State } from './course2';
 import travel, { travelSaga, TravelState } from './travel';
 import location, { locationSaga, LocationState } from './location';
 import user, { userSaga, UserState } from './user';
+import register, { registerSaga, RegisterState } from './register';
 
 export function* rootSaga() {
   yield all([
@@ -13,6 +14,7 @@ export function* rootSaga() {
     travelSaga(),
     course2Saga(),
     locationSaga(),
+    registerSaga(),
   ]);
 }
 
@@ -22,6 +24,7 @@ const rootReducer = combineReducers({
   travel,
   course2,
   location,
+  register,
 });
 
 export default rootReducer;
@@ -32,4 +35,5 @@ export type RootState = {
   travel: TravelState;
   course2: Course2State;
   location: LocationState;
+  register: RegisterState;
 };

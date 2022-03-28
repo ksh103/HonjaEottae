@@ -40,7 +40,12 @@ const CourseComp: NextPage = () => {
                 <CourseList data={searchCourses} />
               </div>
             )}
-            <div className="title">{userInfo.userName}님 맞춤 추천 코스</div>
+            {userInfo.userName.length > 0 ? (
+              <div className="title">{userInfo.userName}님 맞춤 추천 코스</div>
+            ) : (
+              <div className="title">혼자어때가 추천하는 여행 코스</div>
+            )}
+
             <CourseList data={dummy} />
             <div className="title">푸른 자연을 느낄 수 있는 코스</div>
             <CourseList data={dummy} />

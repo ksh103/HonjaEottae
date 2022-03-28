@@ -1,45 +1,65 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { courseRegitser } from '../../store/register';
 import {
   ImageWrapper,
   SelectListWrapper,
   TourListWrapper,
   ListBlock,
 } from './Register.style';
-const datas = [
-  { id: 1, image: '이미지1', title: '광안대교1' },
-  { id: 2, image: '이미지2', title: '광안대교2' },
-  { id: 3, image: '이미지3', title: '광안대교3' },
-  { id: 4, image: '이미지4', title: '광안대교4' },
-  { id: 5, image: '이미지5', title: '광안대교5' },
-  { id: 5, image: '이미지5', title: '광안대교7' },
-  { id: 5, image: '이미지5', title: '광안대교6' },
-  { id: 5, image: '이미지5', title: '광안대교8' },
-  // { id: 5, image: '이미지5', title: '광안대교9' },
-  // { id: 5, image: '이미지5', title: '광안대교9' },
-  // { id: 5, image: '이미지5', title: '광안대교9' },
-  // { id: 5, image: '이미지5', title: '광안대교9' },
-];
 
-const TourList: NextPage = () => {
-  const [selectList, setSelectList] = useState<string[]>([]);
-  const addList = (title: string) => {
-    if (!selectList.includes(title))
-      setSelectList(selectList => [...selectList, title]);
+interface TourListProps {
+  title: string;
+  date: string;
+  content: string;
+  button: boolean;
+}
+
+const TourList = ({ title, date, content, button }: TourListProps) => {
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state: RootState) => state.user);
+  const { searchTourlists } = useSelector((state: RootState) => state.register);
+  const [selectListTitle, setSelectListTitle] = useState<string[]>([]);
+  const [selectListId, setSelectListId] = useState<number[]>([]);
+  const addList = (data: { id: number; title: string }) => {
+    if (!selectListTitle.includes(data.title)) {
+      setSelectListTitle(selectList => [...selectList, data.title]);
+      setSelectListId(selectList => [...selectList, data.id]);
+    }
     // 리스트에 없다면 추가
     else {
       // 리스트에 있다면 제거
-      setSelectList(selectList.filter(element => element !== title));
+      setSelectListTitle(
+        selectListTitle.filter(element => element !== data.title),
+      );
+      setSelectListId(selectListId.filter(element => element !== data.id));
     }
-    console.log(selectList);
+    console.log(selectListTitle);
+    console.log(selectListId);
   };
   const removeList = (title: string) => {
-    setSelectList(selectList.filter(element => element !== title));
+    setSelectListTitle(selectListTitle.filter(element => element !== title));
   };
+
+  if (button) {
+    // 코스등록 버튼이 눌러졌다면
+    dispatch(
+      courseRegitser.request({
+        courseContent: content,
+        courseDays: date,
+        courseDistance: '',
+        courseName: title,
+        touristId: selectListId,
+        userId: userInfo.userId,
+      }),
+    );
+  }
   return (
     <>
       <SelectListWrapper>
-        {selectList.map((list, idx) => (
+        {selectListTitle.map((list, idx) => (
           <>
             <ListBlock key={idx}>
               {list}
@@ -52,9 +72,9 @@ const TourList: NextPage = () => {
         ))}
       </SelectListWrapper>
       <TourListWrapper>
-        {datas.map((data, idx) => (
+        {searchTourlists.map((data, idx) => (
           <ImageWrapper key={idx}>
-            <div id="image" onClick={() => addList(data.title)}>
+            <div id="image" onClick={() => addList(data)}>
               <img src="/images/1.png" />
             </div>
             <div id="title">{data.title}</div>
