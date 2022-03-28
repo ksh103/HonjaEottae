@@ -49,6 +49,7 @@ export type CourseDetail = {
   courseTourist: CourseTourist[];
   courseReview: CourseReview[];
   courseType: CourseType[];
+  courseTag: string[];
 };
 
 export type Course2State = {
@@ -58,4 +59,5 @@ export type Course2State = {
   courseTourist: CourseTourist[];
   courseReview: CourseReview[];
   courseType: CourseType[];
+  courseTag: string[];
 };

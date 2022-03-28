@@ -1,7 +1,4 @@
-import { defaultMaxListeners } from 'events';
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store';
 import { CourseTourist } from '../../../store/course2';
 import { CourseMap } from './Datail.style';
 interface MapProps {
@@ -9,7 +6,6 @@ interface MapProps {
 }
 export default function DetailMap({ tourist }: MapProps) {
   useEffect(() => {
-    console.log(tourist);
     const mapScript = document.createElement('script');
 
     mapScript.async = true;
