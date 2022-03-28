@@ -22,8 +22,12 @@ const RegisterWrapper = styled.div`
   }
   #name {
     width: 100%;
+    margin-right: 10px;
   }
   #title {
+    width: 100%;
+  }
+  #date {
     width: 100%;
   }
   textarea {
@@ -45,6 +49,20 @@ const RegisterWrapper = styled.div`
     display: flex;
     justify-content: center;
   }
+  #titleWrapper {
+    display: flex;
+  }
+  .titleDiv {
+    width: 100%;
+    :nth-child(2) {
+      margin-left: 10px;
+    }
+  }
+`;
+
+const RegisterFormWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `;
 
 const InputBlock = styled.div`
@@ -60,18 +78,19 @@ const InputBlock = styled.div`
 //TourList.tsx
 const TourListWrapper = styled.div`
   margin-top: 20px;
+  padding-top: 20px;
   width: 100%;
   height: 450px;
   background-color: ${props => props.theme.colors.backgroundColor};
   border-radius: 1vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: flex-start;
   overflow: auto;
 `;
 
 const ImageWrapper = styled.div`
+  margin-left: 18px;
   border-radius: 1vw;
   width: 200px;
   height: 200px;
@@ -132,4 +151,5 @@ export {
   ImageWrapper,
   SelectListWrapper,
   ListBlock,
+  RegisterFormWrapper,
 };
