@@ -1,7 +1,10 @@
 package com.ssafy.tourist.domain.record.service;
 
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
+import com.ssafy.tourist.domain.record.db.bean.TourTagList;
 import com.ssafy.tourist.domain.record.db.bean.VisitTouristName;
+import com.ssafy.tourist.domain.record.db.entity.Tag;
+import com.ssafy.tourist.domain.record.db.entity.TagCode;
 import com.ssafy.tourist.domain.record.request.TagRegisterPostReq;
 import com.ssafy.tourist.domain.record.request.TourEndPostReq;
 import com.ssafy.tourist.domain.record.request.TourStartPostReq;
@@ -15,5 +18,5 @@ public interface TourService {
     int touristVisitByUser(TouristVisitPostReq touristVisitPostReq);
     List<VisitTouristName> touristNameVisitByUser(int userId, int courseId);
     int tagRegisterByUser(TagRegisterPostReq tagRegisterPostReq);
-    List<String> tagList();
+    List<TagCode> tagList();
 }

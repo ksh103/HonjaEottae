@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -22,6 +23,8 @@ public class QTagCode extends EntityPathBase<TagCode> {
     public final NumberPath<Integer> code = createNumber("code", Integer.class);
 
     public final StringPath codeName = createString("codeName");
+
+    public final ListPath<Tag, QTag> tag = this.<Tag, QTag>createList("tag", Tag.class, QTag.class, PathInits.DIRECT2);
 
     public QTagCode(String variable) {
         super(TagCode.class, forVariable(variable));

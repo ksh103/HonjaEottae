@@ -5,6 +5,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.entity.QCourseData;
 import com.ssafy.tourist.domain.course.db.entity.QTourist;
+import com.ssafy.tourist.domain.record.db.bean.TourTagList;
 import com.ssafy.tourist.domain.record.db.bean.VisitTouristName;
 import com.ssafy.tourist.domain.record.db.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;

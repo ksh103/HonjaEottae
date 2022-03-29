@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,4 +23,8 @@ public class TagCode {
     @ApiModelProperty(value = "태그 코드 명", example = "코스")
     @Column(name = "code_name")
     private String codeName;
+
+    @OneToMany
+    @JoinColumn(name = "code", updatable = false, insertable = false)
+    private List<Tag> tag;
 }

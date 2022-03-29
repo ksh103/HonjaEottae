@@ -1,7 +1,10 @@
 package com.ssafy.tourist.domain.record.controller;
 
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
+import com.ssafy.tourist.domain.record.db.bean.TourTagList;
 import com.ssafy.tourist.domain.record.db.bean.VisitTouristName;
+import com.ssafy.tourist.domain.record.db.entity.Tag;
+import com.ssafy.tourist.domain.record.db.entity.TagCode;
 import com.ssafy.tourist.domain.record.request.TagRegisterPostReq;
 import com.ssafy.tourist.domain.record.request.TourEndPostReq;
 import com.ssafy.tourist.domain.record.request.TourStartPostReq;
@@ -85,13 +88,13 @@ public class TourController {
     public ResponseEntity<TagListGetRes> tagList () {
         log.info("tagList - Call");
 
-        List<String> tagList = tourService.tagList();
+        List<TagCode> tagList = tourService.tagList();
 
         if (tagList != null && !tagList.isEmpty()) {
             return ResponseEntity.status(200).body(TagListGetRes.of(200, "Success", tagList));
         } else {
             log.error("tagList - tag doesn't exist");
-            return ResponseEntity.status(400).body(TagListGetRes.of(400, "stamp doesn't exist", null));
+            return ResponseEntity.status(400).body(TagListGetRes.of(400, "tagList doesn't exist", null));
         }
     }
 

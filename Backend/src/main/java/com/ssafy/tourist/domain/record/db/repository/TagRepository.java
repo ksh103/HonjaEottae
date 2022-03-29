@@ -10,7 +10,4 @@ import java.util.List;
 
 @Repository
 public interface TagRepository extends JpaRepository<Tag, TagID> {
-
-    @Query("select c.code, c.codeName, t.tagId, t.tagName from Tag t left join TagCode c on t.code = c.code order by c.code asc")
-    List<String> findTagList ();
 }
