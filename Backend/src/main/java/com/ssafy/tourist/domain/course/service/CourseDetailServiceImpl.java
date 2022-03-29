@@ -61,18 +61,27 @@ public class CourseDetailServiceImpl implements CourseDetailService {
 
     @Override
     public double courseConnection(int courseId) {
+        double tourStartCount, stampCount, bookmarkCount;
 
-        int allTourIsStart = tourRepository.countTour(); // 코스 시작 전체 개수
-        int tourIsStart = tourRepository.countToursByCourseId(courseId); // 특정 코스 시작 전체 개수
+        // 코스 시작
+        if(tourRepository.countToursByCourseId(courseId) != 0 && tourRepository.countTour() != 0) {
+            tourStartCount = ((double) tourRepository.countToursByCourseId(courseId) / (double) tourRepository.countTour()) * 50;
+        } else tourStartCount = 0;
+        
 
-        int allStamp = tourStampRepository.countTourStamp(courseId); // 코스 방문 시작한 관광지 개수
-        int stampIsRegister = tourStampRepository.countTourStampByCourseId(courseId); // 방문한 관광지 개수
+        // 코스 관광지 방문
+        if(tourStampRepository.countTourStampByCourseId(courseId) != 0 && tourStampRepository.countTourStamp(courseId) != 0) {
+            stampCount = ((double) tourStampRepository.countTourStampByCourseId(courseId) / (double) tourStampRepository.countTourStamp(courseId)) * 35;
+        } else stampCount = 0;
+        
 
-        int allBookmark = bookmarkRepository.countBookmarks(); // 전체 북마크 개수
-        int bookmarkIsRegister = bookmarkRepository.countBookmarksByCourseId(courseId); // 특정 코스 북마크 개수
-
-        double connectionPer  =  (((double) tourIsStart / (double) allTourIsStart) * 60) + (((double) stampIsRegister / (double) allStamp) * 35) +
-                (((double) bookmarkIsRegister / (double) allBookmark) * 15);
+        // 코스 북마크
+        if(bookmarkRepository.countBookmarksByCourseId(courseId) != 0 && bookmarkRepository.countBookmarks() != 0) {
+            bookmarkCount = ((double) bookmarkRepository.countBookmarksByCourseId(courseId) / (double) bookmarkRepository.countBookmarks()) * 15;
+        } else bookmarkCount = 0;
+        
+        
+        double connectionPer = Math.round(tourStartCount + stampCount + bookmarkCount);
 
         return connectionPer;
     }
