@@ -15,8 +15,12 @@ import java.util.List;
 public interface TourService {
     int courseStartByUser(TourStartPostReq tourStartPostReq);
     int courseEndByUser(TourEndPostReq tourEndPostReq);
+    boolean courseIsStartByUser(int userId, int courseId);
+
     int touristVisitByUser(TouristVisitPostReq touristVisitPostReq);
+
     List<VisitTouristName> touristNameVisitByUser(int userId, int courseId);
+
     int tagRegisterByUser(TagRegisterPostReq tagRegisterPostReq);
     List<TagCode> tagList();
 }

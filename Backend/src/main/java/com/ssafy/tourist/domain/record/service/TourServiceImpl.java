@@ -85,6 +85,18 @@ public class TourServiceImpl implements TourService {
 
 
     @Override
+    public boolean courseIsStartByUser(int userId, int courseId) {
+        TourID tourID = new TourID();
+        tourID.setUserId(userId);
+        tourID.setCourseId(courseId);
+
+        if(tourRepository.findById(tourID).isPresent()) {
+            return tourRepository.existsTourByUserIdAndCourseId(userId, courseId);
+        } else return false;
+    }
+
+
+    @Override
     public int touristVisitByUser(TouristVisitPostReq touristVisitPostReq) {
         TourStampID tourStampID = new TourStampID();
         tourStampID.setUserId(touristVisitPostReq.getUserId());
