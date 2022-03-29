@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.service;
 
+import com.ssafy.tourist.domain.course.db.bean.CourseSearch;
 import com.ssafy.tourist.domain.course.db.bean.PopularCourse;
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
@@ -86,5 +87,5 @@ public class CourseServiceImpl implements CourseService{
     public Page<PopularCourse> popularCourse(Pageable pageable) {return courseRepositorySpp.findPopularCourse(pageable);}
 
     @Override
-    public Page<Course> courseSearch(String courseName, Pageable pageable) { return courseRepositorySpp.findCourseSearch(courseName, pageable); }
+    public Page<CourseSearch> courseSearch(String courseName, Pageable pageable) { return courseRepositorySpp.findCourseSearch(courseName, pageable); }
 }

@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.controller;
 
+import com.ssafy.tourist.domain.course.db.bean.CourseSearch;
 import com.ssafy.tourist.domain.course.db.bean.PopularCourse;
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
@@ -79,7 +80,7 @@ public class CourseController {
     public ResponseEntity<CourseSearchGetRes> courseSearch (@ApiParam(value = "코스 명") @PathVariable("courseName") String courseName, int page, int size) {
         log.info("courseSearch - Call");
 
-        Page<Course> courseSearchList = courseService.courseSearch(courseName, PageRequest.of(page - 1, size));
+        Page<CourseSearch> courseSearchList = courseService.courseSearch(courseName, PageRequest.of(page - 1, size));
 
         return ResponseEntity.status(200).body(CourseSearchGetRes.of(200, "Success", courseSearchList));
     }
