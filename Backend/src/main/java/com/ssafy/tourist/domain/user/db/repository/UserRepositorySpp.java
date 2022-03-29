@@ -8,6 +8,7 @@ import com.ssafy.tourist.domain.record.db.entity.QTour;
 import com.ssafy.tourist.domain.record.db.entity.QTourStamp;
 import com.ssafy.tourist.domain.user.db.bean.AreaAnalysisDetail;
 import com.ssafy.tourist.domain.user.db.bean.CourseNameVisitDetail;
+import com.ssafy.tourist.domain.user.db.bean.DateAnalysisDetail;
 import com.ssafy.tourist.domain.user.db.entity.QUser;
 import com.ssafy.tourist.domain.user.db.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,13 @@ public class UserRepositorySpp {
                 .groupBy(qTourist.touristAddress.substring(0,3))
                 .fetch();
 
+    }
+
+    //사용자 분석 월별
+    public List<DateAnalysisDetail> dateAnalysisDetailByUserId(int userId){
+        return jpaQueryFactory.select(Projections.constructor(DateAnalysisDetail.class,
+                        qTour.tourEnd.yearMonth().as("dateName"), qTour.tourEnd.yearMonth().count().as("dateCount")))
+                .from(qTour).where(qTour.userId.eq(userId)).groupBy(qTour.tourEnd.yearMonth()).fetch();
     }
 
 }

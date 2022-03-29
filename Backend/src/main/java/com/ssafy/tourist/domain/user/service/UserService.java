@@ -2,6 +2,7 @@ package com.ssafy.tourist.domain.user.service; //비즈니스 로직 처리를 �
 
 import com.ssafy.tourist.domain.user.db.bean.AreaAnalysisDetail;
 import com.ssafy.tourist.domain.user.db.bean.CourseNameVisitDetail;
+import com.ssafy.tourist.domain.user.db.bean.DateAnalysisDetail;
 import com.ssafy.tourist.domain.user.request.UserModifyPutReq;
 import com.ssafy.tourist.domain.user.request.UserRegisterPostReq;
 import com.ssafy.tourist.domain.user.db.entity.User;
@@ -17,4 +18,5 @@ public interface UserService {
 	User updateUser(UserModifyPutReq userModifyPutReq);
 	List<CourseNameVisitDetail> courseNameVisitDetail(int userId);
 	List<AreaAnalysisDetail> areaAnalysisDetail(int userId);
+	List<DateAnalysisDetail> dateAnalysisDetail(int userId);
 }
