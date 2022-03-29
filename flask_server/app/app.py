@@ -1,5 +1,7 @@
 from flask import Flask
 
+import test
+
 
 app = Flask(__name__)
 
@@ -8,7 +10,7 @@ app.debug = True
 
 @app.route('/data', methods=['GET'])
 def index():
-  return "test"
+  return test.recommend_course(keyword_name = '바다')
 
 
 if __name__ == '__main__':
