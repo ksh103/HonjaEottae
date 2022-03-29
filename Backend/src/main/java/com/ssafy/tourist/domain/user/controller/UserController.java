@@ -2,13 +2,11 @@ package com.ssafy.tourist.domain.user.controller;
 
 import com.ssafy.tourist.domain.user.db.bean.AreaAnalysisDetail;
 import com.ssafy.tourist.domain.user.db.bean.CourseNameVisitDetail;
+import com.ssafy.tourist.domain.user.db.bean.DateAnalysisDetail;
 import com.ssafy.tourist.domain.user.db.entity.User;
 import com.ssafy.tourist.domain.user.request.UserModifyPutReq;
 import com.ssafy.tourist.domain.user.request.UserRegisterPostReq;
-import com.ssafy.tourist.domain.user.response.AreaAnalysisRes;
-import com.ssafy.tourist.domain.user.response.CourseNameVisitDetailRes;
-import com.ssafy.tourist.domain.user.response.UserFindEmail;
-import com.ssafy.tourist.domain.user.response.UserLoginPostRes;
+import com.ssafy.tourist.domain.user.response.*;
 import com.ssafy.tourist.domain.user.request.UserLoginPostReq;
 import com.ssafy.tourist.domain.user.service.UserService;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
@@ -133,6 +131,20 @@ public class UserController {
         }else{
 
             return ResponseEntity.status(200).body((AreaAnalysisRes.of(200, "Course doesn't exist", null)));
+        }
+    }
+
+    @GetMapping("/user-log/date/{userId}")
+    @ApiOperation(value = "회원 방문한 월별 분석")
+    public ResponseEntity<DateAnalysisRes> dateAnalysisDetail(@ApiParam(value = "회원 번호") @PathVariable("userId") int userId){
+        log.info("dateAnalysisDetail - Call");
+
+        List<DateAnalysisDetail> dateAnalysisDetailList = userService.dateAnalysisDetail(userId);
+
+        if(dateAnalysisDetailList != null && !dateAnalysisDetailList.isEmpty()){
+            return ResponseEntity.status(200).body((DateAnalysisRes.of(200, "Success", dateAnalysisDetailList)));
+        }else{
+            return ResponseEntity.status(200).body((DateAnalysisRes.of(200, "Date doesn't exist", null)));
         }
     }
 }
