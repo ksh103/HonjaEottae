@@ -5,6 +5,8 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.tourist.domain.course.db.entity.QCourseData;
 import com.ssafy.tourist.domain.course.db.entity.QTourist;
 import com.ssafy.tourist.domain.record.db.entity.QTour;
+import com.ssafy.tourist.domain.record.db.entity.QTourStamp;
+import com.ssafy.tourist.domain.user.db.bean.AreaAnalysisDetail;
 import com.ssafy.tourist.domain.user.db.bean.CourseNameVisitDetail;
 import com.ssafy.tourist.domain.user.db.entity.QUser;
 import com.ssafy.tourist.domain.user.db.entity.User;
@@ -21,6 +23,7 @@ public class UserRepositorySpp {
     QTour qTour = QTour.tour;
     QCourseData qCourseData = QCourseData.courseData;
     QTourist qTourist = QTourist.tourist;
+    QTourStamp qTourStamp = QTourStamp.tourStamp;
 
     public User findByEmail(String userEmail){
         return jpaQueryFactory.select(quser).from(quser)
@@ -37,4 +40,17 @@ public class UserRepositorySpp {
                 .where(qTour.isEnd.eq(true).and(qTour.userId.eq(userId))).fetch();
 
     }
+
+    //사용자 분석 지역
+    public List<AreaAnalysisDetail> areaAnalysisDetailByUserId(int userId){
+        return jpaQueryFactory.select(Projections.constructor(AreaAnalysisDetail.class, qTourist.touristAddress.substring(0,3).as("touristAddress")
+                        , qTourist.touristAddress.substring(0,3).count().as("touristCount")))
+                .from(qTourist).leftJoin(qCourseData).on(qCourseData.touristId.eq(qTourist.touristId))
+                .leftJoin(qTourStamp).on(qTourStamp.courseId.eq(qCourseData.courseId), qTourStamp.courseDataId.eq(qCourseData.courseDataId))
+                .where(qTourStamp.isStamp.eq(true).and(qTourStamp.userId.eq(userId)))
+                .groupBy(qTourist.touristAddress.substring(0,3))
+                .fetch();
+
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.user.service;
 
+import com.ssafy.tourist.domain.user.db.bean.AreaAnalysisDetail;
 import com.ssafy.tourist.domain.user.db.bean.CourseNameVisitDetail;
 import com.ssafy.tourist.domain.user.db.entity.User;
 import com.ssafy.tourist.domain.user.db.repository.UserRepository;
@@ -59,5 +60,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<CourseNameVisitDetail> courseNameVisitDetail(int userId){return  userRepositorySpp.courseVisitDetailByUserId(userId);}
-
+    @Override
+    public List<AreaAnalysisDetail> areaAnalysisDetail(int userId){
+        return userRepositorySpp.areaAnalysisDetailByUserId(userId);
+    }
 }
