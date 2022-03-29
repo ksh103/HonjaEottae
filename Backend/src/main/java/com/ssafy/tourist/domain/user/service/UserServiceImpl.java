@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.user.service;
 
+import com.ssafy.tourist.domain.user.db.bean.VisitCourseName;
 import com.ssafy.tourist.domain.user.db.entity.User;
 import com.ssafy.tourist.domain.user.db.repository.UserRepository;
 import com.ssafy.tourist.domain.user.db.repository.UserRepositorySpp;
@@ -10,6 +11,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -53,4 +56,8 @@ public class UserServiceImpl implements UserService{
         user.setTourTestId(userModifyPutReq.getTourTestId());
         return userRepository.save(user);
     }
+
+    @Override
+    public List<VisitCourseName> visitCourseName(int userId){return  userRepositorySpp.findVisitTouristByUserId(userId);}
+
 }
