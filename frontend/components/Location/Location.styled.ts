@@ -58,6 +58,9 @@ const ListBlock = styled.div<{ select: boolean }>`
     background-color: ${props => props.theme.colors.pointColor};
     color: white;
   }
+  :active {
+    transform: scale(0.98);
+  }
   ${props => {
     if (props.select) {
       return {
@@ -78,6 +81,7 @@ const ImgaeListWrapper = styled.div<{ height: string }>`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  overflow: auto;
 `;
 
 const ImageBlock = styled.div`

@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { FiArrowRight, FiX } from 'react-icons/fi';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
@@ -36,8 +36,6 @@ const TourList = ({ title, date, content, button }: TourListProps) => {
       );
       setSelectListId(selectListId.filter(element => element !== data.id));
     }
-    console.log(selectListTitle);
-    console.log(selectListId);
   };
   const removeList = (title: string) => {
     setSelectListTitle(selectListTitle.filter(element => element !== title));
@@ -64,10 +62,10 @@ const TourList = ({ title, date, content, button }: TourListProps) => {
             <ListBlock key={idx}>
               {list}
               <div id="removeBtn" onClick={() => removeList(list)}>
-                X
+                <FiX style={{ marginTop: '5.5px', fontSize: '17px' }} />
               </div>
             </ListBlock>
-            &nbsp;-{'>'}
+            <FiArrowRight style={{ marginTop: '5px', marginLeft: '10px' }} />
           </>
         ))}
       </SelectListWrapper>
