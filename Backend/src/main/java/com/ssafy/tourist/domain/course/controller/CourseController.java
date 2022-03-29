@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.controller;
 
+import com.ssafy.tourist.domain.course.db.bean.PopularCourse;
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
 import com.ssafy.tourist.domain.course.request.CourseRegisterPostReq;
@@ -67,7 +68,7 @@ public class CourseController {
     public ResponseEntity<PopularCourseGetRes> popularCourse (int page, int size) {
         log.info("popularCourse - Call");
 
-        Page<Course> popularCouseList = courseService.popularCourse(PageRequest.of(page - 1 , size));
+        Page<PopularCourse> popularCouseList = courseService.popularCourse(PageRequest.of(page - 1 , size));
 
         return ResponseEntity.status(200).body(PopularCourseGetRes.of(200, "Success", popularCouseList));
     }
