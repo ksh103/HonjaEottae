@@ -85,7 +85,7 @@ public class CourseController {
 
 
     @ApiOperation(value = "사용자 생성 코스 조회")
-    @GetMapping("/custom-course/{userId}/{courseId}")
+    @GetMapping("/custom-course/{userId}")
     public ResponseEntity<CourseListGetRes> courseListByUser (@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId, int page, int size) {
         log.info("courseListByUser - Call");
 
@@ -94,8 +94,7 @@ public class CourseController {
         if(courseList != null && !courseList.isEmpty()) {
             return ResponseEntity.status(200).body(CourseListGetRes.of(200, "Success", courseList));
         } else {
-            log.error("Course List doesn't exist");
-            return ResponseEntity.status(403).body(CourseListGetRes.of(403, "Course List doesn't exist", null));
+            return ResponseEntity.status(200).body(CourseListGetRes.of(200, "Course List doesn't exist", null));
         }
     }
 }
