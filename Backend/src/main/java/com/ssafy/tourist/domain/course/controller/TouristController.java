@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.controller;
 
+import com.ssafy.tourist.domain.course.db.bean.TouristSearch;
 import com.ssafy.tourist.domain.course.db.entity.Tourist;
 import com.ssafy.tourist.domain.course.response.TouristLocationGetRes;
 import com.ssafy.tourist.domain.course.response.TouristSearchGetRes;
@@ -47,7 +48,7 @@ public class TouristController {
     public ResponseEntity<TouristSearchGetRes> touristSearch (@ApiParam(value = "검색 키워드") @PathVariable("keywords") String keywords, int page, int size) {
         log.info("touristSearch - Call");
 
-        Page<Tourist> touristSearchList = touristService.touristSearchByUser(keywords, PageRequest.of(page- 1, size));
+        Page<TouristSearch> touristSearchList = touristService.touristSearchByUser(keywords, PageRequest.of(page- 1, size));
 
         if(touristSearchList != null && !touristSearchList.isEmpty()) {
             return ResponseEntity.status(200).body(TouristSearchGetRes.of(200, "Success", touristSearchList));
