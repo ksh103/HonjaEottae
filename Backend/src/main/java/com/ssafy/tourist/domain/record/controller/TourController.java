@@ -10,6 +10,7 @@ import com.ssafy.tourist.domain.record.request.TourEndPostReq;
 import com.ssafy.tourist.domain.record.request.TourStartPostReq;
 import com.ssafy.tourist.domain.record.request.TouristVisitPostReq;
 import com.ssafy.tourist.domain.record.response.TagListGetRes;
+import com.ssafy.tourist.domain.record.response.TourIsStartGetRes;
 import com.ssafy.tourist.domain.record.response.TouristNameVisitGetRes;
 import com.ssafy.tourist.domain.record.service.TourService;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
@@ -47,6 +48,7 @@ public class TourController {
         }else return ResponseEntity.status(404).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
     }
 
+
     @ApiOperation(value = "여행 종료")
     @PutMapping("/tour-end")
     public ResponseEntity<? extends BaseResponseBody> courseEnd(@RequestBody TourEndPostReq tourEndPostReq) {
@@ -57,6 +59,19 @@ public class TourController {
         }else return ResponseEntity.status(404).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
     }
 
+
+    @ApiOperation(value = "여행 시작 여부")
+    @GetMapping("/tour-start/{userId}/{courseId}")
+    public ResponseEntity<TourIsStartGetRes> courseIsStart(@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId,
+                                                           @ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
+        log.info("courseIsStart - Call");
+
+        if(tourService.courseIsStartByUser(userId, courseId)) {
+            return ResponseEntity.status(200).body(TourIsStartGetRes.of(200, "Success", true));
+        } else return ResponseEntity.status(200).body(TourIsStartGetRes.of(200, "Success", false));
+    }
+
+
     @ApiOperation(value = "코스에 대한 관광지 방문", notes = "코스에 등록 된 관광지를 방문하면 방문 등록(스탬프) 된다.")
     @PutMapping("/tour-stamp")
     public ResponseEntity<? extends BaseResponseBody> touristVisit(@RequestBody TouristVisitPostReq touristVisitPostReq) {
@@ -66,6 +81,7 @@ public class TourController {
             return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
         }else return ResponseEntity.status(404).body(BaseResponseBody.of(403, "There is no travel course in progress."));
     }
+
 
     @ApiOperation(value = "방문한 관광지 명 조회", notes = "사용자는 코스에 대한 방문한 관광지 조회가 가능하다.")
     @GetMapping("/tour-stamp/{userId}/{courseId}")
