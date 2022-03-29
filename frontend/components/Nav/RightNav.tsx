@@ -19,7 +19,7 @@ const RightNav: NextPage<RightNavProps> = ({ open }) => {
     dispatch(logIn());
   }, []);
   useEffect(() => {
-    let userEmail: string | null = sessionStorage.getItem('userEmail');
+    let userEmail: any = sessionStorage.getItem('userEmail');
     if (!isLogin && sessionStorage.getItem('userToken')) {
       setLogin();
       dispatch(userInfo.request(userEmail));

@@ -15,7 +15,7 @@ export type CourseRegister = {
   courseDistance: string;
   courseName: string;
   touristId: {};
-  userId: string;
+  userId: number;
 };
 
 export type RegisterState = {
