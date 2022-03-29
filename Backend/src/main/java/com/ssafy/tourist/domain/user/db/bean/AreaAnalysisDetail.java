@@ -14,7 +14,7 @@ public class AreaAnalysisDetail {
     }
 
     public String changeTouristAddress(String touristAddress) {
-        if(touristAddress.substring(0,1).equals("경")
+        if((touristAddress.substring(0,1).equals("경") && !touristAddress.substring(1,2).equals("기"))
                 || touristAddress.substring(0,1).equals("전")
                 || touristAddress.substring(0,1).equals("충")){
            return touristAddress.substring(0,1)+touristAddress.substring(2,3);
