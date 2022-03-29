@@ -1,9 +1,11 @@
 package com.ssafy.tourist.domain.user.controller;
 
+import com.ssafy.tourist.domain.user.db.bean.AreaAnalysisDetail;
 import com.ssafy.tourist.domain.user.db.bean.CourseNameVisitDetail;
 import com.ssafy.tourist.domain.user.db.entity.User;
 import com.ssafy.tourist.domain.user.request.UserModifyPutReq;
 import com.ssafy.tourist.domain.user.request.UserRegisterPostReq;
+import com.ssafy.tourist.domain.user.response.AreaAnalysisRes;
 import com.ssafy.tourist.domain.user.response.CourseNameVisitDetailRes;
 import com.ssafy.tourist.domain.user.response.UserFindEmail;
 import com.ssafy.tourist.domain.user.response.UserLoginPostRes;
@@ -115,6 +117,22 @@ public class UserController {
         }else{
 
             return ResponseEntity.status(200).body((CourseNameVisitDetailRes.of(200, "Course doesn't exist", null)));
+        }
+    }
+
+
+    @GetMapping("user-log/area/{userId}")
+    @ApiOperation(value = "회원 방문한 지역 분석")
+    public ResponseEntity<AreaAnalysisRes> areaAnalysisDetail(@ApiParam(value = "회원 번호") @PathVariable("userId") int userId){
+        log.info("areaAnalysisDetail - Call");
+
+        List<AreaAnalysisDetail> areaAnalysisDetailList = userService.areaAnalysisDetail(userId);
+
+        if(areaAnalysisDetailList != null && !areaAnalysisDetailList.isEmpty()){
+            return ResponseEntity.status(200).body((AreaAnalysisRes.of(200, "Success", areaAnalysisDetailList)));
+        }else{
+
+            return ResponseEntity.status(200).body((AreaAnalysisRes.of(200, "Course doesn't exist", null)));
         }
     }
 }
