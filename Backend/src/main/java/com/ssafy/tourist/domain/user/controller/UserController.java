@@ -31,6 +31,7 @@ public class UserController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+    
 
     @ApiOperation(value = "로그인", notes = "<strong>이름과 패스워드</strong>를 통해 로그인 한다.")
     @ApiResponses({
@@ -51,7 +52,7 @@ public class UserController {
         return ResponseEntity.status(401).body(UserLoginPostRes.of(401, "Invalid Password", null, null));
     }
 
-    @PostMapping("/signup")
+
     @ApiOperation(value = "회원 가입", notes = "<strong>email,패스워드,이름</strong>를 통해 회원가입 한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -59,6 +60,7 @@ public class UserController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+    @PostMapping("/signup")
     public ResponseEntity<? extends BaseResponseBody> register(
             @RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq userRegisterInfo) {
         //임의로 리턴된 User 인스턴스. 현재 코드는 회원 가입 성공 여부만 판단하기 때문에 굳이 Insert 된 유저 정보를 응답하지 않음.
@@ -70,14 +72,15 @@ public class UserController {
         }
     }
 
-    @PutMapping("/user/modify")
-    @ApiOperation(value = "학생 회원 정보 수정", notes = "<strong>회원 Email를 기준</strong>으로 조회 후 다른 정보 수정!!")
+
+    @ApiOperation(value = "회원 정보 수정", notes = "<strong>회원 Email를 기준</strong>으로 조회 후 다른 정보 수정!!")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
             @ApiResponse(code = 401, message = "인증 실패"),
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+    @PutMapping("/modify")
     public ResponseEntity<? extends BaseResponseBody> modify(
             @RequestBody @ApiParam(value="이름, 성향테스트 결과 변경", required = true) UserModifyPutReq userModifyPutReq) {
 
@@ -90,7 +93,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/{userEmail}")
+
     @ApiOperation(value = "회원 본인 정보 조회", notes = "로그인한 회원의 본인 정보를 응답한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -98,13 +101,15 @@ public class UserController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+    @GetMapping("/{userEmail}")
     public ResponseEntity<UserFindEmail> findUserEmail(@RequestParam String userEmail) {
         User user = userService.findByEmail((userEmail));
         return ResponseEntity.status(200).body(UserFindEmail.of(user));
     }
 
-    @GetMapping("/user-location/{userId}")
+
     @ApiOperation(value = "회원 방문한 코스 조회")
+    @GetMapping("/user-location/{userId}")
     public ResponseEntity<CourseNameVisitDetailRes> courseVisitDetail(@ApiParam(value = "회원 번호") @PathVariable("userId") int userId){
         log.info("visitCourseDetail - Call");
 
@@ -119,8 +124,8 @@ public class UserController {
     }
 
 
-    @GetMapping("user-log/area/{userId}")
     @ApiOperation(value = "회원 방문한 지역 분석")
+    @GetMapping("user-log/area/{userId}")
     public ResponseEntity<AreaAnalysisRes> areaAnalysisDetail(@ApiParam(value = "회원 번호") @PathVariable("userId") int userId){
         log.info("areaAnalysisDetail - Call");
 
@@ -134,8 +139,8 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user-log/date/{userId}")
     @ApiOperation(value = "회원 방문한 월별 분석")
+    @GetMapping("/user-log/date/{userId}")
     public ResponseEntity<DateAnalysisRes> dateAnalysisDetail(@ApiParam(value = "회원 번호") @PathVariable("userId") int userId){
         log.info("dateAnalysisDetail - Call");
 
