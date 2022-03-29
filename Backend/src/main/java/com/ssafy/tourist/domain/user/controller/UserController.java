@@ -125,7 +125,7 @@ public class UserController {
 
 
     @ApiOperation(value = "회원 방문한 지역 분석")
-    @GetMapping("user-log/area/{userId}")
+    @GetMapping("/user-log/area/{userId}")
     public ResponseEntity<AreaAnalysisRes> areaAnalysisDetail(@ApiParam(value = "회원 번호") @PathVariable("userId") int userId){
         log.info("areaAnalysisDetail - Call");
 
