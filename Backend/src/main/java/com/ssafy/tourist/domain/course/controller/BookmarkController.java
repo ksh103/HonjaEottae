@@ -53,6 +53,7 @@ public class BookmarkController {
 
     }
 
+    // api
     @ApiOperation(value = "북마크한 코스 조회", notes = "사용자가 북마크한 코스를 조회한다.")
     @GetMapping("/bookmark-list/{userId}")
     public ResponseEntity<BookmarkCourseGetRes> bookmarkList (@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId) {
