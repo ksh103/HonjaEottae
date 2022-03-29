@@ -43,6 +43,9 @@ const LoginBlock = styled.div`
   }
   #loginBtn {
     margin-top: 50px;
+    :active {
+      transform: scale(0.98);
+    }
   }
   #signup {
     margin-top: 50px;

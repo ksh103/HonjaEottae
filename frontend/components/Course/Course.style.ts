@@ -56,7 +56,8 @@ const Button = styled.button`
   background-color: ${props => props.theme.colors.pointColor};
   color: white;
   cursor: pointer;
-  :hover {
+  :active {
+    transform: scale(0.98);
   }
 `;
 

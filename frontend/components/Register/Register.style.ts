@@ -114,20 +114,26 @@ const ImageWrapper = styled.div`
     font-size: 15px;
     font-weight: bold;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 
 const SelectListWrapper = styled.div`
   margin-top: 20px;
   width: 100%;
-  height: 50px;
   border-radius: 1vw;
   background-color: ${props => props.theme.colors.backgroundColor};
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
+  overflow: auto;
 `;
 const ListBlock = styled.div`
+  margin-top: 10px;
+  margin-bottom: 5px;
   margin-left: 10px;
   padding: 5px;
   height: 30px;
