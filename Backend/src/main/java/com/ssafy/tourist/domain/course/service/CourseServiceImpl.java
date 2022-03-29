@@ -66,8 +66,6 @@ public class CourseServiceImpl implements CourseService{
 
         int[] touristId = courseRegisterPostReq.getTouristId();
 
-//        Collection<Integer> touristId = courseRegisterPostReq.getTouristId().values();
-//        Integer[] courseNum = touristId.toArray(new Integer[0]);
 
         for (int i = 0; i < size; i++) {
             courseData.setCourseId(courseId);

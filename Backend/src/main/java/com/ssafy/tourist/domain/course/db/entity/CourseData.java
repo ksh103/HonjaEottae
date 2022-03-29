@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -31,12 +32,7 @@ public class CourseData {
     @Column(name = "tourist_id")
     private int touristId;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id", updatable = false, insertable = false)
-    private Course course;
-
     @OneToOne
     @JoinColumn(name = "tourist_id", updatable = false, insertable = false)
     private Tourist tourist;
-
 }
