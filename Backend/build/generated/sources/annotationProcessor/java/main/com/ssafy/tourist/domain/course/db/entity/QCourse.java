@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -20,6 +21,8 @@ public class QCourse extends EntityPathBase<Course> {
     public static final QCourse course = new QCourse("course");
 
     public final StringPath courseContent = createString("courseContent");
+
+    public final ListPath<CourseData, QCourseData> courseData = this.<CourseData, QCourseData>createList("courseData", CourseData.class, QCourseData.class, PathInits.DIRECT2);
 
     public final StringPath courseDays = createString("courseDays");
 

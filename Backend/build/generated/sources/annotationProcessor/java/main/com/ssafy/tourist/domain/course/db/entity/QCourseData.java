@@ -22,8 +22,6 @@ public class QCourseData extends EntityPathBase<CourseData> {
 
     public static final QCourseData courseData = new QCourseData("courseData");
 
-    public final QCourse course;
-
     public final NumberPath<Integer> courseDataId = createNumber("courseDataId", Integer.class);
 
     public final NumberPath<Integer> courseId = createNumber("courseId", Integer.class);
@@ -50,7 +48,6 @@ public class QCourseData extends EntityPathBase<CourseData> {
 
     public QCourseData(Class<? extends CourseData> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.course = inits.isInitialized("course") ? new QCourse(forProperty("course")) : null;
         this.tourist = inits.isInitialized("tourist") ? new QTourist(forProperty("tourist")) : null;
     }
 

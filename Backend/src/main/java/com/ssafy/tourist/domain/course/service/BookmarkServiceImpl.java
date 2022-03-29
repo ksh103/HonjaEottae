@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.service;
 
+import com.ssafy.tourist.domain.course.db.bean.BookmarkCourse;
 import com.ssafy.tourist.domain.course.db.entity.Bookmark;
 import com.ssafy.tourist.domain.course.db.entity.BookmarkID;
 import com.ssafy.tourist.domain.course.db.entity.Course;
@@ -55,7 +56,7 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Override
-    public List<Course> bookmarkCourse(int userId) {
+    public List<BookmarkCourse> bookmarkCourse(int userId) {
         return courseRepositorySpp.findBookmarkCourse(userId);
     }
 }

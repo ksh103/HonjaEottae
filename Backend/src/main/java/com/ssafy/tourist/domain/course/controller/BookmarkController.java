@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.controller;
 
+import com.ssafy.tourist.domain.course.db.bean.BookmarkCourse;
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.request.BookmarkRegisterPostReq;
 import com.ssafy.tourist.domain.course.response.BookmarkCourseGetRes;
@@ -60,7 +61,7 @@ public class BookmarkController {
 
         log.info("bookmarkList - Call");
 
-        List<Course> bookmarkCourseList = bookmarkService.bookmarkCourse(userId);
+        List<BookmarkCourse> bookmarkCourseList = bookmarkService.bookmarkCourse(userId);
 
         if(bookmarkCourseList != null && !bookmarkCourseList.isEmpty()) {
             return ResponseEntity.status(200).body(BookmarkCourseGetRes.of(200, "Success", bookmarkCourseList));
