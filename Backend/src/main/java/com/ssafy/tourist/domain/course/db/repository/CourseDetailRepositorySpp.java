@@ -25,6 +25,7 @@ public class CourseDetailRepositorySpp {
     QCourse qCourse = QCourse.course;
     QCourseData qCourseData = QCourseData.courseData;
     QTourist qTourist = QTourist.tourist;
+    QTouristImgPath qTouristImgPath = QTouristImgPath.touristImgPath;
 
     QTour qTour = QTour.tour;
     QRecord qRecord = QRecord.record;
@@ -47,12 +48,14 @@ public class CourseDetailRepositorySpp {
     }
 
 
-    // 코스-관광지상세보기 Query
+    // 코스-관광지 상세보기 Query
     public List<CourseTouristDetail> courseDataDetailByCourseId(int courseId) {
-        return jpaQueryFactory.select(Projections.constructor(CourseTouristDetail.class, qTourist.touristName,
-                        qTourist.touristAddress, qTourist.touristLat, qTourist.touristLng)).from(qCourseData)
+        return jpaQueryFactory.select(Projections.constructor(CourseTouristDetail.class, qTourist.touristId, qTourist.touristName,
+                        qTourist.touristAddress, qTourist.touristLat, qTourist.touristLng, qTouristImgPath.fileId.min().as("fileId"))).from(qCourseData)
                 .leftJoin(qTourist).on(qTourist.touristId.eq(qCourseData.touristId))
+                .leftJoin(qTouristImgPath).on(qTouristImgPath.touristId.eq(qTourist.touristId))
                 .where(qCourseData.courseId.eq(courseId))
+                .groupBy(qTourist.touristId)
                 .fetch();
     }
 
