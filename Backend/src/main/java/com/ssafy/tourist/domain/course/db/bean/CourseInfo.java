@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CourseSearch {
+public class CourseInfo {
     private int courseId;
     private String courseName;
 

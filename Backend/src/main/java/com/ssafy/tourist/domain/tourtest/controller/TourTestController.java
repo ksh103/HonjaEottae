@@ -1,7 +1,6 @@
 package com.ssafy.tourist.domain.tourtest.controller;
 
-import com.ssafy.tourist.domain.course.db.entity.Course;
-import com.ssafy.tourist.domain.tourtest.db.bean.TourTestCourse;
+import com.ssafy.tourist.domain.course.db.bean.CourseInfo;
 import com.ssafy.tourist.domain.tourtest.request.TourTestResultPostReq;
 import com.ssafy.tourist.domain.tourtest.response.TourTestCourseGetRes;
 import com.ssafy.tourist.domain.tourtest.response.TourTestResultGetRes;
@@ -59,7 +58,7 @@ public class TourTestController {
     public ResponseEntity<TourTestCourseGetRes> tourTestCourseResultByUser(@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
         log.info("tourTestCourseResultByUser - Call");
 
-        List<TourTestCourse> tourTestCourseList =  tourTestService.tourTestCourseByUser(courseId);
+        List<CourseInfo> tourTestCourseList =  tourTestService.tourTestCourseByUser(courseId);
 
         if(tourTestCourseList != null && !tourTestCourseList.isEmpty()) {
             return ResponseEntity.status(201).body(TourTestCourseGetRes.of(200, "Success", tourTestCourseList));

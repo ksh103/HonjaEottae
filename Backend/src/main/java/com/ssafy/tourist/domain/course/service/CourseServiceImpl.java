@@ -1,24 +1,17 @@
 package com.ssafy.tourist.domain.course.service;
 
-import com.ssafy.tourist.domain.course.db.bean.CourseSearch;
-import com.ssafy.tourist.domain.course.db.bean.PopularCourse;
+import com.ssafy.tourist.domain.course.db.bean.CourseInfo;
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
-import com.ssafy.tourist.domain.course.db.entity.CourseDataID;
 import com.ssafy.tourist.domain.course.db.repository.CourseDataRepository;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepositorySpp;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
 import com.ssafy.tourist.domain.course.request.CourseRegisterPostReq;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import springfox.documentation.schema.Entry;
-
-import java.util.Collection;
-import java.util.List;
 
 @Service
 public class CourseServiceImpl implements CourseService{
@@ -81,11 +74,11 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public Page<Course> courseListByUser(int userId, Pageable pageable) { return courseRepositorySpp.findCourseListByUser(userId, pageable); }
+    public Page<CourseInfo> courseListByUser(int userId, Pageable pageable) { return courseRepositorySpp.findCourseListByUser(userId, pageable); }
 
     @Override
-    public Page<PopularCourse> popularCourse(Pageable pageable) {return courseRepositorySpp.findPopularCourse(pageable);}
+    public Page<CourseInfo> popularCourse(Pageable pageable) {return courseRepositorySpp.findPopularCourse(pageable);}
 
     @Override
-    public Page<CourseSearch> courseSearch(String courseName, Pageable pageable) { return courseRepositorySpp.findCourseSearch(courseName, pageable); }
+    public Page<CourseInfo> courseSearch(String courseName, Pageable pageable) { return courseRepositorySpp.findCourseSearch(courseName, pageable); }
 }

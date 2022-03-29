@@ -1,14 +1,11 @@
 package com.ssafy.tourist.domain.course.controller;
 
-import com.ssafy.tourist.domain.course.db.bean.CourseSearch;
-import com.ssafy.tourist.domain.course.db.bean.PopularCourse;
-import com.ssafy.tourist.domain.course.db.entity.Course;
+import com.ssafy.tourist.domain.course.db.bean.CourseInfo;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
 import com.ssafy.tourist.domain.course.request.CourseRegisterPostReq;
 import com.ssafy.tourist.domain.course.response.CourseListGetRes;
 import com.ssafy.tourist.domain.course.response.CourseSearchGetRes;
 import com.ssafy.tourist.domain.course.response.PopularCourseGetRes;
-import com.ssafy.tourist.domain.course.service.BookmarkService;
 import com.ssafy.tourist.domain.course.service.CourseService;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
 import io.swagger.annotations.Api;
@@ -69,7 +66,7 @@ public class CourseController {
     public ResponseEntity<PopularCourseGetRes> popularCourse (int page, int size) {
         log.info("popularCourse - Call");
 
-        Page<PopularCourse> popularCouseList = courseService.popularCourse(PageRequest.of(page - 1 , size));
+        Page<CourseInfo> popularCouseList = courseService.popularCourse(PageRequest.of(page - 1 , size));
 
         return ResponseEntity.status(200).body(PopularCourseGetRes.of(200, "Success", popularCouseList));
     }
@@ -80,7 +77,7 @@ public class CourseController {
     public ResponseEntity<CourseSearchGetRes> courseSearch (@ApiParam(value = "코스 명") @PathVariable("courseName") String courseName, int page, int size) {
         log.info("courseSearch - Call");
 
-        Page<CourseSearch> courseSearchList = courseService.courseSearch(courseName, PageRequest.of(page - 1, size));
+        Page<CourseInfo> courseSearchList = courseService.courseSearch(courseName, PageRequest.of(page - 1, size));
 
         return ResponseEntity.status(200).body(CourseSearchGetRes.of(200, "Success", courseSearchList));
     }
@@ -91,7 +88,7 @@ public class CourseController {
     public ResponseEntity<CourseListGetRes> courseListByUser (@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId, int page, int size) {
         log.info("courseListByUser - Call");
 
-        Page<Course> courseList = courseService.courseListByUser(userId, PageRequest.of(page - 1 , size));
+        Page<CourseInfo> courseList = courseService.courseListByUser(userId, PageRequest.of(page - 1 , size));
 
         if(courseList != null && !courseList.isEmpty()) {
             return ResponseEntity.status(200).body(CourseListGetRes.of(200, "Success", courseList));
