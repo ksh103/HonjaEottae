@@ -9,4 +9,6 @@ import java.util.List;
 public interface TouristService {
     Page<Tourist> touristSearchByUser(String keywords, Pageable pageable);
     List<Tourist> locationTouristByUser(double lat, double lng);
+
+    String getTouristImgPath(int fileId, int touristId);
 }
