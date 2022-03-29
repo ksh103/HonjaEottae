@@ -1,13 +1,13 @@
 package com.ssafy.tourist.domain.user.controller;
 
-import com.ssafy.tourist.domain.user.db.bean.VisitCourseName;
+import com.ssafy.tourist.domain.user.db.bean.CourseNameVisitDetail;
 import com.ssafy.tourist.domain.user.db.entity.User;
 import com.ssafy.tourist.domain.user.request.UserModifyPutReq;
 import com.ssafy.tourist.domain.user.request.UserRegisterPostReq;
+import com.ssafy.tourist.domain.user.response.CourseNameVisitDetailRes;
 import com.ssafy.tourist.domain.user.response.UserFindEmail;
 import com.ssafy.tourist.domain.user.response.UserLoginPostRes;
 import com.ssafy.tourist.domain.user.request.UserLoginPostReq;
-import com.ssafy.tourist.domain.user.response.VisitCourseNameRes;
 import com.ssafy.tourist.domain.user.service.UserService;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
 import com.ssafy.tourist.global.util.JwtTokenUtil;
@@ -19,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.io.IOException;
 import java.util.List;
 
 @Api("유저 API")
@@ -106,16 +105,16 @@ public class UserController {
 
     @GetMapping("/user-location/{userId}")
     @ApiOperation(value = "회원 방문한 코스 조회")
-    public ResponseEntity<VisitCourseNameRes> visitCourseDetail(@ApiParam(value = "회원 번호") @PathVariable("userId") int userId){
+    public ResponseEntity<CourseNameVisitDetailRes> courseVisitDetail(@ApiParam(value = "회원 번호") @PathVariable("userId") int userId){
         log.info("visitCourseDetail - Call");
 
-        List<VisitCourseName> courseNameList = userService.visitCourseName(userId);
+        List<CourseNameVisitDetail> courseNameList = userService.courseNameVisitDetail(userId);
 
         if(courseNameList != null && !courseNameList.isEmpty()){
-            return ResponseEntity.status(200).body((VisitCourseNameRes.of(200, "Success", courseNameList)));
+            return ResponseEntity.status(200).body((CourseNameVisitDetailRes.of(200, "Success", courseNameList)));
         }else{
 
-            return ResponseEntity.status(200).body((VisitCourseNameRes.of(200, "Course doesn't exist", null)));
+            return ResponseEntity.status(200).body((CourseNameVisitDetailRes.of(200, "Course doesn't exist", null)));
         }
     }
 }

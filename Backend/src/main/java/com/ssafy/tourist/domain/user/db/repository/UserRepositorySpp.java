@@ -5,7 +5,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.tourist.domain.course.db.entity.QCourseData;
 import com.ssafy.tourist.domain.course.db.entity.QTourist;
 import com.ssafy.tourist.domain.record.db.entity.QTour;
-import com.ssafy.tourist.domain.user.db.bean.VisitCourseName;
+import com.ssafy.tourist.domain.user.db.bean.CourseNameVisitDetail;
 import com.ssafy.tourist.domain.user.db.entity.QUser;
 import com.ssafy.tourist.domain.user.db.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,8 @@ public class UserRepositorySpp {
     };
 
     //방문한 사용자 코스 데이터 Query
-    public List<VisitCourseName> findVisitTouristByUserId (int userId){
-        return jpaQueryFactory.select(Projections.constructor(VisitCourseName.class,
+    public List<CourseNameVisitDetail> courseVisitDetailByUserId(int userId){
+        return jpaQueryFactory.select(Projections.constructor(CourseNameVisitDetail.class,
                         qTour.courseId.as("courseId"), qTourist.touristLat.as("touristLat")
                         ,qTourist.touristLng.as("touristLng")))
                 .from(qTour).join(qCourseData).on(qCourseData.courseId.eq(qTour.courseId))
