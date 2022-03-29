@@ -3,14 +3,15 @@ import * as actions from './actions';
 
 export type UserAction = ActionType<typeof actions>;
 
-export type MyCourse = {
-  id: number;
-  title: string;
-  data: string;
+export type Course = {
+  courseId: number;
+  courseName: string;
 };
 
-export type Like = {
-  id: number;
+export type Bookmark = {
+  courseId: number;
+  courseName: string;
+  userId: number;
 };
 
 export type SignUp = {
@@ -30,15 +31,21 @@ export type SignInSuccess = {
 };
 
 export type UserInfo = {
-  userId: string;
+  userId: number;
   tourTestId: string;
   userName: string;
 };
 
+export type UserDetail = {
+  userInfo: UserInfo;
+  userCourses: Course[];
+  userLikes: Course[];
+};
+
 export type UserState = {
   userInfo: UserInfo;
-  myCourses: MyCourse[];
-  likes: Like[];
+  userCourses: Course[];
+  userLikes: Course[];
   isLogin: boolean;
   isSignUp: boolean;
 };

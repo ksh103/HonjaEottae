@@ -45,7 +45,7 @@ export default function DetailMap({ tourist }: MapProps) {
           });
           let linePath, distance;
           let lineLine = new window.kakao.maps.Polyline();
-          // 마커 연결
+          // 마커 선 연결
           if (i != 0) {
             linePath = [
               new window.kakao.maps.LatLng(
@@ -55,7 +55,6 @@ export default function DetailMap({ tourist }: MapProps) {
               position,
             ];
           }
-
           const drawLine = new window.kakao.maps.Polyline({
             map: map,
             path: linePath,
@@ -65,17 +64,40 @@ export default function DetailMap({ tourist }: MapProps) {
             strokeStyle: 'solid', // 선 스타일
           });
 
-          // 오버레이 생성하기
-          const content = `
-            <div class="customoverlay">
-              <span class="title">${i + 1}. ${tourist[i].touristName}</span>
-            </div>`;
-          const customOverlay = new window.kakao.maps.CustomOverlay({
-            map: map,
-            position: position,
-            content: content,
-            yAnchor: 1,
+          // 인포윈도우 생성하기
+          const infowindow = new window.kakao.maps.InfoWindow({
+            content: `<div>${i + 1}. ${tourist[i].touristName}</div>`,
           });
+          (function (marker, infowindow) {
+            // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다
+            window.kakao.maps.event.addListener(
+              marker,
+              'mouseover',
+              function () {
+                infowindow.open(map, marker);
+              },
+            );
+
+            // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+            window.kakao.maps.event.addListener(
+              marker,
+              'mouseout',
+              function () {
+                infowindow.close();
+              },
+            );
+          })(marker, infowindow);
+          // 오버레이 생성하기
+          // const content = `
+          //   <div class="customoverlay">
+          //     <span class="title">${i + 1}. ${tourist[i].touristName}</span>
+          //   </div>`;
+          // const customOverlay = new window.kakao.maps.CustomOverlay({
+          //   map: map,
+          //   position: position,
+          //   content: content,
+          //   yAnchor: 1,
+          // });
         }
       });
     };

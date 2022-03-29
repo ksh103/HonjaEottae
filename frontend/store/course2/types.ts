@@ -23,7 +23,7 @@ export type CourseTourist = {
   touristAddress: string;
   touristLat: string;
   touristLng: string;
-  // touristImage: string;
+  // touristImageId: number;
 };
 
 export type CourseReview = {
@@ -50,6 +50,7 @@ export type CourseDetail = {
   courseReview: CourseReview[];
   courseType: CourseType[];
   courseTag: string[];
+  coursePercentage: number;
 };
 
 export type Course2State = {
@@ -60,4 +61,5 @@ export type Course2State = {
   courseReview: CourseReview[];
   courseType: CourseType[];
   courseTag: string[];
+  coursePercentage: number;
 };

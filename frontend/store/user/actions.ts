@@ -1,5 +1,5 @@
 import { createAction, createAsyncAction } from 'typesafe-actions';
-import { Like, SignIn, SignInSuccess, SignUp, UserInfo } from './types';
+import { Bookmark, SignIn, SignInSuccess, SignUp, UserDetail } from './types';
 
 export const LIKE_COURSE_REQUEST = 'user/LIKE_COURSE_REQUEST';
 export const LIKE_COURSE_SUCCESS = 'user/LIKE_COURSE_SUCCESS';
@@ -24,12 +24,6 @@ export const USER_INFO_FAILURE = 'user/USER_INFO_FAILURE';
 export const SET_LOG_OUT = 'user/SET_LOG_OUT';
 export const SET_LOG_IN = 'user/SET_LOG_IN';
 
-export const likeCourse = createAsyncAction(
-  LIKE_COURSE_REQUEST,
-  LIKE_COURSE_SUCCESS,
-  LIKE_COURSE_FAILURE,
-)<Like, Like, Error>();
-
 export const signIn = createAsyncAction(
   SIGN_IN_REQUEST,
   SIGN_IN_SUCCESS,
@@ -46,6 +40,18 @@ export const userInfo = createAsyncAction(
   USER_INFO_REQUEST,
   USER_INFO_SUCCESS,
   USER_INFO_FAILURE,
-)<string | null, UserInfo, Error>();
+)<string, UserDetail, Error>();
 
 export const logIn = createAction(SET_LOG_IN)();
+
+export const likeCourse = createAsyncAction(
+  LIKE_COURSE_REQUEST,
+  LIKE_COURSE_SUCCESS,
+  LIKE_COURSE_FAILURE,
+)<Bookmark, Bookmark, Error>();
+
+export const unlikeCourse = createAsyncAction(
+  UNLIKE_COURSE_REQUEST,
+  UNLIKE_COURSE_SUCCESS,
+  UNLIKE_COURSE_FAILURE,
+)<Bookmark, Bookmark, Error>();
