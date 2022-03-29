@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class VisitCourseName {
+public class CourseNameVisitDetail {
     private int courseId;
     private double touristLat;
     private double touristLng;
