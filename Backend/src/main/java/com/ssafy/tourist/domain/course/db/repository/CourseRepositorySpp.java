@@ -5,11 +5,13 @@ import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.tourist.domain.course.db.bean.BookmarkCourse;
+import com.ssafy.tourist.domain.course.db.bean.PopularCourse;
 import com.ssafy.tourist.domain.course.db.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,6 +29,7 @@ public class CourseRepositorySpp {
     QBookmark qBookmark = QBookmark.bookmark;
 
 
+    // 북마크한 코스 조회
     public List<BookmarkCourse> findBookmarkCourse(int userId) {
         return jpaQueryFactory.select(Projections.constructor(BookmarkCourse.class, qCourse.courseId, qCourse.courseName, qCourseData.touristId, qTouristImgPath.fileId.min().as("fileId"))).from(qCourse)
                 .leftJoin(qCourseData).on(qCourseData.courseId.eq(qCourse.courseId))
@@ -37,15 +40,22 @@ public class CourseRepositorySpp {
                 .fetch();
     }
 
-    public Page<Course> findPopularCourse (Pageable pageable) {
-        QueryResults<Course> list = jpaQueryFactory.select(qCourse).from(qCourse)
+    // 인기 있는 코스
+    public Page<PopularCourse> findPopularCourse (Pageable pageable) {
+        QueryResults<PopularCourse> list = jpaQueryFactory.select(Projections.constructor(PopularCourse.class, qCourse.courseId, qCourse.courseName,
+                        qCourseData.touristId, qTouristImgPath.fileId.min().as("fileId"))).from(qCourse)
+                .leftJoin(qCourseData).on(qCourseData.courseId.eq(qCourse.courseId))
+                .leftJoin(qTouristImgPath).on(qTouristImgPath.touristId.eq(qCourseData.touristId))
+                .leftJoin(qBookmark).on(qBookmark.courseId.eq(qCourse.courseId))
+                .where(qCourseData.courseDataId.eq(1))
+                .groupBy(qCourse.courseId)
                 .orderBy(qCourse.courseHits.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize()).fetchResults();
 
         return new PageImpl<>(list.getResults(), pageable, list.getTotal());
     }
-
+    
     public Page<Course> findCourseSearch (String courseName, Pageable pageable) {
         QueryResults<Course> list = jpaQueryFactory.select(qCourse).from(qCourse)
                 .where(qCourse.courseName.contains(courseName))
