@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.service;
 
+import com.ssafy.tourist.domain.course.db.bean.TouristSearch;
 import com.ssafy.tourist.domain.course.db.entity.Tourist;
 import com.ssafy.tourist.domain.course.db.entity.TouristImgPath;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepositorySpp;
@@ -35,7 +36,7 @@ public class TouristServiceImpl implements TouristService{
 
 
     @Override
-    public Page<Tourist> touristSearchByUser(String keywords, Pageable pageable) { return touristRepositorySpp.findTouristSearchByUser(keywords, pageable); }
+    public Page<TouristSearch> touristSearchByUser(String keywords, Pageable pageable) { return touristRepositorySpp.findTouristSearchByUser(keywords, pageable); }
 
     @Override
     public List<Tourist> locationTouristByUser(double lat, double lng) { return touristRepository.findLocationTouristBy(lat, lng); }
