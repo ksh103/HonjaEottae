@@ -41,14 +41,7 @@ public class Keywords2 {
             
             //이름과 설명안에 키워드가 있는 지 확인한다.
             for (String keyw : keywordValue) {
-                /*
-                if (checkValue.contains(keyw)) {
-                    keyTxt.set(keyw);
-                    context.write(outValue, keyTxt);
-                }*/
 
-                //키워드 번호 이름
-                //System.out.println(keyw.encoding);
                 if (checkValue.contains(keyw)) {
                     keyTxt.set(keyw);
                     context.write(keyTxt, one);
@@ -61,8 +54,6 @@ public class Keywords2 {
 
     public static class KeywordReducer
             extends Reducer<Text,IntWritable,Text,IntWritable> {
-
-        private Text result = new Text();
         
         public void reduce(Text key, Iterable<IntWritable> values, Context context)
                 throws IOException, InterruptedException {
@@ -73,21 +64,6 @@ public class Keywords2 {
                 context.write(key,val);
             }
             
-
-            //키워드 번호 이름
-            // 체험 [ 1018 박물관에서 놀고 자연에서 배우다, 1019 자연에서 ...]
-           /* StringBuilder outT =  new StringBuilder();
-            outT.append("[");
-            for(Text val : values) {
-                outT.append(val.toString() + ",");
-
-            }
-            outT.setLength(outT.length()-1);
-            outT.append("]");
-
-            result.set(outT.toString());
-            context.write(key, result);
-            */
         }
     }
 

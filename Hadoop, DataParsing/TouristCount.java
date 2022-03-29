@@ -16,25 +16,16 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 public class TouristCount {
-    /*관광지 */
+   /*관광지 */
     public static class Tourist {
-        private String name;        //명칭
         private String address;     //주소
-        //private double latitude;    //위도
-        //private double longtitude;  //경도
-        //private String description; //개요
 
         public Tourist(Text text){
             try{
-                String[] columns = text.toString().split(",");
-                if(!columns[0].equals("NA") && !columns[0].equals(null)){
-                    name = columns[0];
-                }
-                else
-                    name = "no Name";
-
+            String[] columns = text.toString().split(",");
                 if(!columns[1].equals("NA") && !columns[1].trim().equals("") ){
                     address = columns[1].split(" ")[0];
+                    setAddress(address);
                 }
                 else{
                     address = "no Adress";
@@ -44,7 +35,47 @@ public class TouristCount {
 
             }
         }
-
+	
+	public void setAddress(String address){
+	if(address.equals("강원도")){
+            	address =  "강원,50,245";
+        }else if(address.equals("경기도")){
+            	address =  "경기,30,145";
+        }else if(address.equals("경상남도")){
+            	address =  "경남,380,205";
+        }else if(address.equals("경상북도")){
+            	address =  "경북,220,290";
+        }else if(address.equals("광주광역시")){
+            	address =  "광주,370,130";
+        }else if(address.equals("대구광역시")){
+            	address =  "대구,300,270";
+        }else if(address.equals("대전광역시")){
+            	address =  "대전,250,195";
+        }else if(address.equals("부산광역시")){
+            	address =  "부산,370,330";
+        }else if(address.equals("서울특별시")){
+            	address =  "서울,110,170";
+        }else if(address.equals("세종특별자치시")){
+            	address =  "세종,180,145";
+        }else if(address.equals("울산광역시")){
+            	address =  "울산,295,350";
+        }else if(address.equals("인천광역시")){
+            	address =  "인천,120,60";
+        }else if(address.equals("전라남도")){
+            	address =  "전남,440,60";
+        }else if(address.equals("전라북도")){
+            	address =  "전북,300,135";
+        }else if(address.equals("제주특별자치도")){
+            	address =  "제주,530,70";
+        }else if(address.equals("충청남도")){
+            	address =  "충남,240,80";
+        }else if(address.equals("충청북도")){
+            	address =  "충북,175,225";
+        }
+        this.address = address;
+            
+            
+	}
         public String getAddress(){return address;}
 
     }
@@ -83,6 +114,8 @@ public class TouristCount {
                 sum += val.get();
             }
             result.set(sum);
+            
+            
             context.write(key,result);
         }
     }
