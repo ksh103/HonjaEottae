@@ -32,6 +32,12 @@ export async function GetCourseTypeAPI(courseId: number) {
 }
 
 // 새로운 인연을 만날 확률 값 가져오기
+export async function GetCoursePercentageAPI(courseId: number) {
+  const result = await axios
+    .get(`${BASE_URL}course-detail/connection/${courseId}`)
+    .then(res => res.data.percentage);
+  return Math.floor(result);
+}
 
 // 코스 리뷰 가져오기
 export async function GetCourseReviewAPI(courseId: number) {
@@ -77,6 +83,7 @@ export async function GetCourseDetailAPI(courseId: number) {
   const review = await GetCourseReviewAPI(courseId);
   const type = await GetCourseTypeAPI(courseId);
   const tag = await GetCourseTagAPI(courseId);
+  const percentage = await GetCoursePercentageAPI(courseId);
   const result = {
     courseId: courseId,
     courseInfo: info.courseDetailList[0],
@@ -84,6 +91,7 @@ export async function GetCourseDetailAPI(courseId: number) {
     courseReview: review,
     courseType: type,
     courseTag: tag,
+    coursePercentage: percentage,
   };
   return result;
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const DetailHeader = styled.div`
+const Header = styled.div`
   ul li {
     float: right;
     margin-left: 30px;
@@ -95,7 +95,7 @@ const Content = styled.div`
     font-size: 20px;
     font-weight: bold;
   }
-  .graph {
+  /* .graph {
     height: 200px;
     min-width: 450px;
   }
@@ -103,7 +103,7 @@ const Content = styled.div`
     height: 200px;
     text-align: center;
     font-size: 20px;
-  }
+  } */
   font-size: 15px;
   margin-top: 20px;
   padding: 20px;
@@ -158,13 +158,42 @@ const ReviewCard = styled.div`
   padding: 0 10px;
 `;
 
+const GraphBlock = styled.div`
+  & > div {
+    border-radius: 1vw;
+    border: 1px solid lightgray;
+    background-color: ${props => props.theme.colors.backgroundColor};
+  }
+  margin: 20px 0;
+  display: flex;
+  width: 100%;
+`;
+const GraphPercentage = styled.div`
+  height: 200px;
+  width: 35%;
+  margin-right: 20px;
+  text-align: center;
+  font-size: 20px;
+  display: flex;
+`;
+
+const GraphPie = styled.div`
+  height: 200px;
+  width: 65%;
+  @media ${props => props.theme.laptopS} {
+  }
+`;
+
 export {
-  DetailHeader,
+  Header,
   Title,
   CourseMap,
   CourseImage,
   CourseIndex,
   Content,
+  GraphBlock,
+  GraphPercentage,
+  GraphPie,
   Review,
   ReviewImage,
   ReviewCard,
