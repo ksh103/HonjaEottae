@@ -12,6 +12,6 @@ public interface BookmarkRepository extends JpaRepository<Bookmark, BookmarkID> 
     @Query("select count(b) from Bookmark b")
     int countBookmarks();
 
-    @Query("select b.courseId from Bookmark b where b.courseId = :courseId")
+    @Query("select count(b.courseId) from Bookmark b where b.courseId = :courseId")
     int countBookmarksByCourseId(int courseId);
 }
