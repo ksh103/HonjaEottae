@@ -12,10 +12,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.io.IOException;
 import java.util.List;
 
 @Api("여행 레코드(일기) API")
@@ -31,13 +34,23 @@ public class RecordController {
     private static final int FAIL = -1;
 
     @ApiOperation(value = "여행 레코드(일기) 등록", notes = "코스 방문을 시작하면 여행 레코드(일기) 작성이 가능하다.")
-    @PostMapping("")
-    public ResponseEntity<? extends BaseResponseBody> recordRegister (@RequestBody RecordRegisterPostReq recordRegisterPostReq) {
+    @PostMapping(value = "" , consumes= {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<? extends BaseResponseBody> recordRegister
+            (@RequestPart(value = "recordRegister") RecordRegisterPostReq recordRegisterPostReq, MultipartHttpServletRequest request) {
+
         log.info("recordRegister - Call");
 
-        if(recordService.recordRegisterByUser(recordRegisterPostReq) == SUCCESS) {
-            return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
-        }else return ResponseEntity.status(404).body(BaseResponseBody.of(404, "There is no completed course."));
+        try {
+            if(recordService.recordRegisterByUser(recordRegisterPostReq, request) == SUCCESS) {
+                return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+            }else {
+                return ResponseEntity.status(400).body(BaseResponseBody.of(400, "Failed"));
+            }
+
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            return ResponseEntity.status(400).body(BaseResponseBody.of(400, "Failed"));
+        }
     }
 
     @ApiOperation(value = "여행 레코드(일기) 수정")

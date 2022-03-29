@@ -28,6 +28,8 @@ public class QRecord extends EntityPathBase<Record> {
 
     public final NumberPath<Integer> recordId = createNumber("recordId", Integer.class);
 
+    public final QRecordImgPath recordImgPath;
+
     public final DateTimePath<java.time.LocalDateTime> recordRegDt = createDateTime("recordRegDt", java.time.LocalDateTime.class);
 
     public final com.ssafy.tourist.domain.user.db.entity.QUser user;
@@ -52,6 +54,7 @@ public class QRecord extends EntityPathBase<Record> {
 
     public QRecord(Class<? extends Record> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.recordImgPath = inits.isInitialized("recordImgPath") ? new QRecordImgPath(forProperty("recordImgPath")) : null;
         this.user = inits.isInitialized("user") ? new com.ssafy.tourist.domain.user.db.entity.QUser(forProperty("user")) : null;
     }
 

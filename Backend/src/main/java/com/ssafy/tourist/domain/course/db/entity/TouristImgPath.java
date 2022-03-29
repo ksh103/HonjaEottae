@@ -30,7 +30,7 @@ public class TouristImgPath {
 
     @ApiModelProperty(value = "이미지 파일 이름", required = true, example = "2_2.jpg")
     @Column(name = "file_name")
-    private String touristName;
+    private String fileName;
 
     @ApiModelProperty(value = "이미지 파일 경로", required = true, example = "/tourimages/2_2.jpg")
     @Column(name = "file_url")
