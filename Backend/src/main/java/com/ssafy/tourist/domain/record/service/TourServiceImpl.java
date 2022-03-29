@@ -2,6 +2,7 @@ package com.ssafy.tourist.domain.record.service;
 
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.repository.CourseDataRepository;
+import com.ssafy.tourist.domain.record.db.bean.TourTagList;
 import com.ssafy.tourist.domain.record.db.bean.VisitTouristName;
 import com.ssafy.tourist.domain.record.db.entity.*;
 import com.ssafy.tourist.domain.record.db.repository.*;
@@ -29,6 +30,9 @@ public class TourServiceImpl implements TourService {
 
     @Autowired
     RecordTagRepository recordTagRepository;
+
+    @Autowired
+    TagCodeRepository tagCodeRepository;
 
     @Autowired
     TagRepository tagRepository;
@@ -79,6 +83,7 @@ public class TourServiceImpl implements TourService {
         } else return FAIL;
     }
 
+
     @Override
     public int touristVisitByUser(TouristVisitPostReq touristVisitPostReq) {
         TourStampID tourStampID = new TourStampID();
@@ -115,22 +120,9 @@ public class TourServiceImpl implements TourService {
             recordTagRepository.save(recordTag);
         }
 
-        // map<key, value> 사용해서 tag 받아오기
-//        for (int item : tagRegisterPostReq.getTag().keySet()) {
-//            recordTag.setRecordId(tagRegisterPostReq.getRecordId());
-//            recordTag.setCourseId(tagRegisterPostReq.getCourseId());
-//            recordTag.setSelect(true);
-//
-//            recordTag.setCode(item);
-//            recordTag.setTagId(tagRegisterPostReq.getTag().get(item));
-//
-//            recordTagRepository.save(recordTag);
-//        }
         return SUCCESS;
     }
 
     @Override
-    public List<String> tagList() {
-        return tagRepository.findTagList();
-    }
+    public List<TagCode> tagList() {return tagCodeRepository.findTagList();}
 }
