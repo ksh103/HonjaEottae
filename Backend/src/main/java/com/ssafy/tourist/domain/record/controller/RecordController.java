@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.record.controller;
 
+import com.ssafy.tourist.domain.record.db.bean.RecordWriteList;
 import com.ssafy.tourist.domain.record.db.entity.Record;
 import com.ssafy.tourist.domain.record.request.RecordModifyPostReq;
 import com.ssafy.tourist.domain.record.request.RecordRegisterPostReq;
@@ -79,7 +80,7 @@ public class RecordController {
                                                                   @ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
         log.info("recordWriteList - Call");
 
-        List<Record> recordWriteList = recordService.recordWriteListByUser(userId, courseId);
+        List<RecordWriteList> recordWriteList = recordService.recordWriteListByUser(userId, courseId);
 
         if (recordWriteList != null && !recordWriteList.isEmpty()) {
             return ResponseEntity.status(201).body(RecordWriteListGetRes.of(200, "Success", recordWriteList));

@@ -2,12 +2,10 @@ package com.ssafy.tourist.domain.record.service;
 
 import com.ssafy.tourist.domain.course.db.entity.TouristImgPath;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
+import com.ssafy.tourist.domain.record.db.bean.RecordWriteList;
 import com.ssafy.tourist.domain.record.db.entity.Record;
 import com.ssafy.tourist.domain.record.db.entity.RecordImgPath;
-import com.ssafy.tourist.domain.record.db.repository.RecordImgPathRepository;
-import com.ssafy.tourist.domain.record.db.repository.RecordRepository;
-import com.ssafy.tourist.domain.record.db.repository.TourRepository;
-import com.ssafy.tourist.domain.record.db.repository.TourStampRepository;
+import com.ssafy.tourist.domain.record.db.repository.*;
 import com.ssafy.tourist.domain.record.request.RecordModifyPostReq;
 import com.ssafy.tourist.domain.record.request.RecordRegisterPostReq;
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +38,9 @@ public class RecordServiceImpl implements RecordService {
 
     @Autowired
     RecordImgPathRepository recordImgPathRepository;
+
+    @Autowired
+    RecordRepositorySpp recordRepositorySpp;
 
 
     private static final int SUCCESS = 1;
@@ -135,8 +136,8 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public List<Record> recordWriteListByUser(int userId, int courseId) {
-        return recordRepository.findRecordByUserIdAndCourseId(userId, courseId);
+    public List<RecordWriteList> recordWriteListByUser(int userId, int courseId) {
+        return recordRepositorySpp.findRecordWriteList(userId, courseId);
     }
 
     @Override
