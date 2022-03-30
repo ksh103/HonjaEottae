@@ -1,10 +1,7 @@
 import { createReducer } from 'typesafe-actions';
 import { Course2Action, Course2State } from './types';
 import produce from 'immer';
-import {
-  GET_COURSE_DETAIL_SUCCESS,
-  GET_POPULAR_COURSES_SUCCESS,
-} from './actions';
+import { GET_COURSE_DETAIL_SUCCESS, GET_MAIN_DATA_SUCCESS } from './actions';
 
 const initialCourseInfoState = {
   // courseId: 0,
@@ -17,6 +14,7 @@ const initialCourseInfoState = {
 };
 
 const initialState: Course2State = {
+  areaCourseCount: [],
   popularCourses: [],
   courseId: 0,
   courseInfo: initialCourseInfoState,
@@ -28,9 +26,10 @@ const initialState: Course2State = {
 };
 
 const course2 = createReducer<Course2State, Course2Action>(initialState, {
-  [GET_POPULAR_COURSES_SUCCESS]: (state, action) =>
+  [GET_MAIN_DATA_SUCCESS]: (state, action) =>
     produce(state, draft => {
-      draft.popularCourses = action.payload;
+      draft.areaCourseCount = action.payload.areaCourseCount;
+      draft.popularCourses = action.payload.popularCourses;
     }),
   [GET_COURSE_DETAIL_SUCCESS]: (state, action) =>
     produce(state, draft => {

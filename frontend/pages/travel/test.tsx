@@ -11,16 +11,21 @@ import {
   Button,
   ButtonWrapper,
 } from '../../components/Travel/Travel.style';
-import { useDispatch } from 'react-redux';
-import { saveTestResult } from '../../store/travel';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { saveTestResult } from '../../store/user';
 
 const TravelTest: NextPage = () => {
+  const { isLogin, userInfo } = useSelector((state: RootState) => state.user);
   const [step, setStep] = useState<number>(0);
   const router = useRouter();
   const dispatch = useDispatch();
   const saveTest = useCallback(
     (type: number) => {
-      dispatch(saveTestResult.request({ userId: 0, type: type }));
+      localStorage.setItem('type', type + '');
+      let id = 0;
+      if (isLogin) id = userInfo.userId;
+      dispatch(saveTestResult.request({ userId: id, tourTestId: type + 1 }));
     },
     [dispatch],
   );

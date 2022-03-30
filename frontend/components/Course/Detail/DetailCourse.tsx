@@ -29,7 +29,7 @@ export default function DetailCourse() {
               <Carousel>
                 {courseTourist.map((data, i) => (
                   <div className="course-image" key={i}>
-                    <img src="http://tong.visitkorea.or.kr/cms/resource/47/1579047_image2_1.jpg" />
+                    <img src={data.image} />
                     <div className="course-image-content">
                       <div className="name">📍 {data.touristName}</div>
                       <div>{data.touristAddress}</div>

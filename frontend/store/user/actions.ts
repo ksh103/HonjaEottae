@@ -1,5 +1,12 @@
 import { createAction, createAsyncAction } from 'typesafe-actions';
-import { Bookmark, SignIn, SignInSuccess, SignUp, UserDetail } from './types';
+import {
+  Bookmark,
+  SignIn,
+  SignInSuccess,
+  SignUp,
+  TestResult,
+  UserDetail,
+} from './types';
 
 export const LIKE_COURSE_REQUEST = 'user/LIKE_COURSE_REQUEST';
 export const LIKE_COURSE_SUCCESS = 'user/LIKE_COURSE_SUCCESS';
@@ -23,6 +30,10 @@ export const USER_INFO_FAILURE = 'user/USER_INFO_FAILURE';
 
 export const SET_LOG_OUT = 'user/SET_LOG_OUT';
 export const SET_LOG_IN = 'user/SET_LOG_IN';
+// 여행성향테스트 결과 저장
+export const SAVE_TEST_RESULT_REQUEST = 'test/SAVE_TEST_RESULT_REQUEST';
+export const SAVE_TEST_RESULT_SUCCESS = 'test/SAVE_TEST_RESULT_SUCCESS';
+export const SAVE_TEST_RESULT_FAILURE = 'test/SAVE_TEST_RESULT_FAILURE';
 
 export const signIn = createAsyncAction(
   SIGN_IN_REQUEST,
@@ -55,3 +66,9 @@ export const unlikeCourse = createAsyncAction(
   UNLIKE_COURSE_SUCCESS,
   UNLIKE_COURSE_FAILURE,
 )<Bookmark, Bookmark, Error>();
+
+export const saveTestResult = createAsyncAction(
+  SAVE_TEST_RESULT_REQUEST,
+  SAVE_TEST_RESULT_SUCCESS,
+  SAVE_TEST_RESULT_FAILURE,
+)<TestResult, number, Error>();

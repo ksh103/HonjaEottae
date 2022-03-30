@@ -1,7 +1,8 @@
 import { Card } from 'antd';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { AREA } from '../../assets/area';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import {
   MainGraphBlock,
   MapAreaBox,
@@ -33,43 +34,50 @@ const datas = [
 ];
 
 export default function MainGraph() {
-  const [area, setArea] = useState(0);
+  const { areaCourseCount } = useSelector((state: RootState) => state.course2);
+  const [area, setArea] = useState(3);
   const ClickAreaBlock = (num: number) => {
     setArea(num);
   };
   return (
-    <MainGraphBlock>
-      <KoreaMap>
-        <div>
-          {AREA.map((data, i) => (
-            <MapAreaBox
-              key={i}
-              x={data.x}
-              y={data.y}
-              select={i === area}
-              onClick={() => ClickAreaBlock(i)}
-            >
-              <div>{data.name}</div>
-              <div>
-                {data.count
-                  .toString()
-                  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
-              </div>
-            </MapAreaBox>
-          ))}
-          <img src="/images/korea.png" alt="map" />
-        </div>
-      </KoreaMap>
-      <AreaCourses>
-        <div className="area-title">지역별 관광 코스</div>
-        <div className="area-name">{AREA[area].name}</div>
+    <>
+      {areaCourseCount.length > 0 && (
+        <MainGraphBlock>
+          <KoreaMap>
+            <div>
+              {areaCourseCount.map((data, i) => (
+                <MapAreaBox
+                  key={i}
+                  x={data.areaX}
+                  y={data.areaY}
+                  select={area === data.areaId}
+                  onClick={() => ClickAreaBlock(data.areaId)}
+                >
+                  <div>{data.areaName}</div>
+                  <div>
+                    {data.areaCount
+                      .toString()
+                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+                  </div>
+                </MapAreaBox>
+              ))}
+              <img src="/images/korea.png" alt="map" />
+            </div>
+          </KoreaMap>
+          <AreaCourses>
+            <div className="area-title">지역별 관광 코스</div>
+            <div className="area-name">
+              {areaCourseCount[area - 1].areaName}
+            </div>
 
-        {datas.map(data => (
-          <Link href={`/course/${data.courseId}`} key={data.courseId}>
-            <Card className="area-course">{data.courseName}</Card>
-          </Link>
-        ))}
-      </AreaCourses>
-    </MainGraphBlock>
+            {datas.map(data => (
+              <Link href={`/course/${data.courseId}`} key={data.courseId}>
+                <Card className="area-course">{data.courseName}</Card>
+              </Link>
+            ))}
+          </AreaCourses>
+        </MainGraphBlock>
+      )}
+    </>
   );
 }

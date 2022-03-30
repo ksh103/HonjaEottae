@@ -12,27 +12,17 @@ const CourseTypeChart = dynamic(() => import('../../Charts/CourseTypeChart'), {
 export default function DetailGraph() {
   const { coursePercentage } = useSelector((state: RootState) => state.course2);
   return (
-    // <Row gutter={20}>
-    //   <Col span={8}>
-    //     <Content>
-    //       <div className="new">새로운 인연을 만날 확률 {coursePercentage}%</div>
-    //     </Content>
-    //   </Col>
-    //   <Col span={16}>
-    //     <Content>
-    //       <div className="graph">
-    //         <CourseTypeChart />
-    //       </div>
-    //     </Content>
-    //   </Col>
-    // </Row>
-    <GraphBlock>
-      <GraphPercentage>
-        <div>새로운 인연을 만날 확률 {50}%</div>
-      </GraphPercentage>
-      <GraphPie>
-        <CourseTypeChart />
-      </GraphPie>
-    </GraphBlock>
+    <>
+      {coursePercentage > 0 && (
+        <GraphBlock>
+          <GraphPercentage>
+            <div>새로운 인연을 만날 확률 {coursePercentage}%</div>
+          </GraphPercentage>
+          <GraphPie>
+            <CourseTypeChart />
+          </GraphPie>
+        </GraphBlock>
+      )}
+    </>
   );
 }
