@@ -47,6 +47,7 @@ const user = createReducer<UserState, UserAction>(initialState, {
       draft.userLikes.push({
         courseId: action.payload.courseId,
         courseName: action.payload.courseName,
+        image: action.payload.courseName,
       });
     }),
   [UNLIKE_COURSE_SUCCESS]: (state, action) =>

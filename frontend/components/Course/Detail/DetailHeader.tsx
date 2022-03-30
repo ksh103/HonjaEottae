@@ -12,7 +12,7 @@ import { RootState } from '../../../store';
 import { likeCourse, unlikeCourse } from '../../../store/user';
 export default function DetailHeader() {
   const dispatch = useDispatch();
-  const { courseId, courseInfo } = useSelector(
+  const { courseId, courseInfo, courseTourist } = useSelector(
     (state: RootState) => state.course2,
   );
   const { isLogin, userLikes, userInfo } = useSelector(
@@ -41,6 +41,7 @@ export default function DetailHeader() {
         courseId: courseId,
         courseName: courseInfo.courseName,
         userId: userInfo.userId,
+        image: courseTourist[0].image,
       }),
     );
   };
@@ -51,6 +52,7 @@ export default function DetailHeader() {
         courseId: courseId,
         courseName: courseInfo.courseName,
         userId: userInfo.userId,
+        image: courseTourist[0].image,
       }),
     );
   };
