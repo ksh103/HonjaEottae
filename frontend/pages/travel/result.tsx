@@ -17,7 +17,7 @@ import {
 } from '../../components/Travel/Travel.style';
 import TypeCourse from '../../components/Travel/TypeCourse';
 import { RootState } from '../../store';
-import { getTestResult } from '../../store/test';
+import { getTestResult } from '../../store/travel';
 
 const TravelResult: NextPage = () => {
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ const TravelResult: NextPage = () => {
   const [rank, setRank] = useState<number[]>([]);
   const [percentage, setPercentage] = useState(0);
   const dispatch = useDispatch();
-  const { typeResult } = useSelector((state: RootState) => state.test);
+  const { typeResult } = useSelector((state: RootState) => state.travel);
 
   const getTypeRank = useCallback(() => {
     dispatch(getTestResult.request(''));
