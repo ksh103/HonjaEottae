@@ -17,8 +17,6 @@ const ChatApp: NextPage = () => {
   const { userInfo } = useSelector((state: RootState) => state.user);
   // const [name, setName] = useState('손은성');
   const [value, setValue] = useState('');
-  const [room, setRoom] = useState(1);
-  socket.emit('room', room);
   useEffect(() => {
     socket.on(
       'receive message',
@@ -34,7 +32,6 @@ const ChatApp: NextPage = () => {
     socket.emit('send message', {
       name: userInfo.userName,
       message: value,
-      room: room,
     });
     setValue('');
   };
