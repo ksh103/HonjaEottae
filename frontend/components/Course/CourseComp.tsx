@@ -14,27 +14,32 @@ const CourseComp: NextPage = () => {
     {
       courseId: 1,
       courseName: '임시 데이터',
-      img: 'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
+      image:
+        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
     },
     {
       courseId: 1,
       courseName: '임시 데이터',
-      img: 'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
+      image:
+        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
     },
     {
       courseId: 1,
       courseName: '임시 데이터',
-      img: 'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
+      image:
+        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
     },
     {
       courseId: 1,
       courseName: '임시 데이터',
-      img: 'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
+      image:
+        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
     },
     {
       courseId: 1,
       courseName: '임시 데이터',
-      img: 'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
+      image:
+        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
     },
   ];
   const { userInfo } = useSelector((state: RootState) => state.user);
