@@ -9,7 +9,7 @@ export interface CourseListProps {
   data: {
     courseId: number;
     courseName: string;
-    img: string;
+    image: string;
   }[];
 }
 
@@ -39,7 +39,7 @@ const CourseList = (data: CourseListProps) => {
               <CourseForm
                 courseName={data.courseName}
                 courseId={data.courseId}
-                imgSrc={data.img}
+                imgSrc={data.image}
                 key={idx}
               />
             ))}
