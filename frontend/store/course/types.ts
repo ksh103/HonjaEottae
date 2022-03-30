@@ -10,7 +10,7 @@ export type SearchCourseResult = {
 export type SearchCourse = {
   courseId: number;
   courseName: string;
-  //   courseImg:string
+  img: string;
 };
 
 export type CourseState = {

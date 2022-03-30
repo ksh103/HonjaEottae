@@ -13,8 +13,7 @@ export async function searchTourlistAPI(keyword: string) {
 }
 
 export async function courseRegisterAPI(payload: any) {
-  console.log('함수', payload);
-  const datas = await axios.post(`${BASE_URL}course`, { payload });
-
+  console.log('api 호출');
+  const datas = await axios.post(`${BASE_URL}course`, payload);
   return datas;
 }
