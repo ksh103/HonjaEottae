@@ -1,5 +1,5 @@
 import { FiArrowRight, FiX } from 'react-icons/fi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { courseRegitser } from '../../store/register';
@@ -40,20 +40,22 @@ const TourList = ({ title, date, content, button }: TourListProps) => {
   const removeList = (title: string) => {
     setSelectListTitle(selectListTitle.filter(element => element !== title));
   };
+  useEffect(() => {
+    // 코스등록 api 중복호출 방지
+    if (button) {
+      dispatch(
+        courseRegitser.request({
+          courseContent: content,
+          courseDays: date,
+          courseDistance: '',
+          courseName: title,
+          touristId: selectListId,
+          userId: userInfo.userId,
+        }),
+      );
+    }
+  }, [button]);
 
-  if (button) {
-    // 코스등록 버튼이 눌러졌다면
-    dispatch(
-      courseRegitser.request({
-        courseContent: content,
-        courseDays: date,
-        courseDistance: '',
-        courseName: title,
-        touristId: selectListId,
-        userId: userInfo.userId,
-      }),
-    );
-  }
   return (
     <>
       <SelectListWrapper>

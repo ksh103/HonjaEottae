@@ -6,11 +6,16 @@ import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 type scrollVisibilityApiType = React.ContextType<typeof VisibilityContext>; // 가로스크롤
 
 export interface CourseListProps {
-  data: { courseId: number; courseName: string }[];
+  data: {
+    courseId: number;
+    courseName: string;
+    img: string;
+  }[];
 }
 
 const CourseList = (data: CourseListProps) => {
   const datas = data.data;
+  console.log(datas);
   const { dragStart, dragStop, dragMove, dragging } = useDrag();
   const handleDrag =
     ({ scrollContainer }: scrollVisibilityApiType) =>
@@ -34,6 +39,7 @@ const CourseList = (data: CourseListProps) => {
               <CourseForm
                 courseName={data.courseName}
                 courseId={data.courseId}
+                imgSrc={data.img}
                 key={idx}
               />
             ))}
