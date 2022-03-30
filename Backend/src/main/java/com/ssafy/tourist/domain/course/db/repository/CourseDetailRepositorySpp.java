@@ -78,7 +78,7 @@ public class CourseDetailRepositorySpp {
                 .leftJoin(qUser).on(qUser.tourTestId.eq(qTourTest.tourTestId))
                 .leftJoin(qTour).on(qUser.userId.eq(qTour.userId))
                 .leftJoin(qCourse).on(qCourse.courseId.eq(qTour.courseId))
-                .where(qTour.isStart.eq(true).and(qCourse.courseId.eq(courseId)))
+                .where(qTour.isStart.eq(true).and(qCourse.courseId.eq(courseId)).and(qTourTest.tourTestId.lt(7)))
                 .groupBy(qTourTest.tourTestId)
                 .fetch();
     }
