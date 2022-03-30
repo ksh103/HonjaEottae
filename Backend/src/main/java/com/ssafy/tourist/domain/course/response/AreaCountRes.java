@@ -15,13 +15,13 @@ import java.util.List;
 @ApiModel(value = "areaCountRes", description = "지역별 카운트 응답")
 public class AreaCountRes extends BaseResponseBody {
     @ApiModelProperty(value = "지역별 관광지 개수 정보")
-    List<AreaCount> areaCounts = new ArrayList<>();
+    List<AreaCount> list = new ArrayList<>();
 
     public static AreaCountRes of (Integer statusCode, String message,List<AreaCount> list){
         AreaCountRes res = new AreaCountRes();
         res.setStatusCode(statusCode);
         res.setMessage(message);
-        res.setAreaCounts(list);
+        res.setList(list);
         return res;
     }
 }
