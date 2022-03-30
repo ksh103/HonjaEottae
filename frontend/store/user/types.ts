@@ -18,6 +18,7 @@ export type Bookmark = {
   courseId: number;
   courseName: string;
   userId: number;
+  image: string;
 };
 
 export type SignUp = {
