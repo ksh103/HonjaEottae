@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { Bookmark, SignIn, SignUp } from './types';
+import { Bookmark, SignIn, SignUp, TestResult } from './types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
 
 export async function SignInAPI({ userEmail, userPassword }: SignIn) {
   const datas = await axios
@@ -46,6 +47,7 @@ export async function UserCoursesAPI(userId: number) {
     return {
       courseId: data.courseId,
       courseName: data.courseName,
+      image: IMAGE_URL + data.fileId + '/' + data.touristId,
     };
   });
 }
@@ -60,6 +62,7 @@ export async function UserLikesAPI(userId: number) {
     return {
       courseId: data.courseId,
       courseName: data.courseName,
+      image: IMAGE_URL + data.fileId + '/' + data.touristId,
     };
   });
 }
@@ -67,7 +70,7 @@ export async function UserLikesAPI(userId: number) {
 // 사용자 정보 가져오기
 export async function UserInfoAPI(userEmail: string) {
   const info = await axios
-    .get(`${BASE_URL}user/user/{userEmail}?userEmail=${userEmail}`)
+    .get(`${BASE_URL}user/{userEmail}?userEmail=${userEmail}`)
     .then(res => res.data);
   const courses = await UserCoursesAPI(info.userId);
   const likes = await UserLikesAPI(info.userId);
@@ -77,4 +80,13 @@ export async function UserInfoAPI(userEmail: string) {
     userLikes: likes,
   };
   return result;
+}
+
+// 여행성향테스트 결과 저장
+export async function SaveTestResultAPI({ tourTestId, userId }: TestResult) {
+  await axios.put(`${BASE_URL}tour-test`, {
+    tourTestId: tourTestId,
+    userId: userId,
+  });
+  return tourTestId;
 }

@@ -3,6 +3,6 @@ import { startTour } from './actions';
 
 function* startTourSaga() {}
 
-export function* recordSaga() {
+export function* tourSaga() {
   yield all([takeLatest(startTour.request, startTourSaga)]);
 }

@@ -7,13 +7,14 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_UP_SUCCESS,
   USER_INFO_SUCCESS,
+  SAVE_TEST_RESULT_SUCCESS,
 } from './actions';
 import produce from 'immer';
 
 const initialState: UserState = {
   userInfo: {
     userId: 0,
-    tourTestId: '',
+    tourTestId: 0,
     userName: '',
   },
   userCourses: [],
@@ -53,6 +54,10 @@ const user = createReducer<UserState, UserAction>(initialState, {
       draft.userLikes = draft.userLikes.filter(
         data => data.courseId !== action.payload.courseId,
       );
+    }),
+  [SAVE_TEST_RESULT_SUCCESS]: (state, action) =>
+    produce(state, draft => {
+      draft.userInfo.tourTestId = action.payload;
     }),
 });
 

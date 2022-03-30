@@ -6,6 +6,20 @@ export type Course2Action = ActionType<typeof actions>;
 export type PopularCourse = {
   courseId: number;
   courseName: string;
+  image: string;
+};
+
+export type AreaCourseCount = {
+  areaId: number;
+  areaName: string;
+  areaX: number;
+  areaY: number;
+  areaCount: number;
+};
+
+export type MainData = {
+  popularCourses: PopularCourse[];
+  areaCourseCount: AreaCourseCount[];
 };
 
 export type CourseInfo = {
@@ -18,19 +32,19 @@ export type CourseInfo = {
 };
 
 export type CourseTourist = {
-  // touristId: number;
+  touristId: number;
   touristName: string;
   touristAddress: string;
   touristLat: string;
   touristLng: string;
-  // touristImageId: number;
+  image: string;
 };
 
 export type CourseReview = {
   recordId: number;
   recordContent: string;
   recordRegDt: string;
-  // recordImage: string;
+  image: string;
   userId: number;
   tourTestId: number;
   userName: string;
@@ -55,6 +69,7 @@ export type CourseDetail = {
 
 export type Course2State = {
   popularCourses: PopularCourse[];
+  areaCourseCount: AreaCourseCount[];
   courseId: number;
   courseInfo: CourseInfo;
   courseTourist: CourseTourist[];

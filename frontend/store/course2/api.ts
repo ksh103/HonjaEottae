@@ -1,18 +1,41 @@
 import axios from 'axios';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
+// 지역별 코스 카운트
+export async function GetAreaCourseCountAPI() {
+  const result = await axios
+    .get(`${BASE_URL}area`)
+    .then(res => res.data.areaCounts);
+  return result;
+}
 
 // 인기 코스 가져오기
 export async function GetPopularCoursesAPI(size: number) {
   const result = await axios
     .get(`${BASE_URL}course/course-hits?page=1&size=${size}`)
     .then(res => res.data.list.content);
+
   return result.map((data: any) => {
+    if (data.fileId === 0) {
+    }
     return {
       courseId: data.courseId,
       courseName: data.courseName,
+      image: IMAGE_URL + data.fileId + '/' + data.touristId,
     };
   });
+}
+
+// 메인 페이지 정보 가져오기
+export async function GetMainDataAPI() {
+  const area = await GetAreaCourseCountAPI();
+  const popular = await GetPopularCoursesAPI(3);
+  const result = {
+    areaCourseCount: area,
+    popularCourses: popular,
+  };
+  return result;
 }
 
 // 코스 조회수 올리기
@@ -73,7 +96,21 @@ export async function GetCourseInfoAPI(courseId: number) {
   const result = await axios
     .get(`${BASE_URL}course-detail/user/${courseId}`)
     .then(res => res.data);
-  return result;
+  console.log(result);
+  const info = {
+    courseInfo: result.courseDetailList[0],
+    courseTourist: result.courseTouristDetailList.map((data: any) => {
+      return {
+        touristId: data.touristId,
+        touristName: data.touristName,
+        touristAddress: data.touristAddress,
+        touristLat: data.touristLat,
+        touristLng: data.touristLng,
+        image: IMAGE_URL + data.fileId + '/' + data.touristId,
+      };
+    }),
+  };
+  return info;
 }
 
 // 코스 관련 정보 가져오기
@@ -86,8 +123,8 @@ export async function GetCourseDetailAPI(courseId: number) {
   const percentage = await GetCoursePercentageAPI(courseId);
   const result = {
     courseId: courseId,
-    courseInfo: info.courseDetailList[0],
-    courseTourist: info.courseTouristDetailList,
+    courseInfo: info.courseInfo,
+    courseTourist: info.courseTourist,
     courseReview: review,
     courseType: type,
     courseTag: tag,

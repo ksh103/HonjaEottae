@@ -1,14 +1,12 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { getCourseDetail, getPopularCourses } from './actions';
-import { GetCourseDetailAPI, GetPopularCoursesAPI } from './api';
-import { CourseDetail, CourseInfo, PopularCourse } from './types';
+import { getCourseDetail, getMainData } from './actions';
+import { GetCourseDetailAPI, GetMainDataAPI } from './api';
+import { CourseDetail, MainData } from './types';
 
-function* getPopularCoursesSaga({
-  payload,
-}: ReturnType<typeof getPopularCourses.request>) {
+function* getMainDataSaga({ payload }: ReturnType<typeof getMainData.request>) {
   try {
-    const result: PopularCourse[] = yield call(GetPopularCoursesAPI, payload);
-    yield put(getPopularCourses.success(result));
+    const result: MainData = yield call(GetMainDataAPI);
+    yield put(getMainData.success(result));
   } catch (error) {
     console.error(error);
   }
@@ -27,7 +25,7 @@ function* getCourseDetailSaga({
 
 export function* course2Saga() {
   yield all([
-    takeLatest(getPopularCourses.request, getPopularCoursesSaga),
+    takeLatest(getMainData.request, getMainDataSaga),
     takeLatest(getCourseDetail.request, getCourseDetailSaga),
   ]);
 }

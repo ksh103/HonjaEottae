@@ -17,16 +17,15 @@ import {
 } from '../../components/Travel/Travel.style';
 import TypeCourse from '../../components/Travel/TypeCourse';
 import { RootState } from '../../store';
-import { getTestResult } from '../../store/travel';
+import { getTestResult } from '../../store/test';
 
 const TravelResult: NextPage = () => {
   const [loading, setLoading] = useState(true);
+  const [type, setType] = useState(0);
   const [rank, setRank] = useState<number[]>([]);
   const [percentage, setPercentage] = useState(0);
   const dispatch = useDispatch();
-  const { typeResult, myType } = useSelector(
-    (state: RootState) => state.travel,
-  );
+  const { typeResult } = useSelector((state: RootState) => state.test);
 
   const getTypeRank = useCallback(() => {
     dispatch(getTestResult.request(''));
@@ -44,6 +43,8 @@ const TravelResult: NextPage = () => {
     if (typeResult.length === 0) {
       getTypeRank();
     }
+    const result = localStorage.getItem('type');
+    if (result) setType(+result);
   }, []);
 
   useEffect(() => {
@@ -77,9 +78,9 @@ const TravelResult: NextPage = () => {
       ) : (
         <Wrapper>
           <h1 className="title">여행 성향 테스트</h1>
-          <TestTitle color={TEST.results[myType].color}>
+          <TestTitle color={TEST.results[type].color}>
             <div
-              dangerouslySetInnerHTML={{ __html: TEST.results[myType].desc }}
+              dangerouslySetInnerHTML={{ __html: TEST.results[type].desc }}
             ></div>
             <h2>
               전체 테스트 참여자 중 <label>15%</label>가 같은 유형입니다.
@@ -90,7 +91,7 @@ const TravelResult: NextPage = () => {
           </div>
           <TestResultCard>
             <h1 className="title">🚩 유형별 코스 추천</h1>
-            {TEST.results[myType].courses.map((course, i) => {
+            {TEST.results[type].courses.map((course, i) => {
               return (
                 <TypeCourse
                   key={i}

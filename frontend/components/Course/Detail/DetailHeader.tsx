@@ -15,7 +15,9 @@ export default function DetailHeader() {
   const { courseId, courseInfo } = useSelector(
     (state: RootState) => state.course2,
   );
-  const { userLikes, userInfo } = useSelector((state: RootState) => state.user);
+  const { isLogin, userLikes, userInfo } = useSelector(
+    (state: RootState) => state.user,
+  );
   const [like, setLike] = useState(false);
   const [tour, setTour] = useState(false);
 
@@ -67,28 +69,30 @@ export default function DetailHeader() {
         </div>
         <div>{courseInfo.courseName}</div>
       </Title>
-      <div>
-        <ul>
-          {like ? (
-            <li onClick={UnlikeCourse}>
-              <HeartFilled style={{ color: 'red' }} /> 취소
-            </li>
-          ) : (
-            <li onClick={LikeCourse}>
-              <HeartOutlined /> 저장
-            </li>
-          )}
-          {tour ? (
-            <li onClick={EndCourse}>
-              <FireFilled style={{ color: 'red' }} /> 여행종료
-            </li>
-          ) : (
-            <li onClick={StartCourse}>
-              <FireOutlined /> 여행시작
-            </li>
-          )}
-        </ul>
-      </div>
+      {isLogin && (
+        <div>
+          <ul>
+            {like ? (
+              <li onClick={UnlikeCourse}>
+                <HeartFilled style={{ color: 'red' }} /> 취소
+              </li>
+            ) : (
+              <li onClick={LikeCourse}>
+                <HeartOutlined /> 저장
+              </li>
+            )}
+            {tour ? (
+              <li onClick={EndCourse}>
+                <FireFilled style={{ color: 'red' }} /> 여행종료
+              </li>
+            ) : (
+              <li onClick={StartCourse}>
+                <FireOutlined /> 여행시작
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
     </Header>
   );
 }

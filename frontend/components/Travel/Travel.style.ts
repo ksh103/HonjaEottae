@@ -97,6 +97,7 @@ const MainImage = styled.div`
   margin-bottom: 50px;
   img {
     width: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -120,6 +121,7 @@ const TypeCourseBlock = styled.div`
   img {
     height: 100%;
     width: 100%;
+    object-fit: cover;
     opacity: 0.6;
   }
   .type-title {
@@ -148,6 +150,7 @@ const PopularTypeBlock = styled.div`
   }
   img {
     width: 100%;
+    object-fit: cover;
   }
 `;
 

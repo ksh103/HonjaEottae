@@ -6,6 +6,12 @@ export type UserAction = ActionType<typeof actions>;
 export type Course = {
   courseId: number;
   courseName: string;
+  image: string;
+};
+
+export type TestResult = {
+  userId: number;
+  tourTestId: number;
 };
 
 export type Bookmark = {
@@ -32,7 +38,7 @@ export type SignInSuccess = {
 
 export type UserInfo = {
   userId: number;
-  tourTestId: string;
+  tourTestId: number;
   userName: string;
 };
 

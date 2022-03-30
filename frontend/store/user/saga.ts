@@ -1,7 +1,15 @@
-import { likeCourse, signIn, signUp, unlikeCourse, userInfo } from './actions';
+import {
+  likeCourse,
+  saveTestResult,
+  signIn,
+  signUp,
+  unlikeCourse,
+  userInfo,
+} from './actions';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {
   LikeCourseAPI,
+  SaveTestResultAPI,
   SignInAPI,
   SignUpAPI,
   UnlikeCourseAPI,
@@ -62,6 +70,17 @@ function* unlikeCourseSaga({
   }
 }
 
+function* saveTestResultSaga({
+  payload,
+}: ReturnType<typeof saveTestResult.request>) {
+  try {
+    const result: number = yield call(SaveTestResultAPI, payload);
+    yield put(saveTestResult.success(result));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export function* userSaga() {
   yield all([
     takeLatest(signIn.request, signInSaga),
@@ -69,5 +88,6 @@ export function* userSaga() {
     takeLatest(userInfo.request, userInfoSaga),
     takeLatest(likeCourse.request, likeCourseSaga),
     takeLatest(unlikeCourse.request, unlikeCourseSaga),
+    takeLatest(saveTestResult.request, saveTestResultSaga),
   ]);
 }

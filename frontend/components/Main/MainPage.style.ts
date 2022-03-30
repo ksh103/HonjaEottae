@@ -31,6 +31,7 @@ const SliderCard = styled.div`
     padding: 25px;
     font-size: 22px;
     width: 100%;
+    /* color: black; */
   }
 `;
 
