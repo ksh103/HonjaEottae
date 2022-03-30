@@ -3,6 +3,7 @@ package com.ssafy.tourist.domain.course.db.repository;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ssafy.tourist.domain.course.db.bean.AreaPopularCourse;
 import com.ssafy.tourist.domain.course.db.bean.BookmarkCourse;
 import com.ssafy.tourist.domain.course.db.bean.CourseInfo;
 import com.ssafy.tourist.domain.course.db.entity.*;
@@ -25,7 +26,7 @@ public class CourseRepositorySpp {
     QCourseData qCourseData = QCourseData.courseData;
     QTouristImgPath qTouristImgPath = QTouristImgPath.touristImgPath;
     QBookmark qBookmark = QBookmark.bookmark;
-
+    QTourist qTourist = QTourist.tourist;
 
     // 북마크한 코스 조회
     public List<BookmarkCourse> findBookmarkCourse(int userId) {
@@ -81,5 +82,23 @@ public class CourseRepositorySpp {
                 .limit(pageable.getPageSize()).fetchResults();
 
         return new PageImpl<>(list.getResults(), pageable, list.getTotal());
+    }
+
+    //지역 인기 코스 조회
+    public List<AreaPopularCourse> findPopularCourse (String areaName) {
+
+        return  jpaQueryFactory.select(Projections.constructor(AreaPopularCourse.class,
+                        qCourse.courseId, qCourse.courseName,qBookmark.courseId.count().as("countA")))
+                .from(qCourse)
+                .leftJoin(qCourseData).on(qCourseData.courseId.eq(qCourse.courseId))
+                .leftJoin(qTourist).on(qTourist.touristId.eq(qTourist.touristId))
+                .leftJoin(qBookmark).on(qBookmark.courseId.eq(qCourse.courseId))
+                .where(qCourseData.courseDataId.eq(1)
+                        .and(qTourist.touristAddress.substring(0, 4).eq(areaName))
+                        .and(qCourseData.touristId.eq(qTourist.touristId)))
+                .groupBy(qCourse.courseId, qCourse.courseName)
+                .orderBy(qBookmark.courseId.count().desc()).limit(5)
+                .fetch();
+
     }
 }
