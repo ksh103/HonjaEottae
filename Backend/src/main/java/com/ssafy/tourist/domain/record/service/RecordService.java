@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.record.service;
 
+import com.ssafy.tourist.domain.record.db.bean.RecordWriteList;
 import com.ssafy.tourist.domain.record.db.entity.Record;
 import com.ssafy.tourist.domain.record.request.RecordModifyPostReq;
 import com.ssafy.tourist.domain.record.request.RecordRegisterPostReq;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface RecordService {
     int recordRegisterByUser(RecordRegisterPostReq recordRegisterPostReq, MultipartHttpServletRequest request) throws IOException;
     int recordModifyByUser(RecordModifyPostReq recordModifyPostReq);
-    List<Record> recordWriteListByUser(int userId, int courseId);
+    List<RecordWriteList> recordWriteListByUser(int userId, int courseId);
 
     String getRecordImgPath(int fileId, int recordId, int courseId);
 }

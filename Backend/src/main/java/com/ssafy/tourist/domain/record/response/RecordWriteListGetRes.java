@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.record.response;
 
+import com.ssafy.tourist.domain.record.db.bean.RecordWriteList;
 import com.ssafy.tourist.domain.record.db.entity.Record;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
 import io.swagger.annotations.ApiModel;
@@ -14,9 +15,9 @@ import java.util.List;
 @ApiModel(value = "RecordWriteListGetRes", description = "사용자가 작성한 여행 레코드 조회 응답")
 public class RecordWriteListGetRes extends BaseResponseBody {
     @ApiModelProperty(value = "사용자가 작성한 여행 레코드 조회 정보")
-    List<Record> list = null;
+    List<RecordWriteList> list = null;
 
-    public static RecordWriteListGetRes of (Integer statusCode, String message, List<Record> list) {
+    public static RecordWriteListGetRes of (Integer statusCode, String message, List<RecordWriteList> list) {
         RecordWriteListGetRes res = new RecordWriteListGetRes();
         res.setStatusCode(statusCode);
         res.setMessage(message);
