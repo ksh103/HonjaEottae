@@ -20,7 +20,7 @@ db = pymysql.connect(
 )
 
 
-@app.route('/data/course/<userId>', methods=['GET'])
+@app.route('/data/<userId>', methods=['GET'])
 def index(userId):
 
   mycursor = db.cursor()
