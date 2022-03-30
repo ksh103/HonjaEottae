@@ -12,4 +12,6 @@ public interface RecordService {
     int recordRegisterByUser(RecordRegisterPostReq recordRegisterPostReq, MultipartHttpServletRequest request) throws IOException;
     int recordModifyByUser(RecordModifyPostReq recordModifyPostReq);
     List<Record> recordWriteListByUser(int userId, int courseId);
+
+    String getRecordImgPath(int fileId, int recordId, int courseId);
 }
