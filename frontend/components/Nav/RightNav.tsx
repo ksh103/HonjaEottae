@@ -51,6 +51,16 @@ const RightNav: NextPage<RightNavProps> = ({ open }) => {
               </Link>
             </li>
             <li>
+              <Link href="/chat">
+                <label>채팅</label>
+              </Link>
+            </li>
+            <li>
+              <Link href="/mypage">
+                <label>마이페이지</label>
+              </Link>
+            </li>
+            <li>
               <label onClick={LogoutButton}>로그아웃</label>
             </li>
           </>
