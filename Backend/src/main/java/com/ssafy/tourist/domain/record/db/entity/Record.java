@@ -2,6 +2,7 @@ package com.ssafy.tourist.domain.record.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ssafy.tourist.domain.course.db.entity.Tourist;
+import com.ssafy.tourist.domain.course.db.entity.TouristImgPath;
 import com.ssafy.tourist.domain.user.db.entity.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -45,4 +47,8 @@ public class Record {
     @OneToOne
     @JoinColumn(name = "user_id", updatable = false, insertable = false)
     private User user;
+
+    @OneToOne
+    @JoinColumn(name = "record_id", updatable = false, insertable = false)
+    private RecordImgPath recordImgPath;
 }

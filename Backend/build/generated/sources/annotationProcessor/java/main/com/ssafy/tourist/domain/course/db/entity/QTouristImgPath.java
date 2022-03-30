@@ -21,13 +21,13 @@ public class QTouristImgPath extends EntityPathBase<TouristImgPath> {
 
     public final NumberPath<Integer> fileId = createNumber("fileId", Integer.class);
 
+    public final StringPath fileName = createString("fileName");
+
     public final DateTimePath<java.time.LocalDateTime> fileRegDt = createDateTime("fileRegDt", java.time.LocalDateTime.class);
 
     public final StringPath fileUrl = createString("fileUrl");
 
     public final NumberPath<Integer> touristId = createNumber("touristId", Integer.class);
-
-    public final StringPath touristName = createString("touristName");
 
     public QTouristImgPath(String variable) {
         super(TouristImgPath.class, forVariable(variable));
