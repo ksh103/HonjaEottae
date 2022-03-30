@@ -12,6 +12,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +23,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Api("여행 레코드(일기) API")
@@ -80,6 +87,31 @@ public class RecordController {
             log.error("recordWriteList - Record doesn't exist.");
             return ResponseEntity.status(400).body(RecordWriteListGetRes.of(400, "Record doesn't exist", null));
         }
+    }
+
+    @ApiOperation(value = "여행 레코드(일기) 이미지 확인")
+    @GetMapping(value = "/image/{fileId}/{recordId}/{courseId}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<Resource> touristImage (@ApiParam(value = "파일 구분 번호") @PathVariable("fileId") int  fileId,
+                                                  @ApiParam(value = "여행 레코드(일기) 구분 번호") @PathVariable("recordId") int  recordId,
+                                                  @ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int  courseId) {
+
+        String filePath = recordService.getRecordImgPath(fileId, recordId, courseId);
+
+        Resource resource = new FileSystemResource(filePath);
+        if (!resource.exists()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        HttpHeaders headers = new HttpHeaders();
+        Path path = null;
+
+        try {
+            path = Paths.get(filePath);
+            headers.add("Content-Type", Files.probeContentType(path));
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(resource, headers, HttpStatus.OK);
     }
 }
  

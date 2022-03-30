@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.record.service;
 
+import com.ssafy.tourist.domain.course.db.entity.TouristImgPath;
 import com.ssafy.tourist.domain.course.db.repository.CourseRepository;
 import com.ssafy.tourist.domain.record.db.entity.Record;
 import com.ssafy.tourist.domain.record.db.entity.RecordImgPath;
@@ -136,5 +137,14 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public List<Record> recordWriteListByUser(int userId, int courseId) {
         return recordRepository.findRecordByUserIdAndCourseId(userId, courseId);
+    }
+
+    @Override
+    public String getRecordImgPath(int fileId, int recordId, int courseId) {
+        RecordImgPath recordImgPath = recordImgPathRepository.findRecordImgPathByFileIdAndRecordIdAndCourseId(fileId, recordId, courseId);
+        String path = uploadPath + recordImgPath.getFileUrl();
+
+        System.out.println(path);
+        return path;
     }
 }
