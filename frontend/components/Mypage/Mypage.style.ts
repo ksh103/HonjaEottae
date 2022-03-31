@@ -6,6 +6,7 @@ const MypageWrapper = styled.div<{ height: string }>`
   height: ${props => props.height};
   background-color: ${props => props.theme.colors.backgroundColor};
   border-radius: 1vw;
+
   .subTitle {
     height: 10px;
     padding: 15px;
@@ -26,8 +27,7 @@ const GraphWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 85%;
-  margin-top: 13px;
+  height: 100%;
   .LGraph {
     border-radius: 1vw;
     width: 48%;
@@ -39,6 +39,7 @@ const GraphWrapper = styled.div`
     width: 48%;
     height: 90%;
     background-color: white;
+    /* overflow: auto; */
   }
 `;
 

@@ -14,8 +14,7 @@ export async function SearchLocationAPI({ lat, lng }: SearchLocationResult) {
       image: data.touristImgPath.map((imageData: any) => {
         if (imageData.fileId == 0) {
           return {
-            image:
-              'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
+            image: '/images/noimage.png',
           };
         } else {
           return {

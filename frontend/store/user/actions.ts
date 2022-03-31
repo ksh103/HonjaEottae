@@ -1,7 +1,9 @@
 import { createAction, createAsyncAction } from 'typesafe-actions';
 import {
+  AreaCourse,
   Bookmark,
   Course,
+  MonthCourse,
   SignIn,
   SignInSuccess,
   SignUp,
@@ -46,6 +48,16 @@ export const MY_COURSE_FAILURE = 'user/MY_COURSE_FAILURE';
 export const VISIT_COURSE_REQUEST = 'user/VISIT_COURSE_REQUEST';
 export const VISIT_COURSE_SUCCESS = 'user/VISIT_COURSE_SUCCESS';
 export const VISIT_COURSE_FAILURE = 'user/VISIT_COURSE_FAILURE';
+
+// 회원 방문한 코스 월별 분석(마이페이지 좌측그래프)
+export const MONTH_COURSE_REQUEST = 'user/MONTH_COURSE_REQUEST';
+export const MONTH_COURSE_SUCCESS = 'user/MONTH_COURSE_SUCCESS';
+export const MONTH_COURSE_FAILURE = 'user/MONTH_COURSE_FAILURE';
+
+// 회원 방문한 지역 분석 (마이페이지 우측그래프)
+export const AREA_COURSE_REQUEST = 'user/AREA_COURSE_REQUEST';
+export const AREA_COURSE_SUCCESS = 'user/AREA_COURSE_SUCCESS';
+export const AREA_COURSE_FAILURE = 'user/AREA_COURSE_FAILURE';
 
 export const signIn = createAsyncAction(
   SIGN_IN_REQUEST,
@@ -96,3 +108,15 @@ export const visitCourse = createAsyncAction(
   VISIT_COURSE_SUCCESS,
   VISIT_COURSE_FAILURE,
 )<number, VisitCourse[], Error>();
+
+export const monthCourse = createAsyncAction(
+  MONTH_COURSE_REQUEST,
+  MONTH_COURSE_SUCCESS,
+  MONTH_COURSE_FAILURE,
+)<number, MonthCourse[], Error>();
+
+export const areaCourse = createAsyncAction(
+  AREA_COURSE_REQUEST,
+  AREA_COURSE_SUCCESS,
+  AREA_COURSE_FAILURE,
+)<number, AreaCourse[], Error>();

@@ -48,8 +48,7 @@ export async function UserCoursesAPI(userId: number) {
       return {
         courseId: data.courseId,
         courseName: data.courseName,
-        image:
-          'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483097.jpg',
+        image: '/images/noimage.png',
       };
     } else {
       return {
@@ -72,8 +71,7 @@ export async function UserLikesAPI(userId: number) {
       return {
         courseId: data.courseId,
         courseName: data.courseName,
-        image:
-          'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483097.jpg',
+        image: '/images/noimage.png',
       };
     } else {
       return {
@@ -93,11 +91,15 @@ export async function UserInfoAPI(userEmail: string) {
   const courses = await UserCoursesAPI(info.userId);
   const likes = await UserLikesAPI(info.userId);
   const visitCourses = await VisitCourseAPI(info.userId);
+  const monthCourses = await MonthCourseAPI(info.userId);
+  const areaCourses = await AreaCourseAPI(info.userId);
   const result = {
     userInfo: info,
     userCourses: courses,
     userLikes: likes,
     userVisitCourses: visitCourses,
+    areaCourses: areaCourses,
+    monthCourses: monthCourses,
   };
   return result;
 }
@@ -114,5 +116,20 @@ export async function SaveTestResultAPI({ tourTestId, userId }: TestResult) {
 // 내가 방문한 코스 조회(마이페이지 지도)
 export async function VisitCourseAPI(userId: number) {
   const datas = await axios.get(`${BASE_URL}user/user-location/${userId}`);
+  return datas.data.list;
+}
+
+// 회원 방문한 지역 분석 (마이페이지 우측그래프)
+export async function AreaCourseAPI(userId: number) {
+  const datas = await axios.get(`${BASE_URL}user/user-log/area/${userId}`);
+  const result = datas.data.list.map((data: any) => {
+    return { id: data.touristAddress, value: data.touristCount };
+  });
+  return result;
+}
+
+// 회원 방문한 코스 월별 분석(마이페이지 좌측그래프)
+export async function MonthCourseAPI(userId: number) {
+  const datas = await axios.get(`${BASE_URL}user/user-log/date/${userId}`);
   return datas.data.list;
 }
