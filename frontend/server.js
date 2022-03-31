@@ -29,9 +29,8 @@ var options = {
 //       transports: ['websocket'],
 // });
 
-var server = https.createServer({key: fs.readFileSync('${path_root}/privkey.pem'),
-cert: fs.readFileSync('${path_root}/cert.pem')}, app);
-server.listen(4002);
+var server = https.createServer(options, app);
+server.listen(443);
 
 // var https = require('https').createServer(options, app);
 // https.listen(4002, () => {
