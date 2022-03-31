@@ -127,4 +127,4 @@ def recommend_course(keyword_name):
 
     result = result.loc[:, ['course_id', 'course_name', 'tourist_id', 'file_id']]
     
-    return result.set_index('course_id',drop=True).to_json(force_ascii=False, orient='records')
+    return result.set_index('course_id',drop=False).to_json(force_ascii=False, orient='records')
