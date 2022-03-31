@@ -38,7 +38,7 @@ public class UserRepositorySpp {
                         ,qTourist.touristLng.as("touristLng")))
                 .from(qTour).join(qCourseData).on(qCourseData.courseId.eq(qTour.courseId))
                 .join(qTourist).on(qTourist.touristId.eq(qCourseData.touristId))
-                .where(qTour.isEnd.eq(true).and(qTour.userId.eq(userId))).fetch();
+                .where(qTour.isEnd.eq(true).and(qTour.userId.eq(userId)).and(qCourseData.courseDataId.eq(1))).fetch();
 
     }
 
