@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 
 const size = {
-  mobile: '400px',
+  mobile: '500px',
   tablet: '768px',
   laptopS: '900px',
   laptopM: '1239px',

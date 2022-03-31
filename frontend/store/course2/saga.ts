@@ -1,7 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { getCourseDetail, getMainData } from './actions';
-import { GetCourseDetailAPI, GetMainDataAPI } from './api';
-import { CourseDetail, MainData } from './types';
+import { getAreaCourses, getCourseDetail, getMainData } from './actions';
+import { GetAreaCoursesAPI, GetCourseDetailAPI, GetMainDataAPI } from './api';
+import { AreaCourse, CourseDetail, MainData } from './types';
 
 function* getMainDataSaga({ payload }: ReturnType<typeof getMainData.request>) {
   try {
@@ -23,9 +23,21 @@ function* getCourseDetailSaga({
   }
 }
 
+function* getAreaCoursesSaga({
+  payload,
+}: ReturnType<typeof getAreaCourses.request>) {
+  try {
+    const result: AreaCourse[] = yield call(GetAreaCoursesAPI, payload);
+    yield put(getAreaCourses.success(result));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export function* course2Saga() {
   yield all([
     takeLatest(getMainData.request, getMainDataSaga),
     takeLatest(getCourseDetail.request, getCourseDetailSaga),
+    takeLatest(getAreaCourses.request, getAreaCoursesSaga),
   ]);
 }

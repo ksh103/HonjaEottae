@@ -27,7 +27,7 @@ export default function DetailMap({ tourist }: MapProps) {
           'https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-256.png';
 
         for (let i = 0; i < tourist.length; i++) {
-          const imageSize = new window.kakao.maps.Size(40, 40);
+          const imageSize = new window.kakao.maps.Size(50, 50);
           const markerImage = new window.kakao.maps.MarkerImage(
             imageSrc,
             imageSize,
@@ -58,10 +58,10 @@ export default function DetailMap({ tourist }: MapProps) {
           const drawLine = new window.kakao.maps.Polyline({
             map: map,
             path: linePath,
-            strokeWeight: 2, //선 두께
+            strokeWeight: 3, //선 두께
             strokeColor: '#db4040', // 선 색
             strokeOpacity: 1, // 선 불투명도
-            strokeStyle: 'solid', // 선 스타일
+            strokeStyle: 'dash', // 선 스타일
           });
 
           // 인포윈도우 생성하기

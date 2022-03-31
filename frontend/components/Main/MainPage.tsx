@@ -43,10 +43,10 @@ export default function MainPage() {
             ))}
           </Row>
         </MenuBlock>
-        <TravelBlock>
+        {/* <TravelBlock>
           <h1>현재 여행</h1>
           <MainTravel />
-        </TravelBlock>
+        </TravelBlock> */}
         <TravelBlock>
           <MainGraph />
         </TravelBlock>
