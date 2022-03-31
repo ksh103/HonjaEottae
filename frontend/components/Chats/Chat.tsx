@@ -10,7 +10,7 @@ interface Message {
   message: string;
 }
 
-const socket = socketIOClient('localhost:80');
+const socket = socketIOClient('j6e103.p.ssafy.io:80');
 
 const ChatApp: NextPage = () => {
   const [messageList, setMessageList] = useState<Message[]>([]);
