@@ -70,7 +70,7 @@ public class TouristController {
             return ResponseEntity.status(200).body(TouristLocationGetRes.of(200, "Success", locationTouristList));
         } else {
             log.error("Tourist doesn't exist");
-            return ResponseEntity.status(403).body(TouristLocationGetRes.of(403, "Keyword  doesn't exist", null));
+            return ResponseEntity.status(200).body(TouristLocationGetRes.of(200, "Keyword  doesn't exist", null));
         }
     }
 

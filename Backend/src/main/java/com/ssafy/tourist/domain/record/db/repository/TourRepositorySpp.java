@@ -28,7 +28,7 @@ public class TourRepositorySpp {
     QCourse qCourse = QCourse.course;
 
     public List<VisitTouristName> findVisitTouristName (int userId, int courseId) {
-        return jpaQueryFactory.select(Projections.constructor(VisitTouristName.class, qTourist.touristName)).from(qCourseData)
+        return jpaQueryFactory.select(Projections.constructor(VisitTouristName.class, qCourseData.courseDataId, qTourist.touristId, qTourist.touristName)).from(qCourseData)
                 .leftJoin(qTourStamp).on(qTourStamp.courseId.eq(qCourseData.courseId))
                 .leftJoin(qTourist).on(qTourist.touristId.eq(qCourseData.touristId))
                 .where(qTourStamp.isStamp.eq(true).and(qTourStamp.userId.eq(userId)
