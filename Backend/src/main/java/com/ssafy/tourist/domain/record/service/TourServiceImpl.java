@@ -41,6 +41,7 @@ public class TourServiceImpl implements TourService {
     TourRepositorySpp tourRepositorySpp;
 
     private static final int SUCCESS = 1;
+    private static final int NONE = 2;
     private static final int FAIL = -1;
 
     @Override
@@ -79,7 +80,24 @@ public class TourServiceImpl implements TourService {
         tourID.setCourseId(tourEndPostReq.getCourseId());
 
         if(tourRepository.findById(tourID).isPresent()) {
-            return tourRepository.tourEndByUser(tourEndPostReq.getUserId(), tourEndPostReq.getCourseId());
+            tourRepository.tourEndByUser(tourEndPostReq.getUserId(), tourEndPostReq.getCourseId());
+            return SUCCESS;
+        }else {
+            return FAIL;
+        }
+    }
+
+    @Override
+    public int courseGivingUpByUser(TourEndPostReq tourEndPostReq) {
+        TourID tourID = new TourID();
+        tourID.setUserId(tourEndPostReq.getUserId());
+        tourID.setCourseId(tourEndPostReq.getCourseId());
+
+        if(tourRepository.findById(tourID).isPresent()) {
+            tourRepository.deleteById(tourID);
+            tourStampRepository.deleteTourStampByUserIdAndCourseId(tourEndPostReq.getUserId(), tourEndPostReq.getCourseId());
+
+            return NONE;
         } else return FAIL;
     }
 

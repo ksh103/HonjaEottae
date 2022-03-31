@@ -5,6 +5,7 @@ import com.ssafy.tourist.domain.record.db.bean.TourTagList;
 import com.ssafy.tourist.domain.record.db.bean.VisitTouristName;
 import com.ssafy.tourist.domain.record.db.entity.Tag;
 import com.ssafy.tourist.domain.record.db.entity.TagCode;
+import com.ssafy.tourist.domain.record.db.repository.TourStampRepository;
 import com.ssafy.tourist.domain.record.request.TagRegisterPostReq;
 import com.ssafy.tourist.domain.record.request.TourEndPostReq;
 import com.ssafy.tourist.domain.record.request.TourStartPostReq;
@@ -20,6 +21,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +36,12 @@ public class TourController {
     @Autowired
     TourService tourService;
 
+    @Autowired
+    TourStampRepository tourStampRepository;
+
+
     private static final int SUCCESS = 1;
+    private static final int NONE = 2;
     private static final int FAIL = -1;
 
 
@@ -45,7 +52,7 @@ public class TourController {
 
         if(tourService.courseStartByUser(tourStartPostReq) == SUCCESS) {
             return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
-        }else return ResponseEntity.status(404).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
+        }else return ResponseEntity.status(403).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
     }
 
 
@@ -54,9 +61,25 @@ public class TourController {
     public ResponseEntity<? extends BaseResponseBody> courseEnd(@RequestBody TourEndPostReq tourEndPostReq) {
         log.info("tourEndByUser - Call");
 
-        if(tourService.courseEndByUser(tourEndPostReq) == SUCCESS) {
-            return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
-        }else return ResponseEntity.status(404).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
+        int userId = tourEndPostReq.getUserId();
+        int courseId = tourEndPostReq.getCourseId();
+
+        if(tourStampRepository.isStampByUserIdandCourseId(userId, courseId) != 0) {
+            if(tourService.courseEndByUser(tourEndPostReq) == SUCCESS) {
+                return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+            }else {
+                return ResponseEntity.status(403).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
+            }
+
+        }else if(tourStampRepository.isStampByUserIdandCourseId(userId, courseId) == 0){
+            if (tourService.courseGivingUpByUser(tourEndPostReq) == NONE) {
+                return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+            }else {
+                return ResponseEntity.status(403).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
+            }
+        }else {
+            return ResponseEntity.status(403).body(BaseResponseBody.of(403, "userId or courseId doesn't exist"));
+        }
     }
 
 
