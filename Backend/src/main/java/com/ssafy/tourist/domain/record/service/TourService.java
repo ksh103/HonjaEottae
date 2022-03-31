@@ -15,7 +15,7 @@ import java.util.List;
 public interface TourService {
     int courseStartByUser(TourStartPostReq tourStartPostReq);
     int courseEndByUser(TourEndPostReq tourEndPostReq);
-    boolean courseIsStartByUser(int userId, int courseId);
+    int courseIsStartByUser(int userId);
 
     int touristVisitByUser(TouristVisitPostReq touristVisitPostReq);
 
