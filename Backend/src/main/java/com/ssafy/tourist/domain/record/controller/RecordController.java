@@ -82,7 +82,7 @@ public class RecordController {
         List<RecordWriteList> recordWriteList = recordService.recordWriteListByUser(userId);
 
         if (recordWriteList != null && !recordWriteList.isEmpty()) {
-            return ResponseEntity.status(201).body(RecordWriteListGetRes.of(200, "Success", recordWriteList));
+            return ResponseEntity.status(200).body(RecordWriteListGetRes.of(200, "Success", recordWriteList));
         }else {
             log.error("recordWriteList - Record doesn't exist.");
             return ResponseEntity.status(200).body(RecordWriteListGetRes.of(200, "Record doesn't exist", null));
