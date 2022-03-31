@@ -17,6 +17,11 @@ export type AreaCourseCount = {
   areaCount: number;
 };
 
+export type AreaCourse = {
+  courseId: number;
+  courseName: string;
+};
+
 export type MainData = {
   popularCourses: PopularCourse[];
   areaCourseCount: AreaCourseCount[];
@@ -34,6 +39,7 @@ export type CourseInfo = {
 export type CourseTourist = {
   touristId: number;
   touristName: string;
+  touristIndex: number;
   touristAddress: string;
   touristLat: string;
   touristLng: string;
@@ -70,6 +76,7 @@ export type CourseDetail = {
 export type Course2State = {
   popularCourses: PopularCourse[];
   areaCourseCount: AreaCourseCount[];
+  areaCourses: AreaCourse[];
   courseId: number;
   courseInfo: CourseInfo;
   courseTourist: CourseTourist[];

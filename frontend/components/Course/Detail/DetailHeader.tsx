@@ -18,8 +18,8 @@ export default function DetailHeader() {
   const { isLogin, userLikes, userInfo } = useSelector(
     (state: RootState) => state.user,
   );
+  const { tourId } = useSelector((state: RootState) => state.record);
   const [like, setLike] = useState(false);
-  const [tour, setTour] = useState(false);
 
   useEffect(() => {
     if (courseId && userLikes.length > 0) {
@@ -57,10 +57,15 @@ export default function DetailHeader() {
     );
   };
   const StartCourse = () => {
-    console.log('시작할거야!!');
+    if (tourId === 0) {
+      console.log('시작할거야!!');
+    } else {
+      alert('여행중인 코스가 있습니다.');
+    }
   };
   const EndCourse = () => {
     console.log('종료할거야!!');
+    alert('후기를 작성하시겠습니까?');
   };
 
   return (
@@ -83,7 +88,7 @@ export default function DetailHeader() {
                 <HeartOutlined /> 저장
               </li>
             )}
-            {tour ? (
+            {tourId === courseId ? (
               <li onClick={EndCourse}>
                 <FireFilled style={{ color: 'red' }} /> 여행종료
               </li>
