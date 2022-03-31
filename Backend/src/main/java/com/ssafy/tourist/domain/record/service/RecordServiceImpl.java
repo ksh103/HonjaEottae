@@ -136,9 +136,7 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public List<RecordWriteList> recordWriteListByUser(int userId, int courseId) {
-        return recordRepositorySpp.findRecordWriteList(userId, courseId);
-    }
+    public List<RecordWriteList> recordWriteListByUser(int userId) {return recordRepositorySpp.findRecordWriteList(userId);}
 
     @Override
     public String getRecordImgPath(int fileId, int recordId, int courseId) {

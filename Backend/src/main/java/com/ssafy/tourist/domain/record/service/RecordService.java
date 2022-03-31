@@ -12,7 +12,7 @@ import java.util.List;
 public interface RecordService {
     int recordRegisterByUser(RecordRegisterPostReq recordRegisterPostReq, MultipartHttpServletRequest request) throws IOException;
     int recordModifyByUser(RecordModifyPostReq recordModifyPostReq);
-    List<RecordWriteList> recordWriteListByUser(int userId, int courseId);
+    List<RecordWriteList> recordWriteListByUser(int userId);
 
     String getRecordImgPath(int fileId, int recordId, int courseId);
 }
