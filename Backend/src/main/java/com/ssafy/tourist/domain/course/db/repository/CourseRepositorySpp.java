@@ -108,7 +108,7 @@ public class CourseRepositorySpp {
     //키워드 추천 코스
     public List<KeywordCourse> keywordCourseList(String keywordName){
         return jpaQueryFactory.select(Projections.constructor(KeywordCourse.class,
-                        qCourse.courseName,qTouristImgPath.fileId.min(),qCourseKeyword.keywordId,
+                        qCourse.courseName,qCourse.courseId,qTouristImgPath.fileId.min(),qCourseKeyword.keywordId,
                         qCourseKeyword.keywordName,qCourseData.touristId)).from(qCourseKeyword)
                 .leftJoin(qCourse).on(qCourse.courseId.eq(qCourseKeyword.courseId))
                 .leftJoin(qCourseData).on(qCourseData.courseId.eq(qCourseKeyword.courseId))

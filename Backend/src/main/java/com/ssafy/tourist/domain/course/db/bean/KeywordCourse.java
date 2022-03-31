@@ -9,6 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class KeywordCourse {
     private String courseName;
+    private int courseId;
     private int fileId;
     private int keywordId;
     private String keywordName;

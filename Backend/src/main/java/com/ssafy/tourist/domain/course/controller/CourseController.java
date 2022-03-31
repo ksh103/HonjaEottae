@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -128,16 +129,12 @@ public class CourseController {
         Random rand = new Random();
 
         for(int i=0; i < 3;i++){
-            int num = rand.nextInt(18);
-
-            for (int n :ranNum){
-                if(n == num){
+            ranNum[i] = rand.nextInt(18);
+            for (int j=0;j<i;j++){
+                if(ranNum[i] == ranNum[j]){
                     i--;
-                    break;
                 }
             }
-
-            ranNum[i] = num;
         }
 
         List<KeywordCourse> list1 = courseService.keywordCourseList(keywords[ranNum[0]]);
