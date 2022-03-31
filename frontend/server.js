@@ -1,14 +1,23 @@
-var fs = require('fs');
-var path_root = '/var/www/html';
-var options = {
+const fs = require('fs');
+const path_root = '/var/www/html';
+const httpServer = require("https").createServer({
    cert: fs.readFileSync(`${path_root}cert.pem`),
-   key: fs.readFileSync(`${path_root}privkey.pem`),
-};
-var https = require('https').createServer(options, app);
-https.listen(4002, () => {
-    console.log('https- listening on *:4002')
+   key: fs.readFileSync(`${path_root}privkey.pem`)
 });
-const io = require('socket.io').listen(https);
+const io = require('socket.io').listen(server, {
+       cors: {
+       origin: '*',
+       methods: ['GET', 'POST'],
+      },
+});
+
+httpServer.listen(4002);
+
+// var https = require('https').createServer(options, app);
+// https.listen(4002, () => {
+//     console.log('https- listening on *:4002')
+// });
+// const io = require('socket.io').listen(https);
 
 // const express = require('express');
 // const http = require('http');
