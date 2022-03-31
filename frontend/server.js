@@ -1,17 +1,26 @@
 const express = require('express');
-const https = require('https');
-const socketIO = require('socket.io');
+const http = require('http');
+const app = express();
+// server instance
+const server = http.createServer(app);
+
+// const socketIO = require('socket.io')(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"]
+//   }
+// });
+const io = require('socket.io')(server, {
+  cors: {
+    origin: '*',
+  }
+});
 
 // localhost 포트 설정
 const port = 4002;
 
-const app = express();
-
-// server instance
-const server = https.createServer(app);
-
 // socketio 생성후 서버 인스턴스 사용
-const io = socketIO(server);
+//const io = socketIO(server);
 
 // socketio 문법
 io.on('connection', socket => {
