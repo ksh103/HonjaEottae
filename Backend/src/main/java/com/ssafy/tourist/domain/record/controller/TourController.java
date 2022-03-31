@@ -96,7 +96,7 @@ public class TourController {
             return ResponseEntity.status(200).body(TouristNameVisitGetRes.of(200, "Success", touristNameVisitList));
         } else {
             log.error("touristNameVisit - stamp doesn't exist");
-            return ResponseEntity.status(400).body(TouristNameVisitGetRes.of(400, "stamp doesn't exist", null));
+            return ResponseEntity.status(200).body(TouristNameVisitGetRes.of(200, "stamp doesn't exist", null));
         }
     }
 
