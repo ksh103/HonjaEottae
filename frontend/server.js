@@ -11,7 +11,7 @@ const io = require('socket.io').listen(server, {
 const path_root = '/var/www/html';
 var options = {
    key: fs.readFileSync('${path_root}/privkey.pem'),
-   cert: fs.readFileSync('${path_root}/fullchain.pem'),
+   cert: fs.readFileSync('${path_root}/cert.pem'),
 
 
   requestCert: true,
@@ -29,7 +29,8 @@ var options = {
 //       transports: ['websocket'],
 // });
 
-var server = https.createServer(options, app);
+var server = https.createServer({key: fs.readFileSync('${path_root}/privkey.pem'),
+cert: fs.readFileSync('${path_root}/cert.pem')}, app);
 server.listen(4002);
 
 // var https = require('https').createServer(options, app);
