@@ -18,11 +18,11 @@ export default function DetailCourse() {
   // };
 
   const courseIndex = () => {
-    return courseTourist.map(data => (
-      <>
+    return courseTourist.map((data, i) => (
+      <label key={i}>
         <label>{data.touristName}</label>
         <label> ▶ </label>
-      </>
+      </label>
     ));
   };
 

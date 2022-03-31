@@ -29,9 +29,9 @@ export default function RecordReview() {
       </ReviewBlock>
       <ReviewBlock>
         <h1>글쓰기</h1>
-        <textarea rows={5}>
+        {/* <textarea rows={5}>
           즉흥으로 떠난 혼행 .... 나는 너무 힐링했다.
-        </textarea>
+        </textarea> */}
       </ReviewBlock>
       <div>
         <button>기록남기기</button>

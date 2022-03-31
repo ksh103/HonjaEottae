@@ -26,7 +26,7 @@ export async function GetPopularCoursesAPI(size: number) {
     .then(res => res.data.list.content);
 
   return result.map((data: any) => {
-    let img = '/images/pink.PNG';
+    let img = '/images/noimage.jpg';
     if (data.fileId > 0) {
       img = IMAGE_URL + data.fileId + '/' + data.touristId;
     }
@@ -80,15 +80,19 @@ export async function GetCourseReviewAPI(courseId: number) {
     .then(res => res.data.list);
   if (result === null) return [];
   return result.map((data: any) => {
+    let img = '/images/noimage.jpg';
+    if (data.fileId > 0) {
+      img = IMAGE_URL + data.fileId + '/' + data.touristId;
+    }
     return {
       recordId: data.recordId,
       recordContent: data.recordContent,
       recordRegDt: data.recordRegDt,
-      // recordImage:data.recordImage,
       userId: data.user.userId,
       tourTestId: data.user.tourTestId,
       userName: data.user.userName,
       userEmail: data.user.userEmail,
+      image: img,
     };
   });
 }
@@ -111,6 +115,10 @@ export async function GetCourseInfoAPI(courseId: number) {
     courseInfo: result.courseDetailList[0],
     courseTourist: result.courseTouristDetailList.map(
       (data: any, i: number) => {
+        let img = '/images/noimage.png';
+        if (data.fileId > 0) {
+          img = IMAGE_URL + data.fileId + '/' + data.touristId;
+        }
         return {
           touristId: data.touristId,
           touristName: data.touristName,
@@ -118,7 +126,7 @@ export async function GetCourseInfoAPI(courseId: number) {
           touristAddress: data.touristAddress,
           touristLat: data.touristLat,
           touristLng: data.touristLng,
-          image: IMAGE_URL + data.fileId + '/' + data.touristId,
+          image: img,
         };
       },
     ),
