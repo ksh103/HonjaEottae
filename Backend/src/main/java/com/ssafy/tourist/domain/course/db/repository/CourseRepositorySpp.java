@@ -6,6 +6,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.tourist.domain.course.db.bean.AreaPopularCourse;
 import com.ssafy.tourist.domain.course.db.bean.BookmarkCourse;
 import com.ssafy.tourist.domain.course.db.bean.CourseInfo;
+import com.ssafy.tourist.domain.course.db.bean.KeywordCourse;
 import com.ssafy.tourist.domain.course.db.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,7 @@ public class CourseRepositorySpp {
     QTouristImgPath qTouristImgPath = QTouristImgPath.touristImgPath;
     QBookmark qBookmark = QBookmark.bookmark;
     QTourist qTourist = QTourist.tourist;
+    QCourseKeyword qCourseKeyword = QCourseKeyword.courseKeyword;
 
     // 북마크한 코스 조회
     public List<BookmarkCourse> findBookmarkCourse(int userId) {
@@ -101,4 +103,19 @@ public class CourseRepositorySpp {
                 .fetch();
 
     }
+
+
+    //키워드 추천 코스
+    public List<KeywordCourse> keywordCourseList(String keywordName){
+        return jpaQueryFactory.select(Projections.constructor(KeywordCourse.class,
+                        qCourse.courseName,qTouristImgPath.fileId.min(),qCourseKeyword.keywordId,
+                        qCourseKeyword.keywordName,qCourseData.touristId)).from(qCourseKeyword)
+                .leftJoin(qCourse).on(qCourse.courseId.eq(qCourseKeyword.courseId))
+                .leftJoin(qCourseData).on(qCourseData.courseId.eq(qCourseKeyword.courseId))
+                .leftJoin(qTouristImgPath).on(qTouristImgPath.touristId.eq(qCourseData.touristId))
+                .where(qCourseData.courseDataId.eq(1).and(qCourseKeyword.keywordName.eq(keywordName))
+                )
+                .groupBy(qCourse.courseName,qCourseKeyword.keywordId).limit(20).fetch();
+    }
+
 }

@@ -2,6 +2,7 @@ package com.ssafy.tourist.domain.course.service;
 
 import com.ssafy.tourist.domain.course.db.bean.AreaPopularCourse;
 import com.ssafy.tourist.domain.course.db.bean.CourseInfo;
+import com.ssafy.tourist.domain.course.db.bean.KeywordCourse;
 import com.ssafy.tourist.domain.course.db.entity.Course;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.repository.CourseDataRepository;
@@ -108,5 +109,11 @@ public class CourseServiceImpl implements CourseService{
 
 
         return courseRepositorySpp.findPopularCourse(newAreaName);
+    }
+
+    @Override
+    public List<KeywordCourse> keywordCourseList(String keywordName) {
+
+        return courseRepositorySpp.keywordCourseList(keywordName);
     }
 }
