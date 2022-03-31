@@ -30,3 +30,14 @@ services:
       - /etc/letsencrypt/live/j6e103.p.ssafy.io:/root
       - /home/ubuntu/tourimages:/home/ubuntu/tourimages
     container_name: "backend"
+
+  flask:
+    image: flask
+    build:
+      context: flask_server/app/
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - /etc/letsencrypt/copy/j6e103.p.ssafy.io:/root
+    container_name: "flask"

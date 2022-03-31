@@ -1,8 +1,10 @@
 package com.ssafy.tourist.domain.course.controller;
 
+import com.ssafy.tourist.domain.course.db.bean.AreaPopularCourse;
 import com.ssafy.tourist.domain.course.db.bean.CourseInfo;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
 import com.ssafy.tourist.domain.course.request.CourseRegisterPostReq;
+import com.ssafy.tourist.domain.course.response.AreaPopularCourseRes;
 import com.ssafy.tourist.domain.course.response.CourseListGetRes;
 import com.ssafy.tourist.domain.course.response.CourseSearchGetRes;
 import com.ssafy.tourist.domain.course.response.PopularCourseGetRes;
@@ -18,6 +20,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Api("관광지 코스 API")
 @Slf4j
@@ -94,6 +98,21 @@ public class CourseController {
             return ResponseEntity.status(200).body(CourseListGetRes.of(200, "Success", courseList));
         } else {
             return ResponseEntity.status(200).body(CourseListGetRes.of(200, "Course List doesn't exist", null));
+        }
+    }
+
+
+    @ApiOperation(value = "지역 인기 관광지 조회")
+    @GetMapping("/area/{areaName}")
+    public ResponseEntity<AreaPopularCourseRes> areaPopularCourseByAreaName(@ApiParam(value = "지역 이름") @PathVariable("areaName") String areaName){
+        log.info("areaPopularCourseByAreaName - Call");
+
+        List<AreaPopularCourse> areaPopularCourseList = courseService.areaPopularCourseFind(areaName);
+
+        if(areaPopularCourseList != null && !areaPopularCourseList.isEmpty()){
+            return ResponseEntity.status(200).body((AreaPopularCourseRes.of(200,"Success",areaPopularCourseList)));
+        }else {
+            return ResponseEntity.status(200).body((AreaPopularCourseRes.of(200,"Popular course doesn't exist",null)));
         }
     }
 }

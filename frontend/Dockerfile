@@ -2,6 +2,7 @@ FROM node:14 AS ui-build
 WORKDIR /usr/src/app
 COPY . .
 RUN npm install && npm run build
+RUN npm install express socket.io socket.io-client @types/socket.io-client concurrently
 
 FROM nginx:stable-alpine as production-stage
 COPY  ./nginx/nginx.conf /etc/nginx/conf.d/default.conf

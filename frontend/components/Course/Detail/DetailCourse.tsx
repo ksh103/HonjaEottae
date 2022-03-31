@@ -1,5 +1,6 @@
 import { Carousel, Col, Row } from 'antd';
-import React from 'react';
+import slider from 'antd/lib/slider';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import TourList from '../../Register/TourList';
@@ -7,15 +8,31 @@ import { Content, CourseImage, CourseIndex } from './Datail.style';
 import DetailMap from './DetailMap';
 
 export default function DetailCourse() {
+  const [index, setIndex] = useState(4);
   const { courseId, courseInfo, courseTourist } = useSelector(
     (state: RootState) => state.course2,
   );
 
+  // const clickTourist = (e: any) => {
+  //   // console.log(e);
+  // };
+
   const courseIndex = () => {
-    const course: any = [];
-    courseTourist.forEach(data => course.push(data.touristName));
-    return course.join(' ▶ ');
+    return courseTourist.map(data => (
+      <>
+        <label>{data.touristName}</label>
+        <label> ▶ </label>
+      </>
+    ));
   };
+
+  const settings = {
+    afterChange: (next: number) => setIndex(next),
+  };
+
+  useEffect(() => {
+    console.log(index);
+  }, [index]);
 
   return (
     <>
@@ -26,7 +43,7 @@ export default function DetailCourse() {
           </Col>
           <Col span={12}>
             <CourseImage>
-              <Carousel>
+              <Carousel {...settings}>
                 {courseTourist.map((data, i) => (
                   <div className="course-image" key={i}>
                     <img src={data.image} />

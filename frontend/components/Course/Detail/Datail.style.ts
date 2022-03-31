@@ -21,6 +21,9 @@ const Title = styled.div`
 
 const CourseMap = styled.div`
   height: 350px;
+  @media ${props => props.theme.tablet} {
+    height: 300px;
+  }
   .customoverlay {
     position: relative;
     border-radius: 20px;
