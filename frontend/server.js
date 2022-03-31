@@ -1,9 +1,6 @@
+var app = require('express')();
+var https = require('https');
 const fs = require('fs');
-const path_root = '/var/www/html';
-const httpServer = require("https").createServer({
-   cert: fs.readFileSync(`${path_root}cert.pem`),
-   key: fs.readFileSync(`${path_root}privkey.pem`)
-});
 const io = require('socket.io').listen(server, {
        cors: {
        origin: '*',
@@ -11,7 +8,29 @@ const io = require('socket.io').listen(server, {
       },
 });
 
-httpServer.listen(4002);
+const path_root = '/var/www/html';
+var options = {
+   key: fs.readFileSync('${path_root}/privkey.pem'),
+   cert: fs.readFileSync('${path_root}/fullchain.pem'),
+
+
+  requestCert: true,
+  secure: true,
+  rejectUnauthorized: false,
+  transports: ['websocket'],
+}
+// const httpServer = require("https").createServer({
+//    cert: fs.readFileSync(`${path_root}/cert.pem`),
+//    key: fs.readFileSync(`${path_root}/privkey.pem`),
+   
+//    requestCert: true,
+//       secure: true,
+//       rejectUnauthorized: false,
+//       transports: ['websocket'],
+// });
+
+var server = https.createServer(options, app);
+server.listen(4002);
 
 // var https = require('https').createServer(options, app);
 // https.listen(4002, () => {
