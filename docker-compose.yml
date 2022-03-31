@@ -10,6 +10,7 @@ services:
     ports:
       - "80:80"
       - "443:443" 
+      - "4002:4002" 
     # [인증서 파일 저장 경로]:/var/www/html
     volumes:
             #  - /root/var/www/html:/home/ubuntu/docker-volume/ssl
