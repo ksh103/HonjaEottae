@@ -11,9 +11,7 @@ interface Message {
 }
 
 const socket = socketIOClient('https://j6e103.p.ssafy.io:4002',{
-      transports: ['websocket'],
-      upgrade: false,
-      forceNew: true,
+      transports: ['websocket']
 });
 
 const ChatApp: NextPage = () => {
