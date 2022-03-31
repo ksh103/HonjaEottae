@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class CourseNameVisitDetail {
     private int courseId;
+    private String courseName;
     private double touristLat;
     private double touristLng;
 }
