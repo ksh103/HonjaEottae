@@ -2,6 +2,7 @@ package com.ssafy.tourist.domain.course.service;
 
 import com.ssafy.tourist.domain.course.db.bean.AreaPopularCourse;
 import com.ssafy.tourist.domain.course.db.bean.CourseInfo;
+import com.ssafy.tourist.domain.course.db.bean.KeywordCourse;
 import com.ssafy.tourist.domain.course.request.CourseHitsPostReq;
 import com.ssafy.tourist.domain.course.request.CourseRegisterPostReq;
 import org.springframework.data.domain.Page;
@@ -17,4 +18,5 @@ public interface CourseService {
     Page<CourseInfo> courseSearch(String courseName, Pageable pageable); // 코스 검색
 
     List<AreaPopularCourse> areaPopularCourseFind(String areaName); // 지역별 인기 코스
+    List<KeywordCourse> keywordCourseList(String keywordName);//키워드별 코스 추천
 }
