@@ -112,7 +112,9 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public int courseIsStartByUser(int userId) {
-        return tourRepositorySpp.findVisitIsStartByUser(userId);
+        if(tourRepositorySpp.findVisitIsStartByUser(userId) != null) {
+            return tourRepositorySpp.findVisitIsStartByUser(userId);
+        }return 0;
     }
 
 

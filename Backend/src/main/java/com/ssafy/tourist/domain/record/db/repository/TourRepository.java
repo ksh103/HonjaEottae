@@ -1,5 +1,7 @@
 package com.ssafy.tourist.domain.record.db.repository;
 
+import com.querydsl.core.types.Projections;
+import com.ssafy.tourist.domain.record.db.bean.TourIsStart;
 import com.ssafy.tourist.domain.record.db.entity.Tour;
 import com.ssafy.tourist.domain.record.db.entity.TourID;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,4 +34,5 @@ public interface TourRepository extends JpaRepository<Tour, TourID> {
 
     @Query("select count(t.isStart) from Tour t where t.courseId =:courseId")
     int countToursByCourseId(int courseId);
+
 }

@@ -1,6 +1,7 @@
 package com.ssafy.tourist.domain.record.db.repository;
 
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.db.entity.QCourse;
@@ -36,10 +37,11 @@ public class TourRepositorySpp {
                 .fetch();
     }
 
-    public int findVisitIsStartByUser (int userId) {
-        return jpaQueryFactory.select(Projections.constructor(TourIsStart.class, qCourse.courseId)).from(qTour)
+    public Integer findVisitIsStartByUser (int userId) {
+        return jpaQueryFactory.select(qCourse.courseId).from(qTour)
                 .leftJoin(qCourse).on(qCourse.courseId.eq(qTour.courseId))
                 .where(qTour.isStart.eq(true).and(qTour.isEnd.eq(false)).and(qTour.userId.eq(userId)))
-                .fetchOne().getCourseId();
+                .fetchOne();
     }
+
 }
