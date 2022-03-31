@@ -32,14 +32,34 @@ const GraphWrapper = styled.div`
     border-radius: 1vw;
     width: 48%;
     height: 90%;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    div {
+      font-family: 'Jalnan';
+    }
   }
   .RGraph {
     border-radius: 1vw;
     width: 48%;
     height: 90%;
-    background-color: white;
-    /* overflow: auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    div {
+      font-family: 'Jalnan';
+    }
+  }
+`;
+const DefaultImage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 90%;
+    border-radius: 1vw;
   }
 `;
 
@@ -89,4 +109,10 @@ const DiaryWrapper = styled.div`
   }
 `;
 
-export { MypageWrapper, GraphWrapper, MyTravleWrapper, DiaryWrapper };
+export {
+  MypageWrapper,
+  GraphWrapper,
+  MyTravleWrapper,
+  DiaryWrapper,
+  DefaultImage,
+};

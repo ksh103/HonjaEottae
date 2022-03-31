@@ -51,7 +51,7 @@ const user = createReducer<UserState, UserAction>(initialState, {
       draft.userVisitCourses = action.payload.userVisitCourses;
       draft.areaCourses = action.payload.areaCourses;
       draft.monthCourses = action.payload.monthCourses;
-      console.log(draft.areaCourses, draft.monthCourses);
+      // console.log(draft.userVisitCourses);
     }),
   [LIKE_COURSE_SUCCESS]: (state, action) =>
     produce(state, draft => {
