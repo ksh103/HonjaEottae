@@ -28,7 +28,7 @@ public class RecordRepositorySpp {
 
 
     public List<RecordWriteList> findRecordWriteList (int userId) {
-        return jpaQueryFactory.select(Projections.constructor(RecordWriteList.class, qRecord.recordId, qCourse.courseId, qTourist.touristId,
+        return jpaQueryFactory.select(Projections.constructor(RecordWriteList.class, qRecord.recordId, qCourse.courseId, qCourse.courseName, qTourist.touristId,
                         qTourist.touristLat, qTourist.touristLng, qRecord.recordContent, qRecord.recordRegDt, qRecordImgPath.fileId.min().as("fileId")))
                 .from(qRecord)
                 .leftJoin(qCourse).on(qCourse.courseId.eq(qRecord.courseId))
