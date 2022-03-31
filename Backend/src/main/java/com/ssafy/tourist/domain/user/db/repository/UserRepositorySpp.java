@@ -15,6 +15,7 @@ import com.ssafy.tourist.domain.user.db.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -61,7 +62,9 @@ public class UserRepositorySpp {
     public List<DateAnalysisDetail> dateAnalysisDetailByUserId(int userId){
         return jpaQueryFactory.select(Projections.constructor(DateAnalysisDetail.class,
                         qTour.tourEnd.yearMonth().as("dateName"), qTour.tourEnd.yearMonth().count().as("dateCount")))
-                .from(qTour).where(qTour.userId.eq(userId)).groupBy(qTour.tourEnd.yearMonth()).fetch();
+                .from(qTour).where(qTour.userId.eq(userId).and(qTour.isEnd.isTrue())
+                        .and(qTour.tourEnd.between(LocalDateTime.now().minusMonths(5),LocalDateTime.now().minusMonths(0))))
+                .groupBy(qTour.tourEnd.yearMonth()).fetch();
     }
 
 }
