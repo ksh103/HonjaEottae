@@ -46,11 +46,6 @@ const RightNav: NextPage<RightNavProps> = ({ open }) => {
         {isLogin ? (
           <>
             <li>
-              <Link href="/mypage">
-                <label>마이페이지</label>
-              </Link>
-            </li>
-            <li>
               <Link href="/chat">
                 <label>채팅</label>
               </Link>

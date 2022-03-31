@@ -1,15 +1,25 @@
 import { NextPage } from 'next';
-import { ImageBlock, ImgaeListWrapper } from './Location.styled';
+import { ImageBlock, ImageListWrapper } from './Location.styled';
 
-const Image: NextPage = () => {
-  const images = ['1.jpg', '2.jpg', '3.jpg'];
+interface ImageProps {
+  images: any[];
+}
+
+const Image = ({ images }: ImageProps) => {
+  console.log(images);
   return (
     <>
-      <ImgaeListWrapper height="250px">
+      <ImageListWrapper height="250px">
         {images.map((image, idx) => {
-          return <ImageBlock key={idx}>{image}</ImageBlock>;
+          return (
+            <ImageBlock key={idx}>
+              <div id="image">
+                <img src={image.image} />
+              </div>
+            </ImageBlock>
+          );
         })}
-      </ImgaeListWrapper>
+      </ImageListWrapper>
     </>
   );
 };

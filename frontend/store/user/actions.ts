@@ -1,11 +1,13 @@
 import { createAction, createAsyncAction } from 'typesafe-actions';
 import {
   Bookmark,
+  Course,
   SignIn,
   SignInSuccess,
   SignUp,
   TestResult,
   UserDetail,
+  VisitCourse,
 } from './types';
 
 export const LIKE_COURSE_REQUEST = 'user/LIKE_COURSE_REQUEST';
@@ -31,9 +33,19 @@ export const USER_INFO_FAILURE = 'user/USER_INFO_FAILURE';
 export const SET_LOG_OUT = 'user/SET_LOG_OUT';
 export const SET_LOG_IN = 'user/SET_LOG_IN';
 // 여행성향테스트 결과 저장
-export const SAVE_TEST_RESULT_REQUEST = 'test/SAVE_TEST_RESULT_REQUEST';
-export const SAVE_TEST_RESULT_SUCCESS = 'test/SAVE_TEST_RESULT_SUCCESS';
-export const SAVE_TEST_RESULT_FAILURE = 'test/SAVE_TEST_RESULT_FAILURE';
+export const SAVE_TEST_RESULT_REQUEST = 'user/SAVE_TEST_RESULT_REQUEST';
+export const SAVE_TEST_RESULT_SUCCESS = 'user/SAVE_TEST_RESULT_SUCCESS';
+export const SAVE_TEST_RESULT_FAILURE = 'user/SAVE_TEST_RESULT_FAILURE';
+
+// 내가만든 코스 불러오기
+export const MY_COURSE_REQUEST = 'user/MY_COURSE_REQUEST';
+export const MY_COURSE_SUCCESS = 'user/MY_COURSE_SUCCESS';
+export const MY_COURSE_FAILURE = 'user/MY_COURSE_FAILURE';
+
+// 내가 방문한 코스 조회(마이페이지 지도)
+export const VISIT_COURSE_REQUEST = 'user/VISIT_COURSE_REQUEST';
+export const VISIT_COURSE_SUCCESS = 'user/VISIT_COURSE_SUCCESS';
+export const VISIT_COURSE_FAILURE = 'user/VISIT_COURSE_FAILURE';
 
 export const signIn = createAsyncAction(
   SIGN_IN_REQUEST,
@@ -72,3 +84,15 @@ export const saveTestResult = createAsyncAction(
   SAVE_TEST_RESULT_SUCCESS,
   SAVE_TEST_RESULT_FAILURE,
 )<TestResult, number, Error>();
+
+export const myCourse = createAsyncAction(
+  MY_COURSE_REQUEST,
+  MY_COURSE_SUCCESS,
+  MY_COURSE_FAILURE,
+)<number, Course[], Error>();
+
+export const visitCourse = createAsyncAction(
+  VISIT_COURSE_REQUEST,
+  VISIT_COURSE_SUCCESS,
+  VISIT_COURSE_FAILURE,
+)<number, VisitCourse[], Error>();

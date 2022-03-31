@@ -47,6 +47,13 @@ export type UserDetail = {
   userInfo: UserInfo;
   userCourses: Course[];
   userLikes: Course[];
+  userVisitCourses: VisitCourse[];
+};
+
+export type VisitCourse = {
+  courseId: number;
+  touristLat: number;
+  touristLng: number;
 };
 
 export type UserState = {
@@ -55,4 +62,5 @@ export type UserState = {
   userLikes: Course[];
   isLogin: boolean;
   isSignUp: boolean;
+  userVisitCourses: VisitCourse[];
 };

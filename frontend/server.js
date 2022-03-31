@@ -3,6 +3,15 @@ const http = require('http');
 const app = express();
 // server instance
 const server = http.createServer(app);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST'],
+  },
+});
+
+// localhost 포트 설정
+const port = 4002;
 
 // const socketIO = require('socket.io')(server, {
 //   cors: {

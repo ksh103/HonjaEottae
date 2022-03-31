@@ -53,6 +53,7 @@ const ListBlock = styled.div<{ select: boolean }>`
   justify-content: center;
   align-items: center;
   font-size: 15px;
+  text-align: center;
   cursor: pointer;
   :hover {
     background-color: ${props => props.theme.colors.pointColor};
@@ -72,22 +73,38 @@ const ListBlock = styled.div<{ select: boolean }>`
 `;
 
 // ImageList.tsx
-const ImgaeListWrapper = styled.div<{ height: string }>`
+const ImageListWrapper = styled.div<{ height: string }>`
   margin-top: 20px;
   width: 100%;
-  height: ${props => props.height};
   background-color: ${props => props.theme.colors.backgroundColor};
   border-radius: 1vw;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   overflow: auto;
+  overflow-x: hidden;
 `;
 
 const ImageBlock = styled.div`
-  width: 30%;
-  height: 200px;
-  background-color: white;
+  border-radius: 1vw;
+  width: 250px;
+  height: 250px;
+  #image {
+    margin-top: 25px;
+    width: 100%;
+    height: 80%;
+    cursor: pointer;
+    img {
+      padding: 0 5px;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+    }
+    &:hover {
+      transform: scale(1.05);
+      transition: transform 0.5s;
+    }
+  }
 `;
 
 const SelectBlock = styled.div<{ select: boolean }>`
@@ -104,7 +121,7 @@ const SelectBlock = styled.div<{ select: boolean }>`
 export {
   LocationWrapper,
   MapListWrapper,
-  ImgaeListWrapper,
+  ImageListWrapper,
   ImageBlock,
   MapBlock,
   ListWrapper,
