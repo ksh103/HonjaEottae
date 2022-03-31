@@ -12,8 +12,8 @@ try {
     cert: fs.readFileSync(path.resolve(process.cwd(), '/var/www/html/cert.pem'), 'utf8').toString(),
   };
 
-  HTTPS.createServer(option, app).listen(443, () => {
-    colorConsole.success(`[HTTPS] Soda Server is started on port ${colors.cyan(443)}`);
+  HTTPS.createServer(option, app).listen(4002, () => {
+    colorConsole.success(`[HTTPS] Soda Server is started on port ${colors.cyan(4002)}`);
   });
 } catch (error) {
   colorConsole.error('[HTTPS] HTTPS 오류가 발생하였습니다. HTTPS 서버는 실행되지 않습니다.');
