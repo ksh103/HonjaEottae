@@ -1,24 +1,17 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const HTTPS = require('https');
-
-const app = express();
-
-try {
-  const option = {
-    ca: fs.readFileSync('/var/www/html/fullchain.pem'),
-    key: fs.readFileSync(path.resolve(process.cwd(), '/var/www/html/privkey.pem'), 'utf8').toString(),
-    cert: fs.readFileSync(path.resolve(process.cwd(), '/var/www/html/cert.pem'), 'utf8').toString(),
-  };
-
-  HTTPS.createServer(option, app).listen(4002, () => {
-    colorConsole.success(`[HTTPS] Soda Server is started on port ${colors.cyan(4002)}`);
-  });
-} catch (error) {
-  colorConsole.error('[HTTPS] HTTPS 오류가 발생하였습니다. HTTPS 서버는 실행되지 않습니다.');
-  colorConsole.warn(error);
+const fs = require("fs");
+const httpServer = require("http2").createSecureServer({
+  allowHTTP1: true,
+  key: fs.readFileSync("/var/www/html/key.pem"),
+  cert: fs.readFileSync("/var/www/html/cert.pem")
+});
+const options = {
+  key: fs.readFileSync('${path_root}/privkey.pem'),
+  cert: fs.readFileSync('${path_root}/cert.pem'),
+  requestCert: true,
+  rejectUnauthorized: false,
 }
+
+const io = require("socket.io")(httpServer, options);
 
 // socketio 문법
 io.on('connection', socket => {
@@ -32,3 +25,5 @@ io.on('connection', socket => {
     console.log('user disconnected: ', socket.id);
   });
 });
+
+httpServer.listen(4002);
