@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { likeCourse, unlikeCourse } from '../../../store/user';
+import { startTour } from '../../../store/record';
 export default function DetailHeader() {
   const dispatch = useDispatch();
   const { courseId, courseInfo, courseTourist } = useSelector(
@@ -59,6 +60,9 @@ export default function DetailHeader() {
   const StartCourse = () => {
     if (tourId === 0) {
       console.log('시작할거야!!');
+      dispatch(
+        startTour.request({ userId: userInfo.userId, courseId: courseId }),
+      );
     } else {
       alert('여행중인 코스가 있습니다.');
     }
@@ -66,6 +70,8 @@ export default function DetailHeader() {
   const EndCourse = () => {
     console.log('종료할거야!!');
     alert('후기를 작성하시겠습니까?');
+    // 종료는 후기 작성하고 죵료할수있게 처리
+    // href('/record');
   };
 
   return (

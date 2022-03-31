@@ -36,6 +36,7 @@ const StampCard = styled.div`
       height: 200px;
       object-fit: cover;
       border-radius: 50%;
+      border: 1px solid lightgray;
     }
     @media ${props => props.theme.tablet} {
       padding: 20px;
@@ -49,7 +50,7 @@ const StampCard = styled.div`
     width: 100%;
   }
 `;
-const StampCardContent = styled(Card)`
+const StampCardContent = styled(Card)<{ $state: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -66,7 +67,8 @@ const StampCardContent = styled(Card)`
     text-align: center;
     line-height: 35px;
     color: white;
-    background-color: ${props => props.theme.colors.pointColor};
+    background-color: ${props =>
+      props.$state ? 'gray' : props.theme.colors.pointColor};
   }
   .stamp-card-title {
     font-size: 20px;
