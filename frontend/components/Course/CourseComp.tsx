@@ -6,10 +6,13 @@ import CourseList from './CourseList';
 import Footer from '../Footer/Footer';
 import { Wrapper } from '../../styles/variables';
 import Menu from '../Nav/Menu';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { useEffect } from 'react';
+import { resetSearchCourses } from '../../store/course';
 
 const CourseComp: NextPage = () => {
+  const dispatch = useDispatch();
   const dummy = [
     {
       courseId: 1,
@@ -42,6 +45,10 @@ const CourseComp: NextPage = () => {
         'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
     },
   ];
+  useEffect(() => {
+    // 첫 실행 시 검색결과가 있으면 지우기
+    dispatch(resetSearchCourses());
+  }, []);
   const { userInfo } = useSelector((state: RootState) => state.user);
   const { searchCourses, searchKeyword } = useSelector(
     (state: RootState) => state.course,

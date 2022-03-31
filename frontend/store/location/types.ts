@@ -15,6 +15,7 @@ export type SearchLocation = {
   touristLat: number;
   touristLng: number;
   touristSummary: string;
+  image: string[];
 };
 
 export type LocationState = {

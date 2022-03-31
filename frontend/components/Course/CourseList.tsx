@@ -15,7 +15,6 @@ export interface CourseListProps {
 
 const CourseList = (data: CourseListProps) => {
   const datas = data.data;
-  console.log(datas);
   const { dragStart, dragStop, dragMove, dragging } = useDrag();
   const handleDrag =
     ({ scrollContainer }: scrollVisibilityApiType) =>

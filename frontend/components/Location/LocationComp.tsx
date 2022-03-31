@@ -20,16 +20,19 @@ const LocationComp: NextPage = () => {
     (state: RootState) => state.location,
   );
   const lists: string[] = [];
-  const positions = searchLoactions.map(searchLocation => {
+  let images: string[] = [];
+  const positions = searchLoactions.map((searchLocation, idx) => {
     // 관광지 지도를 위한 lat,lng,title 뽑아낸 data
     lists.push(searchLocation.touristName);
+    if (selectLocation == searchLocation.touristName) {
+      images = searchLocation.image;
+    }
     return {
       title: searchLocation.touristName,
       lat: searchLocation.touristLat,
       lng: searchLocation.touristLng,
     };
   });
-
   useEffect(() => {
     // 위도 경도 파악
     if (navigator.geolocation) {
@@ -63,7 +66,7 @@ const LocationComp: NextPage = () => {
             <div className="subTitle">관광지 목록</div>
             <MapList positions={positions} lists={lists} />
             <div className="subTitle">이미지</div>
-            <ImageList />
+            <ImageList images={images} />
             <div className="subTitle">{selectLocation}</div>
             <TourDetail />
           </div>

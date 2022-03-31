@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { myCourse } from '../user';
 import { courseRegitser, searchTourlist } from './actions';
 import { courseRegisterAPI, searchTourlistAPI } from './api';
 import { SearchTourlist } from './types';
@@ -20,6 +21,7 @@ function* courseRegisterSaga({
   try {
     const result: string = yield call(courseRegisterAPI, payload);
     yield put(courseRegitser.success(result));
+    yield put(myCourse.request(payload.userId));
   } catch (error) {
     console.log(error);
   }

@@ -44,11 +44,20 @@ export async function UserCoursesAPI(userId: number) {
     .then(res => res.data.list);
   if (result === null) return [];
   return result.content.map((data: any) => {
-    return {
-      courseId: data.courseId,
-      courseName: data.courseName,
-      image: IMAGE_URL + data.fileId + '/' + data.touristId,
-    };
+    if (data.fileId === 0) {
+      return {
+        courseId: data.courseId,
+        courseName: data.courseName,
+        image:
+          'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483097.jpg',
+      };
+    } else {
+      return {
+        courseId: data.courseId,
+        courseName: data.courseName,
+        image: `${IMAGE_URL}${data.fileId}/${data.touristId}`,
+      };
+    }
   });
 }
 
@@ -59,11 +68,20 @@ export async function UserLikesAPI(userId: number) {
     .then(res => res.data.list);
   if (result === null) return [];
   return result.map((data: any) => {
-    return {
-      courseId: data.courseId,
-      courseName: data.courseName,
-      image: IMAGE_URL + data.fileId + '/' + data.touristId,
-    };
+    if (data.fileId === 0) {
+      return {
+        courseId: data.courseId,
+        courseName: data.courseName,
+        image:
+          'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483097.jpg',
+      };
+    } else {
+      return {
+        courseId: data.courseId,
+        courseName: data.courseName,
+        image: `${IMAGE_URL}${data.fileId}/${data.touristId}`,
+      };
+    }
   });
 }
 
@@ -74,10 +92,12 @@ export async function UserInfoAPI(userEmail: string) {
     .then(res => res.data);
   const courses = await UserCoursesAPI(info.userId);
   const likes = await UserLikesAPI(info.userId);
+  const visitCourses = await VisitCourseAPI(info.userId);
   const result = {
     userInfo: info,
     userCourses: courses,
     userLikes: likes,
+    userVisitCourses: visitCourses,
   };
   return result;
 }
@@ -89,4 +109,10 @@ export async function SaveTestResultAPI({ tourTestId, userId }: TestResult) {
     userId: userId,
   });
   return tourTestId;
+}
+
+// 내가 방문한 코스 조회(마이페이지 지도)
+export async function VisitCourseAPI(userId: number) {
+  const datas = await axios.get(`${BASE_URL}user/user-location/${userId}`);
+  return datas.data.list;
 }

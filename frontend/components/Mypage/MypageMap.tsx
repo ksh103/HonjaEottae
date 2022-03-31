@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { MapContainer } from '../../styles/variables';
 
 interface MapProps {
@@ -6,6 +8,8 @@ interface MapProps {
 }
 
 const MypageMap = ({ positions }: MapProps) => {
+  const { userVisitCourses } = useSelector((state: RootState) => state.user);
+  console.log('마이페이지 지도', userVisitCourses);
   useEffect(() => {
     const mapScript = document.createElement('script');
 
@@ -24,7 +28,7 @@ const MypageMap = ({ positions }: MapProps) => {
         var imageSrc = // 마커 이미지
           'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
 
-        for (var i = 0; i < positions.length; i++) {
+        for (var i = 0; i < userVisitCourses.length; i++) {
           // 마커 이미지의 이미지 크기 입니다
           var imageSize = new window.kakao.maps.Size(24, 35);
 
@@ -38,10 +42,10 @@ const MypageMap = ({ positions }: MapProps) => {
           let marker = new window.kakao.maps.Marker({
             map: map, // 마커를 표시할 지도
             position: new window.kakao.maps.LatLng( // 내가 방문한 코스 마커
-              positions[i].lat,
-              positions[i].lng,
+              userVisitCourses[i].touristLat,
+              userVisitCourses[i].touristLng,
             ), // 마커를 표시할 위치
-            title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+            title: userVisitCourses[i].courseId, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             image: markerImage, // 마커 이미지
           });
           window.kakao.maps.event.addListener(marker, 'click', function () {

@@ -1,5 +1,9 @@
 import { ActionType, createReducer } from 'typesafe-actions';
-import { SEARCH_COURSE_SUCCESS, SET_SEARCH_KEYWORD } from './actions';
+import {
+  RESET_SEARCH_COURSES,
+  SEARCH_COURSE_SUCCESS,
+  SET_SEARCH_KEYWORD,
+} from './actions';
 import { CourseState, CourseAction } from './types';
 import produce from 'immer';
 
@@ -16,6 +20,10 @@ const course = createReducer<CourseState, CourseAction>(initialState, {
   [SET_SEARCH_KEYWORD]: (state, action) =>
     produce(state, draft => {
       draft.searchKeyword = action.payload;
+    }),
+  [RESET_SEARCH_COURSES]: state =>
+    produce(state, draft => {
+      draft.searchCourses = [];
     }),
 });
 

@@ -41,8 +41,9 @@ const TourList = ({ title, date, content, button }: TourListProps) => {
     setSelectListTitle(selectListTitle.filter(element => element !== title));
   };
   useEffect(() => {
-    // 코스등록 api 중복호출 방지
+    // 등록 버튼 클릭 시
     if (button) {
+      // 코스등록 api 중복호출 방지
       dispatch(
         courseRegitser.request({
           courseContent: content,
