@@ -124,5 +124,7 @@ def recommend_course(keyword_name):
 #     sim_index = sim_index[sim_index!=target_course_index]
     
     result = course_data.iloc[sim_index][:10]
+
+    result = result.loc[:, ['course_id', 'course_name', 'tourist_id', 'file_id']]
     
     return result.set_index('course_id',drop=True).to_json(force_ascii=False, orient='records')
