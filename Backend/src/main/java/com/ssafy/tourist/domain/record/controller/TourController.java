@@ -61,14 +61,15 @@ public class TourController {
 
 
     @ApiOperation(value = "여행 시작 여부")
-    @GetMapping("/tour-start/{userId}/{courseId}")
-    public ResponseEntity<TourIsStartGetRes> courseIsStart(@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId,
-                                                           @ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
+    @GetMapping("/tour-start/{userId}")
+    public ResponseEntity<TourIsStartGetRes> courseIsStart(@ApiParam(value = "회원 구분 번호") @PathVariable("userId") int userId) {
         log.info("courseIsStart - Call");
 
-        if(tourService.courseIsStartByUser(userId, courseId)) {
-            return ResponseEntity.status(200).body(TourIsStartGetRes.of(200, "Success", true));
-        } else return ResponseEntity.status(200).body(TourIsStartGetRes.of(200, "Success", false));
+        int courseId = tourService.courseIsStartByUser(userId);
+
+        if(courseId != 0) {
+            return ResponseEntity.status(200).body(TourIsStartGetRes.of(200, "Success", courseId));
+        } else return ResponseEntity.status(200).body(TourIsStartGetRes.of(200, "Success", 0));
     }
 
 

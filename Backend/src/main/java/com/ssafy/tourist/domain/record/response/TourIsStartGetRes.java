@@ -12,13 +12,13 @@ import lombok.Setter;
 @ApiModel(value = "TourIsStartGetRes", description = "여행 시작 여부 응답")
 public class TourIsStartGetRes extends BaseResponseBody {
     @ApiModelProperty(value = "여행 시작 여부 정보")
-    boolean isStart = false;
+    int courseId = 0;
 
-    public static TourIsStartGetRes of (Integer statusCode, String message, boolean isStart) {
+    public static TourIsStartGetRes of (Integer statusCode, String message, int courseId) {
         TourIsStartGetRes res = new TourIsStartGetRes();
         res.setStatusCode(statusCode);
         res.setMessage(message);
-        res.setStart(isStart);
+        res.setCourseId(courseId);
 
         return res;
     }
