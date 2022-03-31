@@ -1,9 +1,6 @@
 package com.ssafy.tourist.domain.record.service;
 
-import com.ssafy.tourist.domain.course.db.entity.CourseData;
-import com.ssafy.tourist.domain.record.db.bean.TourTagList;
 import com.ssafy.tourist.domain.record.db.bean.VisitTouristName;
-import com.ssafy.tourist.domain.record.db.entity.Tag;
 import com.ssafy.tourist.domain.record.db.entity.TagCode;
 import com.ssafy.tourist.domain.record.request.TagRegisterPostReq;
 import com.ssafy.tourist.domain.record.request.TourEndPostReq;
@@ -15,6 +12,7 @@ import java.util.List;
 public interface TourService {
     int courseStartByUser(TourStartPostReq tourStartPostReq);
     int courseEndByUser(TourEndPostReq tourEndPostReq);
+    int courseGivingUpByUser(TourEndPostReq tourEndPostReq);
     int courseIsStartByUser(int userId);
 
     int touristVisitByUser(TouristVisitPostReq touristVisitPostReq);

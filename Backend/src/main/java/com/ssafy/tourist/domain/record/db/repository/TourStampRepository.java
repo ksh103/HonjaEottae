@@ -28,4 +28,9 @@ public interface TourStampRepository extends JpaRepository<TourStamp, TourStampI
 
     @Query("select count(s.isStamp) from TourStamp s where s.isStamp = true and s.courseId = :courseId")
     int countTourStampByCourseId(int courseId);
+
+    @Modifying(clearAutomatically = true)
+    @Transactional
+    @Query("delete from TourStamp t where t.userId = :userId and t.courseId = :courseId")
+    int deleteTourStampByUserIdAndCourseId(int userId, int courseId);
 }
