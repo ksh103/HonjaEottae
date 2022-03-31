@@ -10,6 +10,8 @@ import {
   SAVE_TEST_RESULT_SUCCESS,
   MY_COURSE_SUCCESS,
   VISIT_COURSE_SUCCESS,
+  AREA_COURSE_SUCCESS,
+  MONTH_COURSE_SUCCESS,
 } from './actions';
 import produce from 'immer';
 
@@ -24,6 +26,8 @@ const initialState: UserState = {
   isLogin: false,
   isSignUp: false,
   userVisitCourses: [],
+  areaCourses: [],
+  monthCourses: [],
 };
 
 const user = createReducer<UserState, UserAction>(initialState, {
@@ -45,7 +49,9 @@ const user = createReducer<UserState, UserAction>(initialState, {
       draft.userCourses = action.payload.userCourses;
       draft.userLikes = action.payload.userLikes;
       draft.userVisitCourses = action.payload.userVisitCourses;
-      console.log('방문코스 기록 리듀서', action.payload.userVisitCourses);
+      draft.areaCourses = action.payload.areaCourses;
+      draft.monthCourses = action.payload.monthCourses;
+      console.log(draft.areaCourses, draft.monthCourses);
     }),
   [LIKE_COURSE_SUCCESS]: (state, action) =>
     produce(state, draft => {
@@ -69,6 +75,14 @@ const user = createReducer<UserState, UserAction>(initialState, {
     produce(state, draft => {
       console.log('코스등록 성공', action);
       draft.userCourses = action.payload;
+    }),
+  [AREA_COURSE_SUCCESS]: (state, action) =>
+    produce(state, draft => {
+      draft.areaCourses = action.payload;
+    }),
+  [MONTH_COURSE_SUCCESS]: (state, action) =>
+    produce(state, draft => {
+      draft.monthCourses = action.payload;
     }),
   // [VISIT_COURSE_SUCCESS]: (state, action) =>
   //   produce(state, draft => {

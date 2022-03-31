@@ -66,10 +66,6 @@ const CourseFormWrapper = styled.div`
   display: flex;
   overflow-x: auto;
   margin-top: 30px;
-  #space {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
   #card {
     cursor: pointer;
   }
