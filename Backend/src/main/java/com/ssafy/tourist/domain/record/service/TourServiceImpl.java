@@ -46,31 +46,39 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public int courseStartByUser(TourStartPostReq tourStartPostReq) {
-        // 코스 시작
-        Tour tour = new Tour();
 
-        tour.setUserId(tourStartPostReq.getUserId());
-        tour.setCourseId(tourStartPostReq.getCourseId());
-        tour.setTourStart(LocalDateTime.now());
-        tour.setStart(true);
+        // 진행중인 여행 코스가 없을 경우
+        if((tourRepository.isStartByUserIdAndCourseId(tourStartPostReq.getUserId()) == 0 && tourRepository.isEndByUserIdAndCourseId(tourStartPostReq.getUserId()) == 0) ||
+                (tourRepository.isStartByUserIdAndCourseId(tourStartPostReq.getUserId()) == tourRepository.isEndByUserIdAndCourseId(tourStartPostReq.getUserId()))) {
+            // 코스 시작
+            Tour tour = new Tour();
 
-        tourRepository.save(tour); // 코스 시작 정보 넣기
+            tour.setUserId(tourStartPostReq.getUserId());
+            tour.setCourseId(tourStartPostReq.getCourseId());
+            tour.setTourStart(LocalDateTime.now());
+            tour.setStart(true);
 
-        // ** 코스 시작 이후 관광지 방문 db도 처리
-        TourStamp tourStamp = new TourStamp();
+            tourRepository.save(tour); // 코스 시작 정보 넣기
 
-        // 코스 번호 받아서 코스 안에 관광지 개수 카운트 -> 관광지 개수만큼 stamp에 넣기
-        int touristCount = courseDataRepository.countCourseDataByCourseId(tourStartPostReq.getCourseId());
+            // ** 코스 시작 이후 관광지 방문 db도 처리
+            TourStamp tourStamp = new TourStamp();
 
-        for (int i = 1; i <= touristCount; i++) {
-            tourStamp.setCourseId(tourStartPostReq.getCourseId());
-            tourStamp.setCourseDataId(i);
-            tourStamp.setUserId(tourStartPostReq.getUserId());
+            // 코스 번호 받아서 코스 안에 관광지 개수 카운트 -> 관광지 개수만큼 stamp에 넣기
+            int touristCount = courseDataRepository.countCourseDataByCourseId(tourStartPostReq.getCourseId());
 
-            tourStampRepository.save(tourStamp);
-        }
+            for (int i = 1; i <= touristCount; i++) {
+                tourStamp.setCourseId(tourStartPostReq.getCourseId());
+                tourStamp.setCourseDataId(i);
+                tourStamp.setUserId(tourStartPostReq.getUserId());
 
-        return SUCCESS;
+                tourStampRepository.save(tourStamp);
+            }
+            return SUCCESS;
+
+        } else if(tourRepository.isStartByUserIdAndCourseId(tourStartPostReq.getUserId()) > tourRepository.isEndByUserIdAndCourseId(tourStartPostReq.getUserId())) {
+            return NONE;
+        } else return FAIL;
+
     }
 
     @Override
