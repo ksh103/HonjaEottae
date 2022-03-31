@@ -139,17 +139,25 @@ public class TourServiceImpl implements TourService {
         RecordTag recordTag = new RecordTag();
 
         int size = tagRegisterPostReq.getTag().length;
-        int[] tagId = tagRegisterPostReq.getTag();
+        int[][] tagId= tagRegisterPostReq.getTag();
 
-        for (int i = 0; i < size; i++) {
-            recordTag.setRecordId(tagRegisterPostReq.getRecordId());
-            recordTag.setCourseId(tagRegisterPostReq.getCourseId());
-            recordTag.setSelect(true);
+        for (int i = 0; i < 4; i++) {
+//            recordTag.setCode(i + 1);
+//            recordTag.setTagId(tagId[i][j]);
+            for (int j = 0; j < 6; j++) {
+                if(tagId[i][j] == 1) {
+                    recordTag.setRecordId(tagRegisterPostReq.getRecordId());
+                    recordTag.setCourseId(tagRegisterPostReq.getCourseId());
+                    recordTag.setSelect(true);
 
-            recordTag.setCode(i + 1);
-            recordTag.setTagId(tagId[i]);
+                    recordTag.setCode(i + 1);
+                    recordTag.setTagId(j + 1);
+                    recordTag.setSelect(true);
 
-            recordTagRepository.save(recordTag);
+                    recordTagRepository.save(recordTag);
+                } else if(tagId[i][j] == 0) continue;
+            }
+
         }
 
         return SUCCESS;
