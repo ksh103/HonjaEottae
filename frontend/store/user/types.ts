@@ -53,10 +53,15 @@ export type UserDetail = {
 };
 
 export type VisitCourse = {
-  courseId: number;
+  recordId: number;
   courseName: string;
+  courseId: number;
+  touristId: number;
   touristLat: number;
   touristLng: number;
+  recordContent: string;
+  recordRegDt: string;
+  fileId: number;
 };
 
 export type MonthCourse = {

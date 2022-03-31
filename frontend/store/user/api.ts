@@ -101,6 +101,7 @@ export async function UserInfoAPI(userEmail: string) {
     areaCourses: areaCourses,
     monthCourses: monthCourses,
   };
+  console.log(result);
   return result;
 }
 
@@ -115,21 +116,34 @@ export async function SaveTestResultAPI({ tourTestId, userId }: TestResult) {
 
 // 내가 방문한 코스 조회(마이페이지 지도)
 export async function VisitCourseAPI(userId: number) {
-  const datas = await axios.get(`${BASE_URL}user/user-location/${userId}`);
-  return datas.data.list;
+  const datas = await axios.get(`${BASE_URL}record/${userId}`);
+  if (datas.data.list == null) return [];
+  else return datas.data.list;
 }
 
 // 회원 방문한 지역 분석 (마이페이지 우측그래프)
 export async function AreaCourseAPI(userId: number) {
   const datas = await axios.get(`${BASE_URL}user/user-log/area/${userId}`);
-  const result = datas.data.list.map((data: any) => {
-    return { id: data.touristAddress, value: data.touristCount };
-  });
-  return result;
+  if (datas.data.list == null) {
+    return [];
+  } else {
+    const result = datas.data.list.map((data: any) => {
+      return { id: data.touristAddress, value: data.touristCount };
+    });
+    return result;
+  }
 }
 
 // 회원 방문한 코스 월별 분석(마이페이지 좌측그래프)
 export async function MonthCourseAPI(userId: number) {
   const datas = await axios.get(`${BASE_URL}user/user-log/date/${userId}`);
-  return datas.data.list;
+  let count = 0;
+  datas.data.list.map((data: any) => {
+    if (data.dateCount == 0) count++;
+  });
+  if (count == 6) {
+    return [];
+  } else {
+    return datas.data.list;
+  }
 }
