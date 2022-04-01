@@ -1,5 +1,6 @@
 package com.ssafy.tourist.domain.course.response;
 
+import com.ssafy.tourist.domain.course.db.bean.CourseRecordDetail;
 import com.ssafy.tourist.domain.record.db.entity.Record;
 import com.ssafy.tourist.global.model.response.BaseResponseBody;
 import io.swagger.annotations.ApiModel;
@@ -14,9 +15,9 @@ import java.util.List;
 @ApiModel(value = "CourseRecordDetailGetRes", description = "코스 여행 레코드(일기) 조회 응답")
 public class CourseRecordDetailGetRes extends BaseResponseBody {
     @ApiModelProperty(value = "코스 여행 레코드(일기) 조회정보")
-    List<Record> list = null;
+    List<CourseRecordDetail> list = null;
 
-    public static CourseRecordDetailGetRes of (Integer statusCode, String message, List<Record> list) {
+    public static CourseRecordDetailGetRes of (Integer statusCode, String message, List<CourseRecordDetail> list) {
         CourseRecordDetailGetRes res = new CourseRecordDetailGetRes();
         res.setStatusCode(statusCode);
         res.setMessage(message);

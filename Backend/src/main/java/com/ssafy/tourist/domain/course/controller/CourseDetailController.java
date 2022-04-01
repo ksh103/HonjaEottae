@@ -1,9 +1,6 @@
 package com.ssafy.tourist.domain.course.controller;
 
-import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
-import com.ssafy.tourist.domain.course.db.bean.CourseTagDetail;
-import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
-import com.ssafy.tourist.domain.course.db.bean.CourseTouristDetail;
+import com.ssafy.tourist.domain.course.db.bean.*;
 import com.ssafy.tourist.domain.course.db.entity.CourseData;
 import com.ssafy.tourist.domain.course.response.*;
 import com.ssafy.tourist.domain.course.service.CourseDetailService;
@@ -55,7 +52,7 @@ public class CourseDetailController {
     public ResponseEntity<CourseRecordDetailGetRes> courseRecordDetail(@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
         log.info("courseRecordDetail - Call");
 
-        List<Record> courseRecordDetailList = courseDetailService.courseRecordDetail(courseId);
+        List<CourseRecordDetail> courseRecordDetailList = courseDetailService.courseRecordDetail(courseId);
 
         if (courseRecordDetailList != null && !courseRecordDetailList.isEmpty()) {
             return ResponseEntity.status(200).body(CourseRecordDetailGetRes.of(200, "Success", courseRecordDetailList));
