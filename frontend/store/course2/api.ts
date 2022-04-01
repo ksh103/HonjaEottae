@@ -80,7 +80,7 @@ export async function GetCourseReviewAPI(courseId: number) {
     .then(res => res.data.list);
   if (result === null) return [];
   return result.map((data: any) => {
-    let img = '/images/noimage.jpg';
+    let img = '/images/no_image.jpg';
     if (data.fileId > 0) {
       img = IMAGE_URL + data.fileId + '/' + data.touristId;
     }
@@ -115,7 +115,7 @@ export async function GetCourseInfoAPI(courseId: number) {
     courseInfo: result.courseDetailList[0],
     courseTourist: result.courseTouristDetailList.map(
       (data: any, i: number) => {
-        let img = '/images/noimage.png';
+        let img = '/images/no_image.jpg';
         if (data.fileId > 0) {
           img = IMAGE_URL + data.fileId + '/' + data.touristId;
         }

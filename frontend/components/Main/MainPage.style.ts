@@ -77,6 +77,7 @@ const KoreaMap = styled.div`
 `;
 const MapAreaBox = styled.div<Location>`
   position: absolute;
+  cursor: pointer;
   top: ${props => props.x + 'px'};
   left: ${props => props.y + 'px'};
   background-color: rgba(240, 240, 240, 0.75);
