@@ -9,82 +9,68 @@ import Menu from '../Nav/Menu';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useEffect } from 'react';
-import { resetSearchCourses } from '../../store/course';
+import { recommendCourse, resetSearchCourses } from '../../store/course';
+import Loading from '../Loading/Loading';
+import { KEYWORD } from '../../assets/keyword';
 
 const CourseComp: NextPage = () => {
   const dispatch = useDispatch();
-  const dummy = [
-    {
-      courseId: 1,
-      courseName: '임시 데이터',
-      image:
-        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
-    },
-    {
-      courseId: 1,
-      courseName: '임시 데이터',
-      image:
-        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
-    },
-    {
-      courseId: 1,
-      courseName: '임시 데이터',
-      image:
-        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
-    },
-    {
-      courseId: 1,
-      courseName: '임시 데이터',
-      image:
-        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
-    },
-    {
-      courseId: 1,
-      courseName: '임시 데이터',
-      image:
-        'https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/11/7d43baac-4f90-4ed8-9553-9cf488b2eff9.jpg',
-    },
-  ];
+
   useEffect(() => {
     // 첫 실행 시 검색결과가 있으면 지우기
     dispatch(resetSearchCourses());
+    dispatch(recommendCourse.request(userInfo.userId));
   }, []);
   const { userInfo } = useSelector((state: RootState) => state.user);
-  const { searchCourses, searchKeyword } = useSelector(
-    (state: RootState) => state.course,
-  );
+
+  const { searchCourses, searchKeyword, keywordCourses, userCourses } =
+    useSelector((state: RootState) => state.course);
+  console.log(keywordCourses);
   return (
     <>
       <Nav />
       <Menu currentName="코스추천" />
-      <Wrapper>
-        <CourseWrapper>
-          <SearchForm />
-          <CourseBlock>
-            {searchCourses.length == 0 ? (
-              <></>
-            ) : (
-              <div id="search">
-                <div className="title"> {searchKeyword} 관련 코스 추천</div>
-                <CourseList data={searchCourses} />
-              </div>
-            )}
-            {userInfo.userName.length > 0 ? (
-              <div className="title">{userInfo.userName}님 맞춤 추천 코스</div>
-            ) : (
-              <div className="title">혼자어때가 추천하는 여행 코스</div>
-            )}
 
-            <CourseList data={dummy} />
-            <div className="title">푸른 자연을 느낄 수 있는 코스</div>
-            <CourseList data={dummy} />
-            <div className="title">역사가 담긴 코스</div>
-            <CourseList data={dummy} />
-            <div className="title">시원한 바다의 향기가 느껴지는 코스</div>
-            <CourseList data={dummy} />
-          </CourseBlock>
-        </CourseWrapper>
-      </Wrapper>
+      {keywordCourses.length > 0 ? (
+        <Wrapper>
+          <CourseWrapper>
+            <SearchForm />
+            <CourseBlock>
+              {searchCourses.length == 0 ? (
+                <></>
+              ) : (
+                <div id="search">
+                  <div className="title"> {searchKeyword} 관련 코스 추천</div>
+                  <CourseList data={searchCourses} />
+                </div>
+              )}
+              {userInfo.userName.length > 0 ? (
+                <div className="title">
+                  {userInfo.userName}님 맞춤 추천 코스
+                </div>
+              ) : (
+                <div className="title">혼자어때가 추천하는 여행 코스</div>
+              )}
+              <CourseList data={userCourses} />
+              {keywordCourses.map((keywordCourse: any, idx) => (
+                <div>
+                  <div className="title">
+                    {
+                      KEYWORD.titles[
+                        KEYWORD.keywords.indexOf(keywordCourse.title)
+                      ]
+                    }
+                  </div>
+                  <CourseList data={keywordCourse.contents} />
+                </div>
+              ))}
+            </CourseBlock>
+          </CourseWrapper>
+        </Wrapper>
+      ) : (
+        <Loading />
+      )}
+
       <Footer />
     </>
   );

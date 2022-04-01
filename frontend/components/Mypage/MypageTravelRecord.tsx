@@ -1,8 +1,17 @@
 import { NextPage } from 'next';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { MypageWrapper, MyTravleWrapper, DiaryWrapper } from './Mypage.style';
 import MypageMap from './MypageMap';
 
 const MypageTravelRecord: NextPage = () => {
+  const { userVisitCourses, selectRecord } = useSelector(
+    (state: RootState) => state.user,
+  );
+  const nowCourse = userVisitCourses.filter(
+    data => data.courseId == selectRecord,
+  );
+
   return (
     <>
       <MypageWrapper height="500px">
@@ -13,9 +22,16 @@ const MypageTravelRecord: NextPage = () => {
           </div>
           <div className="diary">
             <DiaryWrapper>
-              <div id="title">일기 제목 들어갈 예정</div>
-              <div id="image">이미지 들어갈 예정</div>
-              <div id="content">일기 내용 들어갈 예정</div>
+              <div id="title">
+                {nowCourse[0].recordRegDt}
+                <br />
+                {nowCourse[0].courseName}
+              </div>
+              <div id="image">
+                <img src={nowCourse[0].image}></img>
+                {/* <img src="/images/noimage.jpg"></img> */}
+              </div>
+              <div id="content">{nowCourse[0].recordContent}</div>
             </DiaryWrapper>
           </div>
         </MyTravleWrapper>

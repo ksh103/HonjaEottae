@@ -24,7 +24,7 @@ const MypageComp: NextPage = () => {
         </Wrapper>
       ) : (
         <Wrapper>
-          <Loading>로딩중</Loading>
+          <Loading />
         </Wrapper>
       )}
       <Footer />

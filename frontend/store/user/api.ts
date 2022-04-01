@@ -117,8 +117,33 @@ export async function SaveTestResultAPI({ tourTestId, userId }: TestResult) {
 // 내가 방문한 코스 조회(마이페이지 지도)
 export async function VisitCourseAPI(userId: number) {
   const datas = await axios.get(`${BASE_URL}record/${userId}`);
+  console.log(datas);
   if (datas.data.list == null) return [];
-  else return datas.data.list;
+  else {
+    return datas.data.list.map((data: any) => {
+      if (data.fileId == 0) {
+        return {
+          courseId: data.courseId,
+          courseName: data.courseName,
+          recordContent: data.recordContent,
+          recordRegDt: data.recordRegDt.substring(0, 10),
+          touristLat: data.touristLat,
+          touristLng: data.touristLng,
+          image: '/images/noimage.png',
+        };
+      } else {
+        return {
+          courseId: data.courseId,
+          courseName: data.courseName,
+          recordContent: data.recordContent,
+          recordRegDt: data.recordRegDt.substring(0, 10),
+          touristLat: data.touristLat,
+          touristLng: data.touristLng,
+          image: `${IMAGE_URL}${data.fileId}/${data.touristId}`,
+        };
+      }
+    });
+  }
 }
 
 // 회원 방문한 지역 분석 (마이페이지 우측그래프)

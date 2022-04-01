@@ -3,15 +3,18 @@ import { ResponsivePie } from '@nivo/pie';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { DefaultImage } from '../Mypage/Mypage.style';
+import Link from 'next/link';
 
 const PieChart: NextPage = () => {
   const { areaCourses } = useSelector((state: RootState) => state.user);
   return (
     <>
       {areaCourses.length == 0 ? (
-        <DefaultImage>
-          <img src="images/방문지역분석.png"></img>
-        </DefaultImage>
+        <Link href="/course">
+          <DefaultImage>
+            <img src="images/방문지역분석.png"></img>
+          </DefaultImage>
+        </Link>
       ) : (
         <ResponsivePie
           data={areaCourses}

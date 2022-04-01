@@ -12,6 +12,7 @@ import {
   VISIT_COURSE_SUCCESS,
   AREA_COURSE_SUCCESS,
   MONTH_COURSE_SUCCESS,
+  SET_SELECT_RECORD,
 } from './actions';
 import produce from 'immer';
 
@@ -28,6 +29,7 @@ const initialState: UserState = {
   userVisitCourses: [],
   areaCourses: [],
   monthCourses: [],
+  selectRecord: 0,
 };
 
 const user = createReducer<UserState, UserAction>(initialState, {
@@ -51,7 +53,9 @@ const user = createReducer<UserState, UserAction>(initialState, {
       draft.userVisitCourses = action.payload.userVisitCourses;
       draft.areaCourses = action.payload.areaCourses;
       draft.monthCourses = action.payload.monthCourses;
-      // console.log(draft.userVisitCourses);
+      if (draft.userVisitCourses.length != 0) {
+        draft.selectRecord = action.payload.userVisitCourses[0].courseId;
+      }
     }),
   [LIKE_COURSE_SUCCESS]: (state, action) =>
     produce(state, draft => {
@@ -73,7 +77,6 @@ const user = createReducer<UserState, UserAction>(initialState, {
     }),
   [MY_COURSE_SUCCESS]: (state, action) =>
     produce(state, draft => {
-      console.log('코스등록 성공', action);
       draft.userCourses = action.payload;
     }),
   [AREA_COURSE_SUCCESS]: (state, action) =>
@@ -83,6 +86,10 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [MONTH_COURSE_SUCCESS]: (state, action) =>
     produce(state, draft => {
       draft.monthCourses = action.payload;
+    }),
+  [SET_SELECT_RECORD]: (state, action) =>
+    produce(state, draft => {
+      draft.selectRecord = action.payload;
     }),
   // [VISIT_COURSE_SUCCESS]: (state, action) =>
   //   produce(state, draft => {
