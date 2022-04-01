@@ -11,6 +11,10 @@ import java.time.LocalDateTime;
 public class CourseRecordDetail {
     private int courseId;
 
+    private int userId;
+    private String userName;
+    private String userEmail;
+
     private int recordId;
     private String recordContent;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)

@@ -60,8 +60,8 @@ public class CourseDetailRepositorySpp {
 
     // 코스 여행 레코드(일기) 조회 Query
     public List<CourseRecordDetail> courseRecordDetailByCourseId(int courseId) {
-        return jpaQueryFactory.select(Projections.constructor(CourseRecordDetail.class, qRecord.courseId, qRecord.recordId, qRecord.recordContent,
-                        qRecord.recordRegDt, qRecordImgPath.fileId.min().as("fileId"))).from(qRecord)
+        return jpaQueryFactory.select(Projections.constructor(CourseRecordDetail.class, qRecord.courseId, qRecord.userId, qUser.userName, qUser.userEmail,
+                        qRecord.recordId, qRecord.recordContent, qRecord.recordRegDt, qRecordImgPath.fileId.min().as("fileId"))).from(qRecord)
                 .leftJoin(qUser).on(qUser.userId.eq(qRecord.userId))
                 .leftJoin(qCourse).on(qCourse.courseId.eq(qRecord.courseId))
                 .leftJoin(qRecordImgPath).on(qRecordImgPath.recordId.eq(qRecord.recordId))
