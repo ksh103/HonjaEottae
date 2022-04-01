@@ -1,8 +1,10 @@
 import { RecordState, RecordAction } from './types';
 import { createReducer } from 'typesafe-actions';
 import {
-  CHECK_TOUR_SUCCESS,
+  CANCEL_TOUR_SUCCESS,
   END_TOUR_SUCCESS,
+  GET_TAG_SUCCESS,
+  GET_TOUR_DETAIL_SUCCESS,
   MARK_STAMP_SUCCESS,
   START_TOUR_SUCCESS,
 } from './actions';
@@ -10,10 +12,19 @@ import produce from 'immer';
 
 const initialState: RecordState = {
   tourId: 0,
-  stamp: [], // 현재 내가 방문한 곳들 체크
+  courseName: '',
+  stamps: [],
+  tag: [],
 };
 
 const record = createReducer<RecordState, RecordAction>(initialState, {
+  [GET_TOUR_DETAIL_SUCCESS]: (state, action) =>
+    produce(state, draft => {
+      draft.tourId = action.payload.tourId;
+      draft.courseName = action.payload.courseName;
+      draft.stamps = action.payload.stamps;
+      draft.tag = action.payload.tag;
+    }),
   [START_TOUR_SUCCESS]: (state, action) =>
     produce(state, draft => {
       draft.tourId = action.payload;
@@ -22,14 +33,15 @@ const record = createReducer<RecordState, RecordAction>(initialState, {
     produce(state, draft => {
       draft.tourId = 0;
     }),
-  [CHECK_TOUR_SUCCESS]: (state, action) =>
+  [CANCEL_TOUR_SUCCESS]: state =>
     produce(state, draft => {
-      draft.tourId = action.payload.tourId;
-      draft.stamp = action.payload.stamp;
+      draft.tourId = 0;
+      draft.courseName = '';
+      draft.stamps = [];
     }),
   [MARK_STAMP_SUCCESS]: (state, action) =>
     produce(state, draft => {
-      draft.stamp.push(action.payload);
+      draft.stamps[action.payload].state = true;
     }),
 });
 export default record;

@@ -20,7 +20,7 @@ import {
   VisitCourseAPI,
 } from './api';
 import { Course, SignInSuccess, UserDetail, VisitCourse } from './types';
-import { checkTour } from '../record';
+import { getTourDetail } from '../record';
 
 function* signInSaga({ payload }: ReturnType<typeof signIn.request>) {
   try {
@@ -50,7 +50,7 @@ function* userInfoSaga({ payload }: ReturnType<typeof userInfo.request>) {
   try {
     const result: UserDetail = yield call(UserInfoAPI, payload);
     yield put(userInfo.success(result));
-    yield put(checkTour.request(result.userInfo.userId));
+    yield put(getTourDetail.request(result.userInfo.userId));
     return result;
   } catch (error) {
     console.log(error);
@@ -96,15 +96,6 @@ function* myCourseSaga({ payload }: ReturnType<typeof myCourse.request>) {
   }
 }
 
-// function* visitCourseSaga({ payload }: ReturnType<typeof visitCourse.request>) {
-//   try {
-//     const result: VisitCourse[] = yield call(VisitCourseAPI, payload);
-//     yield put(visitCourse.success(result));
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
 export function* userSaga() {
   yield all([
     takeLatest(signIn.request, signInSaga),
@@ -114,6 +105,5 @@ export function* userSaga() {
     takeLatest(unlikeCourse.request, unlikeCourseSaga),
     takeLatest(saveTestResult.request, saveTestResultSaga),
     takeLatest(myCourse.request, myCourseSaga),
-    // takeLatest(visitCourse.request, visitCourseSaga),
   ]);
 }

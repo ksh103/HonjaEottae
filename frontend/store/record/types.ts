@@ -4,23 +4,42 @@ import * as actions from './actions';
 export type RecordAction = ActionType<typeof actions>;
 
 export type Tour = {
-  courseId: number;
+  tourId: number;
   userId: number;
 };
 
 export type MarkStamp = {
   touristIndex: number;
   courseId: number;
-  touristName: string;
   userId: number;
 };
 
 export type Stamp = {
+  touristId: number;
   touristName: string;
   touristIndex: number;
+  touristAddress: string;
+  touristLat: number;
+  touristLng: number;
+  image: string;
+  state: boolean;
+};
+
+export type Tag = {
+  code: number;
+  tagId: number;
+  tagName: string;
+};
+
+export type TagCode = {
+  code: number;
+  codeName: string;
+  tag: Tag[];
 };
 
 export type RecordState = {
   tourId: number;
-  stamp: Stamp[];
+  courseName: string;
+  stamps: Stamp[];
+  tag: TagCode[];
 };

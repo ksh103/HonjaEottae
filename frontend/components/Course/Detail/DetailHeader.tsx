@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { likeCourse, unlikeCourse } from '../../../store/user';
 import { startTour } from '../../../store/record';
+import Router from 'next/router';
 export default function DetailHeader() {
   const dispatch = useDispatch();
   const { courseId, courseInfo, courseTourist } = useSelector(
@@ -57,21 +58,19 @@ export default function DetailHeader() {
       }),
     );
   };
-  const StartCourse = () => {
+  const StartTour = () => {
     if (tourId === 0) {
       console.log('시작할거야!!');
       dispatch(
-        startTour.request({ userId: userInfo.userId, courseId: courseId }),
+        startTour.request({ userId: userInfo.userId, tourId: courseId }),
       );
     } else {
       alert('여행중인 코스가 있습니다.');
     }
   };
-  const EndCourse = () => {
-    console.log('종료할거야!!');
-    alert('후기를 작성하시겠습니까?');
-    // 종료는 후기 작성하고 죵료할수있게 처리
-    // href('/record');
+  const ProcessTour = () => {
+    console.log('여행진행중이다. 여행 기록 페이지로 이동한다.');
+    Router.push('/record');
   };
 
   return (
@@ -95,11 +94,11 @@ export default function DetailHeader() {
               </li>
             )}
             {tourId === courseId ? (
-              <li onClick={EndCourse}>
-                <FireFilled style={{ color: 'red' }} /> 여행종료
+              <li onClick={ProcessTour}>
+                <FireFilled style={{ color: 'red' }} /> 여행중
               </li>
             ) : (
-              <li onClick={StartCourse}>
+              <li onClick={StartTour}>
                 <FireOutlined /> 여행시작
               </li>
             )}
