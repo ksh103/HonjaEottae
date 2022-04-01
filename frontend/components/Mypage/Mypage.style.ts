@@ -27,7 +27,11 @@ const GraphWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 100%;
+  overflow: auto none;
+  padding-top: 20px;
+  @media ${props => props.theme.laptopS} {
+    display: block;
+  }
   .LGraph {
     border-radius: 1vw;
     width: 48%;
@@ -57,9 +61,14 @@ const DefaultImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   img {
     width: 90%;
     border-radius: 1vw;
+    &:hover {
+      transform: scale(1.05);
+      transition: transform 0.5s;
+    }
   }
 `;
 
@@ -89,23 +98,25 @@ const DiaryWrapper = styled.div`
   justify-content: space-evenly;
   margin: 0 10px;
   #title {
-    /* pa */
     border-radius: 1vw;
-    /* background-color: black; */
     height: 10%;
-    /* color: white; */
+    font-family: 'Jalnan';
+    margin: 10px;
   }
   #image {
-    border-radius: 1vw;
-    height: 35%;
-    /* background-color: black; */
-    /* color: white; */
+    height: 50%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   #content {
     border-radius: 1vw;
-    height: 45%;
-    /* background-color: black; */
-    /* color: white; */
+    height: 40%;
+    margin: 10px;
+    text-decoration: underline;
+    text-underline-position: under;
   }
 `;
 

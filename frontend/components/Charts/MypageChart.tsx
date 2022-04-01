@@ -3,6 +3,8 @@ import { NextPage } from 'next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { DefaultImage } from '../Mypage/Mypage.style';
+import Link from 'next/link';
+
 const MypageChart: NextPage = () => {
   const data = [
     {
@@ -31,13 +33,15 @@ const MypageChart: NextPage = () => {
     },
   ];
   const { monthCourses } = useSelector((state: RootState) => state.user);
-  console.log(monthCourses);
   return (
     <>
       {monthCourses.length == 0 ? (
-        // <DefaultImage>
-        //   <img src="/images/월별방문분석.png" />
-        // </DefaultImage>
+        // <Link href="/course">
+        //   <DefaultImage>
+        //     <img src="/images/월별방문분석.png" />
+        //   </DefaultImage>
+        // </Link>
+
         <ResponsiveBar
           data={data}
           keys={['dateCount']}
@@ -66,7 +70,7 @@ const MypageChart: NextPage = () => {
         />
       ) : (
         <ResponsiveBar
-          data={data}
+          data={monthCourses}
           keys={['dateCount']}
           indexBy="yearAndMonth"
           margin={{ top: 20, right: 50, bottom: 50, left: 70 }}

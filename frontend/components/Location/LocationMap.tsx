@@ -20,7 +20,7 @@ const LocationMap = ({ positions }: MapProps) => {
     let selectLat: number = 0;
     let selectLng: number = 0;
     let selectTitle: string = '';
-    const selectedArray = searchLoactions.map(data => {
+    searchLoactions.map(data => {
       if (selectLocation == data.touristName) {
         selectLat = data.touristLat;
         selectLng = data.touristLng;

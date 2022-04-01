@@ -49,6 +49,9 @@ export const VISIT_COURSE_REQUEST = 'user/VISIT_COURSE_REQUEST';
 export const VISIT_COURSE_SUCCESS = 'user/VISIT_COURSE_SUCCESS';
 export const VISIT_COURSE_FAILURE = 'user/VISIT_COURSE_FAILURE';
 
+// 내가 방문한 코스 선택(일기)
+export const SET_SELECT_RECORD = 'user/SET_SELECT_RECORD';
+
 // 회원 방문한 코스 월별 분석(마이페이지 좌측그래프)
 export const MONTH_COURSE_REQUEST = 'user/MONTH_COURSE_REQUEST';
 export const MONTH_COURSE_SUCCESS = 'user/MONTH_COURSE_SUCCESS';
@@ -108,6 +111,8 @@ export const visitCourse = createAsyncAction(
   VISIT_COURSE_SUCCESS,
   VISIT_COURSE_FAILURE,
 )<number, VisitCourse[], Error>();
+
+export const selectRecords = createAction(SET_SELECT_RECORD)<number>();
 
 export const monthCourse = createAsyncAction(
   MONTH_COURSE_REQUEST,

@@ -1,7 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { searchCourse } from './actions';
-import { SearchCourseAPI } from './api';
-import { SearchCourse } from './types';
+import { recommendCourse, searchCourse } from './actions';
+import { RecommendCourseAPI, SearchCourseAPI } from './api';
+import { CourseDetail, SearchCourse } from './types';
 
 function* searchCourseSaga({
   payload: name,
@@ -14,6 +14,20 @@ function* searchCourseSaga({
   }
 }
 
+function* recommendCourseSaga({
+  payload,
+}: ReturnType<typeof recommendCourse.request>) {
+  try {
+    const result: CourseDetail = yield call(RecommendCourseAPI, payload);
+    yield put(recommendCourse.success(result));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export function* courseSaga() {
-  yield all([takeLatest(searchCourse.request, searchCourseSaga)]);
+  yield all([
+    takeLatest(searchCourse.request, searchCourseSaga),
+    takeLatest(recommendCourse.request, recommendCourseSaga),
+  ]);
 }

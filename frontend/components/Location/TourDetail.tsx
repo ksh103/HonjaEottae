@@ -8,7 +8,7 @@ const TourDetail: NextPage = () => {
     (state: RootState) => state.location,
   );
   let selectContent = '';
-  const contents = searchLoactions.map(data => {
+  searchLoactions.map(data => {
     if (selectLocation == data.touristName) {
       selectContent = data.touristSummary;
     }

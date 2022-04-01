@@ -13,7 +13,24 @@ export type SearchCourse = {
   image: string;
 };
 
+export type userCourses = {
+  courseId: number;
+  courseName: string;
+  image: string;
+};
+
+export type KeywordCourse = {
+  list: [];
+};
+
+export type CourseDetail = {
+  keywordCourses: [];
+  userCourses: userCourses[];
+};
+
 export type CourseState = {
   searchCourses: SearchCourse[];
   searchKeyword: string;
+  keywordCourses: [];
+  userCourses: userCourses[];
 };

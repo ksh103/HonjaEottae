@@ -56,12 +56,11 @@ export type VisitCourse = {
   recordId: number;
   courseName: string;
   courseId: number;
-  touristId: number;
   touristLat: number;
   touristLng: number;
   recordContent: string;
   recordRegDt: string;
-  fileId: number;
+  image: string;
 };
 
 export type MonthCourse = {
@@ -83,4 +82,5 @@ export type UserState = {
   userVisitCourses: VisitCourse[];
   areaCourses: AreaCourse[];
   monthCourses: MonthCourse[];
+  selectRecord: number;
 };
