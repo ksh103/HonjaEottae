@@ -14,5 +14,7 @@ public interface RecordService {
     int recordModifyByUser(RecordModifyPostReq recordModifyPostReq);
     List<RecordWriteList> recordWriteListByUser(int userId);
 
+    int recordIdPostRes(int courseId, int userId);
+
     String getRecordImgPath(int fileId, int recordId, int courseId);
 }

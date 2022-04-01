@@ -4,6 +4,7 @@ import com.ssafy.tourist.domain.record.db.bean.RecordWriteList;
 import com.ssafy.tourist.domain.record.db.entity.Record;
 import com.ssafy.tourist.domain.record.request.RecordModifyPostReq;
 import com.ssafy.tourist.domain.record.request.RecordRegisterPostReq;
+import com.ssafy.tourist.domain.record.response.RecordRegisterPostRes;
 import com.ssafy.tourist.domain.record.response.RecordWriteListGetRes;
 import com.ssafy.tourist.domain.record.response.TagListGetRes;
 import com.ssafy.tourist.domain.record.service.RecordService;
@@ -43,21 +44,24 @@ public class RecordController {
 
     @ApiOperation(value = "여행 레코드(일기) 등록", notes = "코스 방문을 시작하면 여행 레코드(일기) 작성이 가능하다.")
     @PostMapping(value = "" , consumes= {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<? extends BaseResponseBody> recordRegister
+    public ResponseEntity<RecordRegisterPostRes> recordRegister
             (@RequestPart(value = "recordRegister") RecordRegisterPostReq recordRegisterPostReq, MultipartHttpServletRequest request) {
 
         log.info("recordRegister - Call");
 
         try {
             if(recordService.recordRegisterByUser(recordRegisterPostReq, request) == SUCCESS) {
-                return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+
+                int recordId = recordService.recordIdPostRes(recordRegisterPostReq.getCourseId(), recordRegisterPostReq.getUserId());
+
+                return ResponseEntity.status(201).body(RecordRegisterPostRes.of(201, "Success", recordId));
             }else {
-                return ResponseEntity.status(400).body(BaseResponseBody.of(400, "Failed"));
+                return ResponseEntity.status(400).body(RecordRegisterPostRes.of(400, "Failed", 0));
             }
 
         } catch (IOException e) {
             log.error(e.getMessage());
-            return ResponseEntity.status(400).body(BaseResponseBody.of(400, "Failed"));
+            return ResponseEntity.status(400).body(RecordRegisterPostRes.of(400, "Failed", 0));
         }
     }
 
