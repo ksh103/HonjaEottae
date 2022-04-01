@@ -68,6 +68,8 @@ public class RecordServiceImpl implements RecordService {
         if (tourRepository.existsTourByUserIdAndCourseId(userId, courseId) && tourStampRepository.isStampByUserIdandCourseId(userId, courseId) > 0) {
             record.setCourseId(courseId);
             record.setUserId(userId);
+
+            if(recordRegisterPostReq.getRecordContent() == null) {record.setRecordContent("");}
             record.setRecordContent(contents);
 
             recordRepository.save(record);

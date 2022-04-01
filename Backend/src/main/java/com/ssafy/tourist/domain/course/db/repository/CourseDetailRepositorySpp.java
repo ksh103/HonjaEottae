@@ -3,10 +3,7 @@ package com.ssafy.tourist.domain.course.db.repository;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.ssafy.tourist.domain.course.db.bean.CourseDetail;
-import com.ssafy.tourist.domain.course.db.bean.CourseTagDetail;
-import com.ssafy.tourist.domain.course.db.bean.CourseTourTestResultDetail;
-import com.ssafy.tourist.domain.course.db.bean.CourseTouristDetail;
+import com.ssafy.tourist.domain.course.db.bean.*;
 import com.ssafy.tourist.domain.course.db.entity.*;
 import com.ssafy.tourist.domain.record.db.entity.*;
 import com.ssafy.tourist.domain.tourtest.db.entity.QTourTest;
@@ -30,6 +27,7 @@ public class CourseDetailRepositorySpp {
     QTour qTour = QTour.tour;
     QRecord qRecord = QRecord.record;
     QRecordTag qRecordTag = QRecordTag.recordTag;
+    QRecordImgPath qRecordImgPath = QRecordImgPath.recordImgPath;
 
     QUser qUser = QUser.user;
 
@@ -61,10 +59,14 @@ public class CourseDetailRepositorySpp {
 
 
     // 코스 여행 레코드(일기) 조회 Query
-    public List<Record> courseRecordDetailByCourseId(int courseId) {
-        return jpaQueryFactory.select(qRecord).from(qRecord)
+    public List<CourseRecordDetail> courseRecordDetailByCourseId(int courseId) {
+        return jpaQueryFactory.select(Projections.constructor(CourseRecordDetail.class, qRecord.courseId, qRecord.recordId, qRecord.recordContent,
+                        qRecord.recordRegDt, qRecordImgPath.fileId.min().as("fileId"))).from(qRecord)
                 .leftJoin(qUser).on(qUser.userId.eq(qRecord.userId))
+                .leftJoin(qCourse).on(qCourse.courseId.eq(qRecord.courseId))
+                .leftJoin(qRecordImgPath).on(qRecordImgPath.recordId.eq(qRecord.recordId))
                 .where(qRecord.courseId.eq(courseId))
+                .groupBy(qRecord.recordId)
                 .fetch();
     }
 
