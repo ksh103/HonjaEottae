@@ -8,13 +8,14 @@ import {
   startTour,
 } from './actions';
 import {
+  CancelTourAPI,
   EndTourAPI,
   GetTagAPI,
   GetTourDetailAPI,
   MarkStampAPI,
   StartTourAPI,
 } from './api';
-import { RecordState, Stamp, TagCode } from './types';
+import { RecordState, TagCode } from './types';
 
 function* getTourDetailSaga({
   payload,
@@ -45,7 +46,7 @@ function* endTourSaga({ payload }: ReturnType<typeof endTour.request>) {
 }
 function* cancelTourSaga({ payload }: ReturnType<typeof cancelTour.request>) {
   try {
-    yield call(EndTourAPI, payload);
+    yield call(CancelTourAPI, payload);
     yield put(cancelTour.success(payload.tourId));
   } catch (error) {
     console.error(error);

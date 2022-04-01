@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MarkStamp, Tour } from './types';
+import { MarkStamp, Review, Tour } from './types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
@@ -13,20 +13,32 @@ export async function StartTourAPI({ tourId, userId }: Tour) {
   return tourId;
 }
 
+// 여행 종료(후기 작성, 태그)
+export async function EndTourAPI({
+  tourId,
+  userId,
+  tag,
+  recordContent,
+  image,
+}: Review) {
+  console.log(tourId, userId, tag, recordContent, image);
+  const recordId: number = await RegisterReviewAPI({
+    tourId,
+    recordContent,
+    userId,
+    image,
+  });
+  await RegisterTagAPI(tag, tourId, recordId);
+  await CancelTourAPI({ tourId, userId });
+}
+
 // 여행 종료
-export async function EndTourAPI({ tourId, userId }: Tour) {
+export async function CancelTourAPI({ tourId, userId }: Tour) {
   await axios.put(`${BASE_URL}tour-end`, {
     courseId: tourId,
     userId: userId,
   });
 }
-
-// 키워드 가져오기
-// export async function GetKeywordAPI() {
-//   const result = await axios.get(`${BASE_URL}tour-tag`).then(res => res);
-//   console.log(result);
-//   return result;
-// }
 
 // 스탬프 찍기
 export async function MarkStampAPI({
@@ -84,7 +96,21 @@ export async function GetCourseDetailAPI(courseId: number) {
     courseName: result.courseDetailList[0].courseName,
     courseTourist: tourist,
   };
-} // 태그 목록 조회
+}
+// 후기 태그 등록
+export async function RegisterTagAPI(
+  tag: number[][],
+  tourId: number,
+  recordId: number,
+) {
+  await axios.post(`${BASE_URL}tour-tag`, {
+    courseId: tourId,
+    recordId: recordId,
+    tag: [tag[0], tag[1], tag[2], tag[3]],
+  });
+}
+
+// 태그 목록 조회
 export async function GetTagAPI() {
   const result = await axios
     .get(`${BASE_URL}tour-tag`)
@@ -92,6 +118,7 @@ export async function GetTagAPI() {
   return result;
 }
 
+// 여행 기록 관련 정보 가져오기
 export async function GetTourDetailAPI(userId: number) {
   const tourId = await CheckTourAPI(userId);
   if (tourId === 0)
@@ -111,8 +138,34 @@ export async function GetTourDetailAPI(userId: number) {
   };
 }
 
-// 후기 태그 등록
-export async function RegisterTagAPI() {}
-
 // 여행 후기 쓰기
-export async function RegisterReviewAPI() {}
+export async function RegisterReviewAPI({
+  tourId,
+  recordContent,
+  userId,
+  image,
+}: any) {
+  const form = new FormData();
+  form.append(
+    'recordRegister',
+    new Blob(
+      [
+        JSON.stringify({
+          courseId: tourId,
+          recordContent: recordContent,
+          userId: userId,
+        }),
+      ],
+      { type: 'application/json' },
+    ),
+  );
+  form.append('file', image);
+  const result = await axios
+    .post(`${BASE_URL}record`, form, {
+      headers: {
+        'Content-Type': `mulipart/form-data`,
+      },
+    })
+    .then(res => res.data.recordId);
+  return result;
+}

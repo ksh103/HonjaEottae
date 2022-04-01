@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Carousel } from 'antd';
-import { Review, ReviewCard, ReviewImage } from './Datail.style';
+import { Review, ReviewImage } from './Datail.style';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 
@@ -45,22 +45,18 @@ export default function DetailReview() {
               <Carousel {...settings}>
                 {courseReview.map(data => {
                   return (
-                    <ReviewCard key={data.recordId}>
-                      <Card
-                        cover={
-                          <ReviewImage>
-                            <div className="email">{data.userEmail}</div>
-                            <img
-                              src="https://d3jn14jkdoqvmm.cloudfront.net/wp/wp-content/uploads/2020/11/19142010/evpost_%EB%82%B4-%ED%85%8C%EC%8A%AC%EB%9D%BC-%EC%A0%9C%EC%A3%BC%EB%8F%84-%EA%B0%80%EC%A0%B8%EA%B0%80%EA%B8%B0-evpost-22.jpg"
-                              height="240"
-                            />
-                          </ReviewImage>
-                        }
-                      >
-                        <div>{data.recordRegDt.slice(0, 10)}</div>
-                        <div>{data.recordContent}</div>
-                      </Card>
-                    </ReviewCard>
+                    <Card
+                      key={data.recordId}
+                      cover={
+                        <ReviewImage>
+                          <div className="email">{data.userEmail}</div>
+                          <img src={data.image} height="240" />
+                        </ReviewImage>
+                      }
+                    >
+                      <div>{data.recordRegDt.slice(0, 10)}</div>
+                      <div className="review-content">{data.recordContent}</div>
+                    </Card>
                   );
                 })}
               </Carousel>

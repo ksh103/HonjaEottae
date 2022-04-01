@@ -37,6 +37,14 @@ export type TagCode = {
   tag: Tag[];
 };
 
+export type Review = {
+  tag: number[][];
+  tourId: number;
+  userId: number;
+  recordContent?: string;
+  image?: File;
+};
+
 export type RecordState = {
   tourId: number;
   courseName: string;

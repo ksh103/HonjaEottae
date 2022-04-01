@@ -14,7 +14,7 @@ import { startTour } from '../../../store/record';
 import Router from 'next/router';
 export default function DetailHeader() {
   const dispatch = useDispatch();
-  const { courseId, courseInfo, courseTourist } = useSelector(
+  const { courseId, courseInfo, courseTourist, courseReview } = useSelector(
     (state: RootState) => state.course2,
   );
   const { isLogin, userLikes, userInfo } = useSelector(
@@ -37,7 +37,6 @@ export default function DetailHeader() {
   }, [courseId, userLikes]);
 
   const LikeCourse = () => {
-    console.log('추가할거야!!');
     dispatch(
       likeCourse.request({
         courseId: courseId,
@@ -48,7 +47,6 @@ export default function DetailHeader() {
     );
   };
   const UnlikeCourse = () => {
-    console.log('취소할거야!!');
     dispatch(
       unlikeCourse.request({
         courseId: courseId,
@@ -60,7 +58,6 @@ export default function DetailHeader() {
   };
   const StartTour = () => {
     if (tourId === 0) {
-      console.log('시작할거야!!');
       dispatch(
         startTour.request({ userId: userInfo.userId, tourId: courseId }),
       );
@@ -69,8 +66,28 @@ export default function DetailHeader() {
     }
   };
   const ProcessTour = () => {
-    console.log('여행진행중이다. 여행 기록 페이지로 이동한다.');
     Router.push('/record');
+  };
+
+  const showTourState = () => {
+    if (courseReview.find(a => a.userId === userInfo.userId)) {
+      return (
+        <li className="end">
+          <FireFilled style={{ color: 'gray' }} /> 여행종료
+        </li>
+      );
+    } else if (tourId === courseId) {
+      return (
+        <li onClick={ProcessTour}>
+          <FireFilled style={{ color: 'red' }} /> 여행중
+        </li>
+      );
+    }
+    return (
+      <li onClick={StartTour}>
+        <FireOutlined /> 여행시작
+      </li>
+    );
   };
 
   return (
@@ -93,15 +110,7 @@ export default function DetailHeader() {
                 <HeartOutlined /> 저장
               </li>
             )}
-            {tourId === courseId ? (
-              <li onClick={ProcessTour}>
-                <FireFilled style={{ color: 'red' }} /> 여행중
-              </li>
-            ) : (
-              <li onClick={StartTour}>
-                <FireOutlined /> 여행시작
-              </li>
-            )}
+            {courseReview && showTourState()}
           </ul>
         </div>
       )}
