@@ -1,12 +1,12 @@
 const fs = require("fs");
-const httpServer = require("http2").createSecureServer({
-  allowHTTP1: true,
+const httpServer = require("https").createSecureServer({
+  //allowHTTP1: true,
   key: fs.readFileSync("/var/www/html/key.pem"),
   cert: fs.readFileSync("/var/www/html/cert.pem")
 });
 const options = {
-  key: fs.readFileSync('${path_root}/privkey.pem'),
-  cert: fs.readFileSync('${path_root}/cert.pem'),
+  key: fs.readFileSync('/var/www/html/privkey.pem'),
+  cert: fs.readFileSync('/var/www/html/cert.pem'),
   requestCert: true,
   rejectUnauthorized: false,
 }
