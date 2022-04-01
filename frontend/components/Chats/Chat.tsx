@@ -10,7 +10,7 @@ interface Message {
   message: string;
 }
 
-const socket = socketIOClient('https://j6e103.p.ssafy.io/socket.io/',{
+const socket = socketIOClient('https://j6e103.p.ssafy.io:4002/socket.io/',{
       transports: ['websocket']
 });
 
