@@ -1,22 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import Router from 'next/router';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { endTour } from '../../store/record';
 import { ReviewBlock, TagBlock, TagButton } from './Record.style';
 
 export default function RecordReview() {
   const dispatch = useDispatch();
-  const { tag } = useSelector((state: RootState) => state.record);
+  const { tag, tourId } = useSelector((state: RootState) => state.record);
+  const { userInfo } = useSelector((state: RootState) => state.user);
+  const [content, setContent] = useState('');
+  const [image, setImage] = useState<File>();
   const [checkTag, setCheckTag] = useState(
     Array.from(Array(4), () => Array(6).fill(0)),
   );
+  useEffect(() => {
+    if (tourId === 0) Router.push('/');
+  }, [tourId]);
 
+  const onContentHandler = (e: any) => {
+    setContent(e.target.value);
+  };
+  const onImageHandler = (e: any) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
   const clickTagButton = (x: number, y: number) => {
     checkTag[x - 1][y - 1] = checkTag[x - 1][y - 1] === 1 ? 0 : 1;
     setCheckTag({ ...checkTag });
   };
 
-  const registerReview = () => {
-    // dispatch();
+  const clickResigerButton = () => {
+    if (content === '') alert('후기를 남겨주세요');
+    else if (!image) alert('사진을 남겨주세요');
+    else {
+      dispatch(
+        endTour.request({
+          tag: checkTag,
+          tourId: tourId,
+          recordContent: content,
+          userId: userInfo.userId,
+          image: image,
+        }),
+      );
+    }
   };
   return (
     <>
@@ -39,14 +66,18 @@ export default function RecordReview() {
       <ReviewBlock>
         <h1>글쓰기</h1>
         <div>
-          <input type="file" />
+          <input type="file" onChange={onImageHandler} />
         </div>
         <div>
-          <textarea />
+          <textarea
+            value={content}
+            placeholder="후기 작성해주세요"
+            onChange={onContentHandler}
+          />
         </div>
       </ReviewBlock>
       <div>
-        <button onClick={registerReview}>기록남기기</button>
+        <button onClick={clickResigerButton}>기록남기기</button>
       </div>
     </>
   );

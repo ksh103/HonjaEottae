@@ -1,5 +1,5 @@
 import { createAsyncAction } from 'typesafe-actions';
-import { MarkStamp, RecordState, Stamp, TagCode, Tour } from './types';
+import { MarkStamp, RecordState, Review, Stamp, TagCode, Tour } from './types';
 
 // 여행 정보 가져오기
 export const GET_TOUR_DETAIL_REQUEST = 'record/GET_TOUR_DETAIL_REQUEST';
@@ -42,7 +42,7 @@ export const endTour = createAsyncAction(
   END_TOUR_REQUEST,
   END_TOUR_SUCCESS,
   END_TOUR_FAILURE,
-)<Tour, number, Error>();
+)<Review, number, Error>();
 
 export const cancelTour = createAsyncAction(
   CANCEL_TOUR_REQUEST,

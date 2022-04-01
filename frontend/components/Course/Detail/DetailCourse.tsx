@@ -1,9 +1,7 @@
 import { Carousel, Col, Row } from 'antd';
-import slider from 'antd/lib/slider';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import TourList from '../../Register/TourList';
 import { Content, CourseImage, CourseIndex } from './Datail.style';
 import DetailMap from './DetailMap';
 
@@ -12,10 +10,6 @@ export default function DetailCourse() {
   const { courseId, courseInfo, courseTourist } = useSelector(
     (state: RootState) => state.course2,
   );
-
-  // const clickTourist = (e: any) => {
-  //   // console.log(e);
-  // };
 
   const courseIndex = () => {
     return courseTourist.map((data, i) => (

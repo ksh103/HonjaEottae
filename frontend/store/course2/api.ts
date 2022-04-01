@@ -80,18 +80,19 @@ export async function GetCourseReviewAPI(courseId: number) {
     .then(res => res.data.list);
   if (result === null) return [];
   return result.map((data: any) => {
+    console.log(data);
     let img = '/images/no_image.jpg';
     if (data.fileId > 0) {
-      img = IMAGE_URL + data.fileId + '/' + data.touristId;
+      img = `${BASE_URL}record/image/${data.fileId}/${data.recordId}/${data.courseId}`;
     }
     return {
       recordId: data.recordId,
       recordContent: data.recordContent,
       recordRegDt: data.recordRegDt,
-      userId: data.user.userId,
-      tourTestId: data.user.tourTestId,
-      userName: data.user.userName,
-      userEmail: data.user.userEmail,
+      userId: data.userId,
+      courseId: data.courseId,
+      userName: data.userName,
+      userEmail: data.userEmail,
       image: img,
     };
   });
