@@ -18,4 +18,7 @@ public interface RecordRepository extends JpaRepository<Record, Integer> {
     int recordModifyByUser(int recordId, String recordContent);
 
     List<Record> findRecordByUserIdAndCourseId(int userId, int courseId);
+
+    @Query("select recordId from Record where courseId = :courseId and userId = :userId")
+    int findRecordId(int courseId, int userId);
 }
