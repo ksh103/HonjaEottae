@@ -10,11 +10,9 @@ const PieChart: NextPage = () => {
   return (
     <>
       {areaCourses.length == 0 ? (
-        <Link href="/course">
-          <DefaultImage>
-            <img src="images/방문지역분석.png"></img>
-          </DefaultImage>
-        </Link>
+        <DefaultImage>
+          <img src="images/방문지역분석.png"></img>
+        </DefaultImage>
       ) : (
         <ResponsivePie
           data={areaCourses}

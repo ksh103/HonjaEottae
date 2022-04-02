@@ -11,7 +11,7 @@ export async function SearchCourseAPI({ name }: SearchCourseResult) {
     .get(`${BASE_URL}course/${name}?page=1&size=20`)
     .then(res => res.data.list.content);
   const result = datas.map((data: any) => {
-    if (data.fileId === 0) {
+    if (data.fileId == 0) {
       return {
         courseId: data.courseId,
         courseName: data.courseName,
@@ -33,13 +33,24 @@ export async function RecommendCourseAPI(payload: number) {
   let userCourses = await UserCourseAPI(payload);
   if (userCourses == 'error') {
     userCourses = await GetPopularCoursesAPI(20);
+  } else {
+    userCourses = userCourses.map((data: any) => {
+      if (data.file_id == 0) {
+        return {
+          courseName: data.course_name,
+          courseId: data.course_id,
+          image: 'images/noimage.png',
+        };
+      } else {
+        return {
+          courseName: data.course_name,
+          courseId: data.course_id,
+          image: `${IMAGE_URL}${data.file_id}/${data.tourist_id}`,
+        };
+      }
+    });
   }
-  // else{
-  // courseName, courseId, image 객체로 넘겨주기
-  // }
   const keywordCourses = await KeywordCourseAPI();
-  // console.log('인기코스로 왔다', userCourses);
-  // console.log('인기코스로 왔다', keywordCourses);
   return {
     userCourses: userCourses,
     keywordCourses: keywordCourses,
@@ -56,7 +67,7 @@ export async function KeywordCourseAPI() {
       {
         title: datas.list1Name,
         contents: contents1.map((data: any) => {
-          if (data.fileId !== 0) {
+          if (data.fileId != 0) {
             return {
               courseId: data.courseId,
               courseName: data.courseName,
@@ -68,7 +79,7 @@ export async function KeywordCourseAPI() {
       {
         title: datas.list2Name,
         contents: contents2.map((data: any) => {
-          if (data.fileId !== 0) {
+          if (data.fileId != 0) {
             return {
               courseId: data.courseId,
               courseName: data.courseName,
@@ -80,7 +91,7 @@ export async function KeywordCourseAPI() {
       {
         title: datas.list3Name,
         contents: contents3.map((data: any) => {
-          if (data.fileId !== 0) {
+          if (data.fileId != 0) {
             return {
               courseId: data.courseId,
               courseName: data.courseName,
@@ -99,9 +110,11 @@ export async function UserCourseAPI(payload: number) {
     .get(`https://j6e103.p.ssafy.io:5000/data/${payload}`)
     .then(
       res => {
-        return res;
+        console.log('api', res);
+        return res.data;
       },
       error => {
+        console.log('apias', error);
         return 'error';
       },
     );

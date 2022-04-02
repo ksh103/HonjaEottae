@@ -101,7 +101,6 @@ export async function UserInfoAPI(userEmail: string) {
     areaCourses: areaCourses,
     monthCourses: monthCourses,
   };
-  console.log(result);
   return result;
 }
 
@@ -117,7 +116,6 @@ export async function SaveTestResultAPI({ tourTestId, userId }: TestResult) {
 // 내가 방문한 코스 조회(마이페이지 지도)
 export async function VisitCourseAPI(userId: number) {
   const datas = await axios.get(`${BASE_URL}record/${userId}`);
-  console.log(datas);
   if (datas.data.list == null) return [];
   else {
     return datas.data.list.map((data: any) => {

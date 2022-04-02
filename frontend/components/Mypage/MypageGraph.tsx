@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { MypageWrapper, GraphWrapper } from './Mypage.style';
+import { MypageWrapper, GraphWrapper, Title, SubTitle } from './Mypage.style';
 import MypageChart from '../Charts/MypageChart';
 import PieChart from '../Charts/PieChart';
 import { RootState } from '../../store';
@@ -11,33 +11,15 @@ const MypageGraph: NextPage = () => {
   return (
     <>
       {userInfo.tourTestId == 7 ? (
-        <div
-          style={{
-            fontSize: '30px',
-            fontFamily: 'Jalnan',
-          }}
-        >
-          반갑습니다 {userInfo.userName}님.
-        </div>
+        <Title>반갑습니다 {userInfo.userName}님.</Title>
       ) : (
         <>
-          <div
-            style={{
-              fontSize: '20px',
-              fontFamily: 'Jalnan',
-              color: TEST.results[userInfo.tourTestId - 1].color,
-            }}
+          <SubTitle
+            style={{ color: TEST.results[userInfo.tourTestId - 1].color }}
           >
             {TEST.results[userInfo.tourTestId - 1].title}
-          </div>
-          <div
-            style={{
-              fontSize: '30px',
-              fontFamily: 'Jalnan',
-            }}
-          >
-            반갑습니다 {userInfo.userName}님.
-          </div>
+          </SubTitle>
+          <Title>반갑습니다 {userInfo.userName}님.</Title>
         </>
       )}
 
