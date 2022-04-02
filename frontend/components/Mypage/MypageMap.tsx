@@ -37,7 +37,7 @@ const MypageMap = () => {
         const container = document.getElementById('map');
 
         const options = {
-          center: new window.kakao.maps.LatLng(36.527327, 127.651767), // 중심 좌표
+          center: new window.kakao.maps.LatLng(36.027327, 127.651767), // 중심 좌표
           level: 14, // map 크기
         };
 

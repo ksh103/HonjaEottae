@@ -33,9 +33,6 @@ const NavBlock = styled.div`
   }
   @media (max-width: 1023px) {
     padding: 0 20px;
-    #title {
-      cursor: pointer;
-    }
   }
 `;
 const MenuBlock = styled.div`
@@ -50,6 +47,9 @@ const MenuBlock = styled.div`
   font-size: 50px;
   @media (max-width: 1023px) {
     padding-left: 20px;
+  }
+  @media ${props => props.theme.mobile} {
+    font-size: 35px;
   }
 `;
 

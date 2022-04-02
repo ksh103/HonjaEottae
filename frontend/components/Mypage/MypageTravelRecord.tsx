@@ -28,8 +28,8 @@ const MypageTravelRecord: NextPage = () => {
                 {nowCourse[0].courseName}
               </div>
               <div id="image">
-                <img src={nowCourse[0].image}></img>
-                {/* <img src="/images/noimage.jpg"></img> */}
+                {/* <img src={nowCourse[0].image}></img> */}
+                <img src="/images/noimage.jpg"></img>
               </div>
               <div id="content">{nowCourse[0].recordContent}</div>
             </DiaryWrapper>

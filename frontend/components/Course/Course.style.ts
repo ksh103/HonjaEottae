@@ -34,6 +34,11 @@ const CourseBlock = styled.div`
     font-weight: bold;
     font-family: 'Jalnan';
   }
+  @media ${props => props.theme.mobile} {
+    .title {
+      font-size: 15px;
+    }
+  }
 `;
 
 // searchForm
@@ -58,6 +63,9 @@ const Button = styled.button`
   cursor: pointer;
   :active {
     transform: scale(0.98);
+  }
+  @media ${props => props.theme.mobile} {
+    font-size: 10px;
   }
 `;
 
