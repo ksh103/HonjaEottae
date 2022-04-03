@@ -10,9 +10,9 @@ interface Message {
   message: string;
 }
 
-const socket = socketIOClient('https://j6e103.p.ssafy.io:4002',{
-      transports: ['websocket']
-});
+const socket = socketIOClient('https://j6e103.p.ssafy.io:4002');
+//const socket = socketIOClient('http://j6e103.p.ssafy.io:4002/');
+
 
 const ChatApp: NextPage = () => {
   const [messageList, setMessageList] = useState<Message[]>([]);

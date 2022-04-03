@@ -1,12 +1,19 @@
+const express = require('express');
+const http = require('http');
+const app = express();
 // server instance
 const server = http.createServer(app);
+
 const io = require('socket.io')(server, {
+ allowEIO4: true,
  cors: {
    origin: '*',
    methods: ['GET', 'POST'],
- },transports : ['websocket']
-});
+ },
+//  transports: ["websocket"]
 
+});
+io.of('/socket.io');
 // const fs = require("fs");
 // const httpServer = require("https").createServer({
 //   key: fs.readFileSync("/var/www/html/privkey.pem"),
@@ -40,3 +47,4 @@ io.on('connection', socket => {
 });
 
 server.listen(4003);
+

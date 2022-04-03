@@ -19,7 +19,19 @@ services:
             #         - /etc/letsencrypt/live/j6e103.p.ssafy.io:/var/www/html
             #      - /etc/letsencrypt/live/j6e103.p.ssafy.io:/var/www/html
     container_name: "frontend"
-  
+ 
+  express:
+    image: socket
+    build:
+      context: socket/
+      dockerfile: Dockerfile
+    ports:
+      - "4003:4003"
+    volumes:
+      - /etc/letsencrypt/copy/j6e103.p.ssafy.io:/var/www/html
+               #  - /home/ubuntu/docker-volume/ssl:/var/www/html
+    container_name: "socket"
+
   backend:
     image: backend-spring
     build:
