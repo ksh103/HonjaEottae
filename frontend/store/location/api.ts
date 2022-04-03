@@ -14,7 +14,7 @@ export async function SearchLocationAPI({ lat, lng }: SearchLocationResult) {
       image: data.touristImgPath.map((imageData: any) => {
         if (imageData.fileId == 0) {
           return {
-            image: '/images/noimage.png',
+            image: '/images/no_image.jpg',
           };
         } else {
           return {

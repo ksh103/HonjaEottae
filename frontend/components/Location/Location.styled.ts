@@ -24,6 +24,10 @@ const MapListWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  @media ${props => props.theme.mobile} {
+    flex-direction: column;
+    height: 500px;
+  }
 `;
 
 const MapBlock = styled.div`
@@ -31,6 +35,11 @@ const MapBlock = styled.div`
   height: 380px;
   background-color: white;
   border-radius: 1vw;
+
+  @media ${props => props.theme.mobile} {
+    width: 90%;
+    margin-top: 10px;
+  }
 `;
 
 const ListWrapper = styled.div`
@@ -42,6 +51,13 @@ const ListWrapper = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  @media ${props => props.theme.mobile} {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
 `;
 
 const ListBlock = styled.div<{ select: boolean }>`
@@ -70,6 +86,9 @@ const ListBlock = styled.div<{ select: boolean }>`
       };
     }
   }}
+  @media ${props => props.theme.mobile} {
+    margin-top: 10px;
+  }
 `;
 
 // ImageList.tsx
@@ -86,6 +105,7 @@ const ImageListWrapper = styled.div<{ height: string }>`
 `;
 
 const ImageBlock = styled.div`
+  padding: 0 5px;
   border-radius: 1vw;
   width: 250px;
   height: 250px;
@@ -94,15 +114,17 @@ const ImageBlock = styled.div`
     width: 100%;
     height: 80%;
     cursor: pointer;
+    overflow: hidden;
+    border-radius: 20px;
     img {
-      padding: 0 5px;
       width: 100%;
       height: 100%;
       border-radius: 20px;
-    }
-    &:hover {
-      transform: scale(1.05);
-      transition: transform 0.5s;
+      object-fit: cover;
+      &:hover {
+        transform: scale(1.05);
+        transition: transform 0.5s;
+      }
     }
   }
 `;

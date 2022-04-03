@@ -24,6 +24,7 @@ const MypageGraph: NextPage = () => {
       )}
 
       <MypageWrapper height="300px">
+        <div className="subTitle">개인 여행 분석</div>
         <GraphWrapper>
           <div className="LGraph">
             <div>월별 여행 분석</div>

@@ -51,6 +51,10 @@ const LoginBlock = styled.div`
     margin-top: 50px;
     cursor: pointer;
   }
+  @media ${props => props.theme.mobile} {
+    // width가 300px 보다 작으면 잘림
+    width: 300px;
+  }
 `;
 
 const SignupBlock = styled.div`

@@ -48,7 +48,7 @@ export async function UserCoursesAPI(userId: number) {
       return {
         courseId: data.courseId,
         courseName: data.courseName,
-        image: '/images/noimage.png',
+        image: '/images/no_image.jpg',
       };
     } else {
       return {
@@ -71,7 +71,7 @@ export async function UserLikesAPI(userId: number) {
       return {
         courseId: data.courseId,
         courseName: data.courseName,
-        image: '/images/noimage.png',
+        image: '/images/no_image.jpg',
       };
     } else {
       return {
@@ -127,7 +127,7 @@ export async function VisitCourseAPI(userId: number) {
           recordRegDt: data.recordRegDt.substring(0, 10),
           touristLat: data.touristLat,
           touristLng: data.touristLng,
-          image: '/images/noimage.png',
+          image: '/images/no_image.jpg',
         };
       } else {
         return {
@@ -137,7 +137,7 @@ export async function VisitCourseAPI(userId: number) {
           recordRegDt: data.recordRegDt.substring(0, 10),
           touristLat: data.touristLat,
           touristLng: data.touristLng,
-          image: `${IMAGE_URL}${data.fileId}/${data.touristId}`,
+          image: `${BASE_URL}record/image/${data.fileId}/${data.recordId}/${data.courseId}`,
         };
       }
     });

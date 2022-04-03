@@ -1,4 +1,4 @@
-import { createAsyncAction } from 'typesafe-actions';
+import { createAction, createAsyncAction } from 'typesafe-actions';
 import { CourseRegister, SearchTourlist } from './types';
 
 export const SEARCH_TOURLIST_REQUEST = 'register/SEARCH_TOURLIST_REQUEST';
@@ -8,6 +8,8 @@ export const SEARCH_TOURLIST_FAILURE = 'register/SEARCH_TOURLIST_FAILURE';
 export const COURSE_REGISTER_REQUEST = 'register/COURSE_REGISTER_REQUEST';
 export const COURSE_REGISTER_SUCCESS = 'register/COURSE_REGISTER_SUCCESS';
 export const COURSE_REGISTER_FAILURE = 'register/COURSE_REGISTER_FAILURE';
+
+export const RESET_SEARCH_TOURLIST = 'register/RESET_SEARCH_TOURLIST';
 
 export const searchTourlist = createAsyncAction(
   SEARCH_TOURLIST_REQUEST,
@@ -20,3 +22,5 @@ export const courseRegitser = createAsyncAction(
   COURSE_REGISTER_SUCCESS,
   COURSE_REGISTER_FAILURE,
 )<CourseRegister, string, Error>();
+
+export const resetSearchTourlist = createAction(RESET_SEARCH_TOURLIST)();

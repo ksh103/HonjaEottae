@@ -22,7 +22,6 @@ const MypageWrapper = styled.div<{ height: string }>`
   }
   @media ${props => props.theme.mobile} {
     height: auto;
-    overflow: auto;
   }
 `;
 
@@ -35,7 +34,7 @@ const GraphWrapper = styled.div`
   .LGraph {
     border-radius: 1vw;
     width: 48%;
-    height: 90%;
+    height: 77%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,7 +46,7 @@ const GraphWrapper = styled.div`
   .RGraph {
     border-radius: 1vw;
     width: 48%;
-    height: 90%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,8 +58,9 @@ const GraphWrapper = styled.div`
 
   @media ${props => props.theme.mobile} {
     flex-direction: column;
-    margin: 40px 10px 0 0;
+    margin: 10px 10px 0 0;
     .LGraph {
+      padding-top: 20px;
       border-radius: 1vw;
       width: 360px;
       height: 250px;
@@ -71,13 +71,13 @@ const GraphWrapper = styled.div`
       margin-bottom: 15px;
       div {
         font-family: 'Jalnan';
-        /* margin-bottom: 15px; */
       }
     }
     .RGraph {
       border-radius: 1vw;
-      width: 100%;
-      height: 100%;
+      padding-top: 20px;
+      width: 360px;
+      height: 250px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -150,7 +150,7 @@ const MyTravleWrapper = styled.div`
       border-radius: 1vw;
       width: 80%;
       height: 90%;
-      background-color: white;
+      background-color: ${props => props.theme.colors.backgroundColor};
     }
     margin-bottom: 20px;
   }
@@ -167,6 +167,12 @@ const DiaryWrapper = styled.div`
     height: 10%;
     font-family: 'Jalnan';
     margin: 10px;
+  }
+  #noRecord {
+    text-align: center;
+    font-family: 'Jalnan';
+    font-size: large;
+    padding-bottom: 20px;
   }
   #image {
     height: 50%;
@@ -191,6 +197,12 @@ const DiaryWrapper = styled.div`
       height: 10%;
       font-family: 'Jalnan';
       margin: 10px;
+    }
+
+    #noRecord {
+      text-align: center;
+      font-family: 'Jalnan';
+      font-size: small;
     }
     #image {
       height: 50%;

@@ -52,7 +52,7 @@ const CourseComp: NextPage = () => {
               )}
               {userCourses.length != 0 && <CourseList data={userCourses} />}
               {keywordCourses.map((keywordCourse: any, idx) => (
-                <div>
+                <div key={idx}>
                   <div className="title">
                     {
                       KEYWORD.titles[
