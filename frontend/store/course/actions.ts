@@ -39,17 +39,5 @@ export const recommendCourse = createAsyncAction(
   RECOMMEND_COURSE_FAILURE,
 )<number, CourseDetail, Error>();
 
-// export const keywordCourse = createAsyncAction(
-//   KEYWORD_COURSE_REQUEST,
-//   KEYWORD_COURSE_SUCCESS,
-//   KEYWORD_COURSE_FAILURE,
-// )<number, KeywordCourse[], Error>();
-
-// export const userCourse = createAsyncAction(
-//   USER_COURSE_REQUEST,
-//   USER_COURSE_SUCCESS,
-//   USER_COURSE_FAILURE,
-// )<number, Error>();
-
 export const searchKeyword = createAction(SET_SEARCH_KEYWORD)<string>();
 export const resetSearchCourses = createAction(RESET_SEARCH_COURSES)();

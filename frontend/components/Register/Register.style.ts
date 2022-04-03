@@ -6,7 +6,12 @@ const RegisterWrapper = styled.div`
     font-size: 30px;
     font-weight: bold;
     font-family: 'Jalnan';
+
+    @media ${props => props.theme.mobile} {
+      font-size: 20px;
+    }
   }
+
   input {
     margin: 0;
     margin-top: 20px;
@@ -18,6 +23,11 @@ const RegisterWrapper = styled.div`
     border-radius: 1vw;
     ::placeholder {
       font-size: 15px;
+    }
+    @media ${props => props.theme.mobile} {
+      ::placeholder {
+        font-size: 12px;
+      }
     }
   }
   #name {
@@ -43,6 +53,11 @@ const RegisterWrapper = styled.div`
     padding: 15px;
     ::placeholder {
       font-size: 15px;
+    }
+    @media ${props => props.theme.mobile} {
+      ::placeholder {
+        font-size: 12px;
+      }
     }
   }
   #registerBtn {
@@ -95,18 +110,20 @@ const ImageWrapper = styled.div`
   width: 200px;
   height: 200px;
   #image {
-    background-color: white;
     width: 100%;
     height: 80%;
     cursor: pointer;
+    overflow: hidden;
+    border-radius: 1vw;
     img {
       width: 100%;
       height: 100%;
       border-radius: 1vw;
-    }
-    &:hover {
-      transform: scale(1.05);
-      transition: transform 0.5s;
+      object-fit: cover;
+      &:hover {
+        transform: scale(1.05);
+        transition: transform 0.5s;
+      }
     }
   }
   #title {
@@ -117,6 +134,11 @@ const ImageWrapper = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  @media ${props => props.theme.mobile} {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -132,7 +154,7 @@ const SelectListWrapper = styled.div`
   overflow: auto;
 `;
 const ListBlock = styled.div`
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 10px;
   padding: 5px;
@@ -141,6 +163,7 @@ const ListBlock = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
+  height: auto;
   #removeBtn {
     margin-left: 3px;
     margin-right: 3px;

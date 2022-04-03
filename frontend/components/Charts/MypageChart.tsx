@@ -5,32 +5,6 @@ import { RootState } from '../../store';
 import { DefaultImage } from '../Mypage/Mypage.style';
 
 const MypageChart: NextPage = () => {
-  const data = [
-    {
-      yearAndMonth: '202201',
-      dateCount: 1,
-    },
-    {
-      yearAndMonth: '202202',
-      dateCount: 2,
-    },
-    {
-      yearAndMonth: '202203',
-      dateCount: 3,
-    },
-    {
-      yearAndMonth: '202204',
-      dateCount: 1,
-    },
-    {
-      yearAndMonth: '202205',
-      dateCount: 1,
-    },
-    {
-      yearAndMonth: '202206',
-      dateCount: 0,
-    },
-  ];
   const { monthCourses } = useSelector((state: RootState) => state.user);
   return (
     <>

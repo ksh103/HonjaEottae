@@ -6,7 +6,7 @@ export type RegisterAction = ActionType<typeof actions>;
 export type SearchTourlist = {
   id: number;
   title: string;
-  //   courseImg:string
+  image: string;
 };
 
 export type CourseRegister = {

@@ -39,8 +39,6 @@ const LocationComp: NextPage = () => {
       navigator.geolocation.getCurrentPosition((position: any) => {
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
-        console.log('위도 : ' + position.coords.latitude);
-        console.log('경도 : ' + position.coords.longitude);
       });
     }
   }, []);

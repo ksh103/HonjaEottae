@@ -15,7 +15,7 @@ export async function SearchCourseAPI({ name }: SearchCourseResult) {
       return {
         courseId: data.courseId,
         courseName: data.courseName,
-        image: 'images/noimage.png',
+        image: 'images/no_image.jpg',
       };
     } else {
       return {
@@ -39,7 +39,7 @@ export async function RecommendCourseAPI(payload: number) {
         return {
           courseName: data.course_name,
           courseId: data.course_id,
-          image: 'images/noimage.png',
+          image: 'images/no_image.jpg',
         };
       } else {
         return {
@@ -110,11 +110,9 @@ export async function UserCourseAPI(payload: number) {
     .get(`https://j6e103.p.ssafy.io:5000/data/${payload}`)
     .then(
       res => {
-        console.log('api', res);
         return res.data;
       },
       error => {
-        console.log('apias', error);
         return 'error';
       },
     );

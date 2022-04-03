@@ -2,7 +2,7 @@ import { FiArrowRight, FiX } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { courseRegitser } from '../../store/register';
+import { courseRegitser, resetSearchTourlist } from '../../store/register';
 import {
   ImageWrapper,
   SelectListWrapper,
@@ -41,6 +41,8 @@ const TourList = ({ title, date, content, button }: TourListProps) => {
     setSelectListTitle(selectListTitle.filter(element => element !== title));
   };
   useEffect(() => {
+    // 첫 실행 시 검색결과가 있으면 지우기
+    dispatch(resetSearchTourlist());
     // 등록 버튼 클릭 시
     if (button) {
       // 코스등록 api 중복호출 방지
@@ -61,22 +63,22 @@ const TourList = ({ title, date, content, button }: TourListProps) => {
     <>
       <SelectListWrapper>
         {selectListTitle.map((list, idx) => (
-          <>
-            <ListBlock key={idx}>
+          <div key={idx} style={{ display: 'flex' }}>
+            <ListBlock>
               {list}
               <div id="removeBtn" onClick={() => removeList(list)}>
                 <FiX style={{ marginTop: '5.5px', fontSize: '17px' }} />
               </div>
             </ListBlock>
-            <FiArrowRight style={{ marginTop: '5px', marginLeft: '10px' }} />
-          </>
+            <FiArrowRight style={{ marginTop: '18px', marginLeft: '10px' }} />
+          </div>
         ))}
       </SelectListWrapper>
       <TourListWrapper>
         {searchTourlists.map((data, idx) => (
           <ImageWrapper key={idx}>
             <div id="image" onClick={() => addList(data)}>
-              <img src="/images/1.png" />
+              <img src={data.image} />
             </div>
             <div id="title">{data.title}</div>
           </ImageWrapper>

@@ -21,18 +21,37 @@ const MypageTravelRecord: NextPage = () => {
             <MypageMap />
           </div>
           <div className="diary">
-            <DiaryWrapper>
+            {nowCourse.length != 0 ? (
+              <DiaryWrapper>
+                <div id="title">
+                  {nowCourse[0].recordRegDt}
+                  <br />
+                  {nowCourse[0].courseName}
+                </div>
+                <div id="image">
+                  <img src={nowCourse[0].image}></img>
+                </div>
+                <div id="content">{nowCourse[0].recordContent}</div>
+              </DiaryWrapper>
+            ) : (
+              <DiaryWrapper>
+                <div id="noRecord">
+                  방문한 지역이 없습니다.😥 <br />
+                  여행을 시작해보세요!
+                </div>
+              </DiaryWrapper>
+            )}
+            {/* <DiaryWrapper>
               <div id="title">
                 {nowCourse[0].recordRegDt}
                 <br />
                 {nowCourse[0].courseName}
               </div>
               <div id="image">
-                {/* <img src={nowCourse[0].image}></img> */}
-                <img src="/images/noimage.jpg"></img>
+                <img src={nowCourse[0].image}></img>
               </div>
               <div id="content">{nowCourse[0].recordContent}</div>
-            </DiaryWrapper>
+            </DiaryWrapper> */}
           </div>
         </MyTravleWrapper>
       </MypageWrapper>
