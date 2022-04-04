@@ -1,5 +1,6 @@
 from urllib import request
 from flask import Flask
+from flask_cors import CORS
 import pymysql
 import test
 
@@ -8,6 +9,9 @@ import ssl
 app = Flask(__name__)
 
 app.debug = True
+
+cors = CORS(app, resources={r"/data/*" : {"origin" : "*"}})
+
 
 db = pymysql.connect(
     host='j6e103.p.ssafy.io', # 접근 주소
