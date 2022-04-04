@@ -67,7 +67,6 @@ const CourseComp: NextPage = () => {
       ) : (
         <Loading />
       )}
-
       <Footer />
     </>
   );

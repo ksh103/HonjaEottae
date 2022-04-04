@@ -4,21 +4,32 @@ import socketIOClient from 'socket.io-client';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { setMessageList } from '../../store/chat';
+import {
+  setMessageList,
+  setSocketConnect,
+  setSocketId,
+} from '../../store/chat';
 import { Button, Modal } from 'antd';
+import { setModalState } from '../../store/chat';
 
 const socket = socketIOClient('https://j6e103.p.ssafy.io:4002');
 const ChatApp: NextPage = () => {
-  // const socket = currentSocket.currentSocket;
   const dispatch = useDispatch();
-  const { messageList } = useSelector((state: RootState) => state.chat);
+  const { messageList, isConnect } = useSelector(
+    (state: RootState) => state.chat,
+  );
   const { userInfo } = useSelector((state: RootState) => state.user);
   const { tourId } = useSelector((state: RootState) => state.record);
   const [value, setValue] = useState('');
+
+  // !초기 설정
   useEffect(() => {
-    console.log('dididi', socket);
-    // 채팅 방 입장
-    socket.emit('joinRoom', tourId, userInfo.userName);
+    if (!isConnect) {
+      dispatch(setSocketConnect(true));
+      dispatch(setSocketId(socket));
+      // 채팅 방 입장
+      socket.emit('joinRoom', tourId, userInfo.userName);
+    }
     socket.on('chat message', (msg: { name: string; message: string }) => {
       dispatch(setMessageList(msg));
     });
@@ -29,44 +40,43 @@ const ChatApp: NextPage = () => {
     socket.emit('chat message', tourId, userInfo.userName, value);
     setValue('');
   };
+
+  // !스크롤 하단 고정
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({
+      behavior: 'smooth',
+    });
   };
+
   useEffect(() => {
     // 채팅 리스트가 업데이트 될 때마다 제일 아래로 내려주기
     scrollToBottom();
   }, [messageList]);
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
+  // !모달 설정
+  const { isModalVisible } = useSelector((state: RootState) => state.chat);
 
   const handleCancel = () => {
-    setIsModalVisible(false);
+    dispatch(setModalState(false));
   };
+
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
       <Modal
-        title="Basic Modal"
         visible={isModalVisible}
-        onOk={handleOk}
         onCancel={handleCancel}
+        footer={null}
+        bodyStyle={{
+          backgroundColor: '#F7323F',
+          height: '580px',
+        }}
       >
         <ChatWrapper>
           <ChatBlock>
             <div className="app__wrap">
               <div id="info" className="app__info">
-                혼자어때
+                혼자어때 채팅
               </div>
               <div id="info" className="app__title">
                 푸른 자연을 느낄 수 있는 코스 채팅방
@@ -93,8 +103,8 @@ const ChatApp: NextPage = () => {
                     </div>
                   ),
                 )}
-                <div ref={messagesEndRef}></div>
                 {/* 채팅 스크롤 아래로 내려주기 */}
+                <div ref={messagesEndRef}></div>
               </div>
               <form
                 className="chat-form"
