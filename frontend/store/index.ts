@@ -7,6 +7,7 @@ import location, { locationSaga, LocationState } from './location';
 import user, { userSaga, UserState } from './user';
 import register, { registerSaga, RegisterState } from './register';
 import record, { recordSaga, RecordState } from './record';
+import chat, { ChatState } from './chat';
 
 export function* rootSaga() {
   yield all([
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   location,
   register,
   record,
+  chat,
 });
 
 export default rootReducer;
@@ -40,4 +42,5 @@ export type RootState = {
   location: LocationState;
   register: RegisterState;
   record: RecordState;
+  chat: ChatState;
 };

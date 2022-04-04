@@ -2,39 +2,34 @@ import { NextPage } from 'next';
 import { ChatWrapper, ChatBlock } from './Chat.style';
 import socketIOClient from 'socket.io-client';
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { setMessageList } from '../../store/chat';
 
 interface Message {
   name: string;
   message: string;
 }
 
-const socket = socketIOClient('https://j6e103.p.ssafy.io:4002');
-//const socket = socketIOClient('http://j6e103.p.ssafy.io:4002/');
-
-
+const socket = socketIOClient('localhost:4002');
 const ChatApp: NextPage = () => {
-  const [messageList, setMessageList] = useState<Message[]>([]);
+  const dispatch = useDispatch();
+  const { messageList } = useSelector((state: RootState) => state.chat);
   const { userInfo } = useSelector((state: RootState) => state.user);
-  // const [name, setName] = useState('손은성');
+  const { tourId } = useSelector((state: RootState) => state.record);
   const [value, setValue] = useState('');
   useEffect(() => {
-    socket.on(
-      'receive message',
-      (message: { name: string; message: string }) => {
-        console.log('들어옴');
-        setMessageList(messageList => messageList.concat(message));
-      },
-    );
+    // 채팅 방 입장
+    socket.emit('joinRoom', tourId, userInfo.userName);
+
+    socket.on('chat message', (msg: { name: string; message: string }) => {
+      dispatch(setMessageList(msg));
+    });
   }, []);
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    socket.emit('send message', {
-      name: userInfo.userName,
-      message: value,
-    });
+    socket.emit('chat message', tourId, userInfo.userName, value);
     setValue('');
   };
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
@@ -58,7 +53,7 @@ const ChatApp: NextPage = () => {
           <div id="chatWindow" className="app__window">
             {messageList.map((data: Message, idx: number) =>
               data.name == userInfo.userName ? (
-                <div key={idx} className="my-message">
+                <div key={idx} className="message">
                   <div className="username">
                     {data.name == '' ? '이름 없음' : data.name}
                   </div>
@@ -67,7 +62,7 @@ const ChatApp: NextPage = () => {
                   </div>
                 </div>
               ) : (
-                <div key={idx} className="message">
+                <div key={idx} className="my-message">
                   <div className="username">
                     {data.name == '' ? '이름 없음' : data.name}
                   </div>
@@ -95,16 +90,6 @@ const ChatApp: NextPage = () => {
                 value={value}
                 placeholder="대화를 입력해주세요"
               />
-              {/* <input
-                id="chatInput"
-                type="text"
-                className="app__input"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setName(e.target.value)
-                }
-                value={name}
-                placeholder="대화를 입력해주세요"
-              /> */}
               <button
                 type="submit"
                 id="chatMessageSendBtn"

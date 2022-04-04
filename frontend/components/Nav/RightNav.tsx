@@ -11,6 +11,7 @@ interface RightNavProps {
 const RightNav: NextPage<RightNavProps> = ({ open }) => {
   const dispatch = useDispatch();
   const { isLogin } = useSelector((state: RootState) => state.user); // 로그인 체크
+  const { tourId } = useSelector((state: RootState) => state.record); // 여행중인지 체크(채팅)
   const LogoutButton = () => {
     sessionStorage.clear(); // userToken 세션스토리지 삭제
     document.location.href = '/'; // 로그아웃 처리하면 새로고침 해서 세션 사라진 걸 인식 해줘야함.
@@ -28,6 +29,13 @@ const RightNav: NextPage<RightNavProps> = ({ open }) => {
   return (
     <>
       <Ul open={open}>
+        {tourId != 0 && (
+          <li>
+            <Link href="/chat">
+              <label>실시간 채팅</label>
+            </Link>
+          </li>
+        )}
         <li>
           <Link href="/course">
             <label>여행코스추천</label>
@@ -45,11 +53,6 @@ const RightNav: NextPage<RightNavProps> = ({ open }) => {
         </li>
         {isLogin ? (
           <>
-            <li>
-              <Link href="/chat">
-                <label>채팅</label>
-              </Link>
-            </li>
             <li>
               <Link href="/mypage">
                 <label>마이페이지</label>
