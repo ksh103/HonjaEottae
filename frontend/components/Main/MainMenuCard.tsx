@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { MenuCard } from './MainPage.style';
+import { MenuCard } from './Main.style';
 
 interface propsType {
   title: string;
@@ -12,7 +12,9 @@ export default function MainMenuCard(props: propsType) {
   return (
     <Link href={props.url}>
       <MenuCard>
-        <img src={props.image} />
+        <div className="menu-image">
+          <img src={props.image} />
+        </div>
       </MenuCard>
     </Link>
   );

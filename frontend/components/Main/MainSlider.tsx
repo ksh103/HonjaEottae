@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Carousel } from 'antd';
-import { SliderCard } from './MainPage.style';
+import { SliderCard } from './Main.style';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';

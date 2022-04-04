@@ -9,7 +9,7 @@ import {
   MapAreaBox,
   KoreaMap,
   AreaCourses,
-} from './MainPage.style';
+} from './Main.style';
 
 export default function MainGraph() {
   const dispatch = useDispatch();
@@ -59,7 +59,9 @@ export default function MainGraph() {
             {areaCourses.length > 0 &&
               areaCourses.map(data => (
                 <Link href={`/course/${data.courseId}`} key={data.courseId}>
-                  <Card className="area-course">{data.courseName}</Card>
+                  <Card hoverable className="area-course">
+                    {data.courseName}
+                  </Card>
                 </Link>
               ))}
           </AreaCourses>
