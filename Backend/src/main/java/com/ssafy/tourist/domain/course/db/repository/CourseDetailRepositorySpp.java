@@ -87,7 +87,7 @@ public class CourseDetailRepositorySpp {
 
     // 코스 태그 Query
     public List<CourseTagDetail> courseTagDetailByCourseId(int courseId) {
-        return jpaQueryFactory.selectDistinct(Projections.constructor(CourseTagDetail.class, qTag.tagName)).from(qRecordTag)
+        return jpaQueryFactory.selectDistinct(Projections.constructor(CourseTagDetail.class, qTagCode.code, qTag.tagName)).from(qRecordTag)
                 .innerJoin(qTagCode).on(qTagCode.code.eq(qRecordTag.code))
                 .innerJoin(qTag).on(qTag.tagId.eq(qRecordTag.tagId))
                 .where(qRecordTag.isSelect.eq(true).and(qTag.code.eq(qTagCode.code).and(qRecordTag.courseId.eq(courseId))))
