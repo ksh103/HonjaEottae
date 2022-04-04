@@ -11,7 +11,14 @@ const ChatMain: NextPage = () => {
     // setCurrentSocket(socket);
   }, []);
 
-  return <>{currentSocket ? <ChatApp></ChatApp> : <Loading />}</>;
+  return (
+    <>
+      <ChatApp></ChatApp>
+    </>
+  );
+  {
+    /* {currentSocket ? <ChatApp></ChatApp> : <Loading />}; */
+  }
 };
 
 export default ChatMain;
