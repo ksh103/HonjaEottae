@@ -11,7 +11,7 @@ interface Message {
   message: string;
 }
 
-const socket = socketIOClient('localhost:4002');
+const socket = socketIOClient('https://j6e103.p.ssafy.io:4002');
 const ChatApp: NextPage = () => {
   const dispatch = useDispatch();
   const { messageList } = useSelector((state: RootState) => state.chat);
