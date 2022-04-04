@@ -22,6 +22,10 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <Head>
           <title>혼자어때</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
+          />
         </Head>
         <Component {...pageProps} />
         <GlobalStyle />
