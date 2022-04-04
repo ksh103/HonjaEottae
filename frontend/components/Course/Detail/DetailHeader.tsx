@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Header, Title } from './Datail.style';
+import { Header } from './Datail.style';
 import {
   LeftOutlined,
   HeartOutlined,
@@ -92,15 +92,16 @@ export default function DetailHeader() {
 
   return (
     <Header>
-      <Title>
+      <div className="detail-title">
         <div className="back">
           <LeftOutlined />
         </div>
-        <div>{courseInfo.courseName}</div>
-      </Title>
-      {isLogin && (
-        <div>
+        {courseInfo.courseName}
+      </div>
+      <div className="detail-state">
+        {isLogin && (
           <ul>
+            {courseReview && showTourState()}
             {like ? (
               <li onClick={UnlikeCourse}>
                 <HeartFilled style={{ color: 'red' }} /> 취소
@@ -110,10 +111,9 @@ export default function DetailHeader() {
                 <HeartOutlined /> 저장
               </li>
             )}
-            {courseReview && showTourState()}
           </ul>
-        </div>
-      )}
+        )}
+      </div>
     </Header>
   );
 }

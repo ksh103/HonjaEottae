@@ -1,10 +1,19 @@
 import { Button } from 'antd';
+import TextArea from 'antd/lib/input/TextArea';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { endTour } from '../../store/record';
-import { FileBox, ReviewBlock, TagBlock, TagButton } from './Record.style';
+import {
+  FileBox,
+  ReviewBlock,
+  ReviewButton,
+  TagBlock,
+  TagButton,
+} from './Record.style';
+
+const colors = ['lightgreen', 'lightpink', 'lightgoldenrodyellow', 'lightblue'];
 
 export default function RecordReview() {
   const dispatch = useDispatch();
@@ -24,7 +33,6 @@ export default function RecordReview() {
   };
   const onImageHandler = async (e: any) => {
     const file = e.target.files[0];
-    console.log(file);
     setImage(file);
   };
   const clickTagButton = (x: number, y: number) => {
@@ -33,8 +41,8 @@ export default function RecordReview() {
   };
 
   const clickResigerButton = () => {
-    if (content === '') alert('후기를 남겨주세요');
-    else if (!image) alert('사진을 남겨주세요');
+    if (!image) alert('사진을 남겨주세요');
+    else if (content === '') alert('후기를 남겨주세요');
     else {
       dispatch(
         endTour.request({
@@ -51,6 +59,7 @@ export default function RecordReview() {
   return (
     <>
       <TagBlock>
+        <div className="tag-title">✔ 여행 키워드 선택</div>
         {tag.map((a, i) => (
           <div key={i} className="tag-card">
             <div className="code-name">{a.codeName}</div>
@@ -59,6 +68,7 @@ export default function RecordReview() {
                 key={j}
                 onClick={() => clickTagButton(b.code, b.tagId)}
                 state={checkTag[b.code - 1][b.tagId - 1]}
+                color={colors[i]}
               >
                 {b.tagName}
               </TagButton>
@@ -67,43 +77,30 @@ export default function RecordReview() {
         ))}
       </TagBlock>
       <ReviewBlock>
-        <h1>글쓰기</h1>
-        <div>
-          <input type="file" onChange={onImageHandler} />
-        </div>
-        {/* <Button
-          type="primary"
-          icon={<UploadOutlined />}
-          size="large"
-          shape="round"
-          style={{
-            backgroundColor: '#F7323F',
-            border: 'none',
-          }}
-        >
-          <input type="file" onChange={onImageHandler} />
-        </Button>
-         */}
-        {/* <FileBox>
+        <div className="review-title">💌 여행 일기 작성</div>
+        <FileBox>
           <input
-            value="첨부파일"
+            value={image?.name || ''}
             placeholder="첨부파일"
             className="upload-name"
+            disabled
           />
           <label htmlFor="file">파일찾기</label>
           <input type="file" id="file" onChange={onImageHandler} />
-        </FileBox> */}
-        <div>
-          <textarea
-            value={content}
-            placeholder="후기 작성해주세요"
-            onChange={onContentHandler}
-          />
-        </div>
+        </FileBox>
+        <TextArea
+          showCount
+          bordered={false}
+          maxLength={100}
+          style={{ height: 100, border: '1px solid lightgray' }}
+          onChange={onContentHandler}
+          value={content}
+          placeholder="추억 남기기..."
+        />
       </ReviewBlock>
-      <div>
-        <button onClick={clickResigerButton}>기록남기기</button>
-      </div>
+      <ReviewButton onClick={clickResigerButton}>
+        <div className="button">여행종료</div>
+      </ReviewButton>
     </>
   );
 }
