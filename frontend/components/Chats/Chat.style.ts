@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 
-const ChatWrapper = styled.div`
-  position: relative;
-  /* background-color: black; */
-`;
+const ChatWrapper = styled.div``;
 
 const ChatBlock = styled.div`
   .app__wrap {
     color: white;
     margin: 0 auto;
-    padding: 50px 0 0;
+    padding: 60px 0 0;
     position: relative;
     max-width: 350px;
     min-width: 200px;
@@ -21,11 +18,10 @@ const ChatBlock = styled.div`
     position: absolute;
     top: 0;
     width: 100%;
-    height: 50px;
     text-align: center;
     line-height: 50px;
     color: #fff;
-    font-size: 20px;
+    font-size: 30px;
     font-family: 'Jalnan';
     background: ${props => props.theme.colors.pointColor};
   }
@@ -42,7 +38,7 @@ const ChatBlock = styled.div`
     color: black;
     overflow-y: auto;
     padding: 10px 20px;
-    height: 400px;
+    height: 350px;
     background: #ffffff;
   }
   .username {

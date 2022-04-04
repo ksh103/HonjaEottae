@@ -114,13 +114,8 @@ export async function KeywordCourseAPI() {
 export async function UserCourseAPI(payload: number) {
   const datas = await axios
     .get(`https://j6e103.p.ssafy.io:5000/data/${payload}`)
-    .then(
-      res => {
-        return res.data;
-      },
-      error => {
-        return 'error';
-      },
-    );
+    .then(res => {
+      return res.data;
+    });
   return datas;
 }

@@ -10,4 +10,7 @@ export type MessageList = {
 
 export type ChatState = {
   messageList: MessageList[];
+  isConnect: boolean;
+  socketId: any;
+  isModalVisible: boolean;
 };
