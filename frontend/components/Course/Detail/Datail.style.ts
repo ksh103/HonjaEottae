@@ -1,25 +1,37 @@
 import styled from 'styled-components';
 
 const Header = styled.div`
-  ul li {
-    float: right;
-    margin-left: 30px;
-    font-size: 25px;
+  .detail-title {
+    font-size: 35px;
+    font-family: 'Jalnan';
+  }
+  .detail-title .back {
+    display: inline-block;
+    margin-right: 20px;
     cursor: pointer;
   }
-  padding-bottom: 60px;
+  .detail-state {
+    margin-bottom: 10px;
+    ul {
+      display: flex;
+      justify-content: right;
+      li {
+        border: 1px solid red;
+        font-size: 18px;
+      }
+    }
+  }
   .end {
     cursor: default;
   }
-`;
-
-const Title = styled.div`
-  .back {
-    display: flex;
-    margin: 10px 30px;
+  @media ${props => props.theme.tablet} {
+    .detail-title {
+      font-size: 25px;
+    }
+    .detail-title .back {
+      margin-right: 10px;
+    }
   }
-  font-size: 35px;
-  display: flex;
 `;
 
 const CourseMap = styled.div`
@@ -92,7 +104,6 @@ const CourseImage = styled.div`
 `;
 
 const CourseIndex = styled.div`
-  /* border: 1px solid red; */
   margin: 20px;
   font-size: 20px;
   text-align: center;
@@ -102,9 +113,9 @@ const Content = styled.div`
   .title {
     font-size: 20px;
     font-weight: bold;
+    margin-bottom: 20px;
   }
-  font-size: 15px;
-  margin-top: 20px;
+  font-size: 16px;
   padding: 20px;
   border-radius: 1vw;
   border: 1px solid lightgray;
@@ -122,11 +133,9 @@ const Review = styled.div`
     .slick-prev {
       width: 30px;
       height: 30px;
-      color: black;
       background-image: url('/images/left_arrow.png');
       background-size: cover;
     }
-
     .slick-next {
       width: 30px;
       height: 30px;
@@ -135,8 +144,9 @@ const Review = styled.div`
     }
   }
 `;
+const ReviewCard = styled.div``;
 const ReviewImage = styled.div`
-  position: relative;
+  /* position: relative;
   img {
     height: 240px;
     width: 100%;
@@ -152,7 +162,7 @@ const ReviewImage = styled.div`
     left: 1px;
     color: white;
     background-color: rgba(0, 0, 0, 0.6);
-  }
+  } */
 `;
 
 const GraphBlock = styled.div`
@@ -185,9 +195,17 @@ const CourseDetail = styled.div`
   justify-content: center;
   flex-direction: row; */
 `;
+const TagBlock = styled.div`
+  padding: 0 10px;
+  .tag {
+    font-size: 15px;
+    padding: 4px 10px;
+    margin-bottom: 5px;
+  }
+`;
+
 export {
   Header,
-  Title,
   CourseDetail,
   CourseMap,
   CourseImage,
@@ -198,4 +216,6 @@ export {
   GraphPie,
   Review,
   ReviewImage,
+  ReviewCard,
+  TagBlock,
 };

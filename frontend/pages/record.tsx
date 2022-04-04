@@ -6,7 +6,7 @@ import Footer from '../components/Footer/Footer';
 import Menu from '../components/Nav/Menu';
 import Nav from '../components/Nav/Nav';
 import { RecordMap, RecordReview, RecordStamp } from '../components/Record';
-import { RecordHeader } from '../components/Record/Record.style';
+import { RecordHeader, ReviewButton } from '../components/Record/Record.style';
 import { RootState } from '../store';
 import { cancelTour } from '../store/record';
 import { Wrapper } from '../styles/variables';
@@ -34,9 +34,9 @@ const Record: NextPage = () => {
         {stamps.some(data => data.state) ? (
           <RecordReview />
         ) : (
-          <div onClick={CancelTour}>
-            <button>여행 종료</button>
-          </div>
+          <ReviewButton onClick={CancelTour}>
+            <div className="button">여행종료</div>
+          </ReviewButton>
         )}
       </Wrapper>
       <Footer />

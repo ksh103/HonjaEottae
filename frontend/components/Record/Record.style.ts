@@ -43,43 +43,51 @@ const TourMap = styled.div`
 const ReviewBlock = styled.div`
   margin: 20px 0;
   padding: 20px;
+  padding-bottom: 30px;
   border-radius: 1vw;
-  background-color: ${props => props.theme.colors.backgroundColor};
+  border: 1px solid lightgray;
+  .review-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
 `;
 const TagBlock = styled.div`
   border-radius: 1vw;
   border: 1px solid lightgray;
   padding: 20px;
-  margin: 20px 0;
+  .tag-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
   .tag-card {
     border-bottom: 1px solid lightgray;
     padding: 10px;
   }
-  .tag-card:nth-child(4) {
+  .tag-card:nth-child(5) {
     border: 0;
   }
   .code-name {
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Jalnan';
   }
 `;
-const TagButton = styled.div<{ state: number }>`
+const TagButton = styled.div<{ state: number; color: string }>`
   display: inline-block;
-  border: 1px solid blue;
-  padding: 8px 15px;
+  padding: 6px 15px;
   margin: 10px;
-  font-size: 18px;
+  font-size: 16px;
   border: 1px solid lightgray;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s;
   color: gray;
-
   ${props => {
     if (props.state === 1) {
       return {
         color: 'black',
-        backgroundColor: 'lightpink',
+        backgroundColor: props.color,
         fontWeight: 'bold',
       };
     }
@@ -215,14 +223,14 @@ const RecordHeader = styled.div`
   }
 `;
 const FileBox = styled.div`
+  margin: 10px 0;
   .upload-name {
     display: inline-block;
     height: 40px;
-    /* width: 100px; */
     padding: 0 10px;
     vertical-align: middle;
     border: 1px solid #dddddd;
-    width: 78%;
+    width: 200px;
     color: #999999;
   }
   label {
@@ -244,6 +252,22 @@ const FileBox = styled.div`
     border: 0;
   }
 `;
+const ReviewButton = styled.div`
+  text-align: center;
+  .button {
+    background-color: ${props => props.theme.colors.pointColor};
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+`;
 
 export {
   RecordHeader,
@@ -255,4 +279,5 @@ export {
   StampCard,
   StampCardContent,
   FileBox,
+  ReviewButton,
 };
