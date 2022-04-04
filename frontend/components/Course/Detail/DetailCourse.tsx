@@ -2,7 +2,12 @@ import { Carousel, Col, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { Content, CourseDetail, CourseImage, CourseIndex } from './Datail.style';
+import {
+  Content,
+  CourseDetail,
+  CourseImage,
+  CourseIndex,
+} from './Datail.style';
 import DetailMap from './DetailMap';
 
 export default function DetailCourse() {
@@ -23,7 +28,6 @@ export default function DetailCourse() {
   const settings = {
     afterChange: (next: number) => setIndex(next),
   };
-
   useEffect(() => {
     console.log(index);
   }, [index]);
@@ -31,22 +35,26 @@ export default function DetailCourse() {
   return (
     <>
       <CourseDetail>
-        <div>{courseId != 0 && <DetailMap tourist={courseTourist} />}</div>
-        <div>
-          <CourseImage>
-            <Carousel {...settings}>
-              {courseTourist.map((data, i) => (
-                <div className="course-image" key={i}>
-                  <img src={data.image} />
-                  <div className="course-image-content">
-                    <div className="name">📍 {data.touristName}</div>
-                    <div>{data.touristAddress}</div>
+        <Row>
+          <Col span={12}>
+            {courseId != 0 && <DetailMap tourist={courseTourist} />}
+          </Col>
+          <Col span={12}>
+            <CourseImage>
+              <Carousel {...settings}>
+                {courseTourist.map((data, i) => (
+                  <div className="course-image" key={i}>
+                    <img src={data.image} />
+                    <div className="course-image-content">
+                      <div className="name">📍 {data.touristName}</div>
+                      <div>{data.touristAddress}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </Carousel>
-          </CourseImage>
-        </div>
+                ))}
+              </Carousel>
+            </CourseImage>
+          </Col>
+        </Row>
       </CourseDetail>
       <CourseIndex>{courseIndex()}</CourseIndex>
       <Content>
