@@ -21,13 +21,8 @@ const CourseComp: NextPage = () => {
   useEffect(() => {
     // 첫 실행 시 검색결과가 있으면 지우기
     dispatch(resetSearchCourses());
+    dispatch(recommendCourse.request(userInfo.userId));
   }, []);
-  useEffect(() => {
-    if (userInfo.userId != 0) {
-      dispatch(recommendCourse.request(userInfo.userId));
-    }
-  }, [userInfo]);
-
   return (
     <>
       <Nav />

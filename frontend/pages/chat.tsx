@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import ChatApp from '../components/Chats/Chat';
+import ChatMain from '../components/Chats/ChatMain';
 
 const Chat: NextPage = () => {
-  return <ChatApp />;
+  return <ChatMain />;
 };
 
 export default Chat;
