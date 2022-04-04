@@ -1,11 +1,10 @@
+import { Button } from 'antd';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { endTour } from '../../store/record';
-import { ReviewBlock, TagBlock, TagButton } from './Record.style';
-import { Upload, Button } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { FileBox, ReviewBlock, TagBlock, TagButton } from './Record.style';
 
 export default function RecordReview() {
   const dispatch = useDispatch();
@@ -72,7 +71,28 @@ export default function RecordReview() {
         <div>
           <input type="file" onChange={onImageHandler} />
         </div>
-
+        {/* <Button
+          type="primary"
+          icon={<UploadOutlined />}
+          size="large"
+          shape="round"
+          style={{
+            backgroundColor: '#F7323F',
+            border: 'none',
+          }}
+        >
+          <input type="file" onChange={onImageHandler} />
+        </Button>
+         */}
+        {/* <FileBox>
+          <input
+            value="첨부파일"
+            placeholder="첨부파일"
+            className="upload-name"
+          />
+          <label htmlFor="file">파일찾기</label>
+          <input type="file" id="file" onChange={onImageHandler} />
+        </FileBox> */}
         <div>
           <textarea
             value={content}

@@ -181,9 +181,9 @@ const GraphPie = styled.div`
   }
 `;
 const CourseDetail = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: row; */
 `;
 export {
   Header,
