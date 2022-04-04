@@ -1,9 +1,11 @@
 import Router from 'next/router';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { endTour } from '../../store/record';
 import { ReviewBlock, TagBlock, TagButton } from './Record.style';
+import { Upload, Button } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 
 export default function RecordReview() {
   const dispatch = useDispatch();
@@ -21,8 +23,9 @@ export default function RecordReview() {
   const onContentHandler = (e: any) => {
     setContent(e.target.value);
   };
-  const onImageHandler = (e: any) => {
+  const onImageHandler = async (e: any) => {
     const file = e.target.files[0];
+    console.log(file);
     setImage(file);
   };
   const clickTagButton = (x: number, y: number) => {
@@ -45,6 +48,7 @@ export default function RecordReview() {
       );
     }
   };
+
   return (
     <>
       <TagBlock>
@@ -68,6 +72,7 @@ export default function RecordReview() {
         <div>
           <input type="file" onChange={onImageHandler} />
         </div>
+
         <div>
           <textarea
             value={content}

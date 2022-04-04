@@ -180,10 +180,15 @@ const GraphPie = styled.div`
   @media ${props => props.theme.laptopS} {
   }
 `;
-
+const CourseDetail = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+`;
 export {
   Header,
   Title,
+  CourseDetail,
   CourseMap,
   CourseImage,
   CourseIndex,

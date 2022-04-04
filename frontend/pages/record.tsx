@@ -6,6 +6,7 @@ import Footer from '../components/Footer/Footer';
 import Menu from '../components/Nav/Menu';
 import Nav from '../components/Nav/Nav';
 import { RecordMap, RecordReview, RecordStamp } from '../components/Record';
+import { RecordHeader } from '../components/Record/Record.style';
 import { RootState } from '../store';
 import { cancelTour } from '../store/record';
 import { Wrapper } from '../styles/variables';
@@ -27,7 +28,7 @@ const Record: NextPage = () => {
       <Nav />
       <Menu currentName="나의 여행 레코드" />
       <Wrapper>
-        <h1>{courseName}</h1>
+        <RecordHeader>{courseName}</RecordHeader>
         {stamps.length > 0 && <RecordMap stamps={stamps} />}
         <RecordStamp />
         {stamps.some(data => data.state) ? (

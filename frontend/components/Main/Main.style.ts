@@ -13,25 +13,114 @@ const Wrapper = styled.div`
   padding-top: 90px;
 `;
 
+const StampBlock = styled.div`
+  cursor: pointer;
+  margin: 10px 0;
+  position: relative;
+  .stamp-title {
+    font-family: 'Jalnan';
+    font-size: 25px;
+    margin: 10px 0;
+  }
+  .stamp-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    overflow-y: auto;
+  }
+  .stamp-line {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: lightgray;
+    top: 140px;
+    left: 0px;
+    right: 0px;
+  }
+  .stamp-name {
+    width: 140px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 17px;
+  }
+  @media ${props => props.theme.tablet} {
+    .stamp-title {
+      font-size: 18px;
+    }
+    .stamp-line {
+      height: 2px;
+      top: 110px;
+    }
+    .stamp-name {
+      width: 100px;
+      font-size: 15px;
+    }
+  }
+`;
+
+const StampCard = styled.div<{ $state: boolean }>`
+  padding: 0 40px;
+  position: relative;
+  img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid lightgray;
+    mix-blend-mode: ${props => (props.$state ? 'luminosity' : 'normal')};
+  }
+  .stamp {
+    position: absolute;
+    left: 40px;
+    border: 3px solid ${props => props.theme.colors.pointColor};
+    mix-blend-mode: normal;
+    opacity: ${props => (props.$state ? 1 : 0)};
+  }
+  @media ${props => props.theme.tablet} {
+    padding: 0 20px;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+    .stamp {
+      left: 20px;
+      border: 3px solid ${props => props.theme.colors.pointColor};
+    }
+  }
+`;
+
 const SliderCard = styled.div`
   cursor: pointer;
   color: white;
   height: 200px;
   width: 100%;
   position: relative;
+  background-color: black;
   img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    &:hover {
+      opacity: 0.5;
+    }
   }
   .title {
     position: absolute;
     top: 0px;
     left: 0px;
-    padding: 25px;
+    padding-top: 50px;
     font-size: 22px;
+    font-family: 'Jalnan';
     width: 100%;
-    /* color: black; */
+    text-align: center;
+    text-shadow: 4px 4px 8px black;
+  }
+  @media ${props => props.theme.tablet} {
+    height: 150px;
+    .title {
+      padding-top: 30px;
+      font-size: 18px;
+    }
   }
 `;
 
@@ -41,9 +130,12 @@ const MenuBlock = styled.div`
 `;
 
 const MenuCard = styled.div`
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
+  padding: 10px;
+  .menu-image {
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+  }
   img {
     width: 100%;
     height: 100%;
@@ -60,12 +152,14 @@ const TravelBlock = styled.div`
 
 const MainGraphBlock = styled.div`
   display: flex;
-  @media ${props => props.theme.laptopS} {
-    display: block;
+  flex-direction: row;
+  @media ${props => props.theme.tablet} {
+    flex-direction: column;
   }
 `;
 
 const KoreaMap = styled.div`
+  min-width: 450px;
   & > div {
     position: relative;
     width: 450px;
@@ -104,7 +198,6 @@ const MapAreaBox = styled.div<Location>`
 const AreaCourses = styled(Card)`
   width: 100%;
   min-width: 400px;
-  margin: 20px;
 
   .area-title {
     font-size: 18px;
@@ -123,13 +216,12 @@ const AreaCourses = styled(Card)`
   .area-course {
     margin: 10px 0;
     cursor: pointer;
-    &:hover {
-      font-weight: bold;
-    }
   }
 `;
 
 export {
+  StampBlock,
+  StampCard,
   MenuBlock,
   MenuCard,
   SliderCard,

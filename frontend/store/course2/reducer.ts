@@ -6,16 +6,13 @@ import {
   GET_COURSE_DETAIL_SUCCESS,
   GET_MAIN_DATA_SUCCESS,
 } from './actions';
-import { AreaCourses } from '../../components/Main/MainPage.style';
 
 const initialCourseInfoState = {
-  // courseId: 0,
   courseName: '',
   courseContent: '',
   courseDistance: '',
   courseDays: '',
   courseHits: 0,
-  // courseImage: '',
 };
 
 const initialState: Course2State = {

@@ -87,6 +87,9 @@ const TagButton = styled.div<{ state: number }>`
 `;
 const StampBlock = styled.div`
   margin: 20px 10px;
+  @media ${props => props.theme.mobile} {
+    margin: 20px 0px;
+  }
 `;
 
 const StampCard = styled.div<{ $state: boolean }>`
@@ -196,9 +199,24 @@ const StampCardContent = styled(Card)<{ $state: boolean }>`
       margin: 5px 0;
     }
   }
+  @media ${props => props.theme.mobile} {
+    margin-left: 0px;
+    .stamp-card-address {
+      display: none;
+    }
+  }
+`;
+const RecordHeader = styled.div`
+  font-family: 'Jalnan';
+  font-size: 30px;
+  margin: 10px 0;
+  @media ${props => props.theme.mobile} {
+    font-size: 20px;
+  }
 `;
 
 export {
+  RecordHeader,
   TourMap,
   ReviewBlock,
   TagBlock,
