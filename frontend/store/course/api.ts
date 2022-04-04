@@ -30,10 +30,16 @@ export async function SearchCourseAPI({ name }: SearchCourseResult) {
 
 // 코스 데이터 받아오기
 export async function RecommendCourseAPI(payload: number) {
-  let userCourses = await UserCourseAPI(payload);
-  if (userCourses == 'error') {
-    userCourses = await GetPopularCoursesAPI(20);
+  if (payload == 0) {
+    const userCourses = await GetPopularCoursesAPI(20);
+    const keywordCourses = await KeywordCourseAPI();
+    return {
+      userCourses: userCourses,
+      keywordCourses: keywordCourses,
+    };
   } else {
+    let userCourses = await UserCourseAPI(payload);
+    const keywordCourses = await KeywordCourseAPI();
     userCourses = userCourses.map((data: any) => {
       if (data.file_id == 0) {
         return {
@@ -49,12 +55,12 @@ export async function RecommendCourseAPI(payload: number) {
         };
       }
     });
+    return {
+      userCourses: userCourses,
+      keywordCourses: keywordCourses,
+    };
   }
   const keywordCourses = await KeywordCourseAPI();
-  return {
-    userCourses: userCourses,
-    keywordCourses: keywordCourses,
-  };
 }
 
 export async function KeywordCourseAPI() {

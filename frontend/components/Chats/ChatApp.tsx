@@ -6,20 +6,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { setMessageList } from '../../store/chat';
 
-interface Message {
-  name: string;
-  message: string;
-}
-
-const socket = socketIOClient('localhost:4002');
-
+const socket = socketIOClient('https://j6e103.p.ssafy.io:4002/');
 const ChatApp: NextPage = () => {
+  // const socket = currentSocket.currentSocket;
   const dispatch = useDispatch();
   const { messageList } = useSelector((state: RootState) => state.chat);
   const { userInfo } = useSelector((state: RootState) => state.user);
   const { tourId } = useSelector((state: RootState) => state.record);
   const [value, setValue] = useState('');
   useEffect(() => {
+    console.log('dididi', socket);
     // 채팅 방 입장
     socket.emit('joinRoom', tourId, userInfo.userName);
     socket.on('chat message', (msg: { name: string; message: string }) => {
@@ -51,7 +47,7 @@ const ChatApp: NextPage = () => {
             푸른 자연을 느낄 수 있는 코스 채팅방
           </div>
           <div id="chatWindow" className="app__window">
-            {messageList.map((data: Message, idx: number) =>
+            {messageList.map((data: any, idx: number) =>
               data.name == userInfo.userName ? (
                 <div key={idx} className="message">
                   <div className="username">
