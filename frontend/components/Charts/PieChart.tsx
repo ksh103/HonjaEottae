@@ -2,8 +2,6 @@ import { NextPage } from 'next';
 import { ResponsivePie } from '@nivo/pie';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { DefaultImage } from '../Mypage/Mypage.style';
-import Link from 'next/link';
 
 const PieChart: NextPage = () => {
   const { areaCourses } = useSelector((state: RootState) => state.user);

@@ -2,7 +2,6 @@ import { ResponsiveBar } from '@nivo/bar';
 import { NextPage } from 'next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { DefaultImage } from '../Mypage/Mypage.style';
 
 const MypageChart: NextPage = () => {
   const { monthCourses } = useSelector((state: RootState) => state.user);
