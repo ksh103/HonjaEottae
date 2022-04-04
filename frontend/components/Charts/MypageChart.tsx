@@ -8,11 +8,7 @@ const MypageChart: NextPage = () => {
   const { monthCourses } = useSelector((state: RootState) => state.user);
   return (
     <>
-      {monthCourses.length == 0 ? (
-        <DefaultImage>
-          <img src="/images/월별방문분석.png" />
-        </DefaultImage>
-      ) : (
+      {monthCourses.length != 0 && (
         <ResponsiveBar
           data={monthCourses}
           keys={['dateCount']}
