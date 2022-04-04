@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { setMessageList } from '../../store/chat';
 
-const socket = socketIOClient('https://j6e103.p.ssafy.io:4002/');
+const socket = socketIOClient('https://j6e103.p.ssafy.io:4002');
 const ChatApp: NextPage = () => {
   // const socket = currentSocket.currentSocket;
   const dispatch = useDispatch();
