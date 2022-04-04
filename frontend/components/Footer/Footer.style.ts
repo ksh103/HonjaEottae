@@ -13,5 +13,18 @@ const Wrapper = styled.div`
     padding-top: 10px;
   }
 `;
+const ChatIcons = styled.div`
+  position: fixed;
+  bottom: 50px;
+  right: 70px;
+  font-size: 60px;
+  color: #5496ff;
+  cursor: pointer;
+  :hover {
+    color: #2666fc;
+    transform: scale(1.1);
+    transition: 0.5s linear;
+  }
+`;
 
-export { Wrapper };
+export { Wrapper, ChatIcons };

@@ -15,16 +15,19 @@ import { KEYWORD } from '../../assets/keyword';
 
 const CourseComp: NextPage = () => {
   const dispatch = useDispatch();
-
+  const { userInfo } = useSelector((state: RootState) => state.user);
+  const { searchCourses, searchKeyword, keywordCourses, userCourses } =
+    useSelector((state: RootState) => state.course);
   useEffect(() => {
     // 첫 실행 시 검색결과가 있으면 지우기
     dispatch(resetSearchCourses());
-    dispatch(recommendCourse.request(userInfo.userId));
   }, []);
-  const { userInfo } = useSelector((state: RootState) => state.user);
+  useEffect(() => {
+    if (userInfo.userId != 0) {
+      dispatch(recommendCourse.request(userInfo.userId));
+    }
+  }, [userInfo]);
 
-  const { searchCourses, searchKeyword, keywordCourses, userCourses } =
-    useSelector((state: RootState) => state.course);
   return (
     <>
       <Nav />
