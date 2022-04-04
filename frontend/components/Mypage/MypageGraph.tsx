@@ -1,5 +1,11 @@
 import { NextPage } from 'next';
-import { MypageWrapper, GraphWrapper, Title, SubTitle } from './Mypage.style';
+import {
+  MypageWrapper,
+  GraphBlock,
+  Title,
+  SubTitle,
+  GraphWrapper,
+} from './Mypage.style';
 import MypageChart from '../Charts/MypageChart';
 import PieChart from '../Charts/PieChart';
 import { RootState } from '../../store';
@@ -23,9 +29,9 @@ const MypageGraph: NextPage = () => {
         </>
       )}
 
-      <MypageWrapper height="300px">
+      <GraphWrapper>
         <div className="subTitle">개인 여행 분석</div>
-        <GraphWrapper>
+        <GraphBlock>
           <div className="LGraph">
             <div>월별 여행 분석</div>
             <MypageChart />
@@ -34,8 +40,8 @@ const MypageGraph: NextPage = () => {
             <div>지역 여행 분석</div>
             <PieChart />
           </div>
-        </GraphWrapper>
-      </MypageWrapper>
+        </GraphBlock>
+      </GraphWrapper>
     </>
   );
 };

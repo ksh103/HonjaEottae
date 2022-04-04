@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ChatWrapper = styled.div`
+  position: relative;
   /* background-color: black; */
 `;
 

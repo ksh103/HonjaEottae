@@ -9,14 +9,10 @@ const PieChart: NextPage = () => {
   const { areaCourses } = useSelector((state: RootState) => state.user);
   return (
     <>
-      {areaCourses.length == 0 ? (
-        <DefaultImage>
-          <img src="images/방문지역분석.png"></img>
-        </DefaultImage>
-      ) : (
+      {areaCourses.length != 0 && (
         <ResponsivePie
           data={areaCourses}
-          margin={{ top: 20, right: 80, bottom: 30, left: 80 }}
+          margin={{ top: 10, right: 80, bottom: 30, left: 80 }}
           innerRadius={0.4}
           activeOuterRadiusOffset={8}
           colors={{ scheme: 'nivo' }}
