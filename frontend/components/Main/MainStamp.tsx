@@ -25,7 +25,8 @@ export default function MainStamp() {
                 <img src="/images/clear.png" className="stamp" />
               </div>
               <div className="stamp-name">
-                {data.touristIndex}. {data.touristName}
+                <div className="stamp-index">{data.touristIndex}</div>{' '}
+                {data.touristName}
               </div>
             </StampCard>
           ))}

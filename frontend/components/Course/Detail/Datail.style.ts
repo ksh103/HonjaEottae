@@ -9,21 +9,27 @@ const Header = styled.div`
     display: inline-block;
     margin-right: 20px;
     cursor: pointer;
+    &:hover {
+      color: ${props => props.theme.colors.pointColor};
+    }
   }
   .detail-state {
-    margin-bottom: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
     ul {
       display: flex;
       justify-content: right;
       li {
-        border: 1px solid red;
         font-size: 18px;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+      li.end {
+        cursor: default;
       }
     }
   }
-  .end {
-    cursor: default;
-  }
+
   @media ${props => props.theme.tablet} {
     .detail-title {
       font-size: 25px;
@@ -105,21 +111,24 @@ const CourseImage = styled.div`
 
 const CourseIndex = styled.div`
   margin: 20px;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
+  @media ${props => props.theme.mobile} {
+    font-size: 15px;
+    margin: 20px 10px;
+  }
 `;
 
-const Content = styled.div`
+const CourseContent = styled.div`
   .title {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
   }
-  font-size: 16px;
+  font-size: 17px;
   padding: 20px;
   border-radius: 1vw;
   border: 1px solid lightgray;
-  background-color: ${props => props.theme.colors.backgroundColor};
 `;
 
 const Review = styled.div`
@@ -166,28 +175,45 @@ const ReviewImage = styled.div`
 `;
 
 const GraphBlock = styled.div`
-  & > div {
-    border-radius: 1vw;
-    border: 1px solid lightgray;
-    background-color: ${props => props.theme.colors.backgroundColor};
-  }
   margin: 20px 0;
   display: flex;
-  width: 100%;
+  flex-direction: row;
+  @media ${props => props.theme.tablet} {
+    flex-direction: column;
+  }
 `;
 const GraphPercentage = styled.div`
+  border: 1px solid lightgray;
+  border-radius: 1vw;
   height: 200px;
   width: 35%;
   margin-right: 20px;
   text-align: center;
   font-size: 20px;
   display: flex;
+  label {
+    color: ${props => props.theme.colors.pointColor};
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Jalnan';
+    margin: 0 10px;
+  }
+  @media ${props => props.theme.tablet} {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
 `;
 
 const GraphPie = styled.div`
+  border: 1px solid lightgray;
+  border-radius: 1vw;
   height: 200px;
   width: 65%;
-  @media ${props => props.theme.laptopS} {
+  @media ${props => props.theme.tablet} {
+    width: 100%;
   }
 `;
 const CourseDetail = styled.div`
@@ -210,7 +236,7 @@ export {
   CourseMap,
   CourseImage,
   CourseIndex,
-  Content,
+  CourseContent,
   GraphBlock,
   GraphPercentage,
   GraphPie,

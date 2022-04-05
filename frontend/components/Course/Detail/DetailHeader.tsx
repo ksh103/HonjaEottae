@@ -93,7 +93,7 @@ export default function DetailHeader() {
   return (
     <Header>
       <div className="detail-title">
-        <div className="back">
+        <div className="back" onClick={()=>Router.back()}>
           <LeftOutlined />
         </div>
         {courseInfo.courseName}
