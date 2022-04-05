@@ -23,11 +23,63 @@ const CourseBlock = styled.div`
     font-weight: bold;
     font-family: 'Jalnan';
   }
+  .react-horizontal-scrolling-menu--scroll-container {
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #d2d0d0;
+      border-radius: 10px;
+      background-clip: padding-box;
+      border: 5px solid transparent;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: inset 0px 0px 5px white;
+    }
+  }
 
   @media ${props => props.theme.mobile} {
     .title {
       font-size: 15px;
     }
+  }
+`;
+
+const CourseImageWrapper = styled.div`
+  margin: 0 10px;
+  border-radius: 1vw;
+  width: 200px;
+  height: 200px;
+  #image {
+    width: 100%;
+    height: 80%;
+    cursor: pointer;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      &:hover {
+        transform: scale(1.05);
+        transition: transform 0.5s;
+      }
+    }
+  }
+  #title {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @media ${props => props.theme.mobile} {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -66,21 +118,6 @@ const CourseFormWrapper = styled.div`
   #card {
     cursor: pointer;
   }
-  /* overflow-x: scroll;
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #d2d0d0;
-    border-radius: 10px;
-    background-clip: padding-box;
-    border: 2px solid transparent;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 5px white;
-  } */
 `;
 
 export {
@@ -89,4 +126,5 @@ export {
   SearchFormWrapper,
   Button,
   CourseFormWrapper,
+  CourseImageWrapper,
 };

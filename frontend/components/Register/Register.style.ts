@@ -105,7 +105,7 @@ const TourListWrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  margin-left: 18px;
+  margin: 0 10px;
   border-radius: 1vw;
   width: 200px;
   height: 200px;

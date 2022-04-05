@@ -33,6 +33,20 @@ const StampBlock = styled.div`
     justify-content: space-between;
     padding: 20px 0;
     overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #d2d0d0;
+      border-radius: 10px;
+      background-clip: padding-box;
+      border: 5px solid transparent;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: inset 0px 0px 5px white;
+    }
   }
   .stamp-line {
     position: absolute;
