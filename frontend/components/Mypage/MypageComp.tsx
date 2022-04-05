@@ -9,13 +9,12 @@ import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import Loading from '../Loading/Loading';
-import { MainStamp } from '../Main';
+
 const MypageComp: NextPage = () => {
   const MypageGraph = dynamic(() => import('./MypageGraph'), { ssr: false });
   const { userInfo, userVisitCourses } = useSelector(
     (state: RootState) => state.user,
   );
-  const { tourId } = useSelector((state: RootState) => state.record);
   return (
     <>
       <Nav />
@@ -24,7 +23,6 @@ const MypageComp: NextPage = () => {
         <Wrapper>
           {userVisitCourses.length > 0 && <MypageGraph />}
           <MypageTravelRecord />
-          {tourId > 0 && <MainStamp />}
           <MypageCourse />
         </Wrapper>
       ) : (

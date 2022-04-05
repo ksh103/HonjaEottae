@@ -4,7 +4,7 @@ const MypageWrapper = styled.div<{ height: string }>`
   margin: 20px 0px;
   width: 100%;
   height: ${props => props.height};
-  background-color: ${props => props.theme.colors.backgroundColor};
+  border: 1px solid lightgray;
   border-radius: 1vw;
   .subTitle {
     height: 10px;
@@ -29,7 +29,7 @@ const GraphWrapper = styled.div`
   margin: 20px 0px;
   width: 100%;
   height: 400px;
-  background-color: ${props => props.theme.colors.backgroundColor};
+  border: 1px solid lightgray;
   border-radius: 1vw;
   @media ${props => props.theme.mobile} {
     height: 650px;
@@ -61,7 +61,6 @@ const GraphBlock = styled.div`
     }
   }
   .RGraph {
-    border-radius: 1vw;
     width: 48%;
     height: 77%;
     display: flex;
@@ -76,7 +75,6 @@ const GraphBlock = styled.div`
   @media ${props => props.theme.mobile} {
     flex-direction: column;
     .LGraph {
-      border-radius: 1vw;
       width: 360px;
       height: 250px;
       display: flex;
@@ -89,7 +87,6 @@ const GraphBlock = styled.div`
       }
     }
     .RGraph {
-      border-radius: 1vw;
       width: 360px;
       height: 250px;
       display: flex;
@@ -123,7 +120,7 @@ const CourseWrapper = styled.div`
   margin: 20px 0px;
   width: 100%;
   height: 280px;
-  background-color: ${props => props.theme.colors.backgroundColor};
+  border: 1px solid lightgray;
   border-radius: 1vw;
   @media ${props => props.theme.mobile} {
     height: 230px;
@@ -150,31 +147,30 @@ const MyTravleWrapper = styled.div`
   align-items: center;
   height: 95%;
   .map {
-    border-radius: 1vw;
     width: 48%;
     height: 90%;
     background-color: white;
   }
   .diary {
-    border-radius: 1vw;
     width: 48%;
     height: 90%;
     background-color: white;
+    border: 1px solid lightgray;
   }
   @media ${props => props.theme.mobile} {
     flex-direction: column;
     .map {
       margin: 20px 0;
-      border-radius: 1vw;
       width: 80%;
       height: 300px;
       background-color: white;
     }
     .diary {
-      border-radius: 1vw;
       width: 80%;
       height: 90%;
-      background-color: ${props => props.theme.colors.backgroundColor};
+      border: 1px solid lightgray;
+
+      /* border: 1px solid lightgray; */
     }
     margin-bottom: 20px;
   }
@@ -185,11 +181,13 @@ const DiaryWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin: 0 10px;
+  background-color: #fafafa;
   #title {
     height: 10%;
-    font-family: 'Jalnan';
-    margin: 10px;
+    height: auto;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
   }
   #noRecord {
     text-align: center;
@@ -203,11 +201,12 @@ const DiaryWrapper = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border: 1px solid lightgray;
     }
   }
   #content {
     height: 40%;
-    margin: 10px;
+    margin: 20px;
     text-decoration: underline;
     text-underline-position: under;
     word-break: break-all; // 글자 넘어가면 줄바꿈

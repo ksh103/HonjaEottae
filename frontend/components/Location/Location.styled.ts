@@ -95,8 +95,7 @@ const ListBlock = styled.div<{ select: boolean }>`
 const ImageListWrapper = styled.div<{ height: string }>`
   margin-top: 20px;
   width: 100%;
-  background-color: ${props => props.theme.colors.backgroundColor};
-  border-radius: 1vw;
+  border: 1px solid lightgray;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -106,7 +105,6 @@ const ImageListWrapper = styled.div<{ height: string }>`
 
 const ImageBlock = styled.div`
   padding: 0 5px;
-  border-radius: 1vw;
   width: 250px;
   height: 250px;
   #image {
@@ -115,11 +113,9 @@ const ImageBlock = styled.div`
     height: 80%;
     cursor: pointer;
     overflow: hidden;
-    border-radius: 20px;
     img {
       width: 100%;
       height: 100%;
-      border-radius: 20px;
       object-fit: cover;
       &:hover {
         transform: scale(1.05);

@@ -61,19 +61,22 @@ const TourList = ({ title, date, content, button }: TourListProps) => {
 
   return (
     <>
-      <SelectListWrapper>
-        {selectListTitle.map((list, idx) => (
-          <div key={idx} style={{ display: 'flex' }}>
-            <ListBlock>
-              {list}
-              <div id="removeBtn" onClick={() => removeList(list)}>
-                <FiX style={{ marginTop: '5.5px', fontSize: '17px' }} />
-              </div>
-            </ListBlock>
-            <FiArrowRight style={{ marginTop: '18px', marginLeft: '10px' }} />
-          </div>
-        ))}
-      </SelectListWrapper>
+      {selectListTitle.length > 0 && (
+        <SelectListWrapper>
+          {selectListTitle.map((list, idx) => (
+            <div key={idx} style={{ display: 'flex' }}>
+              <ListBlock>
+                {list}
+                <div id="removeBtn" onClick={() => removeList(list)}>
+                  <FiX style={{ marginTop: '5.5px', fontSize: '17px' }} />
+                </div>
+              </ListBlock>
+              <FiArrowRight style={{ marginTop: '18px', marginLeft: '10px' }} />
+            </div>
+          ))}
+        </SelectListWrapper>
+      )}
+
       <TourListWrapper>
         {searchTourlists.map((data, idx) => (
           <ImageWrapper key={idx}>
