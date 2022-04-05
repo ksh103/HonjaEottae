@@ -1,21 +1,25 @@
 import React from 'react';
-import { Card, Carousel, Divider, Tag } from 'antd';
+import { Card, Divider, Tag } from 'antd';
 import { Review, ReviewCard, ReviewImage, TagBlock } from './Datail.style';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store';
+import { RootState } from '../../store';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const settings = {
   dots: false,
   arrows: true,
+  infinite: false,
   slidesToShow: 3,
   slidesToScroll: 3,
+  initialSlide: 0,
   responsive: [
     {
       breakpoint: 760,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 2,
-        initialSlide: 2,
       },
     },
     {
@@ -32,7 +36,7 @@ const colors = [, '#a4e588', '#ff7e5a', '#fde360', '#5fccfe'];
 
 export default function DetailReview() {
   const { courseReview, courseTag } = useSelector(
-    (state: RootState) => state.course2,
+    (state: RootState) => state.detail,
   );
 
   return (
@@ -42,13 +46,11 @@ export default function DetailReview() {
           <Review>
             <h1 className="title">✏ 후기</h1>
             <div className="content">
-              <Carousel {...settings}>
+              <Slider {...settings}>
                 {courseReview.map(data => {
-                  console.log(data);
                   return (
                     <ReviewCard key={data.recordId}>
-                      {/*{data.userEmail}
-                       <Card
+                      <Card
                         key={data.recordId}
                         className="review-card"
                         cover={
@@ -62,19 +64,18 @@ export default function DetailReview() {
                         <div className="review-content">
                           {data.recordContent}
                         </div>
-                      </Card> */}
+                      </Card>
                     </ReviewCard>
                   );
                 })}
-              </Carousel>
+              </Slider>
             </div>
           </Review>
-          {/* <Divider orientation="left">tag</Divider> */}
-
+          <Divider />
           <TagBlock>
             {courseTag.map((tag, i) => (
-              <Tag color={colors[(i % 4) + 1]} className="tag">
-                # {tag}
+              <Tag key={i} color={colors[tag.code]} className="tag">
+                # {tag.tagName}
               </Tag>
             ))}
           </TagBlock>

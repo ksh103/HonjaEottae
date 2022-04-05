@@ -34,7 +34,7 @@ function* getAreaCoursesSaga({
   }
 }
 
-export function* course2Saga() {
+export function* detailSaga() {
   yield all([
     takeLatest(getMainData.request, getMainDataSaga),
     takeLatest(getCourseDetail.request, getCourseDetailSaga),

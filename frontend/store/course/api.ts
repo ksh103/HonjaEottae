@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GetPopularCoursesAPI } from '../course2/api';
+import { GetPopularCoursesAPI } from '../detail/api';
 import { SearchCourseResult } from './types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -113,7 +113,7 @@ export async function KeywordCourseAPI() {
 
 export async function UserCourseAPI(payload: number) {
   const datas = await axios
-    .get(`https://j6e103.p.ssafy.io:5000/data/${payload}`)
+    .get(`https://j6e103.p.ssafy.io:5001/data/${payload}`)
     .then(res => {
       return res.data;
     });

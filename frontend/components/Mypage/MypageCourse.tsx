@@ -12,13 +12,13 @@ const MypageCourse: NextPage = () => {
     <>
       {userCourses.length > 0 && (
         <CourseWrapper>
-          <div className="subTitle">내가 만든 여행 코스</div>
+          <div className="subTitle">🛠 내가 만든 여행 코스</div>
           <CourseList data={userCourses} />
         </CourseWrapper>
       )}
       {userLikes.length > 0 && (
         <CourseWrapper>
-          <div className="subTitle">좋아요 한 코스</div>
+          <div className="subTitle">❤ 좋아요 한 코스</div>
           <CourseList data={userLikes} />
         </CourseWrapper>
       )}

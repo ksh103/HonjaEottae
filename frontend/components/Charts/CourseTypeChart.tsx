@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ResponsivePie } from '@nivo/pie';
 export default function CourseTypeChart() {
-  const { courseType } = useSelector((state: RootState) => state.course2);
+  const { courseType } = useSelector((state: RootState) => state.detail);
   const [data, setData] = useState<any>([]);
   useEffect(() => {
     if (courseType.length > 0) {

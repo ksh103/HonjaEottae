@@ -32,9 +32,8 @@ const MapListWrapper = styled.div`
 
 const MapBlock = styled.div`
   width: 60%;
-  height: 380px;
+  height: 350px;
   background-color: white;
-  border-radius: 1vw;
 
   @media ${props => props.theme.mobile} {
     width: 90%;
@@ -92,36 +91,39 @@ const ListBlock = styled.div<{ select: boolean }>`
 `;
 
 // ImageList.tsx
-const ImageListWrapper = styled.div<{ height: string }>`
-  margin-top: 20px;
-  width: 100%;
+const ImageListWrapper = styled.div`
   border: 1px solid lightgray;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   overflow: auto;
   overflow-x: hidden;
+  padding: 20px;
+`;
+
+const ImageListBlock = styled.div`
+  padding: 0 30px;
+  height: 250px;
+  margin: 20px 0;
+  .slick-prev:before,
+  .slick-next:before {
+    color: gray;
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: 0.75;
+  }
 `;
 
 const ImageBlock = styled.div`
-  padding: 0 5px;
-  width: 250px;
-  height: 250px;
-  #image {
-    margin-top: 25px;
-    width: 100%;
-    height: 80%;
-    cursor: pointer;
-    overflow: hidden;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      &:hover {
-        transform: scale(1.05);
-        transition: transform 0.5s;
-      }
-    }
+  & > div {
+    display: flex;
+    justify-content: center;
+  }
+  img {
+    height: 250px;
+    width: 95%;
+    object-fit: cover;
   }
 `;
 
@@ -140,6 +142,7 @@ export {
   LocationWrapper,
   MapListWrapper,
   ImageListWrapper,
+  ImageListBlock,
   ImageBlock,
   MapBlock,
   ListWrapper,

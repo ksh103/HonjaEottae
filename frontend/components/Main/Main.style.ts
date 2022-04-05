@@ -14,8 +14,15 @@ const Wrapper = styled.div`
 `;
 
 const StampBlock = styled.div`
+  border: 1px solid lightgray;
+  border-radius: 1vw;
+  padding: 20px;
+  margin: 20px 0;
   cursor: pointer;
   position: relative;
+  &:hover {
+    box-shadow: 0px 0px 4px lightgray;
+  }
   .stamp-title {
     font-size: 20px;
     font-weight: bold;
@@ -32,7 +39,7 @@ const StampBlock = styled.div`
     height: 4px;
     width: 100%;
     background-color: lightgray;
-    top: 140px;
+    top: 150px;
     left: 0px;
     right: 0px;
   }
@@ -40,13 +47,13 @@ const StampBlock = styled.div`
     width: 140px;
     text-align: center;
     margin-top: 20px;
-    font-size: 17px;
+    font-size: 16px;
   }
 
   @media ${props => props.theme.tablet} {
     .stamp-line {
       height: 2px;
-      top: 110px;
+      top: 130px;
     }
     .stamp-name {
       width: 100px;
@@ -95,47 +102,45 @@ const StampCard = styled.div<{ $state: boolean }>`
       left: 20px;
       border: 3px solid ${props => props.theme.colors.pointColor};
     }
+    .stamp-index {
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px;
+    }
   }
 `;
-
-const SliderCard = styled.div`
+const SliderCard = styled.div<{ image: string }>`
   cursor: pointer;
   color: white;
   height: 200px;
   width: 100%;
   position: relative;
-  background-color: black;
-  img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    &:hover {
-      opacity: 0.5;
-    }
-  }
+  background-color: white;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6)),
+    url(${props => props.image}) center no-repeat;
+  background-size: cover;
+
   .title {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    padding-top: 50px;
+    bottom: 30px;
+    padding: 0 30px;
     font-size: 22px;
-    font-family: 'Jalnan';
     width: 100%;
-    text-align: center;
-    text-shadow: 4px 4px 8px black;
   }
   @media ${props => props.theme.tablet} {
     height: 150px;
     .title {
-      padding-top: 30px;
-      font-size: 18px;
+      bottom: 20px;
+      padding: 0 20px;
+      font-size: 16px;
     }
   }
 `;
 
 const MenuBlock = styled.div`
   width: 100%;
-  margin: 40px 0;
+  margin: 20px 0;
 `;
 
 const MenuCard = styled.div`
@@ -143,7 +148,7 @@ const MenuCard = styled.div`
   .menu-image {
     cursor: pointer;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 1vw;
   }
   img {
     width: 100%;
@@ -155,27 +160,24 @@ const MenuCard = styled.div`
   }
 `;
 
-const TravelBlock = styled.div`
-  padding: 30px 0;
-`;
-
 const MainGraphBlock = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   @media ${props => props.theme.tablet} {
     flex-direction: column;
   }
 `;
 
 const KoreaMap = styled.div`
-  min-width: 450px;
+  min-width: 400px;
   & > div {
     position: relative;
-    width: 450px;
+    width: 400px;
     margin: 0 auto;
   }
   img {
-    width: 450px;
+    width: 400px;
   }
 `;
 const MapAreaBox = styled.div<Location>`
@@ -185,11 +187,11 @@ const MapAreaBox = styled.div<Location>`
   left: ${props => props.y + 'px'};
   background-color: rgba(240, 240, 240, 0.75);
   border: 1px solid lightgray;
-  border-radius: 15px;
-  width: 50px;
-  height: 50px;
+  border-radius: 6px;
+  width: 45px;
+  height: 45px;
   text-align: center;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
   padding: 5px;
   &:hover {
@@ -204,14 +206,19 @@ const MapAreaBox = styled.div<Location>`
   }}
 `;
 
-const AreaCourses = styled(Card)`
+const AreaCourses = styled.div`
+  border: 1px solid lightgray;
+  border-radius: 1vw;
+  padding: 20px;
   width: 100%;
-  min-width: 400px;
-
+  max-width: 450px;
+  @media ${props => props.theme.tablet} {
+    max-width: 100%;
+  }
   .area-title {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-    margin: 10px 0;
+    margin-bottom: 20px;
   }
   .area-name {
     display: inline-block;
@@ -234,7 +241,6 @@ export {
   MenuBlock,
   MenuCard,
   SliderCard,
-  TravelBlock,
   Wrapper,
   MainGraphBlock,
   KoreaMap,

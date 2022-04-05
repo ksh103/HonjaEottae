@@ -1,16 +1,14 @@
-import { ResponsiveTreeMap } from '@nivo/treemap';
-import { Col, Row } from 'antd';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store';
+import { RootState } from '../../store';
 import { GraphBlock, GraphPercentage, GraphPie } from './Datail.style';
 
-const CourseTypeChart = dynamic(() => import('../../Charts/CourseTypeChart'), {
+const CourseTypeChart = dynamic(() => import('../Charts/CourseTypeChart'), {
   ssr: false,
 });
 export default function DetailGraph() {
-  const { coursePercentage } = useSelector((state: RootState) => state.course2);
+  const { coursePercentage } = useSelector((state: RootState) => state.detail);
   return (
     <>
       {coursePercentage > 0 && (

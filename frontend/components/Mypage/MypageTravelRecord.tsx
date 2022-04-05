@@ -17,7 +17,7 @@ const MypageTravelRecord: NextPage = () => {
   return (
     <>
       <MypageWrapper height="500px">
-        <div className="subTitle">여행 기록</div>
+        <div className="subTitle">📍 여행 기록</div>
         <MyTravleWrapper>
           <div className="map">
             <MypageMap />

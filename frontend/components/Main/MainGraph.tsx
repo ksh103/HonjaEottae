@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { getAreaCourses } from '../../store/course2';
+import { getAreaCourses } from '../../store/detail';
 import {
   MainGraphBlock,
   MapAreaBox,
@@ -14,7 +14,7 @@ import {
 export default function MainGraph() {
   const dispatch = useDispatch();
   const { areaCourseCount, areaCourses } = useSelector(
-    (state: RootState) => state.course2,
+    (state: RootState) => state.detail,
   );
   const [area, setArea] = useState('서울');
 
@@ -53,7 +53,7 @@ export default function MainGraph() {
             </div>
           </KoreaMap>
           <AreaCourses>
-            <div className="area-title">지역별 관광 코스</div>
+            <div className="area-title">🗺 지역별 관광 코스</div>
             <div className="area-name">{area}</div>
 
             {areaCourses.length > 0 &&

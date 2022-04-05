@@ -32,10 +32,8 @@ const MapList = ({ positions, lists }: MapListProps) => {
         <MapBlock>
           {/* 만약 positions 이 안들어온 상태에서 map을 호출하면 error가 남.
               positions의 길이가 0 이상일 때 map 호출 */}
-          {positions.length > 0 ? (
+          {positions.length > 0 && (
             <LocationMap positions={positions}></LocationMap>
-          ) : (
-            <></>
           )}
         </MapBlock>
         <ListWrapper>

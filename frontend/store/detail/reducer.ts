@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions';
-import { Course2Action, Course2State } from './types';
+import { DetailAction, DetailState } from './types';
 import produce from 'immer';
 import {
   GET_AREA_COURSES_SUCCESS,
@@ -15,7 +15,7 @@ const initialCourseInfoState = {
   courseHits: 0,
 };
 
-const initialState: Course2State = {
+const initialState: DetailState = {
   areaCourseCount: [],
   areaCourses: [],
   popularCourses: [],
@@ -28,7 +28,7 @@ const initialState: Course2State = {
   coursePercentage: 0,
 };
 
-const course2 = createReducer<Course2State, Course2Action>(initialState, {
+const detail = createReducer<DetailState, DetailAction>(initialState, {
   [GET_MAIN_DATA_SUCCESS]: (state, action) =>
     produce(state, draft => {
       draft.areaCourseCount = action.payload.areaCourseCount;
@@ -50,4 +50,4 @@ const course2 = createReducer<Course2State, Course2Action>(initialState, {
     }),
 });
 
-export default course2;
+export default detail;
