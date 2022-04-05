@@ -1,3 +1,5 @@
+import { Card } from 'antd';
+import Meta from 'antd/lib/card/Meta';
 import { NextPage } from 'next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
@@ -41,17 +43,6 @@ const MypageTravelRecord: NextPage = () => {
                 </div>
               </DiaryWrapper>
             )}
-            {/* <DiaryWrapper>
-              <div id="title">
-                {nowCourse[0].recordRegDt}
-                <br />
-                {nowCourse[0].courseName}
-              </div>
-              <div id="image">
-                <img src={nowCourse[0].image}></img>
-              </div>
-              <div id="content">{nowCourse[0].recordContent}</div>
-            </DiaryWrapper> */}
           </div>
         </MyTravleWrapper>
       </MypageWrapper>

@@ -11,9 +11,11 @@ import PieChart from '../Charts/PieChart';
 import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
 import { TEST } from '../../assets/test';
+import { MainStamp } from '../Main';
 
 const MypageGraph: NextPage = () => {
   const { userInfo } = useSelector((state: RootState) => state.user);
+  const { tourId } = useSelector((state: RootState) => state.record);
   return (
     <>
       {userInfo.tourTestId == 7 ? (
@@ -28,7 +30,7 @@ const MypageGraph: NextPage = () => {
           <Title>반갑습니다 {userInfo.userName}님.</Title>
         </>
       )}
-
+      {tourId > 0 && <MainStamp />}
       <GraphWrapper>
         <div className="subTitle">개인 여행 분석</div>
         <GraphBlock>

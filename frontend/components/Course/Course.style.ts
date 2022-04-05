@@ -7,7 +7,7 @@ const CourseWrapper = styled.div`
     height: 50px;
     font-size: 15px;
     border: none;
-    background-color: ${props => props.theme.colors.backgroundColor};
+    border: 1px solid lightgray;
     border-radius: 1vw;
     padding-left: 15px;
     ::placeholder {

@@ -13,6 +13,7 @@ import { Button, Modal } from 'antd';
 import { setModalState } from '../../store/chat';
 
 const socket = socketIOClient('https://j6e103.p.ssafy.io:4002');
+// const socket = socketIOClient('localhost:4002');
 const ChatApp: NextPage = () => {
   const dispatch = useDispatch();
   const { messageList, isConnect } = useSelector(
@@ -67,6 +68,7 @@ const ChatApp: NextPage = () => {
         visible={isModalVisible}
         onCancel={handleCancel}
         footer={null}
+        style={{ top: '5%' }}
         bodyStyle={{
           backgroundColor: '#F7323F',
           height: '580px',
