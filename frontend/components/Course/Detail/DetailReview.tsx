@@ -28,7 +28,7 @@ const settings = {
   ],
 };
 
-const colors = [, 'green', 'red', 'yellow', 'blue'];
+const colors = [, '#a4e588', '#ff7e5a', '#fde360', '#5fccfe'];
 
 export default function DetailReview() {
   const { courseReview, courseTag } = useSelector(
@@ -74,7 +74,7 @@ export default function DetailReview() {
           <TagBlock>
             {courseTag.map((tag, i) => (
               <Tag color={colors[(i % 4) + 1]} className="tag">
-                {tag}
+                # {tag}
               </Tag>
             ))}
           </TagBlock>

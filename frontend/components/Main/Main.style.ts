@@ -15,12 +15,11 @@ const Wrapper = styled.div`
 
 const StampBlock = styled.div`
   cursor: pointer;
-  margin: 10px 0;
   position: relative;
   .stamp-title {
-    font-family: 'Jalnan';
-    font-size: 25px;
-    margin: 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
   .stamp-content {
     display: flex;
@@ -30,7 +29,7 @@ const StampBlock = styled.div`
   }
   .stamp-line {
     position: absolute;
-    height: 3px;
+    height: 4px;
     width: 100%;
     background-color: lightgray;
     top: 140px;
@@ -43,10 +42,8 @@ const StampBlock = styled.div`
     margin-top: 20px;
     font-size: 17px;
   }
+
   @media ${props => props.theme.tablet} {
-    .stamp-title {
-      font-size: 18px;
-    }
     .stamp-line {
       height: 2px;
       top: 110px;
@@ -75,6 +72,18 @@ const StampCard = styled.div<{ $state: boolean }>`
     border: 3px solid ${props => props.theme.colors.pointColor};
     mix-blend-mode: normal;
     opacity: ${props => (props.$state ? 1 : 0)};
+  }
+  .stamp-index {
+    display: inline-block;
+    background-color: ${props =>
+      props.$state ? 'gray' : props.theme.colors.pointColor};
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    line-height: 22px;
+    font-weight: bold;
+    font-size: 14px;
   }
   @media ${props => props.theme.tablet} {
     padding: 0 20px;

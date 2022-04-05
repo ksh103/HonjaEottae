@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import {
-  Content,
+  CourseContent,
   CourseDetail,
   CourseImage,
   CourseIndex,
@@ -17,12 +17,10 @@ export default function DetailCourse() {
   );
 
   const courseIndex = () => {
-    return courseTourist.map((data, i) => (
-      <label key={i}>
-        <label>{data.touristName}</label>
-        <label> ▶ </label>
-      </label>
-    ));
+    return courseTourist.map((data, i) => {
+      if (i === 0) return data.touristName;
+      return ' ▶ ' + data.touristName;
+    });
   };
 
   const settings = {
@@ -57,10 +55,10 @@ export default function DetailCourse() {
         </Row>
       </CourseDetail>
       <CourseIndex>{courseIndex()}</CourseIndex>
-      <Content>
-        <h1 className="title">🚩코스 설명</h1>
+      <CourseContent>
+        <div className="title">🚩 코스 설명</div>
         <p>{courseInfo.courseContent}</p>
-      </Content>
+      </CourseContent>
     </>
   );
 }
