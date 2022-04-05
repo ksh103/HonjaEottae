@@ -108,4 +108,23 @@ const ChatBlock = styled.div`
   }
 `;
 
-export { ChatWrapper, ChatBlock };
+const ChatIcons = styled.div`
+  position: fixed;
+  bottom: 50px;
+  right: 70px;
+  font-size: 60px;
+  color: #5496ff;
+  cursor: pointer;
+  :hover {
+    color: #2666fc;
+    transform: scale(1.1);
+    transition: 0.5s linear;
+  }
+  @media ${props => props.theme.mobile} {
+    font-size: 35px;
+    bottom: 20px;
+    right: 20px;
+  }
+`;
+
+export { ChatWrapper, ChatBlock, ChatIcons };
