@@ -2,15 +2,14 @@ import styled from 'styled-components';
 
 const MypageWrapper = styled.div<{ height: string }>`
   margin: 20px 0px;
+  padding: 20px;
   width: 100%;
   height: ${props => props.height};
   border: 1px solid lightgray;
   border-radius: 1vw;
   .subTitle {
-    height: 10px;
-    padding: 15px;
     font-size: 20px;
-    font-family: 'Jalnan';
+    font-weight: bold;
   }
   .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
     display: none;
@@ -27,6 +26,7 @@ const MypageWrapper = styled.div<{ height: string }>`
 
 const GraphWrapper = styled.div`
   margin: 20px 0px;
+  padding: 20px;
   width: 100%;
   height: 400px;
   border: 1px solid lightgray;
@@ -35,10 +35,8 @@ const GraphWrapper = styled.div`
     height: 650px;
   }
   .subTitle {
-    height: 10px;
-    padding: 15px;
     font-size: 20px;
-    font-family: 'Jalnan';
+    font-weight: bold;
   }
 `;
 
@@ -118,6 +116,7 @@ const SubTitle = styled.div`
 
 const CourseWrapper = styled.div`
   margin: 20px 0px;
+  padding: 20px;
   width: 100%;
   height: 280px;
   border: 1px solid lightgray;
@@ -134,10 +133,8 @@ const CourseWrapper = styled.div`
     scrollbar-width: none; /* Firefox */
   }
   .subTitle {
-    height: 10px;
-    padding: 15px;
     font-size: 20px;
-    font-family: 'Jalnan';
+    font-weight: bold;
   }
 `;
 

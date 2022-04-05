@@ -21,13 +21,42 @@ const Wrapper = styled.div`
     font-family: 'Jalnan';
   }
 `;
+const TestLoading = styled.div`
+  img {
+    width: 100%;
+    object-fit: cover;
+    margin: 20px 0px;
+  }
+  .loading-title {
+    margin: 10px 0;
+    font-size: 20px;
+  }
+`;
 
 const TestTitle = styled.div<{ color: string }>`
   margin-top: 50px;
-  label {
-    font-size: 30px;
-    font-weight: bold;
-    color: ${props => props.color};
+  .mainName {
+    font-size: 25px;
+    margin: 20px;
+    label {
+      font-size: 30px;
+      font-weight: bold;
+      color: ${props => props.color};
+    }
+  }
+  .result {
+    font-size: 17px;
+    label {
+      color: ${props => props.color};
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+  .result-image {
+    img {
+      width: 80%;
+      border: 1px solid lightgray;
+    }
   }
 `;
 
@@ -101,16 +130,22 @@ const MainImage = styled.div`
   }
 `;
 
-const TestResultCard = styled(Card)`
-  margin: 30px 0;
+const TestResultCard = styled.div`
+  border: 1px solid lightgray;
+  border-radius: 1vw;
+  padding: 20px;
+  margin: 20px 0;
+  .title {
+    font-size: 20px;
+    text-align: left;
+  }
 `;
 
 const TypeCourseBlock = styled.div`
+  margin: 20px;
   position: relative;
   background-color: gray;
-  margin-top: 20px;
-  height: 320px;
-  width: 100%;
+  height: 300px;
   color: white;
   font-size: 25px;
   font-weight: bold;
@@ -136,13 +171,13 @@ const TypeCourseBlock = styled.div`
       opacity: 1;
       transition: 0.3s;
     }
-    text-shadow: 5px 5px 15px black;
+    text-shadow: 0 0 5px black;
   }
 `;
 
 const PopularTypeBlock = styled.div`
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
   padding: 25px;
   .popular-title {
     font-size: 20px;
@@ -171,6 +206,7 @@ export {
   ButtonWrapper,
   Header,
   MainImage,
+  TestLoading,
   TestButton,
   TestQuestion,
   TestResultCard,

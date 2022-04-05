@@ -33,9 +33,7 @@ const CourseComp: NextPage = () => {
           <CourseWrapper>
             <SearchForm />
             <CourseBlock>
-              {searchCourses.length == 0 ? (
-                <></>
-              ) : (
+              {searchCourses.length > 0 && (
                 <div id="search">
                   <div className="title"> {searchKeyword} 관련 코스 추천</div>
                   <CourseList data={searchCourses} />

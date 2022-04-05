@@ -23,7 +23,6 @@ const TravelResult: NextPage = () => {
   const [loading, setLoading] = useState(true);
   const [type, setType] = useState(0);
   const [rank, setRank] = useState<number[]>([]);
-  const [percentage, setPercentage] = useState(0);
   const dispatch = useDispatch();
   const { typeResult } = useSelector((state: RootState) => state.travel);
 
@@ -52,7 +51,6 @@ const TravelResult: NextPage = () => {
       const datas = typeResult
         .map((data, idx) => [idx, data])
         .sort((a, b) => b[1] - a[1]);
-      console.log(datas);
       setRank([datas[0][0], datas[1][0]]);
     }
   }, [typeResult]);
@@ -80,15 +78,17 @@ const TravelResult: NextPage = () => {
           <h1 className="title">여행 성향 테스트</h1>
           <TestTitle color={TEST.results[type].color}>
             <div
+              className="mainName"
               dangerouslySetInnerHTML={{ __html: TEST.results[type].desc }}
             ></div>
-            <h2>
+            <div className="result">
               전체 테스트 참여자 중 <label>15%</label>가 같은 유형입니다.
-            </h2>
+            </div>
+            <div className="result-image">
+              <img src={TEST.results[type].image} />
+            </div>
           </TestTitle>
-          <div>
-            <img src="/images/3.png" width="100%" />
-          </div>
+
           <TestResultCard>
             <h1 className="title">🚩 유형별 코스 추천</h1>
             {TEST.results[type].courses.map((course, i) => {

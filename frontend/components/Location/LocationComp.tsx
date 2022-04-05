@@ -63,9 +63,8 @@ const LocationComp: NextPage = () => {
           <div>
             <div className="subTitle">관광지 목록</div>
             <MapList positions={positions} lists={lists} />
-            <div className="subTitle">이미지</div>
-            <ImageList images={images} />
             <div className="subTitle">{selectLocation}</div>
+            {images.length > 0 && <ImageList images={images} />}
             <TourDetail />
           </div>
         </LocationWrapper>

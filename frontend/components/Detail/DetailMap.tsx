@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { CourseTourist } from '../../../store/course2';
+import { CourseTourist } from '../../store/detail';
 import { CourseMap } from './Datail.style';
 interface MapProps {
   tourist: CourseTourist[];

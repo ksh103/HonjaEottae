@@ -10,9 +10,9 @@ import {
   DetailCourse,
   DetailGraph,
   DetailReview,
-} from '../../components/Course/Detail';
+} from '../../components/Detail';
 import Footer from '../../components/Footer/Footer';
-import { getCourseDetail } from '../../store/course2';
+import { getCourseDetail } from '../../store/detail';
 import { useDispatch } from 'react-redux';
 
 const Detail: NextPage = () => {

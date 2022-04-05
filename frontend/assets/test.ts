@@ -156,8 +156,9 @@ export const TEST = {
     {
       type: 'A',
       title: '역동적이고 에너지가 넘치는 청춘 여행 스타일',
-      desc: '<h1><label>역동적이고 에너지</label>가 넘치는 청춘 여행 스타일</h1>',
+      desc: '<div><label>역동적이고 에너지</label>가 넘치는</br> 청춘 여행 스타일</div>',
       color: '#FF2323',
+      image: '/images/A.jpg',
       courses: [
         {
           no: 545,
@@ -174,8 +175,9 @@ export const TEST = {
     {
       type: 'B',
       title: '유명한 관광지만 골라가는 알짜배기 여행 스타일',
-      desc: '<h1><label>유명한 관광지</label>만 골라가는 알짜배기 여행 스타일</h1>',
+      desc: '<div><label>유명한 관광지</label>만 골라가는</br>알짜배기 여행 스타일</div>',
       color: '#FF1895',
+      image: '/images/B.jpg',
       courses: [
         {
           no: 731,
@@ -192,8 +194,9 @@ export const TEST = {
     {
       type: 'C',
       title: '탁 트인 바다를 보며 느긋하게 힐링하는 여행 스타일',
-      desc: '<h1><label>탁 트인 바다</label>를 보며 느긋하게 힐링하는 여행 스타일<h1>',
+      desc: '<div><label>탁 트인 바다</label>를 보며 느긋하게</br> 힐링하는 여행 스타일<h1>',
       color: '#3C44FF',
+      image: '/images/C.jpg',
       courses: [
         {
           no: 697,
@@ -210,8 +213,9 @@ export const TEST = {
     {
       type: 'D',
       title: '푸르른 산속 맑은 공기를 즐기는 여행 스타일',
-      desc: '<h1>푸르른 <label>산속 맑은 공기</label>를 즐기는 여행 스타일</h1>',
+      desc: '<div>푸르른 <label>산속 맑은 공기</label>를</br> 즐기는 여행 스타일</div>',
       color: '#1BBE00',
+      image: '/images/D.jpg',
       courses: [
         {
           no: 65,
@@ -228,8 +232,9 @@ export const TEST = {
     {
       type: 'E',
       title: '여행지의 이색적인 맛과 역사를 즐기는 여행 스타일',
-      desc: '<h1>여행지의 <label>이색적인 맛과 역사</label>를 즐기는 여행 스타일</h1>',
+      desc: '<div>여행지의 <label>이색적인 맛과 역사</label>를</br> 즐기는 여행 스타일</div>',
       color: '#BB0000',
+      image: '/images/E.jpg',
       courses: [
         {
           no: 716,
@@ -246,8 +251,9 @@ export const TEST = {
     {
       type: 'F',
       title: '여행지의 전통적인 맛과 문화를 즐기는 여행 스타일',
-      desc: '<h1>여행지의 <label>전통적인 맛과 문화</label>를 즐기는 여행 스타일</h1>',
+      desc: '<div>여행지의 <label>전통적인 맛과 문화</label>를</br> 즐기는 여행 스타일</div>',
       color: '#FF6B00',
+      image: '/images/F.jpg',
       courses: [
         {
           no: 50,

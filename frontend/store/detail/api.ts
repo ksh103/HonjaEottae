@@ -104,7 +104,7 @@ export async function GetCourseTagAPI(courseId: number) {
     .get(`${BASE_URL}course-detail/course-tag/${courseId}`)
     .then(res => res.data.list);
   if (result === null) return [];
-  return result.map((data: any) => data.tagName);
+  return result;
 }
 
 // 코스 상세정보 가져오기

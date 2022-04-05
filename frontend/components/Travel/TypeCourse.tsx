@@ -12,7 +12,7 @@ export default function TypeCourse({ no, title, image }: TypeCourseType) {
   return (
     <TypeCourseBlock>
       <Link href={`/course/${no}`}>
-        <img src={image} width="100%" />
+        <img src={image} />
       </Link>
       <div className="type-title">{title}</div>
     </TypeCourseBlock>

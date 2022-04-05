@@ -9,10 +9,10 @@ import {
   MainSlider,
   MainStamp,
 } from '../components/Main';
-import { MenuBlock, TravelBlock, Wrapper } from '../components/Main/Main.style';
+import { MenuBlock, Wrapper } from '../components/Main/Main.style';
 import Nav from '../components/Nav/Nav';
 import { RootState } from '../store';
-import { getMainData } from '../store/course2';
+import { getMainData } from '../store/detail';
 const menus = [
   { title: '여행코스추천', url: '/course', image: '/images/1.png' },
   { title: '내주변관광지', url: '/location', image: '/images/2.png' },
@@ -21,7 +21,7 @@ const menus = [
 ];
 
 const Main: NextPage = () => {
-  const { popularCourses } = useSelector((state: RootState) => state.course2);
+  const { popularCourses } = useSelector((state: RootState) => state.detail);
   const { tourId } = useSelector((state: RootState) => state.record);
   const dispatch = useDispatch();
 
@@ -48,9 +48,7 @@ const Main: NextPage = () => {
           </Row>
         </MenuBlock>
         {tourId > 0 && <MainStamp />}
-        <TravelBlock>
-          <MainGraph />
-        </TravelBlock>
+        <MainGraph />
       </Wrapper>
       <Footer />
     </>

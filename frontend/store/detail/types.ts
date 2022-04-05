@@ -1,7 +1,7 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
-export type Course2Action = ActionType<typeof actions>;
+export type DetailAction = ActionType<typeof actions>;
 
 export type PopularCourse = {
   courseId: number;
@@ -28,7 +28,6 @@ export type MainData = {
 };
 
 export type CourseInfo = {
-  // courseId: number;
   courseName: string;
   courseContent: string;
   courseDistance: string;
@@ -57,6 +56,11 @@ export type CourseReview = {
   userEmail: string;
 };
 
+export type CourseTag = {
+  code: number;
+  tagName: string;
+};
+
 export type CourseType = {
   tourTestCount: number;
   tourTestId: number;
@@ -69,11 +73,11 @@ export type CourseDetail = {
   courseTourist: CourseTourist[];
   courseReview: CourseReview[];
   courseType: CourseType[];
-  courseTag: string[];
+  courseTag: CourseTag[];
   coursePercentage: number;
 };
 
-export type Course2State = {
+export type DetailState = {
   popularCourses: PopularCourse[];
   areaCourseCount: AreaCourseCount[];
   areaCourses: AreaCourse[];
@@ -82,6 +86,6 @@ export type Course2State = {
   courseTourist: CourseTourist[];
   courseReview: CourseReview[];
   courseType: CourseType[];
-  courseTag: string[];
+  courseTag: CourseTag[];
   coursePercentage: number;
 };
