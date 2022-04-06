@@ -93,6 +93,23 @@ KEYWORD_TABLE = cursor.fetchall()
 keyword_result = pd.DataFrame(KEYWORD_TABLE)
 keyword_result.set_index('keyword_id',drop=True)
 
+keyword_result.replace('바다', 'sea', inplace=True)
+keyword_result.replace('봄', 'spring', inplace=True)
+keyword_result.replace('산', 'mountain', inplace=True)
+keyword_result.replace('식당', 'restaurant', inplace=True)
+keyword_result.replace('여름', 'summer', inplace=True)
+keyword_result.replace('역사', 'history', inplace=True)
+keyword_result.replace('자연', 'nature', inplace=True)
+keyword_result.replace('전통', 'tradition', inplace=True)
+keyword_result.replace('체험', 'experience', inplace=True)
+keyword_result.replace('음식', 'food', inplace=True)
+keyword_result.replace('호수', 'lake', inplace=True)
+keyword_result.replace('힐링', 'healing', inplace=True)
+keyword_result.replace('가을', 'autumn', inplace=True)
+keyword_result.replace('강', 'river', inplace=True)
+keyword_result.replace('겨울', 'winter', inplace=True)
+keyword_result.replace('공원', 'park', inplace=True)
+
 # -------------------------------------------------------------------------------------------#
 # course_final table과 keyword_result table merge
 new_course = pd.merge(left = course_final, right = keyword_result, how = "left", on = "course_id")
@@ -116,7 +133,24 @@ similarity_keywords = cosine_similarity(c_vector_keywords, c_vector_keywords).ar
 
 
 # -------------------------------------------------------------------------------------------#
+
 def recommend_course(keyword_name):
+    if keyword_name == '바다': keyword_name = 'sea'
+    if keyword_name == '봄': keyword_name = 'spring'
+    if keyword_name == '산': keyword_name = 'mountain'
+    if keyword_name =='식당': keyword_name = 'restaurant'
+    if keyword_name =='여름':keyword_name = 'summer'
+    if keyword_name =='역사': keyword_name = 'history'
+    if keyword_name =='자연': keyword_name = 'nature'
+    if keyword_name =='전통': keyword_name = 'tradition'
+    if keyword_name =='체험': keyword_name = 'experience'
+    if keyword_name =='음식': keyword_name = 'food'
+    if keyword_name =='호수': keyword_name = 'lake'
+    if keyword_name =='가을': keyword_name = 'autumn'
+    if keyword_name =='강': keyword_name = 'river'
+    if keyword_name =='겨울': keyword_name = 'winter'
+    if keyword_name =='공원': keyword_name = 'park'
+
     target_course_index = course_data[course_data['keyword_name'] == keyword_name].index.values
     
     sim_index = similarity_keywords[target_course_index].reshape(-1)
