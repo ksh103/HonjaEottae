@@ -110,7 +110,6 @@ const CourseWrapper = styled.div`
   margin: 20px 0px;
   padding: 20px;
   width: 100%;
-  height: 310px;
   border: 1px solid lightgray;
   border-radius: 1vw;
   @media ${props => props.theme.mobile} {
@@ -118,6 +117,10 @@ const CourseWrapper = styled.div`
     .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
       display: none;
     }
+  }
+  .subTitle {
+    font-size: 20px;
+    font-weight: bold;
   }
   .react-horizontal-scrolling-menu--scroll-container {
     &::-webkit-scrollbar {
