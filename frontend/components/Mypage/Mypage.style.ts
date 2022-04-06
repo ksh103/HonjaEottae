@@ -11,7 +11,7 @@ const MypageWrapper = styled.div<{ height: string }>`
     font-size: 20px;
     font-weight: bold;
   }
-  @media ${props => props.theme.mobile} {
+  @media ${props => props.theme.tablet} {
     height: auto;
   }
 `;
@@ -23,7 +23,7 @@ const GraphWrapper = styled.div`
   height: 400px;
   border: 1px solid lightgray;
   border-radius: 1vw;
-  @media ${props => props.theme.mobile} {
+  @media ${props => props.theme.tablet} {
     height: 650px;
   }
   .subTitle {
@@ -62,7 +62,7 @@ const GraphBlock = styled.div`
     }
   }
 
-  @media ${props => props.theme.mobile} {
+  @media ${props => props.theme.tablet} {
     flex-direction: column;
     .LGraph {
       width: 360px;
@@ -94,14 +94,14 @@ const GraphBlock = styled.div`
 const Title = styled.div`
   font-size: 30px;
   font-family: 'Jalnan';
-  @media ${props => props.theme.mobile} {
+  @media ${props => props.theme.tablet} {
     font-size: 25px;
   }
 `;
 const SubTitle = styled.div`
   font-size: 20px;
   font-family: 'Jalnan';
-  @media ${props => props.theme.mobile} {
+  @media ${props => props.theme.tablet} {
     font-size: 15px;
   }
 `;
@@ -112,7 +112,7 @@ const CourseWrapper = styled.div`
   width: 100%;
   border: 1px solid lightgray;
   border-radius: 1vw;
-  @media ${props => props.theme.mobile} {
+  @media ${props => props.theme.tablet} {
     height: 240px;
     .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
       display: none;
@@ -139,48 +139,88 @@ const CourseWrapper = styled.div`
     }
   }
 `;
+const MypageReview = styled.div`
+  border: 1px solid lightgray;
+  border-radius: 1vw;
+  padding: 20px;
+  margin: 20px 0;
+  .subTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+`;
 
 const MyTravleWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
-  height: 95%;
   .map {
     width: 48%;
-    height: 90%;
-    background-color: white;
+    height: 600px;
   }
   .diary {
     width: 48%;
     height: 90%;
-    background-color: white;
-    border: 1px solid lightgray;
   }
-  @media ${props => props.theme.mobile} {
+  @media ${props => props.theme.tablet} {
     flex-direction: column;
+    justify-content: center;
     .map {
       margin: 20px 0;
-      width: 80%;
+      width: 100%;
       height: 300px;
-      background-color: white;
     }
     .diary {
-      width: 80%;
+      width: 100%;
       height: 90%;
-      border: 1px solid lightgray;
-
-      /* border: 1px solid lightgray; */
     }
-    margin-bottom: 20px;
+  }
+`;
+
+const DiaryBlock = styled.div`
+  border: 2px solid lightgray;
+  border-radius: 1vw;
+  margin-left: 20px;
+  padding: 30px;
+  .review-image {
+    height: 350px;
+    border: 1px solid lightgray;
+  }
+  .review-date {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .review-name {
+    font-size: 16px;
+    font-family: 'Jalnan';
+    font-weight: bold;
+    padding-bottom: 5px;
+  }
+  .review-content {
+    color: gray;
+    margin-top: 10px;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  @media ${props => props.theme.tablet} {
+    margin-left: 0px;
+    .review-image {
+      height: 200px;
+    }
   }
 `;
 
 const DiaryWrapper = styled.div`
-  height: 100%;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  background-color: #fafafa;
+  border: 1px solid lightgray;
+  border-radius: 1vw;
   #title {
     height: 10%;
     height: auto;
@@ -192,7 +232,6 @@ const DiaryWrapper = styled.div`
     text-align: center;
     font-family: 'Jalnan';
     font-size: large;
-    padding-bottom: 20px;
   }
   #image {
     height: 50%;
@@ -211,7 +250,8 @@ const DiaryWrapper = styled.div`
     word-break: break-all; // 글자 넘어가면 줄바꿈
     overflow: auto;
   }
-  @media ${props => props.theme.mobile} {
+  @media ${props => props.theme.tablet} {
+    height: 200px;
     #title {
       height: 10%;
       font-family: 'Jalnan';
@@ -241,6 +281,8 @@ const DiaryWrapper = styled.div`
 `;
 
 export {
+  DiaryBlock,
+  MypageReview,
   MypageWrapper,
   GraphWrapper,
   GraphBlock,

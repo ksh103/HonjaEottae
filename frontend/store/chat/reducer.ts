@@ -19,7 +19,6 @@ const chat = createReducer<ChatState, ChatAction>(initialState, {
   [SET_MESSAGE_LIST]: (state, action) =>
     produce(state, draft => {
       draft.messageList = draft.messageList.concat(action.payload); // 메시지 누적
-      // draft.messageList.push(action.payload); // 메시지 누적
     }),
   [SET_SOCKET_CONNECT]: (state, action) =>
     produce(state, draft => {

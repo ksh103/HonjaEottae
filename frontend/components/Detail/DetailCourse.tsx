@@ -11,7 +11,6 @@ import {
 import DetailMap from './DetailMap';
 
 export default function DetailCourse() {
-  const [index, setIndex] = useState(4);
   const { courseId, courseInfo, courseTourist } = useSelector(
     (state: RootState) => state.detail,
   );
@@ -26,12 +25,7 @@ export default function DetailCourse() {
   const settings = {
     fade: true,
     dots: true,
-    afterChange: (next: number) => setIndex(next),
   };
-  useEffect(() => {
-    console.log(index);
-  }, [index]);
-
   return (
     <>
       <CourseDetail>

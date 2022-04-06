@@ -1,11 +1,5 @@
 import { NextPage } from 'next';
-import {
-  MypageWrapper,
-  GraphBlock,
-  Title,
-  SubTitle,
-  GraphWrapper,
-} from './Mypage.style';
+import { GraphBlock, GraphWrapper } from './Mypage.style';
 import MypageChart from '../Charts/MypageChart';
 import PieChart from '../Charts/PieChart';
 
