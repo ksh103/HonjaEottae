@@ -6,19 +6,26 @@ import Nav from '../Nav/Nav';
 import MypageTravelRecord from './MypageTravelRecord';
 import MypageCourse from './MypageCourse';
 import dynamic from 'next/dynamic';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import Loading from '../Loading/Loading';
 import { MainStamp } from '../Main';
 import { SubTitle, Title } from './Mypage.style';
 import { TEST } from '../../assets/test';
+import { useEffect } from 'react';
+import { mypageInfo } from '../../store/user';
 
 const MypageComp: NextPage = () => {
   const MypageGraph = dynamic(() => import('./MypageGraph'), { ssr: false });
+  const dispatch = useDispatch();
   const { tourId } = useSelector((state: RootState) => state.record);
   const { userInfo, userVisitCourses } = useSelector(
     (state: RootState) => state.user,
   );
+
+  useEffect(() => {
+    dispatch(mypageInfo.request(userInfo.userId));
+  }, []);
   return (
     <>
       <Nav />

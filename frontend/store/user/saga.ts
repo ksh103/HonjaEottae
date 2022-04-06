@@ -1,25 +1,25 @@
 import {
   likeCourse,
   myCourse,
+  mypageInfo,
   saveTestResult,
   signIn,
   signUp,
   unlikeCourse,
   userInfo,
-  visitCourse,
 } from './actions';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {
   LikeCourseAPI,
+  MypageInfoAPI,
   SaveTestResultAPI,
   SignInAPI,
   SignUpAPI,
   UnlikeCourseAPI,
   UserCoursesAPI,
   UserInfoAPI,
-  VisitCourseAPI,
 } from './api';
-import { Course, SignInSuccess, UserDetail, VisitCourse } from './types';
+import { Course, MypageDetail, SignInSuccess, UserDetail } from './types';
 import { getTourDetail } from '../record';
 
 function* signInSaga({ payload }: ReturnType<typeof signIn.request>) {
@@ -51,6 +51,16 @@ function* userInfoSaga({ payload }: ReturnType<typeof userInfo.request>) {
     const result: UserDetail = yield call(UserInfoAPI, payload);
     yield put(userInfo.success(result));
     yield put(getTourDetail.request(result.userInfo.userId));
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* mypageInfoSaga({ payload }: ReturnType<typeof mypageInfo.request>) {
+  try {
+    const result: MypageDetail = yield call(MypageInfoAPI, payload);
+    yield put(mypageInfo.success(result));
     return result;
   } catch (error) {
     console.log(error);
@@ -101,6 +111,7 @@ export function* userSaga() {
     takeLatest(signIn.request, signInSaga),
     takeLatest(signUp.request, signUpSaga),
     takeLatest(userInfo.request, userInfoSaga),
+    takeLatest(mypageInfo.request, mypageInfoSaga),
     takeLatest(likeCourse.request, likeCourseSaga),
     takeLatest(unlikeCourse.request, unlikeCourseSaga),
     takeLatest(saveTestResult.request, saveTestResultSaga),

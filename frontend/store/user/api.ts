@@ -104,6 +104,22 @@ export async function UserInfoAPI(userEmail: string) {
   return result;
 }
 
+export async function MypageInfoAPI(userId: number) {
+  const courses = await UserCoursesAPI(userId);
+  const likes = await UserLikesAPI(userId);
+  const visitCourses = await VisitCourseAPI(userId);
+  const monthCourses = await MonthCourseAPI(userId);
+  const areaCourses = await AreaCourseAPI(userId);
+  const result = {
+    userCourses: courses,
+    userLikes: likes,
+    userVisitCourses: visitCourses,
+    areaCourses: areaCourses,
+    monthCourses: monthCourses,
+  };
+  return result;
+}
+
 // 여행성향테스트 결과 저장
 export async function SaveTestResultAPI({ tourTestId, userId }: TestResult) {
   await axios.put(`${BASE_URL}tour-test`, {

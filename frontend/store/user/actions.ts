@@ -4,6 +4,7 @@ import {
   Bookmark,
   Course,
   MonthCourse,
+  MypageDetail,
   SignIn,
   SignInSuccess,
   SignUp,
@@ -31,6 +32,11 @@ export const SIGN_UP_FAILURE = 'user/SIGN_UP_FAILURE';
 export const USER_INFO_REQUEST = 'user/USER_INFO_REQUEST';
 export const USER_INFO_SUCCESS = 'user/USER_INFO_SUCCESS';
 export const USER_INFO_FAILURE = 'user/USER_INFO_FAILURE';
+
+// 마이페이지 최신화
+export const MYPAGE_INFO_REQUEST = 'user/MYPAGE_INFO_REQUEST';
+export const MYPAGE_INFO_SUCCESS = 'user/MYPAGE_INFO_SUCCESS';
+export const MYPAGE_INFO_FAILURE = 'user/MYPAGE_INFO_FAILURE';
 
 export const SET_LOG_OUT = 'user/SET_LOG_OUT';
 export const SET_LOG_IN = 'user/SET_LOG_IN';
@@ -79,6 +85,12 @@ export const userInfo = createAsyncAction(
   USER_INFO_SUCCESS,
   USER_INFO_FAILURE,
 )<string, UserDetail, Error>();
+
+export const mypageInfo = createAsyncAction(
+  MYPAGE_INFO_REQUEST,
+  MYPAGE_INFO_SUCCESS,
+  MYPAGE_INFO_FAILURE,
+)<number, MypageDetail, Error>();
 
 export const logIn = createAction(SET_LOG_IN)();
 
