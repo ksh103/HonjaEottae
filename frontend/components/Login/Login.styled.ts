@@ -52,7 +52,6 @@ const LoginBlock = styled.div`
     cursor: pointer;
   }
   @media ${props => props.theme.mobile} {
-    // width가 300px 보다 작으면 잘림
     width: 300px;
   }
 `;

@@ -1,4 +1,3 @@
-// 스타일 늦게 호출되는 현상 방지용
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {

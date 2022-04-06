@@ -32,12 +32,6 @@ io.on('connection', socket => {
   socket.on('chat message', (num, name, msg) => {
     io.to(`room${num}`).emit('chat message', { name: name, message: msg });
   });
-
-  // socket.on('send message', item => {
-  //   const msg = item.name + ' : ' + item.message;
-  //   console.log(msg);
-  //   io.emit('receive message', { name: item.name, message: item.message });
-  // });
 });
 
 server.listen(4002, () => console.log(`Listening on port`));

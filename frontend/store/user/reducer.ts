@@ -9,7 +9,6 @@ import {
   USER_INFO_SUCCESS,
   SAVE_TEST_RESULT_SUCCESS,
   MY_COURSE_SUCCESS,
-  VISIT_COURSE_SUCCESS,
   AREA_COURSE_SUCCESS,
   MONTH_COURSE_SUCCESS,
   SET_SELECT_RECORD,
@@ -103,11 +102,6 @@ const user = createReducer<UserState, UserAction>(initialState, {
     produce(state, draft => {
       draft.selectRecord = action.payload;
     }),
-  // [VISIT_COURSE_SUCCESS]: (state, action) =>
-  //   produce(state, draft => {
-  //     console.log('방문코스 기록 리듀서', action);
-  //     draft.visitCourse = action.payload;
-  //   }),
 });
 
 export default user;
