@@ -27,6 +27,7 @@ function App({ Component, pageProps }: AppProps) {
             name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
           />
+          <link rel="icon" href="/images/favicon.ico" />
         </Head>
         <Component {...pageProps} />
         <GlobalStyle />

@@ -39,6 +39,7 @@ const Main: NextPage = () => {
             {menus.map((menu, i) => (
               <Col span={12} key={i}>
                 <MainMenuCard
+                  index={i}
                   title={menu.title}
                   url={menu.url}
                   image={menu.image}
