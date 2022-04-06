@@ -40,21 +40,25 @@ export async function RecommendCourseAPI(payload: number) {
   } else {
     let userCourses = await UserCourseAPI(payload);
     const keywordCourses = await KeywordCourseAPI();
-    userCourses = userCourses.map((data: any) => {
-      if (data.file_id == 0) {
-        return {
-          courseName: data.course_name,
-          courseId: data.course_id,
-          image: 'images/no_image.jpg',
-        };
-      } else {
-        return {
-          courseName: data.course_name,
-          courseId: data.course_id,
-          image: `${IMAGE_URL}${data.file_id}/${data.tourist_id}`,
-        };
-      }
-    });
+    if (userCourses == 'error') {
+      userCourses = await GetPopularCoursesAPI(20);
+    } else {
+      userCourses = userCourses.map((data: any) => {
+        if (data.file_id == 0) {
+          return {
+            courseName: data.course_name,
+            courseId: data.course_id,
+            image: 'images/no_image.jpg',
+          };
+        } else {
+          return {
+            courseName: data.course_name,
+            courseId: data.course_id,
+            image: `${IMAGE_URL}${data.file_id}/${data.tourist_id}`,
+          };
+        }
+      });
+    }
     return {
       userCourses: userCourses,
       keywordCourses: keywordCourses,
@@ -114,17 +118,22 @@ export async function KeywordCourseAPI() {
 export async function UserCourseAPI(payload: number) {
   const datas = await axios
     .get(`https://j6e103.p.ssafy.io:5001/data/${payload}`)
-    .then(res => {
-      // 중복 제거
-      let uniqueArr: any = [];
-      let uniqueId: any = [];
-      res.data.forEach((element: any) => {
-        if (!uniqueId.includes(element.course_id)) {
-          uniqueId.push(element.course_id);
-          uniqueArr.push(element);
-        }
-      });
-      return uniqueArr;
-    });
+    .then(
+      res => {
+        // 중복 제거
+        let uniqueArr: any = [];
+        let uniqueId: any = [];
+        res.data.forEach((element: any) => {
+          if (!uniqueId.includes(element.course_id)) {
+            uniqueId.push(element.course_id);
+            uniqueArr.push(element);
+          }
+        });
+        return uniqueArr;
+      },
+      error => {
+        return 'error';
+      },
+    );
   return datas;
 }

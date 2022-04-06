@@ -23,6 +23,7 @@ const CourseComp: NextPage = () => {
     dispatch(resetSearchCourses());
     dispatch(recommendCourse.request(userInfo.userId));
   }, []);
+  console.log(userInfo.userId);
   return (
     <>
       <Nav />
