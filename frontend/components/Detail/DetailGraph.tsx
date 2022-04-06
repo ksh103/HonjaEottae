@@ -10,17 +10,16 @@ const CourseTypeChart = dynamic(() => import('../Charts/CourseTypeChart'), {
 export default function DetailGraph() {
   const { coursePercentage } = useSelector((state: RootState) => state.detail);
   return (
-    <>
-      {coursePercentage > 0 && (
-        <GraphBlock>
-          <GraphPercentage>
-            😊새로운 인연을 만날 확률 <label>{coursePercentage}</label>% 😎
-          </GraphPercentage>
-          <GraphPie>
-            <CourseTypeChart />
-          </GraphPie>
-        </GraphBlock>
-      )}
-    </>
+    <GraphBlock>
+      <GraphPercentage>
+        <div>
+          😊 새로운 인연을 만날 확률 <label>{coursePercentage}</label>%
+        </div>
+      </GraphPercentage>
+      <GraphPie>
+        <div className="pie-title">여행 성향 테스트 유형별 여행 비율</div>
+        <CourseTypeChart />
+      </GraphPie>
+    </GraphBlock>
   );
 }

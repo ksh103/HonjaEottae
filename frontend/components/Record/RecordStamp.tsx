@@ -33,24 +33,27 @@ export default function RecordStamp() {
   };
 
   const clickTourist = (index: number) => {
-    const { touristLat, touristLng, state } = stamps[index - 1];
-    if (state) return;
-    window.navigator.geolocation.getCurrentPosition(function (position) {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      const dist = getDistance(touristLat, touristLng, lat, lng);
-      if (dist < 2000) {
-        dispatch(
-          markStamp.request({
-            touristIndex: index,
-            courseId: tourId,
-            userId: userInfo.userId,
-          }),
-        );
-      } else {
-        alert('관광지에서 멀리 있습니다.');
-      }
-    });
+    const result = confirm('스탬프를 찍으시겠습니까?');
+    if (result) {
+      const { touristLat, touristLng, state } = stamps[index - 1];
+      if (state) return;
+      window.navigator.geolocation.getCurrentPosition(function (position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const dist = getDistance(touristLat, touristLng, lat, lng);
+        if (dist < 2000) {
+          dispatch(
+            markStamp.request({
+              touristIndex: index,
+              courseId: tourId,
+              userId: userInfo.userId,
+            }),
+          );
+        } else {
+          alert('관광지에서 멀리 있습니다.  이동 후 다시 시도해주세요!');
+        }
+      });
+    }
   };
 
   return (

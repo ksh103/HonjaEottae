@@ -116,7 +116,7 @@ export async function GetCourseInfoAPI(courseId: number) {
     courseInfo: result.courseDetailList[0],
     courseTourist: result.courseTouristDetailList.map(
       (data: any, i: number) => {
-        let img = '/images/no_image.jpg';
+        let img = '/images/no_image2.jpg';
         if (data.fileId > 0) {
           img = IMAGE_URL + data.fileId + '/' + data.touristId;
         }

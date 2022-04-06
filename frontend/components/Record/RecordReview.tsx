@@ -44,15 +44,18 @@ export default function RecordReview() {
     if (!image) alert('사진을 남겨주세요');
     else if (content === '') alert('후기를 남겨주세요');
     else {
-      dispatch(
-        endTour.request({
-          tag: checkTag,
-          tourId: tourId,
-          recordContent: content,
-          userId: userInfo.userId,
-          image: image,
-        }),
-      );
+      const result = confirm('여행을 종료하시겠습니까?');
+      if (result) {
+        dispatch(
+          endTour.request({
+            tag: checkTag,
+            tourId: tourId,
+            recordContent: content,
+            userId: userInfo.userId,
+            image: image,
+          }),
+        );
+      }
     }
   };
 
