@@ -52,6 +52,14 @@ export type UserDetail = {
   monthCourses: MonthCourse[];
 };
 
+export type MypageDetail = {
+  userCourses: Course[];
+  userLikes: Course[];
+  userVisitCourses: VisitCourse[];
+  areaCourses: AreaCourse[];
+  monthCourses: MonthCourse[];
+};
+
 export type VisitCourse = {
   recordId: number;
   courseName: string;

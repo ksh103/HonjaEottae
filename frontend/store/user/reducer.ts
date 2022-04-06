@@ -13,6 +13,7 @@ import {
   AREA_COURSE_SUCCESS,
   MONTH_COURSE_SUCCESS,
   SET_SELECT_RECORD,
+  MYPAGE_INFO_SUCCESS,
 } from './actions';
 import produce from 'immer';
 
@@ -48,6 +49,17 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [USER_INFO_SUCCESS]: (state, action) =>
     produce(state, draft => {
       draft.userInfo = action.payload.userInfo;
+      draft.userCourses = action.payload.userCourses;
+      draft.userLikes = action.payload.userLikes;
+      draft.userVisitCourses = action.payload.userVisitCourses;
+      draft.areaCourses = action.payload.areaCourses;
+      draft.monthCourses = action.payload.monthCourses;
+      if (draft.userVisitCourses.length != 0) {
+        draft.selectRecord = action.payload.userVisitCourses[0].courseId;
+      }
+    }),
+  [MYPAGE_INFO_SUCCESS]: (state, action) =>
+    produce(state, draft => {
       draft.userCourses = action.payload.userCourses;
       draft.userLikes = action.payload.userLikes;
       draft.userVisitCourses = action.payload.userVisitCourses;
