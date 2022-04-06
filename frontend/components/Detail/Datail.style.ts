@@ -83,6 +83,7 @@ const CourseMap = styled.div`
 `;
 
 const CourseImage = styled.div`
+  border: 1px solid ${props => props.theme.colors.backgroundColor};
   height: 350px;
   width: 450px;
   margin-left: 10px;
@@ -92,7 +93,6 @@ const CourseImage = styled.div`
       height: 350px;
       width: 100%;
       object-fit: cover;
-      border: 1px solid ${props => props.theme.colors.backgroundColor};
     }
   }
   .course-image-content {
@@ -102,13 +102,32 @@ const CourseImage = styled.div`
     color: white;
     padding: 10px;
     padding-bottom: 30px;
-    bottom: 1px;
-    left: 1px;
-    right: 1px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
   }
   .course-image-content .name {
     font-size: 15px;
     font-weight: bold;
+  }
+  .slick-dots {
+    bottom: 10px;
+  }
+  .slick-dots li button:before {
+    font-size: 13px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    content: '•';
+    text-align: center;
+    opacity: 0.8;
+    color: white;
+  }
+  .slick-dots .slick-active button:before {
+    color: red;
   }
   @media ${props => props.theme.tablet} {
     width: 100%;
@@ -192,11 +211,13 @@ const GraphPercentage = styled.div`
   border: 1px solid lightgray;
   border-radius: 1vw;
   height: 200px;
-  width: 35%;
+  width: 50%;
   margin-right: 20px;
   text-align: center;
   font-size: 20px;
   display: flex;
+  align-items: center;
+  padding: 0 50px;
   label {
     color: ${props => props.theme.colors.pointColor};
     font-size: 22px;
@@ -207,17 +228,22 @@ const GraphPercentage = styled.div`
   @media ${props => props.theme.tablet} {
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
+    font-size: 18px;
     margin-bottom: 20px;
     justify-content: center;
   }
 `;
 
 const GraphPie = styled.div`
+  .pie-title {
+    font-size: 16px;
+  }
   border: 1px solid lightgray;
   border-radius: 1vw;
   height: 200px;
-  width: 65%;
+  width: 50%;
+  padding: 10px;
   @media ${props => props.theme.tablet} {
     width: 100%;
   }

@@ -58,9 +58,12 @@ export default function DetailHeader() {
   };
   const StartTour = () => {
     if (tourId === 0) {
-      dispatch(
-        startTour.request({ userId: userInfo.userId, tourId: courseId }),
-      );
+      const result = confirm('여행을 시작하시겠습니까?');
+      if (result) {
+        dispatch(
+          startTour.request({ userId: userInfo.userId, tourId: courseId }),
+        );
+      }
     } else {
       alert('여행중인 코스가 있습니다.');
     }

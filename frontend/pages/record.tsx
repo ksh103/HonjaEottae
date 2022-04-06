@@ -19,8 +19,11 @@ const Record: NextPage = () => {
   );
 
   const CancelTour = () => {
-    dispatch(cancelTour.request({ userId: userInfo.userId, tourId: tourId }));
-    Router.push('/');
+    const result = confirm('여행을 종료하시겠습니까?');
+    if (result) {
+      dispatch(cancelTour.request({ userId: userInfo.userId, tourId: tourId }));
+      Router.push('/');
+    }
   };
 
   return (

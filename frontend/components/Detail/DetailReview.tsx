@@ -41,46 +41,40 @@ export default function DetailReview() {
 
   return (
     <>
-      {courseReview.length > 0 && (
-        <>
-          <Review>
-            <h1 className="title">✏ 후기</h1>
-            <div className="content">
-              <Slider {...settings}>
-                {courseReview.map(data => {
-                  return (
-                    <ReviewCard key={data.recordId}>
-                      <Card
-                        key={data.recordId}
-                        className="review-card"
-                        cover={
-                          <ReviewImage>
-                            <div className="email">{data.userEmail}</div>
-                            <img src={data.image} height="240" />
-                          </ReviewImage>
-                        }
-                      >
-                        <div>{data.recordRegDt.slice(0, 10)}</div>
-                        <div className="review-content">
-                          {data.recordContent}
-                        </div>
-                      </Card>
-                    </ReviewCard>
-                  );
-                })}
-              </Slider>
-            </div>
-          </Review>
-          <Divider />
-          <TagBlock>
-            {courseTag.map((tag, i) => (
-              <Tag key={i} color={colors[tag.code]} className="tag">
-                # {tag.tagName}
-              </Tag>
-            ))}
-          </TagBlock>
-        </>
-      )}
+      <Review>
+        <h1 className="title">✏ 후기</h1>
+        <div className="content">
+          <Slider {...settings}>
+            {courseReview.map(data => {
+              return (
+                <ReviewCard key={data.recordId}>
+                  <Card
+                    key={data.recordId}
+                    className="review-card"
+                    cover={
+                      <ReviewImage>
+                        <div className="email">{data.userEmail}</div>
+                        <img src={data.image} height="240" />
+                      </ReviewImage>
+                    }
+                  >
+                    <div>{data.recordRegDt.slice(0, 10)}</div>
+                    <div className="review-content">{data.recordContent}</div>
+                  </Card>
+                </ReviewCard>
+              );
+            })}
+          </Slider>
+        </div>
+      </Review>
+      <Divider />
+      <TagBlock>
+        {courseTag.map((tag, i) => (
+          <Tag key={i} color={colors[tag.code]} className="tag">
+            # {tag.tagName}
+          </Tag>
+        ))}
+      </TagBlock>
     </>
   );
 }

@@ -216,7 +216,7 @@ const StampCardContent = styled(Card)<{ $state: boolean }>`
 `;
 const RecordHeader = styled.div`
   font-family: 'Jalnan';
-  font-size: 20px;
+  font-size: 30px;
   margin: 10px 0;
   @media ${props => props.theme.mobile} {
     font-size: 20px;

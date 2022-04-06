@@ -1,4 +1,3 @@
-import { Col, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
@@ -25,6 +24,7 @@ export default function DetailCourse() {
   };
 
   const settings = {
+    fade: true,
     dots: true,
     afterChange: (next: number) => setIndex(next),
   };
