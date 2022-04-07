@@ -29,10 +29,10 @@ public interface TourRepository extends JpaRepository<Tour, TourID> {
     @Query("select count(t.isEnd) from Tour t where t.isEnd = true and t.userId = :userId")
     int isEndByUserIdAndCourseId(int userId);
 
-    @Query("select count(t.isStart) from Tour t")
+    @Query("select count(t.isStart) from Tour t where t.isStart = true and t.isEnd = false")
     int countTour();
 
-    @Query("select count(t.isStart) from Tour t where t.courseId =:courseId")
+    @Query("select count(t.isStart) from Tour t where t.courseId =:courseId and t.isStart = true and t.isEnd = false")
     int countToursByCourseId(int courseId);
 
 }
