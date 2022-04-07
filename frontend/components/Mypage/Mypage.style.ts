@@ -109,34 +109,16 @@ const SubTitle = styled.div`
 const CourseWrapper = styled.div`
   margin: 20px 0px;
   padding: 20px;
+  padding-bottom: 10px;
   width: 100%;
   border: 1px solid lightgray;
   border-radius: 1vw;
-  @media ${props => props.theme.tablet} {
-    height: 240px;
-    .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
-      display: none;
-    }
-  }
   .subTitle {
     font-size: 20px;
     font-weight: bold;
   }
-  .react-horizontal-scrolling-menu--scroll-container {
-    &::-webkit-scrollbar {
-      width: 10px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: #d2d0d0;
-      border-radius: 10px;
-      background-clip: padding-box;
-      border: 5px solid transparent;
-    }
-    &::-webkit-scrollbar-track {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: inset 0px 0px 5px white;
-    }
+  .list-block {
+    padding: 0 20px;
   }
 `;
 const MypageReview = styled.div`
