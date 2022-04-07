@@ -50,4 +50,5 @@ export type RecordState = {
   courseName: string;
   stamps: Stamp[];
   tag: TagCode[];
+  userCount: number;
 };

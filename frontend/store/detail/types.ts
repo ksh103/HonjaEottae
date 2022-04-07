@@ -75,7 +75,6 @@ export type CourseDetail = {
   courseType: CourseType[];
   courseTag: CourseTag[];
   coursePercentage: number;
-  courseUserCount: number;
 };
 
 export type DetailState = {
@@ -89,5 +88,4 @@ export type DetailState = {
   courseType: CourseType[];
   courseTag: CourseTag[];
   coursePercentage: number;
-  courseUserCount: number;
 };

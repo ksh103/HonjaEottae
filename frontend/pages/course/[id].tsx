@@ -15,6 +15,7 @@ import Footer from '../../components/Footer/Footer';
 import { getCourseDetail } from '../../store/detail';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import MainManual from '../../components/Main/MainManual';
 
 const Detail: NextPage = () => {
   const router = useRouter();
@@ -43,6 +44,7 @@ const Detail: NextPage = () => {
         )}
       </Wrapper>
       <Footer />
+      <MainManual />
     </>
   );
 };

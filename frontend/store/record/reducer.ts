@@ -5,6 +5,7 @@ import {
   END_TOUR_SUCCESS,
   GET_TAG_SUCCESS,
   GET_TOUR_DETAIL_SUCCESS,
+  GET_USER_COUNT_SUCCESS,
   MARK_STAMP_SUCCESS,
   START_TOUR_SUCCESS,
 } from './actions';
@@ -15,6 +16,7 @@ const initialState: RecordState = {
   courseName: '',
   stamps: [],
   tag: [],
+  userCount: 0,
 };
 
 const record = createReducer<RecordState, RecordAction>(initialState, {
@@ -42,6 +44,10 @@ const record = createReducer<RecordState, RecordAction>(initialState, {
   [MARK_STAMP_SUCCESS]: (state, action) =>
     produce(state, draft => {
       draft.stamps[action.payload].state = true;
+    }),
+  [GET_USER_COUNT_SUCCESS]: (state, action) =>
+    produce(state, draft => {
+      draft.userCount = action.payload;
     }),
 });
 export default record;
