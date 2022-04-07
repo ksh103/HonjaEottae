@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { signUp } from '../../store/user';
-import { LoginWrapper, Button, SignupBlock } from '../Login/Login.styled';
+import { LoginWrapper, Button, SignupBlock } from '../Login/Login.style';
 
 const SignupPage: NextPage = () => {
   const dispatch = useDispatch();

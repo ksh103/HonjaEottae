@@ -58,6 +58,9 @@ export default function RecordStamp() {
 
   return (
     <StampBlock>
+      <div className="stamp-notice">
+        💡 각 관광지 500m 이내 있을 경우 해당 관광지 버튼을 클릭하여 스탬프 가능
+      </div>
       {stamps.map(data => {
         return (
           <StampCard key={data.touristIndex} $state={data.state}>

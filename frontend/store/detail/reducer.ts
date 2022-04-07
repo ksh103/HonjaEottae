@@ -26,6 +26,7 @@ const initialState: DetailState = {
   courseType: [],
   courseTag: [],
   coursePercentage: 0,
+  courseUserCount: 0,
 };
 
 const detail = createReducer<DetailState, DetailAction>(initialState, {
@@ -43,6 +44,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
       draft.courseType = action.payload.courseType;
       draft.courseTag = action.payload.courseTag;
       draft.coursePercentage = action.payload.coursePercentage;
+      draft.courseUserCount = action.payload.courseUserCount;
     }),
   [GET_AREA_COURSES_SUCCESS]: (state, action) =>
     produce(state, draft => {

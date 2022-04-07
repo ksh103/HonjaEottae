@@ -120,16 +120,19 @@ export async function UserCourseAPI(payload: number) {
     .get(`https://j6e103.p.ssafy.io:5001/data/${payload}`)
     .then(
       res => {
-        // 중복 제거
-        let uniqueArr: any = [];
-        let uniqueId: any = [];
-        res.data.forEach((element: any) => {
-          if (!uniqueId.includes(element.course_id)) {
-            uniqueId.push(element.course_id);
-            uniqueArr.push(element);
-          }
-        });
-        return uniqueArr;
+        if (res.data.length == 0) {
+          return 'error';
+        } else {
+          let uniqueArr: any = [];
+          let uniqueId: any = [];
+          res.data.forEach((element: any) => {
+            if (!uniqueId.includes(element.course_id)) {
+              uniqueId.push(element.course_id);
+              uniqueArr.push(element);
+            }
+          });
+          return uniqueArr;
+        }
       },
       error => {
         return 'error';

@@ -31,14 +31,22 @@ const Record: NextPage = () => {
       <Nav />
       <Menu currentName="나의 여행 레코드" />
       <Wrapper>
-        <RecordHeader>{courseName}</RecordHeader>
+        <RecordHeader>
+          {courseName}
+          <div
+            className="course-detail"
+            onClick={() => Router.push(`/course/${tourId}`)}
+          >
+            상세보기
+          </div>
+        </RecordHeader>
         {stamps.length > 0 && <RecordMap stamps={stamps} />}
         <RecordStamp />
         {stamps.some(data => data.state) ? (
           <RecordReview />
         ) : (
           <ReviewButton onClick={CancelTour}>
-            <div className="button">여행종료</div>
+            <div className="button">여행취소</div>
           </ReviewButton>
         )}
       </Wrapper>

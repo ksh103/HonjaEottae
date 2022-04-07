@@ -1,19 +1,16 @@
 import { useCallback, useState } from 'react';
 import type { NextPage } from 'next';
 import { TEST } from '../../assets/test';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
-  Header,
   Wrapper,
   TestButton,
   TestQuestion,
-  Button,
-  ButtonWrapper,
 } from '../../components/Travel/Travel.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { saveTestResult } from '../../store/user';
+import Nav from '../../components/Nav/Nav';
 
 const TravelTest: NextPage = () => {
   const { isLogin, userInfo } = useSelector((state: RootState) => state.user);
@@ -41,11 +38,7 @@ const TravelTest: NextPage = () => {
 
   return (
     <>
-      <Header>
-        <Link href="/">
-          <label>혼자어때</label>
-        </Link>
-      </Header>
+      <Nav />
       <Wrapper>
         <h1 className="title">여행 성향 테스트</h1>
         <TestQuestion>Q. {TEST.questions[step].question}</TestQuestion>
@@ -61,11 +54,6 @@ const TravelTest: NextPage = () => {
             );
           })}
         </TestButton>
-        {/* <ButtonWrapper>
-          <Link href="/travel/result">
-            <Button>결과 보기</Button>
-          </Link>
-        </ButtonWrapper> */}
       </Wrapper>
     </>
   );

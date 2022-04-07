@@ -47,42 +47,6 @@ const CourseBlock = styled.div`
   }
 `;
 
-const CourseImageWrapper = styled.div`
-  margin: 0 10px;
-  border-radius: 1vw;
-  width: 200px;
-  height: 200px;
-  #image {
-    width: 100%;
-    height: 80%;
-    cursor: pointer;
-    overflow: hidden;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      &:hover {
-        transform: scale(1.05);
-        transition: transform 0.5s;
-      }
-    }
-  }
-  #title {
-    margin-top: 10px;
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  @media ${props => props.theme.mobile} {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 10px;
-  }
-`;
-
 // searchForm
 const SearchFormWrapper = styled.div`
   display: flex;
@@ -120,7 +84,44 @@ const CourseFormWrapper = styled.div`
   }
 `;
 
+const CourseSliderBlock = styled.div`
+  .slick-prev:before,
+  .slick-next:before {
+    color: gray;
+  }
+  @media (max-width: 1000px) {
+    margin: 0px 40px;
+  }
+`;
+const CourseImageWrapper = styled.div`
+  width: 100%;
+  padding: 10px;
+  .course-card-image {
+    img {
+      border: 1px solid lightgray;
+      background-color: lightgray;
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+  }
+  .course-card-name {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+  }
+  @media (max-width: 1000px) {
+    .course-card-image {
+      img {
+        height: 200px;
+      }
+    }
+  }
+`;
+
 export {
+  CourseSliderBlock,
   CourseWrapper,
   CourseBlock,
   SearchFormWrapper,

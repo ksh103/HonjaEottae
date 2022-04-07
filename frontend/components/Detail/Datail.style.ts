@@ -225,10 +225,20 @@ const GraphPercentage = styled.div`
     font-family: 'Jalnan';
     margin: 0 10px;
   }
+  position: relative;
+  .percentage {
+    position: absolute;
+    font-size: 14px;
+    text-align: center;
+    color: gray;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
   @media ${props => props.theme.tablet} {
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 30px 10px;
     font-size: 18px;
     margin-bottom: 20px;
     justify-content: center;

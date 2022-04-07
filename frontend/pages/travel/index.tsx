@@ -3,20 +3,16 @@ import { TEST } from '../../assets/test';
 import Link from 'next/link';
 import {
   Button,
-  Header,
   MainImage,
   Wrapper,
   ButtonWrapper,
 } from '../../components/Travel/Travel.style';
+import Nav from '../../components/Nav/Nav';
 
 const Travel: NextPage = () => {
   return (
     <>
-      <Header>
-        <Link href="/">
-          <label>혼자어때</label>
-        </Link>
-      </Header>
+      <Nav />
       <Wrapper>
         <MainImage>
           <img src="/images/3.png" />
