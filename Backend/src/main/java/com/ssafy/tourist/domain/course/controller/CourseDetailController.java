@@ -103,5 +103,20 @@ public class CourseDetailController {
             return ResponseEntity.status(200).body(CourseConnectionGetRes.of(200, "Result doesn't exist", 0));
         }
     }
+
+
+    @ApiOperation(value = "현재 여행중인 사람 수")
+    @GetMapping("/tour-ing/{courseId}")
+    public ResponseEntity<CourseTourDetailGetRes> courseTourUserCount (@ApiParam(value = "코스 구분 번호") @PathVariable("courseId") int courseId) {
+        log.info("courseTourUserCount - Call");
+
+        int countUser = courseDetailService.courseTourCount(courseId);
+
+        if(countUser != 0) {
+            return ResponseEntity.status(200).body(CourseTourDetailGetRes.of(200, "Success", countUser));
+        }else {
+            return ResponseEntity.status(200).body(CourseTourDetailGetRes.of(200, "Result doesn't exist", 0));
+        }
+    }
 }
 
