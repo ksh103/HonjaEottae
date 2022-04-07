@@ -41,7 +41,7 @@ export default function RecordStamp() {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
         const dist = getDistance(touristLat, touristLng, lat, lng);
-        if (dist < 2000) {
+        if (dist < 2) {
           dispatch(
             markStamp.request({
               touristIndex: index,
