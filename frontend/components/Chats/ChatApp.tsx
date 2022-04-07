@@ -20,9 +20,10 @@ const ChatApp: NextPage = () => {
     (state: RootState) => state.chat,
   );
   const { userInfo } = useSelector((state: RootState) => state.user);
-  const { tourId } = useSelector((state: RootState) => state.record);
+  const { tourId, courseName } = useSelector(
+    (state: RootState) => state.record,
+  );
   const [value, setValue] = useState('');
-
   // !초기 설정
   useEffect(() => {
     if (!isConnect) {
@@ -81,7 +82,7 @@ const ChatApp: NextPage = () => {
                 혼자어때 채팅
               </div>
               <div id="info" className="app__title">
-                푸른 자연을 느낄 수 있는 코스 채팅방
+                {courseName}
               </div>
               <div id="chatWindow" className="app__window">
                 {messageList.map((data: any, idx: number) =>
