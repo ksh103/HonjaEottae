@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import SearchForm from './SearchForm';
 import Nav from '../Nav/Nav';
 import { CourseWrapper, CourseBlock } from './Course.style';
-import CourseList from './CourseList';
+
 import Footer from '../Footer/Footer';
 import { Wrapper } from '../../styles/variables';
 import Menu from '../Nav/Menu';
@@ -39,7 +39,7 @@ const CourseComp: NextPage = () => {
               {searchCourses.length > 0 && (
                 <div>
                   <div className="title"> {searchKeyword} 관련 코스 추천</div>
-                  <CourseList data={searchCourses} />
+                  <CourseSlider data={searchCourses} />
                 </div>
               )}
               {userInfo.userName.length > 0 ? (
@@ -59,7 +59,6 @@ const CourseComp: NextPage = () => {
                       ]
                     }
                   </div>
-                  {/* <CourseList data={keywordCourse.contents} /> */}
                   <CourseSlider data={keywordCourse.contents} />
                 </div>
               ))}
