@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Router from 'next/router';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../components/Footer/Footer';
+import MainManual from '../components/Main/MainManual';
 import Menu from '../components/Nav/Menu';
 import Nav from '../components/Nav/Nav';
 import { RecordMap, RecordReview, RecordStamp } from '../components/Record';
@@ -51,6 +51,7 @@ const Record: NextPage = () => {
         )}
       </Wrapper>
       <Footer />
+      <MainManual />
     </>
   );
 };

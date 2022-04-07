@@ -4,12 +4,14 @@ import {
   endTour,
   getTag,
   getTourDetail,
+  getUserCount,
   markStamp,
   startTour,
 } from './actions';
 import {
   CancelTourAPI,
   EndTourAPI,
+  GetCourseUserCountAPI,
   GetTagAPI,
   GetTourDetailAPI,
   MarkStampAPI,
@@ -68,6 +70,16 @@ function* getTagSaga() {
     console.error(error);
   }
 }
+function* getUserCountSaga({
+  payload,
+}: ReturnType<typeof getUserCount.request>) {
+  try {
+    const result: number = yield call(GetCourseUserCountAPI, payload);
+    yield put(getUserCount.success(result));
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export function* recordSaga() {
   yield all([
@@ -77,5 +89,6 @@ export function* recordSaga() {
     takeLatest(cancelTour.request, cancelTourSaga),
     takeLatest(markStamp.request, markStampSaga),
     takeLatest(getTag.request, getTagSaga),
+    takeLatest(getUserCount.request, getUserCountSaga),
   ]);
 }

@@ -167,3 +167,11 @@ export async function RegisterReviewAPI({
     .then(res => res.data.recordId);
   return result;
 }
+
+// 코스 여행중 사람수 가져오기
+export async function GetCourseUserCountAPI(courseId: number) {
+  const result = await axios
+    .get(`${BASE_URL}course-detail/tour-ing/${courseId}`)
+    .then(res => res.data.count);
+  return result;
+}

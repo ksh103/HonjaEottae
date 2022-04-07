@@ -10,6 +10,7 @@ import {
   MainStamp,
 } from '../components/Main';
 import { MenuBlock, Wrapper } from '../components/Main/Main.style';
+import MainManual from '../components/Main/MainManual';
 import Nav from '../components/Nav/Nav';
 import { RootState } from '../store';
 import { getMainData } from '../store/detail';
@@ -52,6 +53,7 @@ const Main: NextPage = () => {
         <MainGraph />
       </Wrapper>
       <Footer />
+      <MainManual />
     </>
   );
 };

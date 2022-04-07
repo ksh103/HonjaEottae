@@ -7,7 +7,6 @@ import 'antd/dist/antd.css';
 import Head from 'next/head';
 import { configureStore } from '../store/configureStore';
 import Chat from '../components/Chats/Chat';
-import MainManual from '../components/Main/MainManual';
 
 declare global {
   // 카카오 map
@@ -33,7 +32,6 @@ function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <GlobalStyle />
         <Chat />
-        <MainManual />
       </ThemeProvider>
     </Provider>
   );

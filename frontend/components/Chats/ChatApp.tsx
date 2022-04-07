@@ -20,8 +20,7 @@ const ChatApp: NextPage = () => {
     (state: RootState) => state.chat,
   );
   const { userInfo } = useSelector((state: RootState) => state.user);
-  const { courseUserCount } = useSelector((state: RootState) => state.detail);
-  const { tourId, courseName } = useSelector(
+  const { tourId, courseName, userCount } = useSelector(
     (state: RootState) => state.record,
   );
   const [value, setValue] = useState('');
@@ -78,7 +77,7 @@ const ChatApp: NextPage = () => {
       <ChatWrapper>
         <ChatBlock>
           <div className="app__wrap">
-            <div className="app__count">🙂현재 {courseUserCount}명 여행 중</div>
+            <div className="app__count">🙂현재 {userCount}명 여행 중</div>
             <div id="info" className="app__info">
               혼자어때 채팅
             </div>

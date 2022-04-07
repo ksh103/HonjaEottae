@@ -94,6 +94,7 @@ const CourseSliderBlock = styled.div`
   }
 `;
 const CourseImageWrapper = styled.div`
+  cursor: pointer;
   width: 100%;
   padding: 10px;
   .course-card-image {
@@ -110,6 +111,7 @@ const CourseImageWrapper = styled.div`
     font-size: 15px;
     font-weight: bold;
     text-align: center;
+    height: 60px;
   }
   @media (max-width: 1000px) {
     .course-card-image {
