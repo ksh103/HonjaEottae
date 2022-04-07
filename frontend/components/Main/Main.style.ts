@@ -1,4 +1,3 @@
-import { Card } from 'antd';
 import styled from 'styled-components';
 
 interface Location {
@@ -249,7 +248,106 @@ const AreaCourses = styled.div`
   }
 `;
 
+const ManualIcon = styled.div`
+  .manual-main {
+    img {
+      width: 80px;
+    }
+    cursor: pointer;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.5s ease-in;
+      .manual-sub {
+        opacity: 1;
+        transition: 0.5s ease-in;
+      }
+    }
+  }
+
+  @media ${props => props.theme.mobile} {
+    .manual-main {
+      bottom: 20px;
+      right: 20px;
+      img {
+        width: 50px;
+      }
+    }
+  }
+`;
+
+const ManualBlock = styled.div`
+  position: fixed;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 400px;
+  height: 590px;
+  bottom: 150px;
+  right: 60px;
+  overflow: hidden;
+  box-shadow: 0 0 4px gray;
+  .manual-card {
+    img {
+      width: 100%;
+    }
+  }
+  .manual-exit {
+    position: absolute;
+    display: inline-block;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    color: white;
+    z-index: 101;
+    cursor: pointer;
+  }
+  .slick-dots {
+    bottom: -18px;
+  }
+  .slick-dots li button:before {
+    font-size: 12px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    content: '•';
+    text-align: center;
+    opacity: 0.8;
+    color: gray;
+  }
+  .slick-dots .slick-active button:before {
+    opacity: 1;
+    color: white;
+  }
+  @media ${props => props.theme.mobile} {
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    .manual-exit {
+      top: 10px;
+      right: 10px;
+      font-size: 30px;
+    }
+    .slick-dots {
+      bottom: -20px;
+    }
+  }
+  z-index: 100;
+`;
+
 export {
+  ManualBlock,
+  ManualIcon,
   StampBlock,
   StampCard,
   MenuBlock,

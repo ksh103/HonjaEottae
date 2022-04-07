@@ -89,17 +89,6 @@ export default function RecordMap({ stamps }: MapProps) {
               },
             );
           })(marker, infowindow);
-          // 오버레이 생성하기
-          // const content = `
-          //   <div class="customoverlay">
-          //     <span class="title">${i + 1}. ${tourist[i].touristName}</span>
-          //   </div>`;
-          // const customOverlay = new window.kakao.maps.CustomOverlay({
-          //   map: map,
-          //   position: position,
-          //   content: content,
-          //   yAnchor: 1,
-          // });
         }
       });
     };

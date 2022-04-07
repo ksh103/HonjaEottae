@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { signIn } from '../../store/user';
-import { LoginBlock, LoginWrapper, Button } from './Login.styled';
+import { LoginBlock, LoginWrapper, Button } from './Login.style';
 const LoginPage: NextPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();

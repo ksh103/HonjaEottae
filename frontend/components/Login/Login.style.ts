@@ -7,7 +7,7 @@ const LoginWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: ${props => props.theme.colors.pointColor};
+  background-color: rgba(247, 50, 63, 0.7);
   #title {
     font-family: 'Jalnan';
     font-size: 50px;

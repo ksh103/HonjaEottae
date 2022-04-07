@@ -21,7 +21,6 @@ export async function EndTourAPI({
   recordContent,
   image,
 }: Review) {
-  console.log(tourId, userId, tag, recordContent, image);
   const recordId: number = await RegisterReviewAPI({
     tourId,
     recordContent,
@@ -128,7 +127,6 @@ export async function GetTourDetailAPI(userId: number) {
   visited.forEach((data: any) => {
     course.courseTourist[data.courseDataId - 1].state = true;
   });
-  console.log(course);
   const tag = await GetTagAPI();
   return {
     tourId: tourId,

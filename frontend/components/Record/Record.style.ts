@@ -19,7 +19,6 @@ const TourMap = styled.div`
     border: 1px solid #ccc;
     float: left;
   }
-
   .customoverlay .title {
     display: block;
     text-align: center;
@@ -94,9 +93,13 @@ const TagButton = styled.div<{ state: number; color: string }>`
   }}
 `;
 const StampBlock = styled.div`
-  margin: 20px 10px;
+  margin: 10px;
+  .stamp-notice {
+    margin-bottom: 10px;
+    color: gray;
+  }
   @media ${props => props.theme.mobile} {
-    margin: 20px 0px;
+    margin: 10px 0px;
   }
 `;
 
@@ -215,11 +218,27 @@ const StampCardContent = styled(Card)<{ $state: boolean }>`
   }
 `;
 const RecordHeader = styled.div`
+  margin: 10px 0;
   font-family: 'Jalnan';
   font-size: 30px;
-  margin: 10px 0;
+
+  .course-detail {
+    display: inline-block;
+    font-size: 16px;
+    font-family: none;
+    border: 1px solid lightgray;
+    margin: 0 20px;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
   @media ${props => props.theme.mobile} {
     font-size: 20px;
+    .course-detail {
+      font-size: 12px;
+      margin: 0 10px;
+      padding: 5px;
+    }
   }
 `;
 const FileBox = styled.div`

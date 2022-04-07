@@ -10,7 +10,7 @@ const PieChart: NextPage = () => {
       {areaCourses.length != 0 && (
         <ResponsivePie
           data={areaCourses}
-          margin={{ top: 10, right: 80, bottom: 30, left: 80 }}
+          margin={{ top: 20, right: 80, bottom: 30, left: 80 }}
           innerRadius={0.4}
           activeOuterRadiusOffset={8}
           colors={{ scheme: 'nivo' }}

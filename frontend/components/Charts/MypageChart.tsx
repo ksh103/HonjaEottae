@@ -14,8 +14,11 @@ const MypageChart: NextPage = () => {
           indexBy="yearAndMonth"
           margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
           padding={0.3}
+          valueScale={{ type: 'linear' }}
           colors={{ scheme: 'pastel1' }}
           enableLabel={false}
+          // enableGridY={false}
+          valueFormat=" >-0,~"
           colorBy="indexValue"
           axisBottom={{
             tickSize: 5,
