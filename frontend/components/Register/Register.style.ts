@@ -118,6 +118,7 @@ const ImageWrapper = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border: 1px solid lightgray;
       &:hover {
         transform: scale(1.05);
         transition: transform 0.5s;

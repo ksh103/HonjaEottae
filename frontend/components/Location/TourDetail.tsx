@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { ImageListWrapper } from './Location.styled';
+import { ImageListWrapper } from './Location.style';
 
 const TourDetail: NextPage = () => {
   const { searchLoactions, selectLocation } = useSelector(

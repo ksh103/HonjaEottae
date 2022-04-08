@@ -13,7 +13,9 @@ const MypageCourse: NextPage = () => {
       {userCourses.length > 0 && (
         <CourseWrapper>
           <div className="subTitle">🛠 내가 만든 여행 코스</div>
-          <CourseSlider data={userCourses} />
+          <div className="list-block">
+            <CourseSlider data={userCourses} />
+          </div>
         </CourseWrapper>
       )}
       {userLikes.length > 0 && (

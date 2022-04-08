@@ -6,7 +6,7 @@ import {
   ListWrapper,
   MapBlock,
   MapListWrapper,
-} from './Location.styled';
+} from './Location.style';
 import LocationMap from './LocationMap';
 
 interface MapListProps {

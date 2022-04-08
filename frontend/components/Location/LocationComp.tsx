@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Menu from '../Nav/Menu';
 import Nav from '../Nav/Nav';
-import { LocationWrapper } from './Location.styled';
+import { LocationWrapper } from './Location.style';
 import Footer from '../Footer/Footer';
 import MapList from './MapList';
 import ImageList from './ImageList';
