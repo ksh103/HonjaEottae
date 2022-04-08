@@ -1,0 +1,57 @@
+# 프로젝트 Root 폴더
+version: '3.2'
+
+services: 
+  frontend:
+    image: frontend-next
+    build:
+      context: frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443" 
+      - "4002:4002" 
+      - "5001:5001" 
+    # [인증서 파일 저장 경로]:/var/www/html
+    volumes:
+            #  - /root/var/www/html:/home/ubuntu/docker-volume/ssl
+      - /etc/letsencrypt/copy/j6e103.p.ssafy.io:/var/www/html
+            #  - /home/ubuntu/docker-volume/ssl:/var/www/html
+            #         - /etc/letsencrypt/live/j6e103.p.ssafy.io:/var/www/html
+            #      - /etc/letsencrypt/live/j6e103.p.ssafy.io:/var/www/html
+    container_name: "frontend"
+ 
+  express:
+    image: socket
+    build:
+      context: socket/
+      dockerfile: Dockerfile
+    ports:
+      - "4003:4003"
+    volumes:
+      - /etc/letsencrypt/copy/j6e103.p.ssafy.io:/var/www/html
+               #  - /home/ubuntu/docker-volume/ssl:/var/www/html
+    container_name: "socket"
+
+  backend:
+    image: backend-spring
+    build:
+      context: Backend/
+      dockerfile: Dockerfile
+    ports:
+      - "8443:8443"  
+    volumes:
+      - /etc/letsencrypt/live/j6e103.p.ssafy.io:/root
+      - /home/ubuntu/tourimages:/home/ubuntu/tourimages
+    container_name: "backend"
+
+  flask:
+    image: flask
+    build:
+      context: flask_server/app/
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - /etc/letsencrypt/copy/j6e103.p.ssafy.io:/root
+    container_name: "flask"

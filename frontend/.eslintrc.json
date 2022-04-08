@@ -1,27 +1,34 @@
 {
-  "extends": ["react-app", "prettier/prettier"],
-  "plugins": ["react-hooks", "simple-import-sort", "prettier"],
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommand"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier",
+    "import"
+  ],
   "rules": {
-    "prettier/prettier": "error",
-    "react-hooks/rules-of-hooks": "error",
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
-    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
-    "comma-dangle": ["error", "always-multiline"],
-    "object-curly-spacing": ["error", "always"],
-    "space-in-parens": ["error", "never"],
-    "computed-property-spacing": ["error", "never"],
-    "comma-spacing": ["error", { "before": false, "after": true }],
-    "eol-last": ["error", "always"],
-    "quotes": ["error", "single"],
-    "no-tabs": "error",
-    "semi": ["error", "never"],
-    "import/no-anonymous-default-export": 0,
-    "object-shorthand": "error",
-    "padding-line-between-statements": [
-      "error",
-      { "blankLine": "always", "prev": "*", "next": "return" }
-    ],
-    "@typescript-eslint/no-redeclare": 0
+    "arrow-body-style": "error",
+    "prefer-arrow-callback": "off",
+    "no-var": "error",
+    "no-dupe-keys": "error",
+    "react/prop-types": "off"
   }
 }

@@ -1,9 +1,23 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import { Wrapper } from './Nav.style';
+import { NavBlock } from './Nav.style';
+import Link from 'next/link';
+import Burger from './Burger';
 
 const Nav: NextPage = () => {
-  return <Wrapper>메뉴바</Wrapper>;
+  return (
+    <>
+      <NavBlock>
+        <div>
+          <Link href="/">
+            <label id="title">혼자어때</label>
+          </Link>
+        </div>
+        <div id="menuList"></div>
+        <Burger />
+      </NavBlock>
+    </>
+  );
 };
 
 export default Nav;

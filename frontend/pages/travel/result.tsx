@@ -1,0 +1,133 @@
+import { Col, Row } from 'antd';
+import type { NextPage } from 'next';
+import Link from 'next/link';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { TEST } from '../../assets/test';
+import Nav from '../../components/Nav/Nav';
+import Loading from '../../components/Travel/Loading';
+import PopularType from '../../components/Travel/PopularType';
+import {
+  Wrapper,
+  TestResultCard,
+  Button,
+  ButtonWrapper,
+  TestTitle,
+  ResultFooter,
+} from '../../components/Travel/Travel.style';
+import TypeCourse from '../../components/Travel/TypeCourse';
+import { RootState } from '../../store';
+import { getTestResult } from '../../store/travel';
+
+const TravelResult: NextPage = () => {
+  const [loading, setLoading] = useState(true);
+  const [type, setType] = useState(0);
+  const [rank, setRank] = useState<number[]>([]);
+  const dispatch = useDispatch();
+  const { typeResult } = useSelector((state: RootState) => state.travel);
+
+  const getTypeRank = useCallback(() => {
+    dispatch(getTestResult.request(''));
+  }, [dispatch]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    const { Kakao } = window;
+    if (!Kakao.isInitialized())
+      Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPTKEY);
+
+    if (typeResult.length === 0) {
+      getTypeRank();
+    }
+    const result = localStorage.getItem('type');
+    if (result) setType(+result);
+  }, []);
+
+  useEffect(() => {
+    if (typeResult.length > 0) {
+      const datas = typeResult
+        .map((data, idx) => [idx, data])
+        .sort((a, b) => b[1] - a[1]);
+      setRank([datas[0][0], datas[1][0]]);
+    }
+  }, [typeResult]);
+
+  const shareToKakao = () => {
+    const { Kakao } = window;
+    Kakao.Link.sendCustom({
+      templateId: 73466,
+    });
+  };
+
+  return (
+    <>
+      <Nav />
+      <Wrapper>
+        <h1 className="title">여행 성향 테스트</h1>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <TestTitle color={TEST.results[type].color}>
+              <div
+                className="mainName"
+                dangerouslySetInnerHTML={{ __html: TEST.results[type].desc }}
+              ></div>
+              <div className="result">
+                전체 테스트 참여자 중 <label>15%</label>가 같은 유형입니다.
+              </div>
+              <div className="result-image">
+                <img src={TEST.results[type].image} />
+              </div>
+            </TestTitle>
+
+            <TestResultCard>
+              <h1 className="title">🚩 유형별 코스 추천</h1>
+              {TEST.results[type].courses.map((course, i) => {
+                return (
+                  <TypeCourse
+                    key={i}
+                    no={course.no}
+                    title={course.title}
+                    image={course.image}
+                  />
+                );
+              })}
+            </TestResultCard>
+            {rank.length > 0 && (
+              <TestResultCard>
+                <h1 className="title">✨가장 많은 유형</h1>
+                <Row>
+                  {rank.map((type, i) => (
+                    <Col span={12} key={type}>
+                      <PopularType type={type} rank={i + 1} />
+                    </Col>
+                  ))}
+                </Row>
+              </TestResultCard>
+            )}
+            <ButtonWrapper>
+              <Button color="yellow" onClick={() => shareToKakao()}>
+                테스트 공유하기
+              </Button>
+              <Link href="/travel/test">
+                <Button>테스트 다시하기</Button>
+              </Link>
+            </ButtonWrapper>
+            <ResultFooter>
+              더 많은 여행정보가 궁금하다면?
+              <Link href="/">
+                <label>혼자어때</label>
+              </Link>
+            </ResultFooter>
+          </>
+        )}
+      </Wrapper>
+    </>
+  );
+};
+
+export default TravelResult;
