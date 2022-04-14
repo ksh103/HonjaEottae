@@ -10,31 +10,32 @@ const MypageChart: NextPage = () => {
       {monthCourses.length != 0 && (
         <ResponsiveBar
           data={monthCourses}
-          keys={['dateCount']}
-          indexBy="yearAndMonth"
-          margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
+          keys={['count']}
+          indexBy="date"
+          margin={{ top: 50, right: 50, bottom: 50, left: 70 }}
           padding={0.3}
-          valueScale={{ type: 'linear' }}
+          maxValue={4}
           colors={{ scheme: 'pastel1' }}
           enableLabel={false}
-          // enableGridY={false}
-          valueFormat=" >-0,~"
+          enableGridY={false}
           colorBy="indexValue"
           axisBottom={{
+            tickValues: 5,
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Date',
+            legend: '월별',
             legendPosition: 'middle',
-            legendOffset: 32,
+            legendOffset: 40,
           }}
           axisLeft={{
+            tickValues: 5,
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Count',
+            legend: '횟수',
             legendPosition: 'middle',
-            legendOffset: -40,
+            legendOffset: -35,
           }}
         />
       )}
