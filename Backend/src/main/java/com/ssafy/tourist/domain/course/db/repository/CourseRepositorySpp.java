@@ -80,6 +80,7 @@ public class CourseRepositorySpp {
                 .leftJoin(qTouristImgPath).on(qTouristImgPath.touristId.eq(qCourseData.touristId))
                 .where(qCourse.userId.eq(userId).and(qCourse.isRegister.eq(true)).and(qCourseData.courseDataId.eq(1)))
                 .groupBy(qCourse.courseId)
+                .orderBy(qCourse.courseId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize()).fetchResults();
 
