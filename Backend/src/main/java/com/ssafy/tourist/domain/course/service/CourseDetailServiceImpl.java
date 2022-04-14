@@ -66,13 +66,13 @@ public class CourseDetailServiceImpl implements CourseDetailService {
 
         // 코스 시작
         if(tourRepository.countToursByCourseId(courseId) != 0 && tourRepository.countTour() != 0) {
-            tourStartCount = ((double) tourRepository.countToursByCourseId(courseId) / (double) tourRepository.countTour()) * 50;
+            tourStartCount = ((double) tourRepository.countToursByCourseId(courseId) / (double) tourRepository.countTour()) * 60;
         } else tourStartCount = 0;
         
 
         // 코스 관광지 방문
         if(tourStampRepository.countTourStampByCourseId(courseId) != 0 && tourStampRepository.countTourStamp(courseId) != 0) {
-            stampCount = ((double) tourStampRepository.countTourStampByCourseId(courseId) / (double) tourStampRepository.countTourStamp(courseId)) * 35;
+            stampCount = ((double) tourStampRepository.countTourStampByCourseId(courseId) / (double) tourStampRepository.countTourStamp(courseId)) * 25;
         } else stampCount = 0;
         
 
