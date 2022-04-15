@@ -16,7 +16,7 @@ export default function DetailGraph() {
           😊 새로운 인연을 만날 확률 <label>{coursePercentage}</label>%
         </div>
         <div className="percentage">
-          여행 중(60%) + 관광지 방문(35%) + 북마크(15%)
+          여행 중(60%) + 관광지 방문(25%) + 북마크(15%)
         </div>
       </GraphPercentage>
       <GraphPie>
