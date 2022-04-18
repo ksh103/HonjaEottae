@@ -36,6 +36,7 @@ public class RecordRepositorySpp {
                 .leftJoin(qTourist).on(qTourist.touristId.eq(qCourseData.touristId))
                 .leftJoin(qRecordImgPath).on(qRecordImgPath.recordId.eq(qRecord.recordId))
                 .where(qRecord.userId.eq(userId).and(qCourseData.courseDataId.eq(1)))
+                .orderBy(qRecord.recordRegDt.desc())
                 .groupBy(qRecord.recordId)
                 .fetch();
     }
