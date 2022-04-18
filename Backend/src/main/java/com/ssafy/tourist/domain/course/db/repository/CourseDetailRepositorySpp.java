@@ -66,6 +66,7 @@ public class CourseDetailRepositorySpp {
                 .leftJoin(qCourse).on(qCourse.courseId.eq(qRecord.courseId))
                 .leftJoin(qRecordImgPath).on(qRecordImgPath.recordId.eq(qRecord.recordId))
                 .where(qRecord.courseId.eq(courseId))
+                .orderBy(qRecord.recordRegDt.desc())
                 .groupBy(qRecord.recordId)
                 .fetch();
     }
