@@ -1,4 +1,4 @@
-package com.ssafy.tourist.domain.course.service.controller;
+package com.ssafy.tourist.domain.course.controller;
 
 import com.ssafy.tourist.domain.course.db.bean.TouristSearch;
 import com.ssafy.tourist.domain.course.db.entity.Tourist;
