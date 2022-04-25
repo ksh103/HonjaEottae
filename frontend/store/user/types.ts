@@ -72,7 +72,7 @@ export type VisitCourse = {
 };
 
 export type MonthCourse = {
-  date: number;
+  date: string;
   count: number;
 };
 

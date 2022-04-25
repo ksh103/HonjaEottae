@@ -175,14 +175,21 @@ export async function AreaCourseAPI(userId: number) {
 
 // 회원 방문한 코스 월별 분석(마이페이지 좌측그래프)
 export async function MonthCourseAPI(userId: number) {
-  const datas = await axios.get(`${BASE_URL}user/user-log/date/${userId}`);
+  const datas = await axios
+    .get(`${BASE_URL}user/user-log/date/${userId}`)
+    .then(res => res.data.list);
   let count = 0;
-  datas.data.list.map((data: any) => {
+  datas.map((data: any) => {
     if (data.dateCount == 0) count++;
   });
   if (count == 6) {
     return [];
   } else {
-    return datas.data.list;
+    return datas.map((data: any) => {
+      return {
+        date: (data.yearAndMonth % 100) + '월',
+        count: data.dateCount,
+      };
+    });
   }
 }
